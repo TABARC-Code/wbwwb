@@ -13,24 +13,18 @@
 
   <div class="overlay" id="warning">
     <div>OH NO</div>
-    <div>
-      Your browser does not support WebGL.<br>
-      Please try another modern browser or device.
-    </div>
+    <div>Your browser does not support WebGL.<br>Please try another modern browser or device.</div>
   </div>
 
   <div class="overlay" id="paused">
-    <div>
-      PAUSED<br>
-      Click anywhere to continue
-    </div>
+    <div>PAUSED<br>Click anywhere to continue</div>
   </div>
 
   <!-- Third-party runtime libraries. Versions are intentionally pinned. -->
   <script src="https://cdn.jsdelivr.net/npm/pixi.js@8.19.0/dist/pixi.min.js"></script>
   <script src="https://cdn.jsdelivr.net/npm/howler@2.2.4/dist/howler.min.js"></script>
   <script src="js/lib/stats.min.js"></script>
-  <!-- CreateJS CDN's current stable TweenJS 1.0.0 build. -->
+  <!-- CreateJS CDN stable TweenJS 1.0.0. -->
   <script src="https://code.createjs.com/1.0.0/tweenjs.min.js"></script>
 
   <!-- Compatibility/runtime infrastructure. This contains no scene content. -->
@@ -115,16 +109,14 @@
   <script src="js/scenes/Scene_Meta.js"></script>
 
   <script>
-    // Developer FPS overlay is opt-in; scene/content code is untouched.
     Game.stats = false;
     window.onload = function () {
-      try {
-        if (window.WBWWBTweenUnavailable) return;
-        Game.init();
-      } catch (error) {
-        console.error(error);
-        document.getElementById("warning").style.display = "block";
-      }
+      if (window.WBWWBTweenUnavailable) return;
+      Game.init().catch(function (error) {
+        console.error("Game initialization failed:", error);
+        if (window.Game && Game.showAssetError) Game.showAssetError(error);
+        else document.getElementById("warning").style.display = "block";
+      });
     };
     window.SHARE_TEXT = "I just played We Become What We Behold";
     window.SHARE_URL = "";
