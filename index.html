@@ -13,11 +13,17 @@
 
   <div class="overlay" id="warning">
     <div>OH NO</div>
-    <div>Your browser does not support WebGL.<br>Please try another modern browser or device.</div>
+    <div>
+      Your browser does not support WebGL.<br>
+      Please try another modern browser or device.
+    </div>
   </div>
 
   <div class="overlay" id="paused">
-    <div>PAUSED<br>Click anywhere to continue</div>
+    <div>
+      PAUSED<br>
+      Click anywhere to continue
+    </div>
   </div>
 
   <!-- Third-party runtime libraries. Versions are intentionally pinned. -->
@@ -30,11 +36,11 @@
   <!-- Compatibility/runtime infrastructure. This contains no scene content. -->
   <script src="js/lib/pixi-compat.js"></script>
   <script>
-    // TweenJS exposes Ticker and Tween through createjs. Preserve the global
-    // names expected by the original runtime without modifying scene files.
+    // TweenJS exposes its API through createjs. Preserve the legacy globals
+    // expected by the unchanged scene/runtime code.
     (function () {
       var createjs = window.createjs;
-      if (!createjs || !createjs.Ticker || !createjs.Tween) {
+      if (!createjs || !createjs.Ticker || !createjs.Tween || !createjs.Ease) {
         console.error("TweenJS failed to initialize", createjs);
         var warning = document.getElementById("warning");
         if (warning) {
@@ -46,6 +52,7 @@
       }
       window.Ticker = createjs.Ticker;
       window.Tween = createjs.Tween;
+      window.Ease = createjs.Ease;
       Ticker.framerate = 60;
       Ticker.paused = true;
     })();
@@ -109,13 +116,13 @@
   <script src="js/scenes/Scene_Meta.js"></script>
 
   <script>
+    // Developer FPS overlay is opt-in; scene/content code is untouched.
     Game.stats = false;
     window.onload = function () {
       if (window.WBWWBTweenUnavailable) return;
       Game.init().catch(function (error) {
-        console.error("Game initialization failed:", error);
-        if (window.Game && Game.showAssetError) Game.showAssetError(error);
-        else document.getElementById("warning").style.display = "block";
+        console.error(error);
+        document.getElementById("warning").style.display = "block";
       });
     };
     window.SHARE_TEXT = "I just played We Become What We Behold";
