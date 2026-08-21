@@ -15,6 +15,7 @@ This file is runtime infrastructure. Scene/gameplay content remains unchanged.
   Game.height = 540;
   Game.stats = true;
   Game.paused = false;
+  Game.assetError = null;
 
   Game.init = async function (HACK) {
     // PixiJS v8 requires asynchronous renderer initialization.
@@ -48,11 +49,11 @@ This file is runtime infrastructure. Scene/gameplay content remains unchanged.
 
     var startScene = HACK || "Preloader";
 
-    await new Promise(function (resolve) {
+    await new Promise(function (resolve, reject) {
       Game.loadAssets(function () {
         Game.sceneManager.gotoScene(startScene);
         resolve();
-      }, function () {}, true);
+      }, function () {}, true, reject);
     });
 
     // Keep the original fixed-step gameplay timing while rendering through
@@ -105,9 +106,29 @@ This file is runtime infrastructure. Scene/gameplay content remains unchanged.
   Game.manifest2 = {};
   Game.sounds = {};
 
-  Game.loadAssets = function (completeCallback, progressCallback, PRELOADER) {
+  Game.showAssetError = function (error) {
+    Game.assetError = error;
+
+    var warning = document.getElementById("warning");
+    if (!warning) return;
+
+    var message = error && error.message ? error.message : String(error || "Unknown asset error");
+    warning.innerHTML =
+      "<div>ASSET LOADING ERROR</div>" +
+      "<div>A required game asset could not be loaded.</div>" +
+      "<div style=\"font-size:12px;word-break:break-word;max-width:90%;margin-top:12px;\">" +
+      message.replace(/[&<>\"]/g, function (character) {
+        return { "&": "&amp;", "<": "&lt;", ">": "&gt;", "\"": "&quot;" }[character];
+      }) +
+      "</div>" +
+      "<div style=\"margin-top:12px;\">Please refresh the page and try again.</div>";
+    warning.style.display = "block";
+  };
+
+  Game.loadAssets = function (completeCallback, progressCallback, PRELOADER, errorCallback) {
     var manifest = PRELOADER ? Game.manifest2 : Game.manifest;
     progressCallback = progressCallback || function () {};
+    errorCallback = errorCallback || Game.showAssetError;
 
     var entries = Object.keys(manifest);
     if (!entries.length) {
@@ -181,9 +202,12 @@ This file is runtime infrastructure. Scene/gameplay content remains unchanged.
       })
       .catch(function (error) {
         console.error("Asset loading failed:", error);
-        // Preserve the callback-oriented game flow so a failed optional
-        // sound does not leave the preloader permanently stuck.
-        completeCallback();
+
+        // IMPORTANT: a required asset failure is fatal for this scene load.
+        // Never call completeCallback(), otherwise Scene_Preloader continues
+        // with an incomplete resource table and fails later with misleading
+        // errors such as "Missing image resource: blackout".
+        errorCallback(error);
       });
   };
 
