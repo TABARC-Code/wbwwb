@@ -33,7 +33,19 @@
 
   <!-- Compatibility/runtime infrastructure. This contains no scene content. -->
   <script src="js/lib/pixi-compat.js"></script>
-  <script>var createjs = window; Ticker.framerate = 60; Ticker.paused = true;</script>
+  <script>
+    // TweenJS 0.6.2 exposes its API through createjs. The original game
+    // expects Ticker and Tween as globals, so preserve those names while
+    // keeping the third-party library itself unchanged.
+    var createjs = window.createjs;
+    if (!createjs || !createjs.Ticker || !createjs.Tween) {
+      throw new Error("TweenJS failed to initialize");
+    }
+    window.Ticker = createjs.Ticker;
+    window.Tween = createjs.Tween;
+    Ticker.framerate = 60;
+    Ticker.paused = true;
+  </script>
   <script src="js/lib/helpers.js"></script>
 
   <!-- Localization: English is the canonical source of truth. -->
