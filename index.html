@@ -4,6 +4,7 @@
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <title>We Become What We Behold</title>
+  <link rel="icon" href="favicon.svg" type="image/svg+xml">
   <link rel="stylesheet" href="css/game.css">
 </head>
 <body>
@@ -29,22 +30,31 @@
   <script src="https://cdn.jsdelivr.net/npm/pixi.js@8.19.0/dist/pixi.min.js"></script>
   <script src="https://cdn.jsdelivr.net/npm/howler@2.2.4/dist/howler.min.js"></script>
   <script src="js/lib/stats.min.js"></script>
-  <script src="https://code.createjs.com/0.6.2/tweenjs.min.js"></script>
+  <!-- CreateJS CDN's current stable TweenJS 1.0.0 build. -->
+  <script src="https://code.createjs.com/1.0.0/tweenjs.min.js"></script>
 
   <!-- Compatibility/runtime infrastructure. This contains no scene content. -->
   <script src="js/lib/pixi-compat.js"></script>
   <script>
-    // TweenJS 0.6.2 exposes its API through createjs. The original game
-    // expects Ticker and Tween as globals, so preserve those names while
-    // keeping the third-party library itself unchanged.
-    var createjs = window.createjs;
-    if (!createjs || !createjs.Ticker || !createjs.Tween) {
-      throw new Error("TweenJS failed to initialize");
-    }
-    window.Ticker = createjs.Ticker;
-    window.Tween = createjs.Tween;
-    Ticker.framerate = 60;
-    Ticker.paused = true;
+    // TweenJS exposes Ticker and Tween through createjs. Preserve the global
+    // names expected by the original runtime without modifying scene files.
+    (function () {
+      var createjs = window.createjs;
+      if (!createjs || !createjs.Ticker || !createjs.Tween) {
+        console.error("TweenJS failed to initialize", createjs);
+        var warning = document.getElementById("warning");
+        if (warning) {
+          warning.innerHTML = "<div>RUNTIME ERROR</div><div>Animation support could not be initialized.<br>Please refresh the page or try another browser.</div>";
+          warning.style.display = "block";
+        }
+        window.WBWWBTweenUnavailable = true;
+        return;
+      }
+      window.Ticker = createjs.Ticker;
+      window.Tween = createjs.Tween;
+      Ticker.framerate = 60;
+      Ticker.paused = true;
+    })();
   </script>
   <script src="js/lib/helpers.js"></script>
 
@@ -109,6 +119,7 @@
     Game.stats = false;
     window.onload = function () {
       try {
+        if (window.WBWWBTweenUnavailable) return;
         Game.init();
       } catch (error) {
         console.error(error);
