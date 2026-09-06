@@ -38,10 +38,15 @@ into sprite art.
 
 ## The shadow set
 
-`ShadowTV` is the invisible twin of the physical television. At present it
-mirrors completed broadcasts into a short, bounded history and does absolutely
-nothing else. It stores facts, not Pixi textures. That makes it safe to leave
-running while the visible set owns the photograph and animation.
+`ShadowTV` is the headless twin of the central television. It mirrors completed
+broadcasts into a short, bounded history and controls two smaller sets placed
+to the left and right of the main screen. The left echo frames the same picture
+through dread; the right pushes fury. These are emotional extremes, not labels
+for political parties.
+
+The controller stores facts, not Pixi textures. A live texture passes directly
+to both displays, which own their own sprites. That makes the history safe to
+leave running while the visible sets own the photograph and animation.
 
 The intended next use is counterfactual framing: feed the same evidence to two
 headlines, publish one, and let the shadow set calculate the road not taken.

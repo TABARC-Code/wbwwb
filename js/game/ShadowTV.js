@@ -20,7 +20,24 @@
     this.visible = false;
     this.capacity = Math.max(1, number(options.capacity) || 64);
     this.history = [];
+    this.leftDisplay = null;
+    this.rightDisplay = null;
   }
+
+  var framing = {
+    en: { dread: "BE AFRAID.", fury: "GET ANGRY." },
+    de: { dread: "HAB ANGST.", fury: "WERD WÜTEND." },
+    es: { dread: "TEN MIEDO.", fury: "ENFÁDATE." },
+    fa: { dread: "بترس.", fury: "عصبانی شو." },
+    pt: { dread: "FIQUE COM MEDO.", fury: "FIQUE COM RAIVA." },
+    tr: { dread: "KORK.", fury: "ÖFKELEN." }
+  };
+
+  ShadowTV.prototype.attachDisplays = function (left, right) {
+    this.leftDisplay = left || null;
+    this.rightDisplay = right || null;
+    return this;
+  };
 
   ShadowTV.prototype.receiveBroadcast = function (broadcast) {
     broadcast = broadcast || {};
@@ -44,6 +61,23 @@
 
     this.history.push(frame);
     if (this.history.length > this.capacity) this.history.shift();
+
+    // The texture is handed straight through, never placed in `frame`. The
+    // displays own their Pixi sprites; the shadow history remains plain data.
+    var words = framing[global.WBWWB_LOCALE] || framing.en;
+    var displayOptions = {
+      photo: broadcast.photo,
+      fail: Boolean(broadcast.fail),
+      nothing: Boolean(broadcast.nothing)
+    };
+    if (broadcast.photo && this.leftDisplay && this.leftDisplay.placePhoto) {
+      displayOptions.text = words.dread + "\n" + frame.headline;
+      this.leftDisplay.placePhoto(displayOptions);
+    }
+    if (broadcast.photo && this.rightDisplay && this.rightDisplay.placePhoto) {
+      displayOptions.text = words.fury + "\n" + frame.headline;
+      this.rightDisplay.placePhoto(displayOptions);
+    }
     return frame;
   };
 

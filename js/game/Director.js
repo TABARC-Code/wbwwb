@@ -352,6 +352,9 @@ function Director(scene){
 		if(scene.shadowTV){
 			scene.shadowTV.receiveBroadcast({
 				headline: text,
+				photo: self.photoTexture,
+				fail: fail,
+				nothing: nothing,
 				data: data,
 				entry: ledgerEntry
 			});

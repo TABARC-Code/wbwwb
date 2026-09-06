@@ -31,3 +31,19 @@ test("shadow TV keeps a bounded history", () => {
   shadow.clear();
   assert.equal(shadow.latest(), null);
 });
+
+test("shadow displays receive darker framings without textures entering history", () => {
+  global.WBWWB_LOCALE = "en";
+  const shown = { left: null, right: null };
+  const shadow = new ShadowTV().attachDisplays(
+    { placePhoto: (options) => { shown.left = { ...options }; } },
+    { placePhoto: (options) => { shown.right = { ...options }; } }
+  );
+  const texture = { id: "live-only" };
+  const frame = shadow.receiveBroadcast({ photo: texture, headline: "CIRCLES FEAR SQUARES" });
+
+  assert.equal(shown.left.photo, texture);
+  assert.match(shown.left.text, /^BE AFRAID\./);
+  assert.match(shown.right.text, /^GET ANGRY\./);
+  assert.equal(Object.hasOwn(frame, "photo"), false);
+});
