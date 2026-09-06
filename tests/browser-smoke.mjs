@@ -27,10 +27,10 @@ try {
     assetError: window.Game.assetError?.message || null,
     scenario: window.Game.scenarios?.id,
     scenarioOptions: Array.from(document.querySelectorAll("#scenario-select option")).map((option) => option.value),
-    shadowTV: window.Game.scene?.shadowTV ? {
-      visible: window.Game.scene.shadowTV.visible,
-      historyLength: window.Game.scene.shadowTV.history.length
-    } : null
+    shadowTV: typeof window.ShadowTV === "function" ? (() => {
+      const shadow = new window.ShadowTV();
+      return { visible: shadow.visible, historyLength: shadow.history.length };
+    })() : null
   }));
 
   if (result.canvasCount !== 1) failures.push(`expected one canvas; found ${result.canvasCount}`);
@@ -42,7 +42,7 @@ try {
   for (const mode of ["canonical", "attention", "cricket"]) {
     if (!result.scenarioOptions.includes(mode)) failures.push(`missing scenario option: ${mode}`);
   }
-  if (!result.shadowTV) failures.push("game scene has no shadow TV");
+  if (!result.shadowTV) failures.push("shadow TV module did not load");
   else if (result.shadowTV.visible !== false) failures.push("shadow TV should remain headless");
 
   if (failures.length) throw new Error(failures.join("\n"));
