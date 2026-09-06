@@ -110,7 +110,10 @@ function Director(scene){
 
         	// Who to watch TV, now?
 	        if(filterAudience) peeps=peeps.filter(filterAudience); // filter
-	        peeps.sort(function(){ return Math.random()<0.5; }); // shuffle
+	        // A random comparator isn't a shuffle; some engines barely move the
+	        // list at all. Seeded Fisher-Yates gives every peep a fair turn and
+	        // lets a reported run be replayed exactly.
+	        Game.randomSource.shuffle(peeps);
 	        for(var i=0;i<peeps.length;i++){
 
 	            var p = peeps[i];
@@ -136,7 +139,7 @@ function Director(scene){
 	            if(watchTV){
 	                p.x = self.tv.x;
 	                p.x -= flip*offset;
-	                p.y = self.tv.y+Math.random(); // tiny offset to avoid glitchy depth-sort
+	                p.y = self.tv.y+Game.random(); // tiny offset to avoid glitchy depth-sort
 	                if(doSomethingElse){
 	                	doSomethingElse(p);
 	                }else{
@@ -232,49 +235,9 @@ function Director(scene){
 	// Get everything that's at least 33% inside the camera frame
 	self.getPropsInCamera = function(filterFunc){
 
-		// Those caught in the camera
-		var caught = [];
-
-		// cam top-left-right-bottom
-		var cam = scene.camera;
-		var cl = cam.x-cam.width/2;
-		var cr = cam.x+cam.width/2;
-		var ct = cam.y-cam.height/2;
-		var cb = cam.y+cam.height/2;
-
-		for(var i=0;i<scene.world.props.length;i++){
-			
-			var prop = scene.world.props[i];
-
-			// prop's top-left-right-bottom
-			var realY = prop.y;
-			if(prop.z!==undefined) realY+=prop.z;
-			var pl = prop.x-prop.width/2;
-			var pr = prop.x+prop.width/2;
-			var pt = realY-prop.height;
-			var pb = realY;
-			var totalArea = prop.width*prop.height;
-	
-			// not overlapping at all
-			if(pr<cl) continue;
-			if(pl>cr) continue;
-			if(pb<ct) continue;
-			if(pt>cb) continue;
-
-			// overlapping a little bit... but how much?
-			var l = Math.max(cl,pl);
-			var t = Math.max(ct,pt);
-			var r = Math.min(cr,pr);
-			var b = Math.min(cb,pb);
-			var overlapArea = (r-l)*(b-t);
-			var overlapRatio = overlapArea/totalArea;
-
-			// If 33% or more, yes!
-			if(overlapRatio>0.33){
-				caught.push(prop);
-			}
-
-		}
+		var caught = WBWWBCaptureAnalysis
+			.analyse(scene.world.props, scene.camera, 0.33)
+			.map(function(result){ return result.prop; });
 
 		// Filter?...
 		if(filterFunc){
@@ -322,6 +285,18 @@ function Director(scene){
 		var data = self.photoData;
 		var fail = false;
 		var nothing = data.ITS_NOTHING;
+
+		var peeps = self.scene.world.peeps;
+		var angryCount = peeps.filter(function(peep){ return peep._CLASS_ === "AngryPeep"; }).length;
+		Game.ledger.record({
+			headline: self.chyron,
+			audience: data.audience || (data.audienceCircles || 0) + (data.audienceSquares || 0),
+			circleAudience: data.audienceCircles,
+			squareAudience: data.audienceSquares,
+			angryRatio: peeps.length ? angryCount / peeps.length : 0,
+			emptyFrame: Boolean(data.ITS_NOTHING),
+			seed: Game.seed
+		});
 		if(!data.forceChyron){
 			if(data.audience==0 && !data.audienceCircles && !data.audienceSquares){
 

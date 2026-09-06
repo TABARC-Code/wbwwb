@@ -104,7 +104,7 @@ function World(scene, options){
 		var watchers = self.peeps.filter(function(peep){
 			return (peep.type==type && peep.isWatching);
 		});
-		var randomIndex = Math.floor(Math.random()*watchers.length);
+		var randomIndex = Math.floor(Game.random()*watchers.length);
 		var watcher = watchers[randomIndex];
 
 		// REPLACE THIS ONE

@@ -18,17 +18,22 @@ The modernization is based on `enis1enis2/wbwwb` and preserves the scene/content
 - The Chinese fork localization is removed from runtime data.
 - Invalid HTML structure is corrected.
 - Repository hygiene files and a locale audit utility are included.
+- One fixed-step animation driver replaces the competing update and render clocks.
+- Seeded randomness makes intermittent behaviour reproducible.
+- Capture geometry and editorial history are independently testable.
+- Audio failures are non-fatal.
+- Canonical English image assets are restored from `AstralKrab/wbwwb`.
 
 ## Intentionally retained
 
-TweenJS 0.6.2 and stats.js remain because existing runtime code uses them. The FPS overlay is developer-only and disabled by default.
+TweenJS 1.0.0 and stats.js remain because existing runtime code uses them. The FPS overlay is developer-only and disabled by default.
 
 ## Validation
 
 Run:
 
 ```bash
-npm run audit:locales
+npm run check
 ```
 
 For final browser validation, serve the repository over HTTP and test preloading, rendering, pointer/touch input, camera capture, audio, scene transitions, pause/resume and every locale. Static checks cannot prove WebGL visual correctness.

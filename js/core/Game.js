@@ -16,8 +16,44 @@ This file is runtime infrastructure. Scene/gameplay content remains unchanged.
   Game.stats = true;
   Game.paused = false;
   Game.assetError = null;
+  Game.audioWarnings = [];
+  Game.clock = new WBWWBFixedStepClock({ stepMs: 1000 / 60, maxSteps: 8 });
+  Game.seed = null;
+  Game.randomSource = null;
+  Game.ledger = new WBWWBEditorialLedger();
+  Game._animationFrame = null;
+
+  Game.readSeed = function () {
+    try {
+      var requested = new URLSearchParams(window.location.search).get("seed");
+      if (requested) return requested;
+    } catch (_) {}
+
+    // Random by default, named when requested. That keeps ordinary play lively
+    // while giving bug reports a fingerprint we can actually follow.
+    if (window.crypto && window.crypto.getRandomValues) {
+      var values = new Uint32Array(2);
+      window.crypto.getRandomValues(values);
+      return values[0].toString(36) + values[1].toString(36);
+    }
+    return String(Date.now());
+  };
+
+  Game.setSeed = function (seed) {
+    Game.seed = String(seed);
+    Game.randomSource = new WBWWBRandom(Game.seed);
+    document.documentElement.dataset.seed = Game.seed;
+    return Game.seed;
+  };
+
+  Game.random = function () {
+    if (!Game.randomSource) Game.setSeed(Game.readSeed());
+    return Game.randomSource.next();
+  };
 
   Game.init = async function (HACK) {
+    Game.setSeed(Game.readSeed());
+    Game.ledger = new WBWWBEditorialLedger();
     // PixiJS v8 requires asynchronous renderer initialization.
     Game.renderer = new PIXI.WebGLRenderer();
     await Game.renderer.init({
@@ -56,23 +92,21 @@ This file is runtime infrastructure. Scene/gameplay content remains unchanged.
       }, function () {}, true, reject);
     });
 
-    // Keep the original fixed-step gameplay timing while rendering through
-    // the modern Pixi renderer.
-    Game._updateTimer = window.setInterval(Game.update, 1000 / 60);
-    Game.animate();
+    Game.clock.reset();
+    Game._animationFrame = requestAnimationFrame(Game.animate);
   };
 
-  Game.update = function () {
+  Game.update = function (stepMs) {
     if (Game.paused) return;
 
     if (typeof Tween !== "undefined" && Tween.tick) {
-      Tween.tick();
+      Tween.tick(stepMs || (1000 / 60));
     }
 
     Game.sceneManager.update();
   };
 
-  Game.animate = function () {
+  Game.render = function () {
     if (Game.stats) Game.stats.begin();
 
     if (!Game.paused && Game.renderer && Game.stage) {
@@ -80,7 +114,21 @@ This file is runtime infrastructure. Scene/gameplay content remains unchanged.
     }
 
     if (Game.stats) Game.stats.end();
-    requestAnimationFrame(Game.animate);
+  };
+
+  Game.animate = function (timestamp) {
+    if (!Game.paused) {
+      Game.clock.tick(timestamp, Game.update, Game.render);
+    } else {
+      Game.clock.reset();
+    }
+    Game._animationFrame = requestAnimationFrame(Game.animate);
+  };
+
+  Game.stop = function () {
+    if (Game._animationFrame !== null) cancelAnimationFrame(Game._animationFrame);
+    Game._animationFrame = null;
+    Game.clock.reset();
   };
 
   var modal_shade = document.getElementById("modal_shade");
@@ -92,6 +140,7 @@ This file is runtime infrastructure. Scene/gameplay content remains unchanged.
     modal_shade.style.display = "block";
     paused.style.display = "block";
     Game.paused = true;
+    Game.clock.reset();
     Howler.mute(true);
   });
 
@@ -99,6 +148,7 @@ This file is runtime infrastructure. Scene/gameplay content remains unchanged.
     modal_shade.style.display = "none";
     paused.style.display = "none";
     Game.paused = false;
+    Game.clock.reset();
     Howler.mute(false);
   };
 
@@ -174,9 +224,12 @@ This file is runtime infrastructure. Scene/gameplay content remains unchanged.
           sound.once("loaderror", function (_id, error) {
             if (!settled) {
               settled = true;
-              console.error("Audio failed to load:", src, error);
+              // Silence is a degraded experience, not a dead game. This was
+              // the old 82% loader trap: one codec sulked and nobody got in.
+              console.warn("Audio failed to load; continuing silently:", src, error);
+              Game.audioWarnings.push({ src: src, error: String(error) });
               progress();
-              reject(new Error("Audio failed to load: " + src));
+              resolve();
             }
           });
         }));

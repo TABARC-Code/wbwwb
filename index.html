@@ -9,6 +9,11 @@
 </head>
 <body>
   <div id="stage"></div>
+  <div id="game-controls" aria-label="Game settings">
+    <label for="locale-select">Language</label>
+    <select id="locale-select" aria-label="Language"></select>
+    <button id="sound-toggle" type="button" aria-pressed="false">Sound on</button>
+  </div>
   <div id="modal_shade"></div>
 
   <div class="overlay" id="warning">
@@ -57,8 +62,13 @@
   <script src="js/locale-tr.js?v=20260821-3"></script>
   <!-- Explicit ?lang=xx / ?locale=xx is authoritative over saved preferences. -->
   <script src="js/locale-query.js?v=20260821-3"></script>
+  <script src="js/ui/Controls.js"></script>
 
   <!-- Core engine -->
+  <script src="js/core/Random.js"></script>
+  <script src="js/core/FixedStepClock.js"></script>
+  <script src="js/core/CaptureAnalysis.js"></script>
+  <script src="js/core/EditorialLedger.js"></script>
   <script src="js/core/Game.js"></script>
   <script src="js/core/SceneManager.js"></script>
   <script src="js/core/Scene.js"></script>

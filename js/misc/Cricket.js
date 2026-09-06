@@ -23,7 +23,7 @@ function Cricket(scene){
 	
 	self.flip = 1;
 	self.period = 10;
-	self.breathe = Math.floor(Math.random()*self.period);
+	self.breathe = Math.floor(Game.random()*self.period);
 	self.hop = 0;
 
 	self.x = self.y = self.z = 0;

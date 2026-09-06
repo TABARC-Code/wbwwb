@@ -16,8 +16,8 @@ function Candlelight(position){
 	mc.y = position[1]-100; // HACK, LOL W/E
 
 	self.update = function(){
-		if(Math.random()<0.2){
-			var frame = Math.floor(Math.random()*mc.totalFrames);
+		if(Game.random()<0.2){
+			var frame = Math.floor(Game.random()*mc.totalFrames);
 			mc.gotoAndStop(frame);
 		}
 	};

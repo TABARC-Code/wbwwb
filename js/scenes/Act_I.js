@@ -207,7 +207,7 @@ function _cutHats(d){
             return peep.wearingHat;
         });
         if(hatPeeps.length>0){
-            var randomIndex = Math.floor(Math.random()*hatPeeps.length);
+            var randomIndex = Math.floor(Game.random()*hatPeeps.length);
             hatPeeps[randomIndex].takeOffHat(true);
         }
         return false;
