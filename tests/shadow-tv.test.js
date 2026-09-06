@@ -1,5 +1,6 @@
 const test = require("node:test");
 const assert = require("node:assert/strict");
+global.WBWWBShadowHeadlineEngine = require("../js/game/ShadowHeadlineEngine.js");
 const ShadowTV = require("../js/game/ShadowTV.js");
 
 test("shadow TV mirrors broadcast facts without retaining renderer objects", () => {
@@ -43,8 +44,8 @@ test("shadow displays receive darker framings without textures entering history"
   const frame = shadow.receiveBroadcast({ photo: texture, headline: "CIRCLES FEAR SQUARES" });
 
   assert.equal(shown.left.photo, texture);
-  assert.equal(shown.left.text, "THEY'RE COMING FOR YOU");
-  assert.equal(shown.right.text, "FIGHT BACK");
+  assert.equal(shown.left.text, "THE SYSTEM FAILED THEM");
+  assert.equal(shown.right.text, "THEY'RE COMING FOR YOU");
   assert.equal(Object.hasOwn(frame, "photo"), false);
 });
 
@@ -55,5 +56,5 @@ test("shadow headlines turn absence into suspicion and blame", () => {
   const shadow = new ShadowTV().attachDisplays(display, display);
   shadow.receiveBroadcast({ photo: {}, data: { ITS_NOTHING: true } });
 
-  assert.deepEqual(headlines, ["THE SILENCE IS SUSPICIOUS", "DON'T LET THEM HIDE"]);
+  assert.deepEqual(headlines, ["WHAT ARE THEY HIDING?", "DON'T LET THEM HIDE"]);
 });

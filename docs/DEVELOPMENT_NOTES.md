@@ -49,6 +49,13 @@ become suspicion on one set and accusations of concealment on the other;
 crickets become either sinister distraction or infuriating nonsense. At high
 crowd anger, both harden again. Same photograph. Different poison.
 
+The wording now lives in `ShadowHeadlineEngine`, separate from display and
+history. When a scene supplies structured story facts, the engine can perform
+more specific distortions. Flood victims seeking safety, for example, become
+people abandoned by the system on the left set and “foreign invaders” on the
+right. That substitution is recorded as a framing strategy; it isn't mistaken
+for a new fact.
+
 The controller stores facts, not Pixi textures. A live texture passes directly
 to both displays, which own their own sprites. That makes the history safe to
 leave running while the visible sets own the photograph and animation.

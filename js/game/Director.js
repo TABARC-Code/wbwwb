@@ -355,6 +355,7 @@ function Director(scene){
 				photo: self.photoTexture,
 				fail: fail,
 				nothing: nothing,
+				story: data.story || null,
 				data: data,
 				entry: ledgerEntry
 			});
