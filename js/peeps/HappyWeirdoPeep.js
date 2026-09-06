@@ -28,8 +28,8 @@ function HappyWeirdoPeep(scene){
 
     // MODE o' ANIMATION
     var MODE = -1;
-    MODE_SMILE = 1;
-    MODE_FROWN = 2;
+    var MODE_SMILE = 1;
+    var MODE_FROWN = 2;
     self.smile = function(){
         MODE = MODE_SMILE;
     };
@@ -41,13 +41,13 @@ function HappyWeirdoPeep(scene){
     // WANDERING
     self.wander = 0;
     self.changeWander = function(){
-        self.wander = Math.random()*0.1-0.05;
+        self.wander = Game.random()*0.1-0.05;
     };
     self.callbacks.update = function(){
 
         // Wander around
         self.direction += self.wander;
-        if(Math.random()<0.05) self.changeWander();
+        if(Game.random()<0.05) self.changeWander();
 
         // STAY WITHIN GAME FRAME
         self.stayWithinRect({

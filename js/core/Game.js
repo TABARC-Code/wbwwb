@@ -1,181 +1,280 @@
 /**************************************
-
 GAME CLASS SINGLETON:
-Handles the DOM, load, init, update & render loops
+Handles the DOM, loading, init, update & render loops.
 
+This file is runtime infrastructure. Scene/gameplay content remains unchanged.
 **************************************/
 
-(function(exports){
+(function (exports) {
+  "use strict";
 
-// Singleton
-var Game = {};
-exports.Game = Game;
+  var Game = {};
+  exports.Game = Game;
 
-// PROPERTIES
-Game.width = 960;
-Game.height = 540;
-Game.stats = true;
+  Game.width = 960;
+  Game.height = 540;
+  Game.stats = true;
+  Game.paused = false;
+  Game.assetError = null;
+  Game.audioWarnings = [];
+  Game.clock = new WBWWBFixedStepClock({ stepMs: 1000 / 60, maxSteps: 8 });
+  Game.seed = null;
+  Game.randomSource = null;
+  Game.ledger = new WBWWBEditorialLedger();
+  Game.scenarios = null;
+  Game._animationFrame = null;
 
-// INIT
-Game.init = function(HACK){
+  Game.readSeed = function () {
+    try {
+      var requested = new URLSearchParams(window.location.search).get("seed");
+      if (requested) return requested;
+    } catch (_) {}
 
-	// Set up PIXI
-	Game.renderer = new PIXI.WebGLRenderer(Game.width, Game.height);
-	document.querySelector("#stage").appendChild(Game.renderer.view);
-	Game.stage = new PIXI.Container();
-	Game.stage.interactive = true;
-
-	// Mr Doob Stats
-	if(Game.stats){
-		Game.stats = new Stats();
-		Game.stats.showPanel(0); // 0: fps, 1: ms, 2: mb, 3+: custom
-		document.body.appendChild(Game.stats.dom);
-	}
-
-	// Scene Manager
-	Game.scene = null;
-	Game.sceneManager = new SceneManager();
-
-	if(HACK){
-		// NOT preloader - jump direct to a scene
-		Game.loadAssets(function(){ // well, also get preloader assets...
-			Game.loadAssets(function(){
-				Game.sceneManager.gotoScene(HACK);
-				setInterval(Game.update,1000/60);
-				Game.animate();
-			}, function(){}, false);
-		}, function(){}, true);
-	}else{
-		// Preloader
-		Game.loadAssets(function(){
-			Game.sceneManager.gotoScene("Preloader");
-			setInterval(Game.update,1000/60);
-			Game.animate();
-		}, function(){}, true);
-	}
-
-};
-
-// UPDATE & ANIMATE
-
-Game.paused = false;
-
-Game.update = function(){
-	if(Game.paused) return;
-	Tween.tick();
-	Game.sceneManager.update();
-};
-
-Game.animate = function(){
-	if(Game.stats) Game.stats.begin();
-	if(!Game.paused){
-    	Game.renderer.render(Game.stage);
+    // Random by default, named when requested. That keeps ordinary play lively
+    // while giving bug reports a fingerprint we can actually follow.
+    if (window.crypto && window.crypto.getRandomValues) {
+      var values = new Uint32Array(2);
+      window.crypto.getRandomValues(values);
+      return values[0].toString(36) + values[1].toString(36);
     }
-    if(Game.stats) Game.stats.end();
-    requestAnimationFrame(Game.animate);
-};
+    return String(Date.now());
+  };
 
-// GAME PAUSED?
-// ON BLUR & PAUSE
+  Game.setSeed = function (seed) {
+    Game.seed = String(seed);
+    Game.randomSource = new WBWWBRandom(Game.seed);
+    document.documentElement.dataset.seed = Game.seed;
+    return Game.seed;
+  };
 
-var modal_shade = document.getElementById("modal_shade");
-var paused = document.getElementById("paused");
-window.onblur = function(){
-	if(Game.scene && Game.scene.UNPAUSEABLE) return;
-	modal_shade.style.display = "block";
-	paused.style.display = "block";
-	Game.paused = true;
-	Howler.mute(true);
-}
-modal_shade.onclick = paused.onclick = function(){
-	modal_shade.style.display = "none";
-	paused.style.display = "none";
-	Game.paused = false;
-	Howler.mute(false);
-};
+  Game.random = function () {
+    if (!Game.randomSource) Game.setSeed(Game.readSeed());
+    return Game.randomSource.next();
+  };
 
-// LOADING, and ADDING TO MANIFEST.
-// TO DO: Progress, too
+  Game.init = async function (HACK) {
+    Game.setSeed(Game.readSeed());
+    Game.ledger = new WBWWBEditorialLedger();
+    Game.scenarios = new WBWWBScenarioManager();
+    Game.scenarios.start();
+    // PixiJS v8 requires asynchronous renderer initialization.
+    Game.renderer = new PIXI.WebGLRenderer();
+    await Game.renderer.init({
+      width: Game.width,
+      height: Game.height,
+      preference: "webgl",
+      antialias: false,
+      resolution: 1
+    });
 
-Game.manifest = {};
-Game.manifest2 = {}; // FOR PRELOADER
-Game.sounds = {};
+    var stageElement = document.querySelector("#stage");
+    if (!stageElement) throw new Error("Missing #stage element");
 
-Game.loadAssets = function(completeCallback, progressCallback, PRELOADER){
+    stageElement.appendChild(Game.renderer.canvas);
 
-	var manifest = PRELOADER ? Game.manifest2 : Game.manifest;
+    Game.stage = new PIXI.Container();
+    Game.stage.interactive = true;
+    WBWWBEnableStageInteraction(Game.stage, Game.width, Game.height);
 
-	// ABSOLUTE NUMBER OF ASSETS!
-	var _totalAssetsLoaded = 0;
-	var _totalAssetsToLoad = 0;
-	for(var key in manifest){
-		var src = manifest[key];
-		if(src.slice(-5)==".json"){
-			// Is Sprite. Actually TWO assets.
-			_totalAssetsToLoad += 2;
-		}else{
-			_totalAssetsToLoad += 1;
-		}
-	}
-	var _onAssetLoad = function(){
-		_totalAssetsLoaded++;
-		progressCallback(_totalAssetsLoaded/_totalAssetsToLoad); // PROGRESS.
-	};
+    // Developer-only FPS diagnostics. Disabled by default in index.html.
+    if (Game.stats) {
+      Game.stats = new Stats();
+      Game.stats.showPanel(0);
+      document.body.appendChild(Game.stats.dom);
+    }
 
-	// META: Groups To Load – just images & sounds
-	var _groupsToLoad = PRELOADER ? 1 : 2;
-	var _onGroupLoaded = function(){
-		_groupsToLoad--;
-		if(_groupsToLoad==0) completeCallback(); // DONE.
-	};
+    Game.scene = null;
+    Game.sceneManager = new SceneManager();
 
-	// Howler
-	var _soundsToLoad = 0;
-	var _onSoundLoad = function(){
-		_soundsToLoad--;
-		_onAssetLoad();
-		if(_soundsToLoad==0) _onGroupLoaded();
-	};
+    var startScene = HACK || "Preloader";
 
-	// PIXI
-	var loader = PIXI.loader;
-	var resources = PIXI.loader.resources;
+    await new Promise(function (resolve, reject) {
+      Game.loadAssets(function () {
+        Game.sceneManager.gotoScene(startScene);
+        resolve();
+      }, function () {}, true, reject);
+    });
 
-	for(var key in manifest){
+    Game.clock.reset();
+    Game._animationFrame = requestAnimationFrame(Game.animate);
+  };
 
-		var src = manifest[key];
+  Game.update = function (stepMs) {
+    if (Game.paused) return;
 
-		// Is MP3. Leave it to Howler.
-		if(src.slice(-4)==".mp3"){
-			var sound = new Howl({ src:[
-				src.slice(0, src.length-4)+".opus",
-				src.slice(0, src.length-4)+".m4a",
-				src
-			] });
-			_soundsToLoad++;
-			sound.once('load', _onSoundLoad);
-			Game.sounds[key] = sound;
-			continue;
-		}
+    if (typeof Tween !== "undefined" && Tween.tick) {
+      Tween.tick(stepMs || (1000 / 60));
+    }
 
-		// Otherwise, is an image. Leave it to PIXI.
-	    loader.add(key, src);
+    Game.sceneManager.update();
+    Game.scenarios.update(stepMs || (1000 / 60));
+  };
 
-	}
+  Game.render = function () {
+    if (Game.stats) Game.stats.begin();
 
-	// PIXI
-	loader.on('progress',_onAssetLoad);
-	loader.once('complete', _onGroupLoaded);
-	loader.load();
+    if (!Game.paused && Game.renderer && Game.stage) {
+      Game.renderer.render(Game.stage);
+    }
 
-};
+    if (Game.stats) Game.stats.end();
+  };
 
-// Add To Manifest
-Game.addToManifest = function(keyValues, PRELOADER){
-	var manifest = PRELOADER ? Game.manifest2 : Game.manifest;
-	for(var key in keyValues){
-		manifest[key] = keyValues[key];
-	}
-};
+  Game.animate = function (timestamp) {
+    if (!Game.paused) {
+      Game.clock.tick(timestamp, Game.update, Game.render);
+    } else {
+      Game.clock.reset();
+    }
+    Game._animationFrame = requestAnimationFrame(Game.animate);
+  };
 
+  Game.stop = function () {
+    if (Game._animationFrame !== null) cancelAnimationFrame(Game._animationFrame);
+    Game._animationFrame = null;
+    Game.clock.reset();
+  };
+
+  var modal_shade = document.getElementById("modal_shade");
+  var paused = document.getElementById("paused");
+
+  window.addEventListener("blur", function () {
+    if (Game.scene && Game.scene.UNPAUSEABLE) return;
+
+    modal_shade.style.display = "block";
+    paused.style.display = "block";
+    Game.paused = true;
+    Game.clock.reset();
+    Howler.mute(true);
+  });
+
+  modal_shade.onclick = paused.onclick = function () {
+    modal_shade.style.display = "none";
+    paused.style.display = "none";
+    Game.paused = false;
+    Game.clock.reset();
+    Howler.mute(false);
+  };
+
+  Game.manifest = {};
+  Game.manifest2 = {};
+  Game.sounds = {};
+
+  Game.showAssetError = function (error) {
+    Game.assetError = error;
+
+    var warning = document.getElementById("warning");
+    if (!warning) return;
+
+    var message = error && error.message ? error.message : String(error || "Unknown asset error");
+    warning.innerHTML =
+      "<div>ASSET LOADING ERROR</div>" +
+      "<div>A required game asset could not be loaded.</div>" +
+      "<div style=\"font-size:12px;word-break:break-word;max-width:90%;margin-top:12px;\">" +
+      message.replace(/[&<>\"]/g, function (character) {
+        return { "&": "&amp;", "<": "&lt;", ">": "&gt;", "\"": "&quot;" }[character];
+      }) +
+      "</div>" +
+      "<div style=\"margin-top:12px;\">Please refresh the page and try again.</div>";
+    warning.style.display = "block";
+  };
+
+  Game.loadAssets = function (completeCallback, progressCallback, PRELOADER, errorCallback) {
+    var manifest = PRELOADER ? Game.manifest2 : Game.manifest;
+    progressCallback = progressCallback || function () {};
+    errorCallback = errorCallback || Game.showAssetError;
+
+    var entries = Object.keys(manifest);
+    if (!entries.length) {
+      progressCallback(1);
+      completeCallback();
+      return;
+    }
+
+    var total = entries.length;
+    var completed = 0;
+
+    function progress() {
+      completed += 1;
+      progressCallback(completed / total);
+    }
+
+    var soundPromises = [];
+    var imageEntries = [];
+
+    entries.forEach(function (key) {
+      var src = manifest[key];
+
+      if (/\.mp3(?:\?|#|$)/i.test(src)) {
+        var base = src.replace(/\.mp3(?:\?.*)?$/i, "");
+        var sound = new Howl({
+          src: [base + ".opus", base + ".m4a", src],
+          preload: true
+        });
+
+        Game.sounds[key] = sound;
+
+        soundPromises.push(new Promise(function (resolve, reject) {
+          var settled = false;
+
+          sound.once("load", function () {
+            if (!settled) {
+              settled = true;
+              progress();
+              resolve();
+            }
+          });
+
+          sound.once("loaderror", function (_id, error) {
+            if (!settled) {
+              settled = true;
+              // Silence is a degraded experience, not a dead game. This was
+              // the old 82% loader trap: one codec sulked and nobody got in.
+              console.warn("Audio failed to load; continuing silently:", src, error);
+              Game.audioWarnings.push({ src: src, error: String(error) });
+              progress();
+              resolve();
+            }
+          });
+        }));
+      } else {
+        imageEntries.push({ key: key, src: src });
+      }
+    });
+
+    var loader = PIXI.loader;
+    imageEntries.forEach(function (item) {
+      loader.add(item.key, item.src);
+    });
+
+    var imagePromise = loader.load().then(function () {
+      imageEntries.forEach(function () {
+        progress();
+      });
+    });
+
+    Promise.all([imagePromise].concat(soundPromises))
+      .then(function () {
+        completeCallback();
+      })
+      .catch(function (error) {
+        console.error("Asset loading failed:", error);
+
+        // IMPORTANT: a required asset failure is fatal for this scene load.
+        // Never call completeCallback(), otherwise Scene_Preloader continues
+        // with an incomplete resource table and fails later with misleading
+        // errors such as "Missing image resource: blackout".
+        errorCallback(error);
+      });
+  };
+
+  Game.addToManifest = function (keyValues, PRELOADER) {
+    var manifest = PRELOADER ? Game.manifest2 : Game.manifest;
+
+    for (var key in keyValues) {
+      if (Object.prototype.hasOwnProperty.call(keyValues, key)) {
+        manifest[key] = keyValues[key];
+      }
+    }
+  };
 })(window);

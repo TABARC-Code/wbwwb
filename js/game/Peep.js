@@ -12,8 +12,8 @@ function Peep(scene){
 
 	// Properties
 	self.scene = scene;
-	self.x = Math.random()*Game.width;
-	self.y = Math.random()*Game.height;
+	self.x = Game.random()*Game.width;
+	self.y = Game.random()*Game.height;
 	self.DRAWING_SCALE = 0.65;
 	self.width = 80*self.DRAWING_SCALE;
 	self.height = 120*self.DRAWING_SCALE;
@@ -31,11 +31,11 @@ function Peep(scene){
 
     // Hop! And bounce INDEPENDENT of anim. Bouncy math!
     
-    self.hop = Math.random();
+    self.hop = Game.random();
     self._lastHop = self.hop;
 
-    self.speed = 1 + Math.random()*0.5;
-    self.direction = Math.random()*Math.PI*2;
+    self.speed = 1 + Game.random()*0.5;
+    self.direction = Game.random()*Math.PI*2;
     self.vel = {x:0,y:0};
     self.flip = 1;
     
@@ -278,8 +278,8 @@ function Peep(scene){
 	self.startWalking = function(){
 
 		self.isWalking = true;
-		self.speed = 1 + Math.random()*0.5;
-    	self.direction = Math.random()*Math.PI*2;
+		self.speed = 1 + Game.random()*0.5;
+		self.direction = Game.random()*Math.PI*2;
 
     	// CALLBACK
 		self.callback("startWalking");

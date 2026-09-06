@@ -151,6 +151,7 @@ function _chyPeeps(d){
         });
         if(caught.crickets.length>0){
             p.CAUGHT_A_CRICKET = true;
+            p.cricketCount = caught.crickets.length;
             if(caught.crickets.length==1){
                 d.chyron = textStrings["cricky"];
             }else{
@@ -207,7 +208,7 @@ function _cutHats(d){
             return peep.wearingHat;
         });
         if(hatPeeps.length>0){
-            var randomIndex = Math.floor(Math.random()*hatPeeps.length);
+            var randomIndex = Math.floor(Game.random()*hatPeeps.length);
             hatPeeps[randomIndex].takeOffHat(true);
         }
         return false;

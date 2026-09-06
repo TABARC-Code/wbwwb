@@ -12,17 +12,19 @@ Game.addToManifest({
 	chyron3: "sprites/chyron3.png"
 });
 
-function TV(scene){
+function TV(scene, options){
 
 	var self = this;
+	options = options || {};
 	self._CLASS_ = "TV";
 
 	// Properties
 	self.scene = scene;
 	self.x = Game.width/2;
 	self.y = Game.height/2 + 80;
-	self.width = 150;
-	self.height = 180;
+	self.displayScale = options.displayScale || 1;
+	self.width = 150*self.displayScale;
+	self.height = 180*self.displayScale;
 
 	// Graphics
 	var resources = PIXI.loader.resources;
@@ -31,8 +33,10 @@ function TV(scene){
     bg.anchor.x = 0.5;
     bg.anchor.y = 1.0;
     bg.scale.x = bg.scale.y = 0.5;
+    if(options.casingTint != null) bg.tint = options.casingTint;
     g.addChild(bg);
     self.graphics = g;
+    g.scale.x = g.scale.y = self.displayScale;
 
     // Offset
     self.offset = {
@@ -71,6 +75,7 @@ function TV(scene){
 
 		// Add photo now
 		photo = new PIXI.Sprite(photoTexture);
+		if(options.screenTint != null) photo.tint = options.screenTint;
 	    photoContainer.addChild(photo);
 
 		// Chryon container
@@ -92,10 +97,10 @@ function TV(scene){
 
 		// Chyron Text
 		if(!options.nothing){
-			var fontsize=50; //, max=14;
-			//if(text.length>max){ // more than [max] chars...
-			//	fontsize = Math.floor(max*fontsize/text.length);
-			//}
+			var longestLine = text.split("\n").reduce(function(max, line){
+				return Math.max(max, line.length);
+			}, 0);
+			var fontsize = Math.max(28, Math.min(50, Math.floor(700/Math.max(14, longestLine))));
 		    var text = new PIXI.Text(text + "\n", {font:"bold "+fontsize+"px Cairo", align:"right", fill:"#FFF"});  // \n hack. needed when the text field cuts some of the string font's bottom
 		    text.scale.x = text.scale.y = 0.2;
 		    text.anchor.x = 0;

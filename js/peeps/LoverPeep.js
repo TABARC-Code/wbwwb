@@ -118,7 +118,7 @@ function LoverPeep(scene){
         // 1) Stop & look
         var tv = scene.tv;
         self.x = tv.x;
-        self.y = tv.y-5-Math.random(); // tiny offset to avoid glitchy depth-sort
+        self.y = tv.y-5-Game.random(); // tiny offset to avoid glitchy depth-sort
         if(self.type=="square"){
             self.x += 80;
         }else{

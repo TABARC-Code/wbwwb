@@ -39,7 +39,7 @@ function CrazyPeep(scene){
     // WANDERING
     self.wander = 0;
     self.changeWander = function(){
-        self.wander = Math.random()*0.1-0.05;
+        self.wander = Game.random()*0.1-0.05;
     };
     self.callbacks.update = function(){
 
@@ -66,7 +66,7 @@ function CrazyPeep(scene){
         // Wander around
         if(self.wanderGracePeriod<=0){
             self.direction += self.wander;
-            if(Math.random()<0.05) self.changeWander();
+            if(Game.random()<0.05) self.changeWander();
         }
 
         // STAY WITHIN GAME FRAME
