@@ -43,7 +43,17 @@ test("shadow displays receive darker framings without textures entering history"
   const frame = shadow.receiveBroadcast({ photo: texture, headline: "CIRCLES FEAR SQUARES" });
 
   assert.equal(shown.left.photo, texture);
-  assert.match(shown.left.text, /^BE AFRAID\./);
-  assert.match(shown.right.text, /^GET ANGRY\./);
+  assert.equal(shown.left.text, "THEY'RE COMING FOR YOU");
+  assert.equal(shown.right.text, "FIGHT BACK");
   assert.equal(Object.hasOwn(frame, "photo"), false);
+});
+
+test("shadow headlines turn absence into suspicion and blame", () => {
+  global.WBWWB_LOCALE = "en";
+  const headlines = [];
+  const display = { placePhoto: (options) => headlines.push(options.text) };
+  const shadow = new ShadowTV().attachDisplays(display, display);
+  shadow.receiveBroadcast({ photo: {}, data: { ITS_NOTHING: true } });
+
+  assert.deepEqual(headlines, ["THE SILENCE IS SUSPICIOUS", "DON'T LET THEM HIDE"]);
 });

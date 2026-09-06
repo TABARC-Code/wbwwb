@@ -44,6 +44,11 @@ to the left and right of the main screen. The left echo frames the same picture
 through dread; the right pushes fury. These are emotional extremes, not labels
 for political parties.
 
+Each side writes its own headline from the broadcast facts. Empty photographs
+become suspicion on one set and accusations of concealment on the other;
+crickets become either sinister distraction or infuriating nonsense. At high
+crowd anger, both harden again. Same photograph. Different poison.
+
 The controller stores facts, not Pixi textures. A live texture passes directly
 to both displays, which own their own sprites. That makes the history safe to
 leave running while the visible sets own the photograph and animation.
