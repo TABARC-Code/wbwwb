@@ -36,6 +36,18 @@ Names and readouts are available in every supported UI language. Missing game
 translations still use the canonical English fallback; no new text is baked
 into sprite art.
 
+## The shadow set
+
+`ShadowTV` is the invisible twin of the physical television. At present it
+mirrors completed broadcasts into a short, bounded history and does absolutely
+nothing else. It stores facts, not Pixi textures. That makes it safe to leave
+running while the visible set owns the photograph and animation.
+
+The intended next use is counterfactual framing: feed the same evidence to two
+headlines, publish one, and let the shadow set calculate the road not taken.
+Keeping that calculation headless means it can be tested without pretending an
+off-screen sprite is an architecture.
+
 ## Next pressure points
 
 The fixed clock and seeded random stream expose the next work rather neatly:

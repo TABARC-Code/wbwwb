@@ -346,6 +346,17 @@ function Director(scene){
 			nothing: nothing
 		});
 
+		// The shadow set receives the same broadcast, but no Pixi texture. It's a
+		// headless record for later counterfactual framing work, not a TV hidden
+		// at x=-9999 and quietly wasting renderer memory.
+		if(scene.shadowTV){
+			scene.shadowTV.receiveBroadcast({
+				headline: text,
+				data: data,
+				entry: ledgerEntry
+			});
+		}
+
 		// Where to cut viewport to
 		self.cutViewportTo({
 	    	x: tv.x + tv.offset.x,

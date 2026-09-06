@@ -31,6 +31,7 @@ function Scene_Game(){
     self.camera = new Camera(self);
     self.director = new Director(self);
     self.tv = new TV(self);
+    self.shadowTV = new ShadowTV();
     self.world.addProp(self.tv);
 
     // Special effects!
