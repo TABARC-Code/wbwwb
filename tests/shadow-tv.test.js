@@ -19,6 +19,8 @@ test("shadow TV mirrors broadcast facts without retaining renderer objects", () 
   assert.equal(frame.seed, "paper-tiger");
   assert.equal(Object.hasOwn(frame, "photoTexture"), false);
   assert.equal(Object.isFrozen(frame), true);
+  assert.equal(frame.shadow.right.effects.outgroupThreat, 0.25);
+  assert.ok(frame.shadow.right.manipulations.includes("trivialisation"));
 });
 
 test("shadow TV keeps a bounded history", () => {
@@ -57,4 +59,18 @@ test("shadow headlines turn absence into suspicion and blame", () => {
   shadow.receiveBroadcast({ photo: {}, data: { ITS_NOTHING: true } });
 
   assert.deepEqual(headlines, ["WHAT ARE THEY HIDING?", "DON'T LET THEM HIDE"]);
+});
+
+test("shadow history keeps story facts and manipulation provenance", () => {
+  global.WBWWB_LOCALE = "en";
+  const shadow = new ShadowTV();
+  const frame = shadow.receiveBroadcast({
+    headline: "FLOOD VICTIMS SEEK SAFETY",
+    story: { event: "flood", subjects: "victims", foreign: true, unsafeExtra: { texture: {} } }
+  });
+
+  assert.equal(frame.story.event, "flood");
+  assert.equal(Object.hasOwn(frame.story, "unsafeExtra"), false);
+  assert.equal(frame.shadow.right.headline, "FOREIGN INVADERS: ARE THEY COMING FOR YOU?");
+  assert.ok(frame.shadow.right.manipulations.includes("identity-substitution"));
 });

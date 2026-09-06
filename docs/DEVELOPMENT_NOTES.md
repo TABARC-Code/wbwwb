@@ -56,6 +56,13 @@ people abandoned by the system on the left set and “foreign invaders” on the
 right. That substitution is recorded as a framing strategy; it isn't mistaken
 for a new fact.
 
+The shadow record also preserves the mechanism behind each headline. It marks
+identity substitution, collective blame, invented concealment and similar
+moves, alongside separate fear, anger, outgroup-threat and institutional-
+distrust signals. These aren't claims about real audiences. They're explicit
+simulation inputs, ready to be tuned through playtesting instead of buried as
+magic numbers inside character animation.
+
 The controller stores facts, not Pixi textures. A live texture passes directly
 to both displays, which own their own sprites. That makes the history safe to
 leave running while the visible sets own the photograph and animation.
