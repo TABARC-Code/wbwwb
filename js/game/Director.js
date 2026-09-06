@@ -288,7 +288,7 @@ function Director(scene){
 
 		var peeps = self.scene.world.peeps;
 		var angryCount = peeps.filter(function(peep){ return peep._CLASS_ === "AngryPeep"; }).length;
-		Game.ledger.record({
+		var ledgerEntry = Game.ledger.record({
 			headline: self.chyron,
 			audience: data.audience || (data.audienceCircles || 0) + (data.audienceSquares || 0),
 			circleAudience: data.audienceCircles,
@@ -297,6 +297,14 @@ function Director(scene){
 			emptyFrame: Boolean(data.ITS_NOTHING),
 			seed: Game.seed
 		});
+		if(Game.scenarios){
+			Game.scenarios.broadcast({
+				director: self,
+				scene: scene,
+				data: data,
+				entry: ledgerEntry
+			});
+		}
 		if(!data.forceChyron){
 			if(data.audience==0 && !data.audienceCircles && !data.audienceSquares){
 

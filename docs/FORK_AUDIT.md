@@ -22,7 +22,7 @@ That second number matters. A fork being “ahead” doesn't mean it contains an
 | `CristhianRivassss/wbwwb` | Responsive canvas sizing | Kept the idea; retained a strict 16:9 logical viewport to avoid stretching the camera geometry |
 | `Coolythecoder/wbwwb` | Native C++ port, settings, backend boundaries, asset checks and silent-audio operation | Did not import the parallel native game. Adopted its useful boundaries and validation ideas in the web runtime |
 | `guineapig25/polarization-project` | Money, teams, timed play and a recorded polarisation score | Rejected the exposed Firebase coupling and arbitrary cash multipliers. Added a local editorial ledger so consequences can be inspected without surveillance or changing the original story |
-| `superdav42/wbwwb` | Crickets multiply, calm angry characters and unlock a cricket-invasion ending | Good comic counterfactual; retained as a future optional scenario, not smuggled into the canonical five-minute argument |
+| `superdav42/wbwwb` | Crickets multiply, calm angry characters and unlock a cricket-invasion ending | Kept the counter-cycle as an optional module; left its replacement ending out of the canonical argument |
 | `Taxisgr/wbwwb` | Post-game climate-disaster scenes | Content expansion rather than core repair. Held for a separate scenario pack |
 | `omix27/wbwwb` | Additional characters, relationships and altered gore assets | Content remix with tightly coupled assets. Held until the character system is data-driven |
 | translation forks | German, Spanish, Portuguese, Persian, Turkish, Chinese, Croatian, Vietnamese and others | Existing reviewed locales retained; incomplete or image-baked translations were not blindly merged |
@@ -34,6 +34,8 @@ That second number matters. A fork being “ahead” doesn't mean it contains an
 - The old random-sort audience shuffle is now seeded Fisher–Yates.
 - Capture geometry is a renderer-free module with regression tests.
 - Broadcast consequences are stored in a local editorial ledger.
+- Optional attention and cricket scenarios consume broadcast events through a
+  small module boundary; the canonical path has no active scenario logic.
 - Audio failure degrades to silence instead of freezing the loader at 82%.
 - Language selection is visible, keyboard-accessible and persistent.
 - The canvas scales responsively without distorting the 960 × 540 world.
@@ -43,3 +45,7 @@ That second number matters. A fork being “ahead” doesn't mean it contains an
 ## Deliberate restraint
 
 The original is an authored interactive argument, not a sandbox accidentally missing a win state. Alternative endings, cash scores and new causes can be worthwhile, but they change what the work says. They belong in named scenarios built on a stable engine. Core maintenance shouldn't quietly rewrite the thesis.
+
+So the cricket idea enters as a reversible systemic response, not a new “correct”
+ending. The polarisation idea enters as transparent observation, not a public
+leaderboard or a pile of fictional dollars.

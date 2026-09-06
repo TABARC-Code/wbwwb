@@ -24,7 +24,9 @@ try {
     locale: window.WBWWB_LOCALE,
     seed: window.Game.seed,
     scene: window.Game.scene?.constructor?.name || "anonymous",
-    assetError: window.Game.assetError?.message || null
+    assetError: window.Game.assetError?.message || null,
+    scenario: window.Game.scenarios?.id,
+    scenarioOptions: Array.from(document.querySelectorAll("#scenario-select option")).map((option) => option.value)
   }));
 
   if (result.canvasCount !== 1) failures.push(`expected one canvas; found ${result.canvasCount}`);
@@ -32,6 +34,10 @@ try {
   if (result.locale !== "en") failures.push(`expected en locale; found ${result.locale}`);
   if (result.seed !== "browser-smoke") failures.push(`seed mismatch: ${result.seed}`);
   if (result.assetError) failures.push(`asset error: ${result.assetError}`);
+  if (result.scenario !== "canonical") failures.push(`expected canonical scenario; found ${result.scenario}`);
+  for (const mode of ["canonical", "attention", "cricket"]) {
+    if (!result.scenarioOptions.includes(mode)) failures.push(`missing scenario option: ${mode}`);
+  }
 
   if (failures.length) throw new Error(failures.join("\n"));
   console.log(`Browser smoke passed: ${result.scene}, locale ${result.locale}, seed ${result.seed}.`);

@@ -10,9 +10,12 @@
 <body>
   <div id="stage"></div>
   <div id="game-controls" aria-label="Game settings">
-    <label for="locale-select">Language</label>
+    <label id="locale-label" for="locale-select">Language</label>
     <select id="locale-select" aria-label="Language"></select>
+    <label id="scenario-label" for="scenario-select">Mode</label>
+    <select id="scenario-select" aria-label="Game mode"></select>
     <button id="sound-toggle" type="button" aria-pressed="false">Sound on</button>
+    <output id="scenario-readout" aria-live="polite"></output>
   </div>
   <div id="modal_shade"></div>
 
@@ -69,6 +72,9 @@
   <script src="js/core/FixedStepClock.js"></script>
   <script src="js/core/CaptureAnalysis.js"></script>
   <script src="js/core/EditorialLedger.js"></script>
+  <script src="js/scenarios/ScenarioManager.js"></script>
+  <script src="js/scenarios/AttentionScenario.js"></script>
+  <script src="js/scenarios/CricketScenario.js"></script>
   <script src="js/core/Game.js"></script>
   <script src="js/core/SceneManager.js"></script>
   <script src="js/core/Scene.js"></script>

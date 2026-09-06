@@ -151,6 +151,7 @@ function _chyPeeps(d){
         });
         if(caught.crickets.length>0){
             p.CAUGHT_A_CRICKET = true;
+            p.cricketCount = caught.crickets.length;
             if(caught.crickets.length==1){
                 d.chyron = textStrings["cricky"];
             }else{

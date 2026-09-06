@@ -18,6 +18,24 @@ The cricket invasion is funny. More importantly, it's a genuine counterfactual: 
 
 The native port is huge—much larger than the work it ports—but its author did useful thinking around backend-neutral services, mute operation, logical resolution and asset validation. The web game can borrow those lessons without swallowing a Vulkan renderer whole.
 
+## Optional scenarios, now without the staple gun
+
+The original game is still the default. Experimental fork ideas register with
+`ScenarioManager` and listen for narrow events (`start`, `broadcast`, `update`).
+They don't get to rewrite the Director or quietly fork every Act. That boundary
+matters more than it looks: experiments stay legible, and deleting one is dull.
+Dull deletion is a feature.
+
+- `?scenario=attention` shows the local editorial ledger as a small live readout.
+  There is no currency fiction and nothing is sent to a server.
+- `?scenario=cricket` adds a counter-cycle. Three cricket subjects calm one
+  angry or frightened viewer, if one exists. It uses the seeded game RNG, so a
+  reported run can be replayed.
+
+Names and readouts are available in every supported UI language. Missing game
+translations still use the canonical English fallback; no new text is baked
+into sprite art.
+
 ## Next pressure points
 
 The fixed clock and seeded random stream expose the next work rather neatly:
@@ -25,7 +43,7 @@ The fixed clock and seeded random stream expose the next work rather neatly:
 1. Story stages need explicit names and transitions rather than callback replacement.
 2. Character behaviour needs data describing what can be observed and transmitted.
 3. Captures need relationships, not merely overlapping rectangles.
-4. The editorial ledger needs reach, novelty, ambiguity and framing fields derived from play, not invented as moral scores.
+4. The editorial ledger needs novelty, ambiguity and framing fields derived from play, not invented as moral scores.
 5. A browser screenshot suite needs a dependable Chromium runtime in CI.
 
 The last point is still open locally. The pure and static checks pass; the available browser download timed out and the remote browser cannot reach a loopback development server. That is a testing limitation, not evidence that rendering works. CI should settle it before this branch replaces the public build.

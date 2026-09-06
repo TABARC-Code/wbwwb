@@ -50,6 +50,13 @@ body{
 #game-controls:focus-within{ opacity: 1; }
 #game-controls button,
 #game-controls select{ font: inherit; }
+#scenario-readout{
+	display: none;
+	min-width: 12rem;
+	font-size: 12px;
+	white-space: nowrap;
+}
+#scenario-readout[data-active="true"]{ display: inline; }
 .overlay{
 
 	display: none;
@@ -86,6 +93,7 @@ body{
 @media (max-width: 600px){
 	#game-controls label{ position:absolute; width:1px; height:1px; overflow:hidden; clip-path:inset(50%); }
 	#game-controls{ top:0.35rem; right:0.35rem; }
+	#scenario-readout{ display:none !important; }
 }
 #paused{
 	cursor: pointer;

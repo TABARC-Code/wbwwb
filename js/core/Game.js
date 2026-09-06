@@ -21,6 +21,7 @@ This file is runtime infrastructure. Scene/gameplay content remains unchanged.
   Game.seed = null;
   Game.randomSource = null;
   Game.ledger = new WBWWBEditorialLedger();
+  Game.scenarios = null;
   Game._animationFrame = null;
 
   Game.readSeed = function () {
@@ -54,6 +55,8 @@ This file is runtime infrastructure. Scene/gameplay content remains unchanged.
   Game.init = async function (HACK) {
     Game.setSeed(Game.readSeed());
     Game.ledger = new WBWWBEditorialLedger();
+    Game.scenarios = new WBWWBScenarioManager();
+    Game.scenarios.start();
     // PixiJS v8 requires asynchronous renderer initialization.
     Game.renderer = new PIXI.WebGLRenderer();
     await Game.renderer.init({
@@ -104,6 +107,7 @@ This file is runtime infrastructure. Scene/gameplay content remains unchanged.
     }
 
     Game.sceneManager.update();
+    Game.scenarios.update(stepMs || (1000 / 60));
   };
 
   Game.render = function () {
