@@ -164,7 +164,7 @@ function SnobbyPeep(scene){
                                 self.flip *= -1;
                                 self.startWalking();
                                 self.direction = (self.flip>0) ? 0 : Math.PI; // override!
-                                self.direction += Math.random()*0.2-0.1;
+                                self.direction += Game.random()*0.2-0.1;
 
                                 // Move away...
                                 MODE = MODE_AWAY;

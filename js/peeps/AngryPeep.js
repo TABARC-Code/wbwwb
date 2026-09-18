@@ -57,7 +57,7 @@ function AngryPeep(scene, type){
     // WANDERING
     self.wander = 0;
     self.changeWander = function(){
-        self.wander = Math.random()*0.1-0.05;
+        self.wander = Game.random()*0.1-0.05;
     };
 
     self.callbacks.update = function(){
@@ -67,7 +67,7 @@ function AngryPeep(scene, type){
 
         // Wander around
         self.direction += self.wander;
-        if(Math.random()<0.05) self.changeWander();
+        if(Game.random()<0.05) self.changeWander();
         self.stayWithinRect({
             l:100, r:860, t:100, b:480
         },0.15);

@@ -31,7 +31,32 @@ function Scene_Game(){
     self.camera = new Camera(self);
     self.director = new Director(self);
     self.tv = new TV(self);
+    self.shadowTV = new ShadowTV();
+
+    // Two little bad-faith echoes. They're visible, but the controller behind
+    // them stays headless and keeps the counterfactual record.
+    self.shadowTVLeft = new TV(self, {
+        displayScale: 0.58,
+        casingTint: 0x4a263f,
+        screenTint: 0xd6b6ca
+    });
+    self.shadowTVLeft._CLASS_ = "ShadowTVDisplay";
+    self.shadowTVLeft.x = 165;
+    self.shadowTVLeft.y = Game.height/2 + 92;
+
+    self.shadowTVRight = new TV(self, {
+        displayScale: 0.58,
+        casingTint: 0x542b24,
+        screenTint: 0xe0b19e
+    });
+    self.shadowTVRight._CLASS_ = "ShadowTVDisplay";
+    self.shadowTVRight.x = Game.width - 165;
+    self.shadowTVRight.y = Game.height/2 + 92;
+
+    self.shadowTV.attachDisplays(self.shadowTVLeft, self.shadowTVRight);
+    self.world.addProp(self.shadowTVLeft);
     self.world.addProp(self.tv);
+    self.world.addProp(self.shadowTVRight);
 
     // Special effects!
     self.scale = 1;

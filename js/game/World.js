@@ -90,8 +90,21 @@ function World(scene, options){
 
 	};
 	self.replacePeep = function(oldPeep, newPeep){
+		if(!oldPeep || !newPeep) return null;
 		newPeep.x = oldPeep.x;
 		newPeep.y = oldPeep.y;
+		// A replacement is still the same member of the crowd. Some specialised
+		// peeps don't expose setType(), but their body sheet uses the same frames.
+		if(oldPeep.type){
+			if(typeof newPeep.setType === "function"){
+				newPeep.setType(oldPeep.type);
+			}else{
+				newPeep.type = oldPeep.type;
+				if(newPeep.bodyMC && newPeep.bodyMC.gotoAndStop){
+					newPeep.bodyMC.gotoAndStop(oldPeep.type==="circle" ? 0 : 1);
+				}
+			}
+		}
 		if(self.peeps.indexOf(newPeep)<0){
 			self.addPeep(newPeep);
 		}
@@ -104,12 +117,14 @@ function World(scene, options){
 		var watchers = self.peeps.filter(function(peep){
 			return (peep.type==type && peep.isWatching);
 		});
-		var randomIndex = Math.floor(Math.random()*watchers.length);
+		var randomIndex = Math.floor(Game.random()*watchers.length);
 		var watcher = watchers[randomIndex];
+		if(!watcher) return null;
 
 		// REPLACE THIS ONE
 		self.replacePeep(watcher, newPeep);
 		newPeep.watchTV();
+		return newPeep;
 
 	};
 
@@ -134,4 +149,3 @@ function World(scene, options){
 	}
 
 };
-
