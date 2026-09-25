@@ -12,6 +12,9 @@ function Peep(scene){
 
 	// Properties
 	self.scene = scene;
+	// A moving coordinate is a dreadful identity. This counter is reset for
+	// every seeded run, so personality remains stable and replays remain useful.
+	self.simulationId = Game._nextPeepId++;
 	self.x = Game.random()*Game.width;
 	self.y = Game.random()*Game.height;
 	self.DRAWING_SCALE = 0.65;
