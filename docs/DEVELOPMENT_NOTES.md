@@ -63,6 +63,13 @@ distrust signals. These aren't claims about real audiences. They're explicit
 simulation inputs, ready to be tuned through playtesting instead of buried as
 magic numbers inside character animation.
 
+`ShadowAudienceModel` turns those pressures into geography. A side set affects
+nearby people most strongly. Every half-second, affected people pass a weaker
+dose to close neighbours. Enough accumulated fear can make an ordinary viewer
+nervous; enough anger can make a normal or nervous viewer angry. Replacement
+keeps the person's position, shape and influence history, so persuasion doesn't
+also teleport its subject across the room.
+
 The controller stores facts, not Pixi textures. A live texture passes directly
 to both displays, which own their own sprites. That makes the history safe to
 leave running while the visible sets own the photograph and animation.
