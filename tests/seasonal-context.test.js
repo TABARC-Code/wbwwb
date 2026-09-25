@@ -22,3 +22,9 @@ test("an ordinary summer day has weak seasonal pressure", () => {
   assert.equal(season.event, "ordinary");
   assert.equal(season.signals.spendingPressure, 0);
 });
+
+test("Christmas pressure continues across the year boundary", () => {
+  const season = SeasonalContext(new Date(2027, 0, 2, 12));
+  assert.equal(season.event, "new-year");
+  assert.ok(season.signals.spendingPressure > 0.7);
+});
