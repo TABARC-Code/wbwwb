@@ -104,6 +104,26 @@
       });
     }
 
+    // Seasonal coverage recurs; it doesn't swallow every photograph. Every
+    // third ordinary bulletin is enough to make the calendar felt over time.
+    if (!story.event && broadcast.season && frame.sequence % 3 === 0 && global.WBWWBSeasonalNewsEngine) {
+      var seasonal = global.WBWWBSeasonalNewsEngine.create(broadcast.season, locale);
+      var seasonalLeft = channel(seasonal.left, ["economic-grievance", "seasonal-amplification"], {
+        fear: 0.35, anger: 0.55, outgroupThreat: 0.05, institutionalDistrust: 0.72
+      });
+      var seasonalRight = channel(seasonal.right, ["tradition-threat", "seasonal-amplification"], {
+        fear: 0.66, anger: 0.62, outgroupThreat: 0.7, institutionalDistrust: 0.28
+      });
+      return Object.freeze({
+        left: seasonalLeft.headline,
+        right: seasonalRight.headline,
+        neutral: seasonal.neutral,
+        event: seasonal.event,
+        channels: Object.freeze({ left: seasonalLeft, right: seasonalRight }),
+        strategy: "seasonal-frame-substitution"
+      });
+    }
+
     var words = generic[locale];
     var key = genericKey(frame);
     var left = channel(words.left[key], profiles[key].left[0], profiles[key].left[1]);
@@ -116,7 +136,7 @@
     });
   }
 
-  var api = { create: create };
+  var api = { create: create, catalogue: generic, floodCatalogue: flood };
   global.WBWWBShadowHeadlineEngine = api;
   if (typeof module !== "undefined" && module.exports) module.exports = api;
 })(typeof window !== "undefined" ? window : globalThis);
