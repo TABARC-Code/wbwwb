@@ -295,7 +295,8 @@ function Director(scene){
 			squareAudience: data.audienceSquares,
 			angryRatio: peeps.length ? angryCount / peeps.length : 0,
 			emptyFrame: Boolean(data.ITS_NOTHING),
-			seed: Game.seed
+			seed: Game.seed,
+			simulationDate: Game.date ? Game.date.toISOString().slice(0,10) : null
 		});
 		if(Game.scenarios){
 			Game.scenarios.broadcast({
@@ -351,6 +352,7 @@ function Director(scene){
 		// at x=-9999 and quietly wasting renderer memory.
 		if(scene.shadowTV){
 			scene.shadowTV.receiveBroadcast({
+				scene: scene,
 				headline: text,
 				photo: self.photoTexture,
 				fail: fail,
