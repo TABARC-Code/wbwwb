@@ -114,6 +114,19 @@ and chocolate commerce. New Year leans into reinvention. Ordinary dates still
 carry their meteorological season. These are broad satirical pressures, not a
 claim that everyone observes the same festival or reacts in the same way.
 
+Seasonal habits have their own model. Shopping, decorating, observing a festival
+and chasing novelty are assigned reproducibly from the date and character
+identity; none of them automatically means a person accepted a shadow headline.
+Small symbols make those habits visible. The distinction is slightly fussy and
+worth keeping. Culture, commerce and persuasion overlap without being the same
+thing.
+
+The optional **Influence laboratory** mode removes the canonical safety catch.
+It allows active influence to transform character classes and exposes live
+counts for exposure, activation, cooling and person-to-person transmission.
+That mode may disrupt the original five-minute choreography. It says so by
+being a laboratory rather than quietly pretending to be the untouched game.
+
 ## Next pressure points
 
 The fixed clock and seeded random stream expose the next work rather neatly:
