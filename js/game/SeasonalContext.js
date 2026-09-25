@@ -28,8 +28,16 @@
   function SeasonalContext(date) {
     date = date instanceof Date && !Number.isNaN(date.getTime()) ? date : new Date();
     var year = date.getFullYear();
-    var christmas = proximity(date, new Date(year, 11, 25, 12), 55);
-    var easter = proximity(date, easterSunday(year), 35);
+    var christmas = Math.max(
+      proximity(date, new Date(year - 1, 11, 25, 12), 55),
+      proximity(date, new Date(year, 11, 25, 12), 55),
+      proximity(date, new Date(year + 1, 11, 25, 12), 55)
+    );
+    var easter = Math.max(
+      proximity(date, easterSunday(year - 1), 35),
+      proximity(date, easterSunday(year), 35),
+      proximity(date, easterSunday(year + 1), 35)
+    );
     var newYear = Math.max(
       proximity(date, new Date(year, 0, 1, 12), 18),
       proximity(date, new Date(year + 1, 0, 1, 12), 18)
@@ -42,6 +50,9 @@
 
     return Object.freeze({
       date: date.toISOString().slice(0, 10),
+      meteorologicalSeason: [11, 0, 1].indexOf(date.getMonth()) >= 0 ? "winter" :
+        [2, 3, 4].indexOf(date.getMonth()) >= 0 ? "spring" :
+          [5, 6, 7].indexOf(date.getMonth()) >= 0 ? "summer" : "autumn",
       event: dominant,
       signals: Object.freeze({
         spendingPressure: clamp(christmas * 0.95 + easter * 0.42 + newYear * 0.36),
