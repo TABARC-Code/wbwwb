@@ -1,5 +1,6 @@
 const test = require("node:test");
 const assert = require("node:assert/strict");
+global.WBWWBSeasonalNewsEngine = require("../js/game/SeasonalNewsEngine.js");
 const engine = require("../js/game/ShadowHeadlineEngine.js");
 
 test("flood victims can be reframed through institutional blame and foreign threat", () => {
@@ -23,4 +24,14 @@ test("empty evidence records the claim manufactured from its absence", () => {
   const headlines = engine.create({}, { emptyFrame: true, cricketCount: 0, angryRatio: 0 }, "en");
   assert.ok(headlines.channels.left.manipulations.includes("evidence-from-absence"));
   assert.ok(headlines.channels.right.manipulations.includes("evidence-from-absence"));
+});
+
+test("every third ordinary bulletin can carry seasonal framing", () => {
+  const headlines = engine.create(
+    { season: { event: "christmas", meteorologicalSeason: "winter" } },
+    { sequence: 3, emptyFrame: false, cricketCount: 0, angryRatio: 0 },
+    "en"
+  );
+  assert.equal(headlines.neutral, "CHRISTMAS SHOPPING BEGINS");
+  assert.equal(headlines.strategy, "seasonal-frame-substitution");
 });
