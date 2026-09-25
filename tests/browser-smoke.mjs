@@ -41,7 +41,7 @@ try {
   if (result.simulationDate !== "2026-12-20") failures.push(`date mismatch: ${result.simulationDate}`);
   if (result.assetError) failures.push(`asset error: ${result.assetError}`);
   if (result.scenario !== "canonical") failures.push(`expected canonical scenario; found ${result.scenario}`);
-  for (const mode of ["canonical", "attention", "cricket"]) {
+  for (const mode of ["canonical", "attention", "cricket", "influence"]) {
     if (!result.scenarioOptions.includes(mode)) failures.push(`missing scenario option: ${mode}`);
   }
   if (!result.shadowTV) failures.push("shadow TV module did not load");
