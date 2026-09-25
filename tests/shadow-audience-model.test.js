@@ -100,3 +100,15 @@ test("main and side televisions compete for finite attention", () => {
   assert.ok(state.rightAttention > 0);
   assert.ok(state.mainAttention + state.leftAttention + state.rightAttention <= 1.01);
 });
+
+test("central attention assists recovery from sensational pressure", () => {
+  const peep = { x: 0, y: 0, simulationId: 8, shadowInfluence: {
+    fear: 0.6, anger: 0.5, outgroupThreat: 0.4, institutionalDistrust: 0.3,
+    phase: "cooling", mainAttention: 0.9, leftAttention: 0.1, rightAttention: 0.1,
+    credibility: 0.4
+  } };
+  const model = new ShadowAudienceModel({ transform: false });
+  model.advancePhases([peep], 500);
+  assert.ok(peep.shadowInfluence.fear < 0.6);
+  assert.ok(peep.shadowInfluence.credibility > 0.4);
+});
