@@ -22,7 +22,8 @@
       squareAudience: Number(snapshot.squareAudience || 0),
       angryRatio: Number(snapshot.angryRatio || 0),
       emptyFrame: Boolean(snapshot.emptyFrame),
-      seed: snapshot.seed || null
+      seed: snapshot.seed || null,
+      simulationDate: snapshot.simulationDate || null
     });
     this.entries.push(entry);
     return entry;
