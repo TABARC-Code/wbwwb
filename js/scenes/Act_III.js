@@ -1,6 +1,11 @@
 Game.addToManifest({
     bg_panic: "sounds/bg_panic.mp3",
-    bg_creepy: "sounds/bg_creepy.mp3"
+    bg_creepy: "sounds/bg_creepy.mp3",
+    police_siren: "sounds/police_siren.mp3",
+    ambulance_siren: "sounds/ambulance_siren.mp3",
+    fire_siren: "sounds/fire_siren.mp3",
+    crowd_panic: "sounds/crowd_panic.mp3",
+    radio_static: "sounds/radio_static.mp3"
 });
 
 /*****************************
@@ -121,6 +126,32 @@ function Stage_Panic(self){
     creepyAmbience.play();
     creepyAmbience.fade(0, 1, 5000);
 
+    // EMERGENCY RESPONSE AUDIO
+    // Police siren (immediate response)
+    if(Game.sounds.police_siren){
+        Game.sounds.police_siren.play();
+    }
+
+    // Crowd panic layer (background screams)
+    if(Game.sounds.crowd_panic){
+        Game.sounds.crowd_panic.loop(true);
+        Game.sounds.crowd_panic.volume(0.4);
+        Game.sounds.crowd_panic.play();
+    }
+
+    // Random ambulance/fire sirens during chaos
+    self.emergencySirenInterval = setInterval(function(){
+        if(!self || !self.world) return; // Safety check
+        if(Math.random() < 0.35 && Game.sounds.ambulance_siren){
+            Game.sounds.ambulance_siren.volume(0.6);
+            Game.sounds.ambulance_siren.play();
+        }
+        if(Math.random() < 0.15 && Game.sounds.fire_siren){
+            Game.sounds.fire_siren.volume(0.5);
+            Game.sounds.fire_siren.play();
+        }
+    }, 4000); // Sirens every ~4 seconds
+
     // NO MORE SOUNDS.
     self.camera.noSounds = true;
     self.director.noSounds = true;
@@ -198,6 +229,16 @@ function Stage_Panic(self){
         // Sounds stop
         creepyAmbience.stop();
         panic.stop();
+        if(Game.sounds.police_siren) Game.sounds.police_siren.stop();
+        if(Game.sounds.ambulance_siren) Game.sounds.ambulance_siren.stop();
+        if(Game.sounds.fire_siren) Game.sounds.fire_siren.stop();
+        if(Game.sounds.crowd_panic) Game.sounds.crowd_panic.stop();
+        if(Game.sounds.radio_static) Game.sounds.radio_static.stop();
+
+        // Stop emergency siren interval
+        if(self.emergencySirenInterval){
+            clearInterval(self.emergencySirenInterval);
+        }
 
         // Next Scene!
         Game.sceneManager.gotoScene("Credits");

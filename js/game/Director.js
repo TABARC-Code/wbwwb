@@ -14,7 +14,11 @@ When you click to take a photo, the Director...
 
 Game.addToManifest({
 	crickets: "sounds/crickets.mp3",
-	breaking_news: "sounds/breaking_news.mp3"
+	breaking_news: "sounds/breaking_news.mp3",
+	news_voice: "sounds/news_voice.mp3",
+	crowd_gasp: "sounds/crowd_gasp.mp3",
+	crowd_murmur: "sounds/crowd_murmur.mp3",
+	tv_static: "sounds/tv_static.mp3"
 });
 
 function Director(scene){
@@ -76,6 +80,12 @@ function Director(scene){
 		if(self.noSounds) return;
 		if(data.audience>0 || data.audienceCircles>0 || data.audienceSquares>0){
             Game.sounds.breaking_news.play();
+            // Broadcaster voice follows jingle
+            if(Game.sounds.news_voice && Math.random() < 0.7){
+                setTimeout(function(){
+                    if(Game.sounds.news_voice) Game.sounds.news_voice.play();
+                }, 500);
+            }
         }
         if(data.forceChyron){
         	Game.sounds.breaking_news.play();
@@ -103,6 +113,31 @@ function Director(scene){
         	var p = peeps[i];
         	if(p._CLASS_!="NormalPeep") continue;
         	p.getOuttaTV();
+        }
+
+        // CROWD AUDIO REACTIONS
+        if(self.noSounds) {
+            // (audio suppressed during Act III's violence)
+        } else {
+            // TV static transition
+            if(Game.sounds.tv_static && Math.random() < 0.4){
+                Game.sounds.tv_static.volume(0.3);
+                Game.sounds.tv_static.play();
+            }
+
+            // Crowd murmur (background during TV viewing)
+            if(!self.crowdMurmurPlaying && Game.sounds.crowd_murmur){
+                Game.sounds.crowd_murmur.loop(true);
+                Game.sounds.crowd_murmur.volume(0.2);
+                Game.sounds.crowd_murmur.play();
+                self.crowdMurmurPlaying = true;
+            }
+
+            // Crowd gasp if there's a lot of reaction
+            if(data.audience > 2 && Game.sounds.crowd_gasp && Math.random() < 0.6){
+                Game.sounds.crowd_gasp.volume(0.5);
+                Game.sounds.crowd_gasp.play();
+            }
         }
 
         // ANY AUDIENCE, AT ALL?????
