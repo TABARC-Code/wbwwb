@@ -1,6 +1,7 @@
 const test = require("node:test");
 const assert = require("node:assert/strict");
 global.WBWWBShadowHeadlineEngine = require("../js/game/ShadowHeadlineEngine.js");
+global.WBWWBShadowAudienceModel = require("../js/game/ShadowAudienceModel.js");
 const ShadowTV = require("../js/game/ShadowTV.js");
 
 test("shadow TV mirrors broadcast facts without retaining renderer objects", () => {
