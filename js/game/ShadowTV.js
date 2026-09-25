@@ -34,6 +34,8 @@
     this.history = [];
     this.leftDisplay = null;
     this.rightDisplay = null;
+    this.audienceModel = new global.WBWWBShadowAudienceModel(options.audience || {});
+    this.season = global.WBWWBSeasonalContext ? global.WBWWBSeasonalContext(options.date) : null;
   }
 
   ShadowTV.prototype.attachDisplays = function (left, right) {
@@ -88,7 +90,18 @@
       displayOptions.text = headlines.right;
       this.rightDisplay.placePhoto(displayOptions);
     }
+    this.audienceModel.exposeBroadcast(
+      broadcast.scene,
+      this.leftDisplay,
+      this.rightDisplay,
+      headlines.channels,
+      this.season
+    );
     return frame;
+  };
+
+  ShadowTV.prototype.update = function (scene) {
+    this.audienceModel.update(scene);
   };
 
   ShadowTV.prototype.latest = function () {
