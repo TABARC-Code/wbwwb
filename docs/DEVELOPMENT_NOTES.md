@@ -79,6 +79,41 @@ headlines, publish one, and let the shadow set calculate the road not taken.
 Keeping that calculation headless means it can be tested without pretending an
 off-screen sprite is an architecture.
 
+## Rumours need legs
+
+The side sets now compete with the main television for a finite slice of each
+person's attention. Proximity helps. Sensational language helps too, at least
+until familiarity and fatigue make another shriek of outrage feel like noisy
+wallpaper. Contradictory exposure raises confusion and slowly damages the
+source's credibility.
+
+Influence moves through explicit stages: susceptible, exposed, active and
+cooling. The names borrow the useful shape of an epidemic model, not its moral
+meaning. A rumour isn't a virus and a person isn't a petri dish. The model
+tracks broadcast exposure, adoption, person-to-person transmission and recovery
+separately so a balancing change doesn't turn one vague counter into folklore.
+
+Canonical mode never replaces the original cast. That looked dramatic in an
+early pass and was architecturally reckless: an experimental television could
+turn a scripted actor angry before the original act needed them. Full class
+transformation remains available as an explicit simulation option. In normal
+play, small markers make exposure and activation legible without stealing the
+story's puppets.
+
+## The calendar in the newsroom
+
+`SeasonalContext` reads the player's local date, or a reproducible `?date=YYYY-MM-DD`
+override. It calculates Easter, carries Christmas pressure across New Year, and
+records the chosen date beside the run seed. `SeasonalNewsEngine` keeps a
+neutral event and two distorted treatments together across all six supported
+languages. Every third ordinary bulletin may pick up seasonal framing. The
+calendar therefore colours the news cycle without eating every photograph.
+
+Christmas can push spending and decoration. Easter can mix worship, novelty
+and chocolate commerce. New Year leans into reinvention. Ordinary dates still
+carry their meteorological season. These are broad satirical pressures, not a
+claim that everyone observes the same festival or reacts in the same way.
+
 ## Next pressure points
 
 The fixed clock and seeded random stream expose the next work rather neatly:
