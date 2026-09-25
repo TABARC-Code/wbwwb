@@ -23,6 +23,19 @@ This file is runtime infrastructure. Scene/gameplay content remains unchanged.
   Game.ledger = new WBWWBEditorialLedger();
   Game.scenarios = null;
   Game._animationFrame = null;
+  Game._nextPeepId = 1;
+
+  Game.readDate = function () {
+    try {
+      var requested = new URLSearchParams(window.location.search).get("date");
+      if (requested && /^\d{4}-\d{2}-\d{2}$/.test(requested)) {
+        var parts = requested.split("-").map(Number);
+        var parsed = new Date(parts[0], parts[1] - 1, parts[2], 12);
+        if (parsed.getFullYear() === parts[0] && parsed.getMonth() === parts[1] - 1 && parsed.getDate() === parts[2]) return parsed;
+      }
+    } catch (_) {}
+    return new Date();
+  };
 
   Game.readSeed = function () {
     try {
@@ -54,6 +67,8 @@ This file is runtime infrastructure. Scene/gameplay content remains unchanged.
 
   Game.init = async function (HACK) {
     Game.setSeed(Game.readSeed());
+    Game.date = Game.readDate();
+    Game._nextPeepId = 1;
     Game.ledger = new WBWWBEditorialLedger();
     Game.scenarios = new WBWWBScenarioManager();
     Game.scenarios.start();
