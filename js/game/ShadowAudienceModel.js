@@ -204,6 +204,11 @@
       state.fatigue = clamp(state.fatigue - 0.006);
       state.leftAttention = clamp(state.leftAttention - 0.02);
       state.rightAttention = clamp(state.rightAttention - 0.02);
+      if (state.mainAttention > Math.max(state.leftAttention, state.rightAttention)) {
+        fields.forEach(function (field) { state[field] = clamp(state[field] - 0.012); });
+        state.credibility = clamp(state.credibility + 0.005);
+      }
+      state.mainAttention = clamp(state.mainAttention - 0.015);
       this.updateVisual(peeps[i], state);
     }
   };
@@ -222,8 +227,14 @@
         if (active[i] === peeps[j]) continue;
         var proximity = Math.max(0, 1 - distance(active[i], peeps[j]) / this.personRadius);
         if (!proximity) continue;
+        var targetFactor = 1;
+        if (sourceState.behaviour === "accusing") {
+          targetFactor = active[i].type && peeps[j].type && active[i].type !== peeps[j].type ? 1.35 : 0.55;
+        } else if (sourceState.behaviour === "avoiding") {
+          targetFactor = 0.25;
+        }
         var before = stateFor(peeps[j]).phase;
-        this.addDose(peeps[j], sourceState, proximity * this.spreadStrength * infectiousness, "person");
+        this.addDose(peeps[j], sourceState, proximity * this.spreadStrength * infectiousness * targetFactor, "person");
         if (before === "susceptible") this.metrics.personTransmissions += 1;
       }
     }
@@ -256,6 +267,9 @@
   };
   ShadowAudienceModel.prototype.updateVisual = function (peep, state) {
     if (!peep || !peep.graphics || !global.PIXI || !global.PIXI.Text) return;
+    state = state || peep.shadowInfluence || { phase: "susceptible", leftAttention: 0, rightAttention: 0 };
+    var habit = peep.seasonalHabit || state.habit || "ordinary";
+    if (state.phase === "susceptible" && habit === "ordinary" && !peep.shadowMarker) return;
     if (!peep.shadowMarker) {
       peep.shadowMarker = new global.PIXI.Text("", { fontFamily: "Cairo", fontSize: 18, fontWeight: "bold", fill: "#fff" });
       peep.shadowMarker.anchor.set(0.5, 1);
@@ -263,11 +277,15 @@
       peep.graphics.addChild(peep.shadowMarker);
     }
     var symbols = { susceptible: "", exposed: "?", active: "!", cooling: "·" };
-    peep.shadowMarker.text = symbols[state.phase] || "";
+    var habits = { buying: "£", decorating: "✦", observing: "○", "seeking-novelty": "+", ordinary: "" };
+    peep.shadowMarker.text = (symbols[state.phase] || "") + (habits[habit] || "");
     peep.shadowMarker.tint = state.leftAttention >= state.rightAttention ? 0xb66a9e : 0xd8795f;
     peep.shadowMarker.alpha = state.phase === "active" ? 1 : 0.65;
   };
   ShadowAudienceModel.prototype.update = function (scene, elapsedMs) {
+    if (scene && scene.world) {
+      scene.world.peeps.forEach(function (peep) { this.updateVisual(peep, peep.shadowInfluence); }, this);
+    }
     this.tickMs += Number(elapsedMs) || (1000 / 60);
     if (this.tickMs >= 500) {
       var step = this.tickMs;
