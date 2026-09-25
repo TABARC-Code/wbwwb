@@ -1,0 +1,23 @@
+name: CI
+
+on:
+  push:
+    branches: [ master ]
+  pull_request:
+
+jobs:
+  smoke-test:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 20
+
+      - name: Syntax-check all JS files
+        run: |
+          set -e
+          find js -name '*.js' -print0 | xargs -0 -n1 node -c
+
+      - name: Smoke-test textStrings.js
+        run: node scripts/check-textstrings.js

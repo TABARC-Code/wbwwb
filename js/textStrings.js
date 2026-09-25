@@ -822,3 +822,12 @@ var textStrings_TR = {
 	// (quote0004.png)
 	"misatrributed": "(yanlış bir şekilde ona atfedilir)",
 };
+
+var textStrings = textStrings_FA;
+//var textStrings = textStrings_EN;
+//var textStrings = textStrings_DE;
+//var textStrings = textStrings_PT;
+//var textStrings = textStrings_PT_BR;
+//var textStrings = textStrings_ES;
+//var textStrings = textStrings_ZH_TW;
+//var textStrings = textStrings_TR;

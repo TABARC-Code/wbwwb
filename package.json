@@ -1,0 +1,14 @@
+{
+  "name": "wbwwb",
+  "version": "1.0.0",
+  "private": true,
+  "license": "CC0-1.0",
+  "description": "We Become What We Behold - a minigame about the news (Persian-localised fork)",
+  "scripts": {
+    "start": "http-server -p 8080 -c-1 -o",
+    "check": "node scripts/check-textstrings.js"
+  },
+  "devDependencies": {
+    "http-server": "^14.1.1"
+  }
+}

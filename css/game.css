@@ -14,13 +14,28 @@ body{
 	margin: 0;
 	background: #222;
 	position:relative;
+	overflow: hidden; /* the scaled container can graze the edges on odd aspect ratios */
+}
+
+/* The game is drawn at a fixed 960x540. Rather than teach every scene about
+   arbitrary screen sizes, we scale this whole box to fit the viewport (see the
+   resizeGame() script in index.html) and let everything inside carry on
+   believing it's always 960x540. Cheapest fix that actually works.
+   top/left are set by JS, not centred here with margin:auto - this box is
+   usually BIGGER than the viewport before scaling, and auto-margins on an
+   oversized absolutely-positioned box don't centre reliably. Learned that
+   one the hard way; see the before/after screenshots in the PR. */
+#game-container{
+	width:960px; height:540px;
+	position:absolute;
+	top:0; left:0;
+	transform-origin: top left;
 }
 #stage{
 	background: #000;
-	width:960px; height:540px;
+	width:100%; height:100%;
 	position:absolute;
-	margin:auto;
-	top:0; left:0; right:0; bottom:0;
+	top:0; left:0;
 	cursor: none;
 }
 .overlay{
@@ -48,10 +63,9 @@ body{
 #modal_shade{
 	display: none;
 	background: rgba(0,0,0,0.8);
-	width:960px; height:540px;
+	width:100%; height:100%;
 	position:absolute;
-	margin:auto;
-	top:0; left:0; right:0; bottom:0;
+	top:0; left:0;
 	cursor: pointer;
 }
 #paused{
