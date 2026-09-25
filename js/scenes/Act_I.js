@@ -7,11 +7,21 @@ ACT I: THE SETUP
 
 ******************************/
 
+Game.addToManifest({
+	bg_park: "sounds/bg_park.mp3"
+});
+
 function Stage_Start(self){
 
     // Create Peeps
     self.world.clearPeeps();
     self.world.addBalancedPeeps(20);
+
+	// Park ambience
+	if(Game.sounds.bg_park){
+		Game.sounds.bg_park.loop(true);
+		Game.sounds.bg_park.play();
+	}
 
 }
 
