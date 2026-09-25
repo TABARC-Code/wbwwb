@@ -36,6 +36,8 @@
     this.rightDisplay = null;
     this.audienceModel = new global.WBWWBShadowAudienceModel(options.audience || {});
     this.season = global.WBWWBSeasonalContext ? global.WBWWBSeasonalContext(options.date) : null;
+    this.seasonalBehaviour = global.WBWWBSeasonalBehaviourModel ? new global.WBWWBSeasonalBehaviourModel(this.season) : null;
+    this.seasonalTickMs = 1000;
   }
 
   ShadowTV.prototype.attachDisplays = function (left, right) {
@@ -104,6 +106,11 @@
   };
 
   ShadowTV.prototype.update = function (scene, elapsedMs) {
+    this.seasonalTickMs += Number(elapsedMs) || (1000 / 60);
+    if (this.seasonalBehaviour && this.seasonalTickMs >= 1000) {
+      this.seasonalBehaviour.apply(scene);
+      this.seasonalTickMs = 0;
+    }
     this.audienceModel.update(scene, elapsedMs);
   };
 
