@@ -96,6 +96,7 @@ window.onload = function(){
 		Game.init();
 		//Game.init("Game");
 	}catch(e){
+		console.error(e); // don't let boot crashes hide silently behind the WebGL warning
 		document.getElementById("warning").style.display = "block";
 	}
 };
