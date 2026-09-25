@@ -68,6 +68,7 @@ This file is runtime infrastructure. Scene/gameplay content remains unchanged.
   Game.init = async function (HACK) {
     Game.setSeed(Game.readSeed());
     Game.date = Game.readDate();
+    Game.dateString = Game.date.toISOString().slice(0, 10);
     Game._nextPeepId = 1;
     Game.ledger = new WBWWBEditorialLedger();
     Game.scenarios = new WBWWBScenarioManager();
