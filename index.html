@@ -1,28 +1,61 @@
 ﻿<html>
 	<head>
+		<meta charset="utf-8">
+		<!-- user-scalable=no is deliberate: we do our own scale-to-fit below (see
+		     resizeGame() further down), so letting the browser ALSO pinch-zoom on
+		     top of that just fights the layout and makes clicks land in the wrong
+		     place mid-game. Not great for accessibility in general, fine here. -->
+		<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
 		<link rel="stylesheet" href="css/game.css">
 	</head>
 	<body>
-		<div id="stage"></div>
-		<div id="modal_shade"></div>
-		<div class="overlay" id="warning">
-			<div dir="rtl">ای بابا!</div>
-			<div dir="rtl">
-			your browser doesn't support webgl.<br>
-			try a different browser or computer?<br>
-				<br>
-				مرورگر شما مرخص است! از یه مرورگر و یا کامپیوتر دیگه استفاده کنید!
+		<div id="game-container">
+			<div id="stage"></div>
+			<div id="modal_shade"></div>
+			<div class="overlay" id="warning">
+				<div dir="rtl">ای بابا!</div>
+				<div dir="rtl">
+				your browser doesn't support webgl.<br>
+				try a different browser or computer?<br>
+					<br>
+					مرورگر شما مرخص است! از یه مرورگر و یا کامپیوتر دیگه استفاده کنید!
+				</div>
 			</div>
-		</div>
-		<div class="overlay" id="paused">
-			<div>paused</div>
-			<div dir="rtl">
-			click anywhere to resume<br>
-				برای بازگشت رو یه جا رو کلیک کن!
+			<div class="overlay" id="paused">
+				<div>paused</div>
+				<div dir="rtl">
+				click anywhere to resume<br>
+					برای بازگشت رو یه جا رو کلیک کن!
+				</div>
 			</div>
 		</div>
 	</body>
 </html>
+
+<!-- Scale-to-fit for mobile / odd window sizes.
+     The game is drawn at a fixed 960x540 internally and always will be - teaching
+     every scene, peep and camera calc to work at arbitrary resolutions is a much
+     bigger job than this fork needs. Instead we just scale the whole DOM box down
+     (or up) to fit whatever viewport turned up, and centre it. PIXI's own touch/mouse
+     handling already accounts for a CSS-scaled canvas, so clicks still land correctly.
+     No dependency on Game/PIXI being loaded yet, so this can run first. -->
+<script>
+(function(){
+	var container = document.getElementById("game-container");
+	function resizeGame(){
+		var scale = Math.min(window.innerWidth / 960, window.innerHeight / 540);
+		container.style.transform = "scale(" + scale + ")";
+		// Centre it ourselves - the box is 960x540 before scaling, almost always
+		// bigger than the viewport, and CSS auto-margins won't centre a box
+		// that's bigger than its container. Plain arithmetic does.
+		container.style.left = ((window.innerWidth - 960*scale) / 2) + "px";
+		container.style.top = ((window.innerHeight - 540*scale) / 2) + "px";
+	}
+	resizeGame();
+	window.addEventListener("resize", resizeGame);
+	window.addEventListener("orientationchange", resizeGame);
+})();
+</script>
 
 <!-- External Libraries -->
 <script src="js/lib/pixi.min.js"></script>
