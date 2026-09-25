@@ -73,6 +73,7 @@ function Scene_Game(){
         self.world.update();
         self.camera.update();
         self.director.update();
+        self.shadowTV.update(self);
 
         // This order is important
         self.zoomer.update();
