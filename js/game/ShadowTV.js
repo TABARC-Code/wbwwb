@@ -65,9 +65,12 @@
       story: storyFacts(broadcast.story)
     };
 
-    var headlines = global.WBWWBShadowHeadlineEngine.create(broadcast, facts, global.WBWWB_LOCALE);
+    var framedBroadcast = Object.assign({}, broadcast, { season: this.season });
+    var headlines = global.WBWWBShadowHeadlineEngine.create(framedBroadcast, facts, global.WBWWB_LOCALE);
     facts.shadow = headlines.channels;
     facts.framingStrategy = headlines.strategy;
+    facts.season = this.season;
+    facts.neutralSeasonalHeadline = headlines.neutral || null;
     var frame = Object.freeze(facts);
 
     this.history.push(frame);
@@ -100,8 +103,8 @@
     return frame;
   };
 
-  ShadowTV.prototype.update = function (scene) {
-    this.audienceModel.update(scene);
+  ShadowTV.prototype.update = function (scene, elapsedMs) {
+    this.audienceModel.update(scene, elapsedMs);
   };
 
   ShadowTV.prototype.latest = function () {
