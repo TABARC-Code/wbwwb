@@ -31,7 +31,12 @@ function Scene_Game(){
     self.camera = new Camera(self);
     self.director = new Director(self);
     self.tv = new TV(self);
-    self.shadowTV = new ShadowTV();
+    self.shadowTV = new ShadowTV({
+        date: Game.date,
+        // Canonical acts own character classes. Experimental influence may
+        // colour behaviour, but it doesn't get to steal an actor mid-scene.
+        audience: { allowTransform: false }
+    });
 
     // Two little bad-faith echoes. They're visible, but the controller behind
     // them stays headless and keeps the counterfactual record.
@@ -73,7 +78,7 @@ function Scene_Game(){
         self.world.update();
         self.camera.update();
         self.director.update();
-        self.shadowTV.update(self);
+        self.shadowTV.update(self, 1000/60);
 
         // This order is important
         self.zoomer.update();
