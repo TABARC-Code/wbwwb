@@ -36,6 +36,7 @@ try {
       typeof window.Stage_CloutAntics === "function" &&
       typeof window.Stage_SportsAlliance === "function" &&
       typeof window.Stage_FloodFraming === "function" &&
+      typeof window.FloodEvidenceProp === "function" &&
       typeof window.WBWWBFloodFramingEngine?.create === "function" &&
       typeof window.WBWWBInfluencerNewsEngine?.create === "function",
     agencyModules: typeof window.WBWWBPlayerAgency?.Model === "function" &&
