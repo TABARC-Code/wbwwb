@@ -1,5 +1,7 @@
 const test = require("node:test");
 const assert = require("node:assert/strict");
+global.WBWWBAudienceScandalEngine = require("../js/game/AudienceScandalEngine.js");
+global.WBWWBInfluencerNewsEngine = require("../js/game/InfluencerNewsEngine.js");
 global.WBWWBShadowHeadlineEngine = require("../js/game/ShadowHeadlineEngine.js");
 global.WBWWBShadowAudienceModel = require("../js/game/ShadowAudienceModel.js");
 const ShadowTV = require("../js/game/ShadowTV.js");
@@ -74,4 +76,16 @@ test("shadow history keeps story facts and manipulation provenance", () => {
   assert.equal(Object.hasOwn(frame.story, "unsafeExtra"), false);
   assert.equal(frame.shadow.right.headline, "FOREIGN INVADERS: ARE THEY COMING FOR YOU?");
   assert.ok(frame.shadow.right.manipulations.includes("identity-substitution"));
+});
+
+test("one-sided scandal leaves the other outlet and centre with boring copy", () => {
+  global.WBWWB_LOCALE = "en";
+  const shown = { centre: null, left: null, right: null };
+  const display = (side) => ({ placePhoto: (options) => { shown[side] = { ...options }; } });
+  const scene = { tv: display("centre"), world: { peeps: [] } };
+  const shadow = new ShadowTV().attachDisplays(display("left"), display("right"));
+  const frame = shadow.receiveBroadcast({ scene, photo: {}, headline: "ordinary", entry: { sequence: 2 } });
+  assert.equal(frame.scandal.targetSide, "right");
+  assert.equal(shown.centre.text, shown.left.text);
+  assert.notEqual(shown.right.text, shown.centre.text);
 });
