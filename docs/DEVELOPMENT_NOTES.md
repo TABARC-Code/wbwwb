@@ -127,6 +127,43 @@ counts for exposure, activation, cooling and person-to-person transmission.
 That mode may disrupt the original five-minute choreography. It says so by
 being a laboratory rather than quietly pretending to be the untouched game.
 
+## A handful of true believers
+
+Six additional normal peeps now sit along a deliberately small ideological
+range: committed left and right, softer left and right, and two near-centre
+people who already have a preferred direction. They use the ordinary body and
+face animations. The distinction is a media preference, not a new species.
+
+One-sided scandal coverage agitates only the audience inclined towards that
+outlet. Agitated believers then lean harder towards their own endpoint and put
+low doses of pressure on nearby ordinary peeps. A basic peep begins in the
+middle; sufficient local pressure gives them a direction, after which repeated
+contact can pull them further. Replacing a character during the original story
+now preserves this history instead of performing the miraculous political cure
+known as constructing a new JavaScript object.
+
+## Clout before catastrophe
+
+Three short acts now sit between the lovers and the original fear cycle. Two
+influencers appear in each. First come selfies, filmed charity and dangerous
+weather stunts. Then sport bait, conspiracy clips and a collectible monster-card
+frenzy. Finally come affairs, faith subscriptions, censored private-cartoon
+leaks and the inevitable fourth apology video.
+
+The middle television reports these in painfully ordinary newsroom language.
+Only one side set finds the ideological lever in each story. A masculinity or
+nostalgia grievance fires the right set; institutional cover-ups, hypocrisy and
+commercial exploitation fire the left. The unused side repeats the boring
+account. This breaks the too-tidy habit of making every event a three-column
+political debate.
+
+Capturing an influencer raises their visible likes and followers, rewards the
+antic, and prompts the next one. Nearby ordinary peeps pick up trend pressure.
+The characters are deliberately awful examples: staged generosity, synthetic
+feuds and public contrition as content. The model is about incentives and
+attention, not a claim that every creator behaves like a raccoon with a ring
+light.
+
 ## Next pressure points
 
 The fixed clock and seeded random stream expose the next work rather neatly:
