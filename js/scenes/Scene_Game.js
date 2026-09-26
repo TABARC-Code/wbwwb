@@ -38,6 +38,37 @@ function Scene_Game(){
         audience: { allowTransform: false }
     });
     self.ideologyModel = new WBWWBIdeologicalAudienceModel();
+    self.agency = new WBWWBPlayerAgency.Model();
+    self.agencyPanel = new WBWWBAgencyPanel(self.agency, function(result){
+        self.applyAgencyChoice(result);
+    });
+
+    self.applyAgencyChoice = function(result){
+        if(!result || !result.effects) return;
+        var peeps = self.world.peeps;
+        peeps.filter(function(peep){ return peep._CLASS_==="InfluencerPeep"; }).forEach(function(influencer){
+            var mention = influencer.reactToPlayerChoice(result);
+            self.agency.recordMention(mention.sentiment, mention.reach);
+        });
+        if(result.choice==="repair" || result.choice==="refuse"){
+            peeps.forEach(function(peep){
+                if(peep.ideology) peep.ideology.agitation *= result.choice==="repair" ? 0.45 : 0.82;
+                if(peep.shadowInfluence){
+                    peep.shadowInfluence.fear *= result.choice==="repair" ? 0.55 : 0.88;
+                    peep.shadowInfluence.anger *= result.choice==="repair" ? 0.55 : 0.88;
+                }
+            });
+        }
+        if(result.choice==="sell"){
+            peeps.forEach(function(peep){ peep.trendPressure = Math.min(1, (peep.trendPressure||0)+0.12); });
+        }
+        if(result.choice==="amplify"){
+            var pendingSide = result.targetSide;
+            if(pendingSide) self.ideologyModel.receiveNews(self, {
+                id:"player-amplification", targetSide:pendingSide, agitation:0.42
+            });
+        }
+    };
 
     // Two little bad-faith echoes. They're visible, but the controller behind
     // them stays headless and keeps the counterfactual record.
