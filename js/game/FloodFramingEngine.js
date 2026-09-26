@@ -36,12 +36,15 @@
     var right = channel(words[2], ["cherry-picking", "scale-minimisation", "hoax-framing"],
       { fear: 0.12, anger: 0.86, outgroupThreat: 0.18, institutionalDistrust: 0.9 },
       { crop: "shallow-trickle", relationToEvent: "real-but-unrepresentative-low" });
+    var selected = story.capturedSeverity || "representative";
+    var targetSide = selected === "trickle" ? "right" : selected === "extreme" ? "left" : null;
     return Object.freeze({
-      id: "flood-selective-evidence", targetSide: "right", agitation: 0.82,
+      id: "flood-selective-evidence", targetSide: targetSide,
+      agitation: targetSide ? 0.82 : 0.34,
       middle: words[0], left: words[1], right: words[2],
       middleImage: "flood_actual", leftImage: "flood_extreme", rightImage: "flood_trickle",
       channels: Object.freeze({ left: left, right: right }),
-      evidence: Object.freeze({ actual: "representative-wide-view", left: left.evidence, right: right.evidence }),
+      evidence: Object.freeze({ captured: selected, actual: "representative-wide-view", left: left.evidence, right: right.evidence }),
       tags: Object.freeze(["flood", "selective-evidence", "scale-distortion"]),
       strategy: "selective-visual-evidence"
     });
