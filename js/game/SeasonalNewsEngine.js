@@ -1,6 +1,8 @@
 /*
  * Calendar stories are prompts, not prophecies. The neutral line names an
  * ordinary event; the side lines demonstrate how the same moment gets bent.
+ * AI assisted with the non-English drafts. They are structurally audited, not
+ * certified as lovely prose. Native-speaker fixes are welcome, honestly.
  */
 (function (global) {
   "use strict";
