@@ -18,7 +18,10 @@ Game.addToManifest({
 	news_voice: "sounds/news_voice.mp3",
 	crowd_gasp: "sounds/crowd_gasp.mp3",
 	crowd_murmur: "sounds/crowd_murmur.mp3",
-	tv_static: "sounds/tv_static.mp3"
+	tv_static: "sounds/tv_static.mp3",
+	goal_horn: "sounds/goal_horn.mp3",
+	crowd_cheer: "sounds/crowd_cheer.mp3",
+	sports_commentary: "sounds/sports_commentary.mp3"
 });
 
 function Director(scene){
@@ -79,12 +82,26 @@ function Director(scene){
 		var data = self.photoData;
 		if(self.noSounds) return;
 		if(data.audience>0 || data.audienceCircles>0 || data.audienceSquares>0){
-            Game.sounds.breaking_news.play();
-            // Broadcaster voice follows jingle
-            if(Game.sounds.news_voice && Math.random() < 0.7){
-                setTimeout(function(){
-                    if(Game.sounds.news_voice) Game.sounds.news_voice.play();
-                }, 500);
+            // 80% news broadcast, 20% sports broadcast
+            if(Math.random() < 0.2 && Game.sounds.goal_horn){
+                // Sports broadcast
+                data.isSportsBroadcast = true;
+                Game.sounds.goal_horn.play();
+                if(Game.sounds.sports_commentary && Math.random() < 0.6){
+                    setTimeout(function(){
+                        if(Game.sounds.sports_commentary) Game.sounds.sports_commentary.play();
+                    }, 800);
+                }
+            } else {
+                // News broadcast
+                data.isSportsBroadcast = false;
+                Game.sounds.breaking_news.play();
+                // Broadcaster voice follows jingle
+                if(Game.sounds.news_voice && Math.random() < 0.7){
+                    setTimeout(function(){
+                        if(Game.sounds.news_voice) Game.sounds.news_voice.play();
+                    }, 500);
+                }
             }
         }
         if(data.forceChyron){
@@ -133,10 +150,15 @@ function Director(scene){
                 self.crowdMurmurPlaying = true;
             }
 
-            // Crowd gasp if there's a lot of reaction
-            if(data.audience > 2 && Game.sounds.crowd_gasp && Math.random() < 0.6){
-                Game.sounds.crowd_gasp.volume(0.5);
-                Game.sounds.crowd_gasp.play();
+            // Crowd reactions based on broadcast type
+            if(data.audience > 2 && Math.random() < 0.6){
+                if(data.isSportsBroadcast && Game.sounds.crowd_cheer){
+                    Game.sounds.crowd_cheer.volume(0.6);
+                    Game.sounds.crowd_cheer.play();
+                } else if(Game.sounds.crowd_gasp){
+                    Game.sounds.crowd_gasp.volume(0.5);
+                    Game.sounds.crowd_gasp.play();
+                }
             }
         }
 

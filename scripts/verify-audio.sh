@@ -17,6 +17,9 @@ REQUIRED_SOUNDS=(
     "news_voice"
     "tv_static"
     "radio_static"
+    "goal_horn"
+    "crowd_cheer"
+    "sports_commentary"
 )
 
 # Core sounds (already in repo)
