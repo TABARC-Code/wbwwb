@@ -8,7 +8,7 @@ const engine = require("../js/game/ShadowHeadlineEngine.js");
 
 test("flood outlets select a trickle, a representative view and the worst water", () => {
   const headlines = engine.create(
-    { story: { event: "flood", subjects: "victims", foreign: true } },
+    { story: { event: "flood", subjects: "victims", foreign: true, capturedSeverity: "trickle" } },
     { emptyFrame: false, cricketCount: 0, angryRatio: 0 },
     "en"
   );
@@ -21,6 +21,17 @@ test("flood outlets select a trickle, a representative view and the worst water"
   assert.equal(headlines.channels.right.evidence.crop, "shallow-trickle");
   assert.equal(headlines.channels.left.evidence.crop, "deepest-water");
   assert.equal(headlines.middleImage, "flood_actual");
+  assert.equal(headlines.targetSide, "right");
+});
+
+test("the photographer's flood crop determines which extreme receives the stronger cue", () => {
+  const leftCue = engine.create({ story: { event: "flood", capturedSeverity: "extreme" } }, {}, "en");
+  const rightCue = engine.create({ story: { event: "flood", capturedSeverity: "trickle" } }, {}, "en");
+  const representative = engine.create({ story: { event: "flood", capturedSeverity: "representative" } }, {}, "en");
+  assert.equal(leftCue.targetSide, "left");
+  assert.equal(rightCue.targetSide, "right");
+  assert.equal(representative.targetSide, null);
+  assert.ok(representative.agitation < rightCue.agitation);
 });
 
 test("empty evidence records the claim manufactured from its absence", () => {
