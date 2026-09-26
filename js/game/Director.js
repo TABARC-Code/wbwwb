@@ -439,6 +439,12 @@ function Director(scene){
 		// NOPE, NO LONGER WATCHING TV.
 		self.isWatchingTV = false;
 
+		// Stop crowd murmur when leaving TV
+		if(Game.sounds.crowd_murmur){
+			Game.sounds.crowd_murmur.stop();
+		}
+		self.crowdMurmurPlaying = false;
+
 		// Zoom out to the whole game
 		self.tweenViewportTo({
 			x: Game.width/2,
