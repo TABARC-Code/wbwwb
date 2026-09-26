@@ -88,6 +88,10 @@
     locale = generic[locale] ? locale : "en";
     var story = broadcast.story || {};
 
+    if (story.event === "influencer" && global.WBWWBInfluencerNewsEngine) {
+      return global.WBWWBInfluencerNewsEngine.create(story, locale);
+    }
+
     if (story.event === "flood" && story.foreign === true) {
       var pair = flood[locale] || flood.en;
       var floodLeft = channel(pair[0], ["institutional-blame", "causal-certainty"], {
@@ -102,6 +106,11 @@
         channels: Object.freeze({ left: floodLeft, right: floodRight }),
         strategy: "identity-and-cause-substitution"
       });
+    }
+
+    if (!story.event && global.WBWWBAudienceScandalEngine) {
+      var scandal = global.WBWWBAudienceScandalEngine.create(frame, locale);
+      if (scandal) return scandal;
     }
 
     // Seasonal coverage recurs; it doesn't swallow every photograph. Every
