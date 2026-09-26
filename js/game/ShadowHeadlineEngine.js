@@ -5,6 +5,10 @@
  * shows how an ideological outlet can swap the subject, cause or villain while
  * leaving the photograph untouched. That's a nastier trick than making text
  * louder, and much closer to the point of the game.
+ *
+ * AI helped draft the translated variants. I kept English canonical because
+ * silent translation drift is a miserable debugging method. Native speakers
+ * are invited to correct tone, grammar and the bits a machine made too literal.
  */
 (function (global) {
   "use strict";
