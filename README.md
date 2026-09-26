@@ -13,6 +13,7 @@ A technical modernization of the open-source `ncase/wbwwb` codebase.
 - English is the canonical locale.
 - Automatic language detection supports English, German, Spanish, Turkish, Portuguese and Persian.
 - Unsupported languages and missing translation keys safely fall back to English.
+- Some non-English copy was drafted or revised with AI assistance. Native-speaker corrections are welcome; see `docs/TRANSLATION_NOTES.md`.
 - `?lang=tr` / `?locale=tr` and `localStorage["wbwwb.locale"]` can select a locale.
 - The former Chinese fork localization is removed from runtime data.
 - HTML structure and repository hygiene are fixed.
