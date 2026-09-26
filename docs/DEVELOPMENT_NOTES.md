@@ -164,6 +164,13 @@ feuds and public contrition as content. The model is about incentives and
 attention, not a claim that every creator behaves like a raccoon with a ring
 light.
 
+Sport gets one deliberate exception to the normal left/middle/right split.
+The centre broadcast can make a mixed crowd genuinely excited together. Their
+old political markers remain, but a HOME/AWAY badge temporarily matters more.
+That is not presented as a clean happy ending: shadow coverage converts the
+same belonging into contempt for the smaller away group. The middle can move a
+crowd. The extremes make the movement meaner.
+
 ## Next pressure points
 
 The fixed clock and seeded random stream expose the next work rather neatly:
