@@ -3,23 +3,24 @@ const assert = require("node:assert/strict");
 global.WBWWBSeasonalNewsEngine = require("../js/game/SeasonalNewsEngine.js");
 global.WBWWBAudienceScandalEngine = require("../js/game/AudienceScandalEngine.js");
 global.WBWWBInfluencerNewsEngine = require("../js/game/InfluencerNewsEngine.js");
+global.WBWWBFloodFramingEngine = require("../js/game/FloodFramingEngine.js");
 const engine = require("../js/game/ShadowHeadlineEngine.js");
 
-test("flood victims can be reframed through institutional blame and foreign threat", () => {
+test("flood outlets select a trickle, a representative view and the worst water", () => {
   const headlines = engine.create(
     { story: { event: "flood", subjects: "victims", foreign: true } },
     { emptyFrame: false, cricketCount: 0, angryRatio: 0 },
     "en"
   );
 
-  assert.equal(headlines.left, "THE SYSTEM ABANDONED FLOOD VICTIMS");
-  assert.equal(headlines.right, "FOREIGN INVADERS: ARE THEY COMING FOR YOU?");
-  assert.equal(headlines.strategy, "identity-and-cause-substitution");
-  assert.deepEqual(headlines.channels.right.manipulations, [
-    "identity-substitution", "outgroup-threat", "fear-appeal"
-  ]);
-  assert.equal(headlines.channels.right.effects.outgroupThreat, 1);
-  assert.ok(headlines.channels.left.effects.institutionalDistrust > 0.8);
+  assert.equal(headlines.middle, "FLOODING CUTS OFF HOMES");
+  assert.match(headlines.left, /CATASTROPHIC FLOOD/);
+  assert.match(headlines.right, /TRICKLE/);
+  assert.equal(headlines.strategy, "selective-visual-evidence");
+  assert.ok(headlines.channels.right.manipulations.includes("cherry-picking"));
+  assert.equal(headlines.channels.right.evidence.crop, "shallow-trickle");
+  assert.equal(headlines.channels.left.evidence.crop, "deepest-water");
+  assert.equal(headlines.middleImage, "flood_actual");
 });
 
 test("empty evidence records the claim manufactured from its absence", () => {
