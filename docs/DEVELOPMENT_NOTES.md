@@ -186,6 +186,40 @@ team-mates, including people they were fighting moments earlier, and turn to
 heckle the orange-and-black AWAY pocket. Nothing in their convictions has been
 solved. A stronger shared identity has simply redrawn the border around “us”.
 
+## The grubby little lever
+
+The camera remains the game. I have not added a management screen where the
+player spends fifteen minutes improving a spreadsheet while the crowd waits
+politely for capitalism to finish loading. After a broadcast, a narrow action
+strip presents the two pressures inside its topic and four things the player
+can do with the attention they created.
+
+They can sell rival identities to both camps, push the hottest angle, spend
+cash on a small local repair, or refuse to turn the moment into bait. Selling
+raises cash and reach while cutting trust. Amplification builds influence and
+also makes the player part of the machine. Repair costs money, cools some of the
+crowd and creates a modest practical change. Refusal protects trust but does
+not magically reward restraint with a huge audience.
+
+The competing topics are not arranged as saint versus idiot. Housing is shelter
+and investment. Tourism is local work and local life for sale. Public doubt can
+expose a real failure, or become an unfalsifiable product. Sport can create a
+real friendship across political lines while inventing a new enemy in the away
+end. Both statements can be true at once. Annoying, but considerably more usefull
+than painting one button blue and the other one red.
+
+There is no final morality score. The model records cash, reach, trust,
+practical change, exploitation and influence separately. The player's pattern
+is the portrait. One cynical sale might fund a useful repair. Ten cynical sales
+and no repair tell a different story without the code needing to flash EVIL.
+
+Influencers react to those choices while they are still in the scene. They call
+out the merch deal, clip the inflammatory angle, notice an actual repair, or
+complain when refusal leaves them with no content. Their posts create presence
+and nudge public opinion, but those remain separate measures. Being discussed
+is not the same as being liked, trusted, or useful. The internet occasionally
+forgets this, usually just before selling a course about it.
+
 ## Next pressure points
 
 The fixed clock and seeded random stream expose the next work rather neatly:
