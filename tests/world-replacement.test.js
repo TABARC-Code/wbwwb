@@ -23,13 +23,18 @@ function makeWorld() {
 
 test("replacing a peep preserves position and crowd identity", () => {
   const world = makeWorld();
-  const oldPeep = { x: 12, y: 34, type: "square", kill() {} };
+  const ideology = { lean: 0.7, preference: 2 };
+  const persuasion = { lean: 0.2, preferredDirection: 1 };
+  const oldPeep = { x: 12, y: 34, type: "square", ideology, persuasion, seasonalHabit: "buying", kill() {} };
   const frames = [];
   const newPeep = { graphics: {}, update() {}, bodyMC: { gotoAndStop: (frame) => frames.push(frame) } };
   world.peeps.push(oldPeep);
   world.replacePeep(oldPeep, newPeep);
   assert.deepEqual([newPeep.x, newPeep.y, newPeep.type], [12, 34, "square"]);
   assert.deepEqual(frames, [1]);
+  assert.equal(newPeep.ideology, ideology);
+  assert.equal(newPeep.persuasion, persuasion);
+  assert.equal(newPeep.seasonalHabit, "buying");
 });
 
 test("replacing a missing watcher is a safe no-op", () => {
