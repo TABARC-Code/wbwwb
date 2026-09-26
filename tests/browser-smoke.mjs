@@ -31,7 +31,10 @@ try {
     shadowTV: typeof window.ShadowTV === "function" ? (() => {
       const shadow = new window.ShadowTV();
       return { visible: shadow.visible, historyLength: shadow.history.length };
-    })() : null
+    })() : null,
+    influencerModules: typeof window.InfluencerPeep === "function" &&
+      typeof window.Stage_CloutAntics === "function" &&
+      typeof window.WBWWBInfluencerNewsEngine?.create === "function"
   }));
 
   if (result.canvasCount !== 1) failures.push(`expected one canvas; found ${result.canvasCount}`);
@@ -46,6 +49,7 @@ try {
   }
   if (!result.shadowTV) failures.push("shadow TV module did not load");
   else if (result.shadowTV.visible !== false) failures.push("shadow TV should remain headless");
+  if (!result.influencerModules) failures.push("influencer acts or news engine did not load");
 
   await page.waitForFunction(() => window.Game?.sounds?.bg_park?.state?.() === "loaded", null, { timeout: 60_000 });
   const shadowResult = await page.evaluate(() => {
@@ -66,7 +70,8 @@ try {
       strategy: latest?.framingStrategy,
       season: latest?.season?.event,
       influenced: scene.world.peeps.filter((peep) => peep.shadowInfluence).length,
-      classesPreserved: beforeClasses.every((name, index) => scene.world.peeps[index]?._CLASS_ === name)
+      classesPreserved: beforeClasses.every((name, index) => scene.world.peeps[index]?._CLASS_ === name),
+      ideologicalCount: scene.world.peeps.filter((peep) => peep.ideology).length
     };
   });
   if (shadowResult.displayCount !== 2) failures.push(`expected two shadow displays; found ${shadowResult.displayCount}`);
@@ -75,6 +80,7 @@ try {
   if (shadowResult.season !== "christmas") failures.push(`expected Christmas context; found ${shadowResult.season}`);
   if (!shadowResult.influenced) failures.push("a real shadow broadcast influenced nobody");
   if (!shadowResult.classesPreserved) failures.push("canonical peep classes changed after a shadow broadcast");
+  if (shadowResult.ideologicalCount !== 6) failures.push(`expected six ideological variants; found ${shadowResult.ideologicalCount}`);
 
   if (failures.length) throw new Error(failures.join("\n"));
   console.log(`Browser smoke passed: ${result.scene}, locale ${result.locale}, seed ${result.seed}.`);
