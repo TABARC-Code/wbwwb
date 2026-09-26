@@ -62,6 +62,25 @@
     });
   };
 
+  IdeologicalAudienceModel.prototype.receiveSportsCoverage = function (scene, bulletin) {
+    if (!scene || !scene.world || !bulletin || !bulletin.coalition) return;
+    var crowd = scene.world.peeps.filter(function (peep) { return !peep.dead; });
+    crowd.forEach(function (peep, index) {
+      // A small away end gives the otherwise divided crowd somebody concrete
+      // to unite against. This is intentionally uncomfortable: cooperation is
+      // possible here, but the broadcast buys it with another out-group.
+      var away = index % 5 === 0;
+      peep.fandom = {
+        team: away ? "away" : "home",
+        hype: bulletin.coalition.sharedHype,
+        rivalry: away ? bulletin.coalition.tribalHeat * 0.7 : bulletin.coalition.tribalHeat,
+        source: bulletin.id
+      };
+      if (peep.ideology) peep.ideology.agitation *= 0.55;
+      if (peep.faceMC && peep.faceMC.gotoAndStop) peep.faceMC.gotoAndStop(away ? 4 : 2);
+    });
+  };
+
   IdeologicalAudienceModel.prototype.spread = function (scene) {
     if (!scene || !scene.world) return;
     var peeps = scene.world.peeps;
@@ -102,7 +121,10 @@
     }
     var state = peep.ideology || peep.persuasion;
     var lean = state.lean;
-    peep.ideologyMarker.text = lean <= -1.25 ? "≪" : lean < -0.25 ? "‹" : lean >= 1.25 ? "≫" : lean > 0.25 ? "›" : "·";
+    var arrow = lean <= -1.25 ? "≪" : lean < -0.25 ? "‹" : lean >= 1.25 ? "≫" : lean > 0.25 ? "›" : "·";
+    peep.ideologyMarker.text = peep.fandom && peep.fandom.hype > 0.08
+      ? arrow + " " + (peep.fandom.team === "away" ? "A" : "H")
+      : arrow;
     peep.ideologyMarker.tint = lean < 0 ? 0xa85b95 : 0xd36a4d;
     peep.ideologyMarker.alpha = peep.ideology ? 0.55 + peep.ideology.agitation * 0.45 : 0.3 + (state.exposure || 0) * 0.5;
   };
@@ -112,7 +134,13 @@
     if (this.tickMs < 500) return;
     this.tickMs = 0;
     this.spread(scene);
-    if (scene && scene.world) scene.world.peeps.forEach(this.updateVisual, this);
+    if (scene && scene.world) scene.world.peeps.forEach(function (peep) {
+      if (peep.fandom) {
+        peep.fandom.hype = Math.max(0, peep.fandom.hype - 0.025);
+        peep.fandom.rivalry = Math.max(0, peep.fandom.rivalry - 0.018);
+      }
+      this.updateVisual(peep);
+    }, this);
   };
 
   global.WBWWBIdeologicalAudienceModel = IdeologicalAudienceModel;
