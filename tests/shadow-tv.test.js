@@ -2,6 +2,7 @@ const test = require("node:test");
 const assert = require("node:assert/strict");
 global.WBWWBAudienceScandalEngine = require("../js/game/AudienceScandalEngine.js");
 global.WBWWBInfluencerNewsEngine = require("../js/game/InfluencerNewsEngine.js");
+global.WBWWBFloodFramingEngine = require("../js/game/FloodFramingEngine.js");
 global.WBWWBShadowHeadlineEngine = require("../js/game/ShadowHeadlineEngine.js");
 global.WBWWBShadowAudienceModel = require("../js/game/ShadowAudienceModel.js");
 const ShadowTV = require("../js/game/ShadowTV.js");
@@ -74,8 +75,9 @@ test("shadow history keeps story facts and manipulation provenance", () => {
 
   assert.equal(frame.story.event, "flood");
   assert.equal(Object.hasOwn(frame.story, "unsafeExtra"), false);
-  assert.equal(frame.shadow.right.headline, "FOREIGN INVADERS: ARE THEY COMING FOR YOU?");
-  assert.ok(frame.shadow.right.manipulations.includes("identity-substitution"));
+  assert.match(frame.shadow.right.headline, /TRICKLE/);
+  assert.ok(frame.shadow.right.manipulations.includes("hoax-framing"));
+  assert.equal(frame.evidenceSelection.right.crop, "shallow-trickle");
 });
 
 test("one-sided scandal leaves the other outlet and centre with boring copy", () => {
@@ -88,4 +90,26 @@ test("one-sided scandal leaves the other outlet and centre with boring copy", ()
   assert.equal(frame.scandal.targetSide, "right");
   assert.equal(shown.centre.text, shown.left.text);
   assert.notEqual(shown.right.text, shown.centre.text);
+});
+
+test("flood coverage puts three different evidence selections on the televisions", () => {
+  global.WBWWB_LOCALE = "en";
+  global.PIXI = { loader: { resources: {
+    flood_actual: { texture: { id: "actual" } },
+    flood_extreme: { texture: { id: "extreme" } },
+    flood_trickle: { texture: { id: "trickle" } }
+  } } };
+  const shown = {};
+  const display = (side) => ({ placePhoto: (options) => { shown[side] = options; } });
+  const scene = { tv: display("middle"), world: { peeps: [] } };
+  new ShadowTV().attachDisplays(display("left"), display("right")).receiveBroadcast({
+    scene,
+    photo: { id: "camera-crop" },
+    story: { event: "flood", capturedSeverity: "trickle", actualSeverity: "severe" },
+    entry: { sequence: 1, audience: 5 }
+  });
+  assert.equal(shown.middle.photo.id, "actual");
+  assert.equal(shown.left.photo.id, "extreme");
+  assert.equal(shown.right.photo.id, "trickle");
+  delete global.PIXI;
 });
