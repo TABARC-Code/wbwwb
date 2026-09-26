@@ -1,0 +1,6 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="256" height="144" viewBox="0 0 256 144">
+  <rect width="256" height="144" fill="#211827"/><rect x="78" y="10" width="100" height="124" rx="12" fill="#eee"/>
+  <circle cx="128" cy="50" r="24" fill="#d58e78"/><path d="M94 112q34-64 68 0" fill="#9d557f"/>
+  <rect x="85" y="66" width="86" height="23" fill="#111"/><text x="128" y="83" text-anchor="middle" font-family="sans-serif" font-weight="bold" font-size="13" fill="#fff">PRIVATE</text>
+  <path d="M28 32l28-14 10 30-28 14zM194 92l34-8 6 27-34 8z" fill="#d94e4e" opacity=".85"/>
+</svg>
