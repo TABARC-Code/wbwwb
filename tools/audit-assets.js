@@ -20,7 +20,7 @@ function walk(relative) {
 sourceRoots.forEach(walk);
 
 const references = new Set();
-const assetPattern = /["']((?:sprites|sounds)\/[^"']+\.(?:png|json|mp3))["']/g;
+const assetPattern = /["']((?:sprites|sounds)\/[^"']+\.(?:png|svg|json|mp3))["']/g;
 for (const source of sources) {
   const contents = fs.readFileSync(path.join(root, source), "utf8");
   for (const match of contents.matchAll(assetPattern)) references.add(match[1]);
