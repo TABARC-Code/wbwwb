@@ -9,6 +9,13 @@ test("competing topics contain two recognisable views rather than a moral label"
   }
 });
 
+test("agency choices are reserved for authored extension stories", () => {
+  assert.equal(agency.shouldOffer(null), false);
+  assert.equal(agency.shouldOffer({}), false);
+  assert.equal(agency.shouldOffer({ topic: "sport" }), true);
+  assert.equal(agency.shouldOffer({ event: "flood" }), true);
+});
+
 test("selling to both camps produces cash and reach at a trust cost", () => {
   const model = new agency.Model();
   model.observe({ story: { topic: "sport" }, audience: 6, targetSide: "right", angryRatio: 0.3 });
