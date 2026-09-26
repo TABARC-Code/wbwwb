@@ -71,4 +71,4 @@ The original project is released under CC0. Third-party libraries remain under t
 - CreateJS TweenJS 1.0.0 — pinned runtime compatibility layer
 - stats.js — optional developer diagnostic
 
-See `LICENSE`, `docs/MODERNIZATION.md`, `docs/FORK_AUDIT.md` and `docs/DEVELOPMENT_NOTES.md` for scope, provenance and the less tidy reasoning behind the decisions.
+See `LICENSE`, `docs/MODERNIZATION.md`, `docs/FORK_AUDIT.md`, `docs/CORE_DESIGN.md` and `docs/DEVELOPMENT_NOTES.md` for scope, provenance and the less tidy reasoning behind the decisions.
