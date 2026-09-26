@@ -40,3 +40,30 @@ test("sports coverage briefly groups left, middle and right by team instead", ()
   assert.ok(left.ideology.agitation < 0.8);
   assert.ok(right.ideology.agitation < 0.8);
 });
+
+test("sports mode hides a violent prop while the crowd wears team identity", () => {
+  const armed = {
+    weaponMC: { visible: true },
+    ideology: { lean: -1, preference: -2, agitation: 0.5 }
+  };
+  const scene = { world: { peeps: [armed] } };
+  new Model().receiveSportsCoverage(scene, {
+    id: "cup-final",
+    coalition: { sharedHype: 0.7, tribalHeat: 0.9 }
+  });
+  assert.equal(armed.weaponMC.visible, false);
+  assert.equal(armed._sportsWeaponWasVisible, true);
+  assert.equal(armed.fandom.team, "away");
+});
+
+test("supporters move towards team-mates and heckle nearby rivals", () => {
+  const home = { x: 0, y: 0, direction: 0, fandom: { team: "home", hype: 1, rivalry: 0.5 }, faceMC: { gotoAndStop: (frame) => { home.face = frame; } } };
+  const friend = { x: 0, y: 100, fandom: { team: "home", hype: 1, rivalry: 0.5 } };
+  const rival = { x: 50, y: 0, fandom: { team: "away", hype: 1, rivalry: 0.5 } };
+  const scene = { world: { peeps: [home, friend, rival] } };
+  new Model().moveSupporters(scene, home);
+  assert.ok(home.direction > 1.5 && home.direction < 1.7);
+  assert.equal(home.flip, 1);
+  assert.equal(home.face, 5);
+  assert.ok(home.fandom.rivalry > 0.5);
+});
