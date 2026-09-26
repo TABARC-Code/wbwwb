@@ -151,10 +151,11 @@ known as constructing a new JavaScript object.
 
 ## Clout before catastrophe
 
-Three short acts now sit between the lovers and the original fear cycle. Two
+Four short acts now sit between the lovers and the original fear cycle. Two
 influencers appear in each. First come selfies, filmed charity and dangerous
-weather stunts. Then sport bait, conspiracy clips and a collectible monster-card
-frenzy. Finally come affairs, faith subscriptions, censored private-cartoon
+weather stunts. Then conspiracy clips and a collectible monster-card frenzy.
+Sport gets its own guaranteed beat rather than hoping the rotating influencer
+antics happen to land on it. Finally come affairs, faith subscriptions, censored private-cartoon
 leaks and the inevitable fourth apology video.
 
 The middle television reports these in painfully ordinary newsroom language.
