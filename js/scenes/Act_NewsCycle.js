@@ -63,9 +63,40 @@ function Stage_CloutAntics(self){
 }
 
 function Stage_FloodFraming(self){
-    _startInfluencerAct(self, "clout", 1, Stage_TrendFrenzy, {
-        forcedTopic:"weather", storyEvent:"flood", capturedSeverity:"trickle", actualSeverity:"severe"
-    });
+    self.world.peeps.filter(function(peep){ return peep._CLASS_==="InfluencerPeep"; }).forEach(function(peep){ peep.kill(); });
+    var fragments = [
+        new FloodEvidenceProp(self, "trickle", 125, 365),
+        new FloodEvidenceProp(self, "representative", 425, 335),
+        new FloodEvidenceProp(self, "extreme", 735, 365)
+    ];
+    fragments.forEach(function(fragment){ self.world.addProp(fragment); });
+
+    self.director.callbacks = {
+        takePhoto: function(d){
+            var caught = d.caught({flood:{_CLASS_:"FloodEvidenceProp", returnAll:true}}).flood;
+            if(caught.length){
+                // The largest visible fragment wins when the frame overlaps two.
+                // The camera analysis has already excluded incidental slivers.
+                var fragment = caught.sort(function(a,b){ return b.width*b.height-a.width*a.height; })[0];
+                d.photoData.caughtFlood = fragment;
+                d.photoData.audience = 6;
+                d.photoData.story = {
+                    event:"flood", topic:"weather", capturedSeverity:fragment.severity,
+                    actualSeverity:fragment.actualSeverity, subjects:"residents"
+                };
+                d.chyron = WBWWBFloodFramingEngine.create(d.photoData.story, WBWWB_LOCALE).middle;
+            }else{
+                _chyPeeps(d);
+            }
+        },
+        movePhoto: function(d){ d.audience_movePhoto(); },
+        cutToTV: function(d){
+            d.audience_cutToTV();
+            if(!d.photoData.caughtFlood) return;
+            fragments.forEach(function(fragment){ fragment.kill(); });
+            Stage_TrendFrenzy(self);
+        }
+    };
 }
 
 function Stage_TrendFrenzy(self){
