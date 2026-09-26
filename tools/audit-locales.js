@@ -11,6 +11,7 @@ const text = fs.readFileSync("js/textStrings.js", "utf8");
 const locale = fs.readFileSync("js/locale.js", "utf8");
 const shadowHeadlines = fs.readFileSync("js/game/ShadowHeadlineEngine.js", "utf8");
 const seasonalNews = fs.readFileSync("js/game/SeasonalNewsEngine.js", "utf8");
+const scandalNews = fs.readFileSync("js/game/AudienceScandalEngine.js", "utf8");
 
 const context = {
   window: {},
@@ -26,6 +27,7 @@ vm.runInContext(text, context, { filename: "js/textStrings.js" });
 vm.runInContext(locale, context, { filename: "js/locale.js" });
 vm.runInContext(shadowHeadlines, context, { filename: "js/game/ShadowHeadlineEngine.js" });
 vm.runInContext(seasonalNews, context, { filename: "js/game/SeasonalNewsEngine.js" });
+vm.runInContext(scandalNews, context, { filename: "js/game/AudienceScandalEngine.js" });
 
 const english = context.WBWWB_EN;
 const englishKeys = Object.keys(english).sort();
@@ -48,6 +50,7 @@ for (const [localeName, values] of Object.entries(overrides)) {
 const supported = context.WBWWB_LOCALES;
 const shadow = context.WBWWBShadowHeadlineEngine;
 const seasonal = context.WBWWBSeasonalNewsEngine;
+const scandals = context.WBWWBAudienceScandalEngine;
 const shadowKeys = ["normal", "empty", "cricket", "heated"];
 const seasonKeys = ["christmas", "easter", "new-year", "winter", "spring", "summer", "autumn"];
 for (const localeName of supported) {
@@ -68,6 +71,14 @@ for (const localeName of supported) {
   for (const key of seasonKeys) {
     if (!seasonLocale[key] || seasonLocale[key].length !== 3) {
       console.error(`[${localeName}] seasonal ${key} needs neutral, left and right headlines`);
+      errors++;
+    }
+  }
+}
+for (const story of scandals.stories) {
+  for (const localeName of supported) {
+    if (!story.copy[localeName] || story.copy[localeName].length !== 2) {
+      console.error(`[${localeName}] scandal ${story.id} needs middle and extreme headlines`);
       errors++;
     }
   }
