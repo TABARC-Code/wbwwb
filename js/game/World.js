@@ -93,6 +93,9 @@ function World(scene, options){
 		if(!oldPeep || !newPeep) return null;
 		newPeep.x = oldPeep.x;
 		newPeep.y = oldPeep.y;
+		if(oldPeep.ideology) newPeep.ideology = oldPeep.ideology;
+		if(oldPeep.persuasion) newPeep.persuasion = oldPeep.persuasion;
+		if(oldPeep.seasonalHabit) newPeep.seasonalHabit = oldPeep.seasonalHabit;
 		// A replacement is still the same member of the crowd. Some specialised
 		// peeps don't expose setType(), but their body sheet uses the same frames.
 		if(oldPeep.type){
