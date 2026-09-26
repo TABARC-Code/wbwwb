@@ -103,7 +103,7 @@
       fail: false,
       nothing: false
     };
-    if (headlines.targetSide && broadcast.photo && broadcast.scene && broadcast.scene.tv && broadcast.scene.tv.placePhoto) {
+    if ((headlines.targetSide || headlines.middleImage) && broadcast.photo && broadcast.scene && broadcast.scene.tv && broadcast.scene.tv.placePhoto) {
       broadcast.scene.tv.placePhoto({ photo: scandalTexture(headlines.middleImage) || broadcast.photo, text: headlines.middle, fail: false, nothing: false });
     }
     if (broadcast.photo && this.leftDisplay && this.leftDisplay.placePhoto) {
