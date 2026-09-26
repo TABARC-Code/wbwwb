@@ -21,6 +21,10 @@ REQUIRED_SOUNDS=(
     "goal_horn"
     "crowd_cheer"
     "sports_commentary"
+    "ad_winter"
+    "ad_spring"
+    "ad_summer"
+    "ad_autumn"
 )
 
 echo "🎵 Audio Format Conversion Script"

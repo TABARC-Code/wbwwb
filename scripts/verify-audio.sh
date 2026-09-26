@@ -20,6 +20,10 @@ REQUIRED_SOUNDS=(
     "goal_horn"
     "crowd_cheer"
     "sports_commentary"
+    "ad_winter"
+    "ad_spring"
+    "ad_summer"
+    "ad_autumn"
 )
 
 # Core sounds (already in repo)

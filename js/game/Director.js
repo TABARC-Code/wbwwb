@@ -21,7 +21,11 @@ Game.addToManifest({
 	tv_static: "sounds/tv_static.mp3",
 	goal_horn: "sounds/goal_horn.mp3",
 	crowd_cheer: "sounds/crowd_cheer.mp3",
-	sports_commentary: "sounds/sports_commentary.mp3"
+	sports_commentary: "sounds/sports_commentary.mp3",
+	ad_winter: "sounds/ad_winter.mp3",
+	ad_spring: "sounds/ad_spring.mp3",
+	ad_summer: "sounds/ad_summer.mp3",
+	ad_autumn: "sounds/ad_autumn.mp3"
 });
 
 function Director(scene){
@@ -78,12 +82,25 @@ function Director(scene){
 	///// AUDIENCE & TV HELPERS /////
 	/////////////////////////////////
 
+	// Get random seasonal ad jingle
+	self.getSeasonalAd = function(){
+		var adArray = [
+			Game.sounds.ad_winter,
+			Game.sounds.ad_spring,
+			Game.sounds.ad_summer,
+			Game.sounds.ad_autumn
+		];
+		var filtered = adArray.filter(function(ad){ return ad; });
+		return filtered[Math.floor(Math.random()*filtered.length)];
+	};
+
 	self.audience_movePhoto = function(){
 		var data = self.photoData;
 		if(self.noSounds) return;
 		if(data.audience>0 || data.audienceCircles>0 || data.audienceSquares>0){
-            // 80% news broadcast, 20% sports broadcast
-            if(Math.random() < 0.2 && Game.sounds.goal_horn){
+            // Broadcast type: 60% news, 20% sports, 20% seasonal ads
+            var roll = Math.random();
+            if(roll < 0.2 && Game.sounds.goal_horn){
                 // Sports broadcast
                 data.isSportsBroadcast = true;
                 Game.sounds.goal_horn.play();
@@ -92,9 +109,18 @@ function Director(scene){
                         if(Game.sounds.sports_commentary) Game.sounds.sports_commentary.play();
                     }, 800);
                 }
+            } else if(roll < 0.4){
+                // Seasonal ad broadcast
+                data.isAdBroadcast = true;
+                var seasonalAd = self.getSeasonalAd();
+                if(seasonalAd){
+                    seasonalAd.volume(0.6);
+                    seasonalAd.play();
+                }
             } else {
                 // News broadcast
                 data.isSportsBroadcast = false;
+                data.isAdBroadcast = false;
                 Game.sounds.breaking_news.play();
                 // Broadcaster voice follows jingle
                 if(Game.sounds.news_voice && Math.random() < 0.7){
