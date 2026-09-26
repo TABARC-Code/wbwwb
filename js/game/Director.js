@@ -362,7 +362,7 @@ function Director(scene){
 				data: data,
 				entry: ledgerEntry
 			});
-			if(scene.agency && scene.agencyPanel){
+			if(scene.agency && scene.agencyPanel && WBWWBPlayerAgency.shouldOffer(data.story)){
 				var opportunity = scene.agency.observe({
 					story: data.story || null,
 					audience: ledgerEntry.audience,
