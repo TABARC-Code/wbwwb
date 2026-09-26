@@ -27,7 +27,12 @@ function InfluencerPeep(scene, profile){
 
     self.nextAntic = function(){
         self.anticIndex = (self.anticIndex+1)%self.programme.length;
-        self.antic = self.programme[self.anticIndex];
+        self.setAntic(self.programme[self.anticIndex]);
+    };
+    self.setAntic = function(topic){
+        var programmeIndex = self.programme.indexOf(topic);
+        if(programmeIndex>=0) self.anticIndex = programmeIndex;
+        self.antic = topic;
         self.anticTicks = 0;
         self.liveLabel.text = self.antic === "adultCartoon" ? "18+?" : self.antic.toUpperCase();
         self.liveLabel.tint = self.antic === "apology" ? 0x8bb7d8 : 0xff4f72;
