@@ -17,6 +17,16 @@
     <button id="sound-toggle" type="button" aria-pressed="false">Sound on</button>
     <output id="scenario-readout" aria-live="polite"></output>
   </div>
+  <section id="agency-panel" aria-live="polite" hidden>
+    <div id="agency-views"></div>
+    <div id="agency-actions">
+      <button type="button" data-agency-action="sell">SELL TO BOTH</button>
+      <button type="button" data-agency-action="amplify">PUSH THE HOT ANGLE</button>
+      <button type="button" data-agency-action="repair">FUND A SMALL FIX</button>
+      <button type="button" data-agency-action="refuse">REFUSE THE BAIT</button>
+    </div>
+    <output id="agency-status"></output>
+  </section>
   <div id="modal_shade"></div>
 
   <div class="overlay" id="warning">
@@ -66,12 +76,14 @@
   <!-- Explicit ?lang=xx / ?locale=xx is authoritative over saved preferences. -->
   <script src="js/locale-query.js?v=20260821-3"></script>
   <script src="js/ui/Controls.js"></script>
+  <script src="js/ui/AgencyPanel.js"></script>
 
   <!-- Core engine -->
   <script src="js/core/Random.js"></script>
   <script src="js/core/FixedStepClock.js"></script>
   <script src="js/core/CaptureAnalysis.js"></script>
   <script src="js/core/EditorialLedger.js"></script>
+  <script src="js/game/PlayerAgencyModel.js"></script>
   <script src="js/scenarios/ScenarioManager.js"></script>
   <script src="js/scenarios/AttentionScenario.js"></script>
   <script src="js/scenarios/CricketScenario.js"></script>
