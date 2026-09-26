@@ -35,6 +35,8 @@ try {
     influencerModules: typeof window.InfluencerPeep === "function" &&
       typeof window.Stage_CloutAntics === "function" &&
       typeof window.Stage_SportsAlliance === "function" &&
+      typeof window.Stage_FloodFraming === "function" &&
+      typeof window.WBWWBFloodFramingEngine?.create === "function" &&
       typeof window.WBWWBInfluencerNewsEngine?.create === "function",
     agencyModules: typeof window.WBWWBPlayerAgency?.Model === "function" &&
       typeof window.WBWWBAgencyPanel === "function" &&
