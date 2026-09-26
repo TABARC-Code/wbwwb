@@ -186,6 +186,18 @@ team-mates, including people they were fighting moments earlier, and turn to
 heckle the orange-and-black AWAY pocket. Nothing in their convictions has been
 solved. A stronger shared identity has simply redrawn the border around “us”.
 
+Flood coverage now makes the visual selection explicit. The underlying event is
+a serious flood. The centre set shows the representative wide view. The left
+set crops to the deepest water and treats the worst pocket as the whole event.
+The right set finds a genuine shallow trickle and uses that tiny true fragment
+to call the emergency an environmental hoax. Three pictures, one place.
+
+This matters because the earlier foreign-invader headline could look like the
+right television had simply invented a dark propaganda poster. Here the lie is
+more recognisable and more uncomfortable: the trickle is real. It is just not
+representative. The ledger records `cherry-picking`, `scale-minimisation` and
+the selected crop so the model does not quietly confuse evidence with honesty.
+
 ## The grubby little lever
 
 The camera remains the game. I have not added a management screen where the
