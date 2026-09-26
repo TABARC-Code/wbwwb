@@ -1,6 +1,8 @@
 const test = require("node:test");
 const assert = require("node:assert/strict");
 global.WBWWBSeasonalNewsEngine = require("../js/game/SeasonalNewsEngine.js");
+global.WBWWBAudienceScandalEngine = require("../js/game/AudienceScandalEngine.js");
+global.WBWWBInfluencerNewsEngine = require("../js/game/InfluencerNewsEngine.js");
 const engine = require("../js/game/ShadowHeadlineEngine.js");
 
 test("flood victims can be reframed through institutional blame and foreign threat", () => {
@@ -34,4 +36,22 @@ test("every third ordinary bulletin can carry seasonal framing", () => {
   );
   assert.equal(headlines.neutral, "CHRISTMAS SHOPPING BEGINS");
   assert.equal(headlines.strategy, "seasonal-frame-substitution");
+});
+
+test("an occasional scandal is extreme on only one side", () => {
+  const headlines = engine.create({}, { sequence: 2, emptyFrame: false, cricketCount: 0, angryRatio: 0 }, "en");
+  assert.equal(headlines.strategy, "one-sided-scandal-amplification");
+  assert.equal(headlines.left, headlines.middle);
+  assert.notEqual(headlines.right, headlines.middle);
+});
+
+test("influencer antics keep boring centre copy and one extreme response", () => {
+  const headlines = engine.create(
+    { story: { event: "influencer", topic: "conspiracy" } },
+    { sequence: 7, emptyFrame: false, cricketCount: 0, angryRatio: 0 },
+    "en"
+  );
+  assert.equal(headlines.left, headlines.middle);
+  assert.notEqual(headlines.right, headlines.middle);
+  assert.equal(headlines.strategy, "influencer-one-sided-amplification");
 });
