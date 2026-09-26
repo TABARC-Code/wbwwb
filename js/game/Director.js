@@ -351,7 +351,7 @@ function Director(scene){
 		// headless record for later counterfactual framing work, not a TV hidden
 		// at x=-9999 and quietly wasting renderer memory.
 		if(scene.shadowTV){
-			scene.shadowTV.receiveBroadcast({
+			var shadowFrame = scene.shadowTV.receiveBroadcast({
 				scene: scene,
 				headline: text,
 				photo: self.photoTexture,
@@ -362,6 +362,15 @@ function Director(scene){
 				data: data,
 				entry: ledgerEntry
 			});
+			if(scene.agency && scene.agencyPanel){
+				var opportunity = scene.agency.observe({
+					story: data.story || null,
+					audience: ledgerEntry.audience,
+					angryRatio: ledgerEntry.angryRatio,
+					targetSide: shadowFrame.scandal ? shadowFrame.scandal.targetSide : null
+				});
+				scene.agencyPanel.offer(opportunity);
+			}
 		}
 
 		// Where to cut viewport to
