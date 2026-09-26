@@ -31,6 +31,7 @@
     var item = stories[story.topic] || stories.selfie;
     var neutral = channel(item[0], false, item[2]);
     var extreme = channel(item[1], true, item[2]);
+    var isSport = story.topic === "sport";
     return Object.freeze({
       id: "influencer-" + story.topic,
       targetSide: item[2],
@@ -42,6 +43,17 @@
       rightImage: item[2] === "right" ? item[3] : null,
       channels: Object.freeze({ left: item[2] === "left" ? extreme : neutral, right: item[2] === "right" ? extreme : neutral }),
       tags: Object.freeze(["influencer", story.topic, "attention-economy"]),
+      // Sport is the useful wrinkle in this system. The centre can create a
+      // real shared feeling without pretending it is harmless. For a while,
+      // left and right stop glaring at each other and become HOME supporters.
+      // The side set then supplies them with a fresh villain: AWAY supporters.
+      coalition: isSport ? Object.freeze({
+        id: "home-v-away",
+        sharedHype: 0.62,
+        tribalHeat: 0.82,
+        homeLabel: "HOME",
+        awayLabel: "AWAY"
+      }) : null,
       strategy: "influencer-one-sided-amplification"
     });
   }
