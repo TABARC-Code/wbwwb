@@ -55,6 +55,22 @@ All sounds listed below are currently **placeholder sine-wave or white-noise gen
    - Needed: Radio static with distorted voice layer (CC0/CC-BY from Freesound)
    - Integration: Act III registered but not yet triggered (Phase 2 enhancement)
 
+### Sports Broadcast Sounds (TV Scenes)
+10. **goal_horn.mp3** (1–2 sec)
+   - Current: Placeholder frequency sweep (600–1000 Hz ascending/descending)
+   - Needed: Goal horn or sports highlight sound (CC0/CC-BY from Freesound)
+   - Integration: Director.js TV scenes (20% of broadcasts are sports, triggers goal_horn)
+
+11. **crowd_cheer.mp3** (2–3 sec loopable)
+   - Current: Placeholder multi-frequency roar pattern
+   - Needed: Crowd cheering/roaring at sports match (CC0/CC-BY from Freesound)
+   - Integration: Director.js audience_cutToTV (replaces gasp for sports broadcasts)
+
+12. **sports_commentary.mp3** (1–2 sec)
+   - Current: Placeholder rapid speech-pattern sweep
+   - Needed: Sports commentary snippet or excited broadcaster phrase (CC0/CC-BY from Freesound)
+   - Integration: Director.js TV scenes (60% chance after goal_horn, 800ms delay)
+
 ---
 
 ## Core Game Audio (Already Integrated)
@@ -125,10 +141,13 @@ git push
 
 ## TODO Before Shipping
 
-- [ ] Replace all 9 placeholder sounds with real Freesound recordings (CC0/CC-BY)
+- [ ] Replace all 12 placeholder sounds with real Freesound recordings (CC0/CC-BY)
 - [ ] Add Freesound URL and attribution to each sound in this file
 - [ ] Update README.md Credits section with all audio sources
 - [ ] Test full gameplay: Acts I–III with real audio
+  - Verify sports broadcasts play ~20% of the time on TV
+  - Check crowd cheer triggers on sports content
+  - Confirm sports commentary plays after goal horn
 - [ ] Adjust volume levels for real audio (placeholders used fixed amplitudes)
 - [ ] Verify no audio loops persist into credits
 - [ ] Get approval from sound designers or appropriate stakeholders
@@ -136,5 +155,11 @@ git push
 ---
 
 **Last Updated**: 2026-09-26  
-**Status**: Placeholder audio ready for integration testing | Real audio pending sourcing
+**Status**: 12/12 sounds ready (9 emergency/media + 3 sports) | Placeholder audio ready for integration testing | Real audio pending sourcing
+
+**Audio Summary**:
+- Emergency sirens (3): police, ambulance, fire
+- Crowd reactions (3): gasp, murmur, panic
+- Media broadcast (3): news voice, TV static, radio static
+- Sports broadcast (3): goal horn, crowd cheer, sports commentary
 
