@@ -36,6 +36,13 @@ Names and readouts are available in every supported UI language. Missing game
 translations still use the canonical English fallback; no new text is baked
 into sprite art.
 
+AI was used on parts of the non-English copy. I have said so in the locale code
+and in `TRANSLATION_NOTES.md`, because pretending otherwise would be daft. The
+audit tells me the machinery is intact. It cannot tell me whether a Turkish joke
+sounds like a Turkish joke. People who actually speak these languages are very
+welcome to repair tone, idiom, spelling, or any sentence that arrived wearing
+machine-translated trousers.
+
 ## The shadow set
 
 `ShadowTV` is the headless twin of the central television. It mirrors completed
