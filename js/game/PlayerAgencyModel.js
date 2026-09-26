@@ -34,6 +34,11 @@
     if (story.event && conflicts[story.event]) return story.event;
     return "default";
   }
+  function shouldOffer(story) {
+    // The original acts keep their clean camera-to-crowd rhythm. Choices belong
+    // to authored extension stories, not every hat, cricket and empty frame.
+    return Boolean(story && (story.topic || story.event));
+  }
 
   function PlayerAgencyModel(options) {
     options = options || {};
@@ -120,7 +125,7 @@
       publicOpinion: this.publicOpinion });
   };
 
-  var api = { Model: PlayerAgencyModel, conflicts: conflicts, topicFor: topicFor };
+  var api = { Model: PlayerAgencyModel, conflicts: conflicts, topicFor: topicFor, shouldOffer: shouldOffer };
   global.WBWWBPlayerAgency = api;
   if (typeof module !== "undefined" && module.exports) module.exports = api;
 })(typeof window !== "undefined" ? window : globalThis);
