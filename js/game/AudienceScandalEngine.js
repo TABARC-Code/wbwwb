@@ -4,6 +4,10 @@
  * These bulletins are not a neat centre/left/right debate. The middle gets a
  * dry wire-service sentence. One outlet spots a grievance-shaped lever and
  * pulls it hard; the other has no special angle at all.
+ *
+ * The translated headlines used AI assistance. I checked the data shape and
+ * fallback behaviour, which is not the same thing as knowing every idiom. If
+ * you speak one of these languages and it reads wierd, corrections are welcome.
  */
 (function (global) {
   "use strict";
