@@ -57,6 +57,38 @@ body{
 	white-space: nowrap;
 }
 #scenario-readout[data-active="true"]{ display: inline; }
+#agency-panel{
+	position: fixed;
+	left: 50%;
+	bottom: 0.8rem;
+	transform: translateX(-50%);
+	z-index: 22;
+	width: min(760px, calc(100vw - 1.2rem));
+	box-sizing: border-box;
+	padding: 0.55rem 0.65rem;
+	background: rgba(20,20,20,0.94);
+	border: 2px solid #eee;
+	color: #fff;
+	font: 12px/1.25 'Cairo', sans-serif;
+	cursor: auto;
+}
+#agency-panel[hidden]{ display:none; }
+#agency-views{ display:grid; grid-template-columns:1fr 1fr; gap:0.5rem; margin-bottom:0.45rem; }
+#agency-views span{ padding:0.25rem 0.4rem; background:#333; }
+#agency-views span:first-child{ border-left:5px solid #6da06f; }
+#agency-views span:last-child{ border-left:5px solid #c36650; }
+#agency-actions{ display:flex; flex-wrap:wrap; gap:0.35rem; }
+#agency-actions button{
+	flex:1 1 auto;
+	border:1px solid #aaa;
+	background:#e8e1cf;
+	color:#171717;
+	font:700 11px/1.2 'Cairo', sans-serif;
+	padding:0.35rem 0.45rem;
+	cursor:pointer;
+}
+#agency-actions button:hover, #agency-actions button:focus{ background:#fff; outline:2px solid #e6b84c; }
+#agency-status{ display:block; min-height:1.2em; margin-top:0.4rem; color:#e6b84c; }
 .overlay{
 
 	display: none;
@@ -94,6 +126,8 @@ body{
 	#game-controls label{ position:absolute; width:1px; height:1px; overflow:hidden; clip-path:inset(50%); }
 	#game-controls{ top:0.35rem; right:0.35rem; }
 	#scenario-readout{ display:none !important; }
+	#agency-panel{ bottom:0.35rem; }
+	#agency-views{ grid-template-columns:1fr; }
 }
 #paused{
 	cursor: pointer;
