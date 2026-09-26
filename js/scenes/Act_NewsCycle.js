@@ -33,12 +33,16 @@ function _startInfluencerAct(self, profile, capturesNeeded, nextAct, options){
                 d.photoData.caughtInfluencer = caught.influencer;
                 d.photoData.audience = 4 + Math.min(5, captures);
                 d.photoData.story = {
-                    event: "influencer",
+                    event: options.storyEvent || "influencer",
                     topic: caught.influencer.antic,
                     profile: caught.influencer.profile,
-                    followers: caught.influencer.followers
+                    followers: caught.influencer.followers,
+                    capturedSeverity: options.capturedSeverity || null,
+                    actualSeverity: options.actualSeverity || null
                 };
-                d.chyron = WBWWBInfluencerNewsEngine.create(d.photoData.story).middle;
+                d.chyron = options.storyEvent==="flood"
+                    ? WBWWBFloodFramingEngine.create(d.photoData.story, WBWWB_LOCALE).middle
+                    : WBWWBInfluencerNewsEngine.create(d.photoData.story).middle;
             }else{
                 _chyPeeps(d);
             }
@@ -55,7 +59,13 @@ function _startInfluencerAct(self, profile, capturesNeeded, nextAct, options){
 }
 
 function Stage_CloutAntics(self){
-    _startInfluencerAct(self, "clout", 2, Stage_TrendFrenzy);
+    _startInfluencerAct(self, "clout", 2, Stage_FloodFraming);
+}
+
+function Stage_FloodFraming(self){
+    _startInfluencerAct(self, "clout", 1, Stage_TrendFrenzy, {
+        forcedTopic:"weather", storyEvent:"flood", capturedSeverity:"trickle", actualSeverity:"severe"
+    });
 }
 
 function Stage_TrendFrenzy(self){
