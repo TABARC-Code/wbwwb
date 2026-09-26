@@ -76,9 +76,76 @@
         rivalry: away ? bulletin.coalition.tribalHeat * 0.7 : bulletin.coalition.tribalHeat,
         source: bulletin.id
       };
+      // Keep the prop around, but put it down. A torch becoming invisible under
+      // a football scarf is the visual joke, and also the argument in miniature.
+      if (peep.weaponMC) {
+        peep._sportsWeaponWasVisible = peep.weaponMC.visible !== false;
+        peep.weaponMC.visible = false;
+      }
+      if (peep.bodyRedMC) peep.bodyRedMC.alpha = 0;
       if (peep.ideology) peep.ideology.agitation *= 0.55;
       if (peep.faceMC && peep.faceMC.gotoAndStop) peep.faceMC.gotoAndStop(away ? 4 : 2);
     });
+  };
+
+  IdeologicalAudienceModel.prototype.updateSportsVisual = function (peep) {
+    if (!peep || !peep.graphics || !global.PIXI) return;
+    var active = peep.fandom && peep.fandom.hype > 0.08;
+    if (active && !peep.sportsKit) {
+      var kit = new global.PIXI.Container();
+      var scarf = new global.PIXI.Graphics();
+      var home = peep.fandom.team === "home";
+      scarf.beginFill(home ? 0x267a52 : 0xc45a32);
+      scarf.drawRect(7, 31, 66, 9);
+      scarf.endFill();
+      scarf.beginFill(home ? 0xf2d36b : 0x252525);
+      scarf.drawRect(13, 31, 10, 9);
+      scarf.drawRect(33, 31, 10, 9);
+      scarf.drawRect(53, 31, 10, 9);
+      scarf.endFill();
+      kit.addChild(scarf);
+      var chant = new global.PIXI.Text(home ? "HOME!" : "AWAY!", {
+        fontFamily: "Cairo", fontSize: 12, fontWeight: "bold", fill: "#ffffff",
+        stroke: "#111111", strokeThickness: 3
+      });
+      chant.anchor.set(0.5, 0.5);
+      chant.x = 40;
+      chant.y = -7;
+      kit.addChild(chant);
+      peep.graphics.addChild(kit);
+      peep.sportsKit = kit;
+    }
+    if (peep.sportsKit) peep.sportsKit.visible = active;
+    if (peep.ideologyMarker) peep.ideologyMarker.alpha *= active ? 0.18 : 1;
+    if (!active && peep.weaponMC && peep._sportsWeaponWasVisible) {
+      peep.weaponMC.visible = true;
+      peep._sportsWeaponWasVisible = false;
+    }
+  };
+
+  IdeologicalAudienceModel.prototype.moveSupporters = function (scene, peep) {
+    if (!peep.fandom || peep.fandom.hype <= 0.08 || !scene || !scene.world) return;
+    var nearestFriend = null, nearestRival = null;
+    var friendDistance = Infinity, rivalDistance = Infinity;
+    scene.world.peeps.forEach(function (other) {
+      if (other === peep || !other.fandom || other.fandom.hype <= 0.08) return;
+      var d = distance(peep, other);
+      if (other.fandom.team === peep.fandom.team && d < friendDistance) {
+        nearestFriend = other; friendDistance = d;
+      } else if (other.fandom.team !== peep.fandom.team && d < rivalDistance) {
+        nearestRival = other; rivalDistance = d;
+      }
+    });
+    // Friends bunch up and face the same way. Rivals get the heckling face.
+    // The old left/right quarrel is still there, merely suspended by a louder us.
+    if (nearestFriend && friendDistance > 52) {
+      peep.direction = Math.atan2(nearestFriend.y - peep.y, nearestFriend.x - peep.x);
+    }
+    if (nearestRival && rivalDistance < 150) {
+      peep.flip = nearestRival.x > peep.x ? 1 : -1;
+      peep.fandom.rivalry = Math.min(1, peep.fandom.rivalry + 0.025);
+      if (peep.faceMC && peep.faceMC.gotoAndStop) peep.faceMC.gotoAndStop(5);
+    }
   };
 
   IdeologicalAudienceModel.prototype.spread = function (scene) {
@@ -140,6 +207,8 @@
         peep.fandom.rivalry = Math.max(0, peep.fandom.rivalry - 0.018);
       }
       this.updateVisual(peep);
+      this.updateSportsVisual(peep);
+      this.moveSupporters(scene, peep);
     }, this);
   };
 
