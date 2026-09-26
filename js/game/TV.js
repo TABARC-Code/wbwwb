@@ -69,6 +69,9 @@ function TV(scene, options){
 		// OPTIONS
 		var photoTexture = options.photo;
 		var text = options.text || "";
+		// Useful to the browser smoke test and future accessibility layer. The TV
+		// may keep the live texture anyway; only the headless history avoids it.
+		self.lastHeadline = text;
 
 		// Clear screen
 		photoContainer.removeChildren();
