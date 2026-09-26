@@ -36,6 +36,10 @@ Game.init = function(HACK){
 	Game.scene = null;
 	Game.sceneManager = new SceneManager();
 
+	// Initialize Seasonal UI
+	Game.seasonalUI = new SeasonalUI();
+	Game.seasonalUI.init();
+
 	if(HACK){
 		// NOT preloader - jump direct to a scene
 		Game.loadAssets(function(){ // well, also get preloader assets...
