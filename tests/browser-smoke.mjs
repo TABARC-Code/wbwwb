@@ -35,7 +35,10 @@ try {
     influencerModules: typeof window.InfluencerPeep === "function" &&
       typeof window.Stage_CloutAntics === "function" &&
       typeof window.Stage_SportsAlliance === "function" &&
-      typeof window.WBWWBInfluencerNewsEngine?.create === "function"
+      typeof window.WBWWBInfluencerNewsEngine?.create === "function",
+    agencyModules: typeof window.WBWWBPlayerAgency?.Model === "function" &&
+      typeof window.WBWWBAgencyPanel === "function" &&
+      Boolean(document.querySelector("#agency-panel [data-agency-action='repair']"))
   }));
 
   if (result.canvasCount !== 1) failures.push(`expected one canvas; found ${result.canvasCount}`);
@@ -51,6 +54,7 @@ try {
   if (!result.shadowTV) failures.push("shadow TV module did not load");
   else if (result.shadowTV.visible !== false) failures.push("shadow TV should remain headless");
   if (!result.influencerModules) failures.push("influencer acts or news engine did not load");
+  if (!result.agencyModules) failures.push("player agency model or controls did not load");
 
   await page.waitForFunction(() => window.Game?.sounds?.bg_park?.state?.() === "loaded", null, { timeout: 60_000 });
   const shadowResult = await page.evaluate(() => {
