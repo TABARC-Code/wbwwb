@@ -15,3 +15,12 @@ test("news topics cover social, weather, sport, conspiracy and scandal", () => {
     assert.ok(engine.catalogue[topic], `missing ${topic}`);
   }
 });
+
+test("centre sports coverage can unite ideologies before a side outlet turns it tribal", () => {
+  const story = engine.create({ topic: "sport" });
+  assert.equal(story.middle, "PUNDIT CRITICISES TEAM SELECTION");
+  assert.equal(story.coalition.id, "home-v-away");
+  assert.ok(story.coalition.sharedHype > 0.5);
+  assert.ok(story.coalition.tribalHeat > story.coalition.sharedHype);
+  assert.notEqual(story.right, story.middle);
+});
