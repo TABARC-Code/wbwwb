@@ -24,6 +24,8 @@
       origin: story.origin || null,
       topic: story.topic || null,
       profile: story.profile || null,
+      capturedSeverity: story.capturedSeverity || null,
+      actualSeverity: story.actualSeverity || null,
       followers: number(story.followers),
       foreign: Boolean(story.foreign),
       authorityFailure: Boolean(story.authorityFailure)
@@ -77,6 +79,7 @@
     facts.season = this.season;
     facts.neutralSeasonalHeadline = headlines.neutral || null;
     facts.middleHeadline = headlines.middle || facts.headline;
+    facts.evidenceSelection = headlines.evidence || null;
     facts.scandal = headlines.targetSide ? Object.freeze({
       id: headlines.id,
       targetSide: headlines.targetSide,
@@ -101,17 +104,19 @@
       nothing: false
     };
     if (headlines.targetSide && broadcast.photo && broadcast.scene && broadcast.scene.tv && broadcast.scene.tv.placePhoto) {
-      broadcast.scene.tv.placePhoto({ photo: broadcast.photo, text: headlines.middle, fail: false, nothing: false });
+      broadcast.scene.tv.placePhoto({ photo: scandalTexture(headlines.middleImage) || broadcast.photo, text: headlines.middle, fail: false, nothing: false });
     }
     if (broadcast.photo && this.leftDisplay && this.leftDisplay.placePhoto) {
-      displayOptions.photo = scandalTexture(headlines.leftImage) || broadcast.photo;
-      displayOptions.text = headlines.left;
-      this.leftDisplay.placePhoto(displayOptions);
+      this.leftDisplay.placePhoto(Object.assign({}, displayOptions, {
+        photo: scandalTexture(headlines.leftImage) || broadcast.photo,
+        text: headlines.left
+      }));
     }
     if (broadcast.photo && this.rightDisplay && this.rightDisplay.placePhoto) {
-      displayOptions.photo = scandalTexture(headlines.rightImage) || broadcast.photo;
-      displayOptions.text = headlines.right;
-      this.rightDisplay.placePhoto(displayOptions);
+      this.rightDisplay.placePhoto(Object.assign({}, displayOptions, {
+        photo: scandalTexture(headlines.rightImage) || broadcast.photo,
+        text: headlines.right
+      }));
     }
     this.audienceModel.exposeBroadcast(
       broadcast.scene,
