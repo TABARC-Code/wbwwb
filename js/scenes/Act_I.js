@@ -95,9 +95,9 @@ function Stage_Lovers(self){
              .otherwise(_cutHats)
              .otherwise(_cutPeeps);
 
-            // And whatever happens, just go to the next stage
-            // ACT II!!!
-            Stage_Screamer(self);
+            // The longer edition lets attention culture warm the room before
+            // the original fear cycle arrives.
+            Stage_CloutAntics(self);
 
         }
     };
