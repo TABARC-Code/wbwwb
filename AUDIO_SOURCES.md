@@ -71,6 +71,27 @@ All sounds listed below are currently **placeholder sine-wave or white-noise gen
    - Needed: Sports commentary snippet or excited broadcaster phrase (CC0/CC-BY from Freesound)
    - Integration: Director.js TV scenes (60% chance after goal_horn, 800ms delay)
 
+### Seasonal Advertising Jingles (TV Commercials)
+13. **ad_winter.mp3** (1.5 sec)
+   - Current: Placeholder bright, festive, bell-like tones with decay envelope
+   - Needed: Winter/Christmas commercial jingle (CC0/CC-BY from Freesound)
+   - Integration: Director.js TV broadcasts (20% chance, random seasonal rotation)
+
+14. **ad_spring.mp3** (1.5 sec)
+   - Current: Placeholder rising frequency pattern (uplifting)
+   - Needed: Spring/renewal themed commercial jingle (CC0/CC-BY from Freesound)
+   - Integration: Director.js TV broadcasts (20% chance, random seasonal rotation)
+
+15. **ad_summer.mp3** (1.5 sec)
+   - Current: Placeholder energetic dual-note upbeat pattern
+   - Needed: Summer/sales themed commercial jingle (CC0/CC-BY from Freesound)
+   - Integration: Director.js TV broadcasts (20% chance, random seasonal rotation)
+
+16. **ad_autumn.mp3** (1.5 sec)
+   - Current: Placeholder warm, mellow, slightly descending pattern
+   - Needed: Autumn/fall harvest themed commercial jingle (CC0/CC-BY from Freesound)
+   - Integration: Director.js TV broadcasts (20% chance, random seasonal rotation)
+
 ---
 
 ## Core Game Audio (Already Integrated)
@@ -141,13 +162,15 @@ git push
 
 ## TODO Before Shipping
 
-- [ ] Replace all 12 placeholder sounds with real Freesound recordings (CC0/CC-BY)
+- [ ] Replace all 16 placeholder sounds with real Freesound recordings (CC0/CC-BY)
 - [ ] Add Freesound URL and attribution to each sound in this file
 - [ ] Update README.md Credits section with all audio sources
 - [ ] Test full gameplay: Acts I–III with real audio
-  - Verify sports broadcasts play ~20% of the time on TV
+  - Verify TV broadcasts rotate: ~60% news, ~20% sports, ~20% seasonal ads
   - Check crowd cheer triggers on sports content
   - Confirm sports commentary plays after goal horn
+  - Verify seasonal ad jingles play and match broadcast mix
+  - Test all seasonal variants play (winter, spring, summer, autumn)
 - [ ] Adjust volume levels for real audio (placeholders used fixed amplitudes)
 - [ ] Verify no audio loops persist into credits
 - [ ] Get approval from sound designers or appropriate stakeholders
@@ -155,11 +178,19 @@ git push
 ---
 
 **Last Updated**: 2026-09-26  
-**Status**: 12/12 sounds ready (9 emergency/media + 3 sports) | Placeholder audio ready for integration testing | Real audio pending sourcing
+**Status**: 16/16 sounds ready (9 emergency/media + 3 sports + 4 seasonal ads) | Placeholder audio ready for integration testing | Real audio pending sourcing
 
 **Audio Summary**:
 - Emergency sirens (3): police, ambulance, fire
 - Crowd reactions (3): gasp, murmur, panic
 - Media broadcast (3): news voice, TV static, radio static
 - Sports broadcast (3): goal horn, crowd cheer, sports commentary
+- Seasonal ads (4): winter, spring, summer, autumn jingles
+
+**Broadcast Mix** (TV Scenes):
+- 60% News broadcasts (breaking_news jingle + news_voice)
+- 20% Sports broadcasts (goal_horn + sports_commentary)
+- 20% Seasonal ads (random seasonal jingle + crowd context-dependent)
+
+**Narrative Integration**: Game demonstrates media shapes perception across content types—news, sports, and advertising all drive audience reactions and narrative escalation.
 
