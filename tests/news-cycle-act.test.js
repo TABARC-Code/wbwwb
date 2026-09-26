@@ -17,8 +17,19 @@ function loadAct() {
       if (index >= 0) scene.world.peeps.splice(index, 1);
     };
   }
+  function FloodEvidenceProp(scene, severity, x, y) {
+    this._CLASS_ = "FloodEvidenceProp";
+    this.severity = severity;
+    this.actualSeverity = "severe";
+    this.x = x; this.y = y; this.width = 109; this.height = 61;
+    this.kill = () => {
+      const index = scene.world.props.indexOf(this);
+      if (index >= 0) scene.world.props.splice(index, 1);
+    };
+  }
   const context = {
     InfluencerPeep,
+    FloodEvidenceProp,
     WBWWBInfluencerNewsEngine: { create: () => ({ middle: "headline" }) },
     WBWWBFloodFramingEngine: { create: () => ({ middle: "FLOODING CUTS OFF HOMES" }) },
     WBWWB_LOCALE: "en",
@@ -34,7 +45,9 @@ function makeScene() {
   const scene = {
     world: {
       peeps: [],
-      addPeep(peep) { this.peeps.push(peep); }
+      props: [],
+      addPeep(peep) { this.peeps.push(peep); },
+      addProp(prop) { this.props.push(prop); }
     },
     director: {}
   };
@@ -66,14 +79,26 @@ test("the flood beat records a misleading trickle crop against a severe event", 
   const context = loadAct();
   const scene = makeScene();
   context.Stage_FloodFraming(scene);
-  assert.deepEqual(scene.world.peeps.map((peep) => peep.antic), ["weather", "weather"]);
+  assert.deepEqual(scene.world.props.map((prop) => prop.severity), ["trickle", "representative", "extreme"]);
+  const trickle = scene.world.props[0];
   const director = {
     photoData: {},
-    caught: () => ({ influencer: scene.world.peeps[0] })
+    caught: () => ({ flood: [trickle] })
   };
   scene.director.callbacks.takePhoto(director);
   assert.equal(director.photoData.story.event, "flood");
   assert.equal(director.photoData.story.capturedSeverity, "trickle");
   assert.equal(director.photoData.story.actualSeverity, "severe");
   assert.equal(director.chyron, "FLOODING CUTS OFF HOMES");
+});
+
+test("the flood beat records whichever evidence fragment enters the camera", () => {
+  const context = loadAct();
+  const scene = makeScene();
+  context.Stage_FloodFraming(scene);
+  const extreme = scene.world.props[2];
+  const director = { photoData: {}, caught: () => ({ flood: [extreme] }) };
+  scene.director.callbacks.takePhoto(director);
+  assert.equal(director.photoData.story.capturedSeverity, "extreme");
+  assert.equal(director.photoData.story.actualSeverity, "severe");
 });
