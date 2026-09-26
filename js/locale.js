@@ -8,6 +8,12 @@
  *   4. English
  *
  * Locale aliases are normalized so values such as tr-TR and pt-BR work.
+ *
+ * TRANSLATION NOTE: AI was used to draft and tidy parts of these translations.
+ * I can test keys, fallbacks and whether the game boots; I cannot honestly
+ * claim native fluency in all six languages. If a line is stiff, wrong, or
+ * accidentally hilarious, please fix it. Corrections from actual speakers are
+ * very welcome. See docs/TRANSLATION_NOTES.md for the less tidy explanation.
  */
 (function (global) {
   "use strict";
