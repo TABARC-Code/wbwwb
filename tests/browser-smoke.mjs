@@ -34,6 +34,7 @@ try {
     })() : null,
     influencerModules: typeof window.InfluencerPeep === "function" &&
       typeof window.Stage_CloutAntics === "function" &&
+      typeof window.Stage_SportsAlliance === "function" &&
       typeof window.WBWWBInfluencerNewsEngine?.create === "function"
   }));
 
