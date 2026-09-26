@@ -198,6 +198,13 @@ more recognisable and more uncomfortable: the trickle is real. It is just not
 representative. The ledger records `cherry-picking`, `scale-minimisation` and
 the selected crop so the model does not quietly confuse evidence with honesty.
 
+The player now photographs one of three visible fragments rather than receiving
+a hard-coded “trickle” result. A shallow channel sits to one side, representative
+flooding occupies the middle, and the worst water sits opposite. This puts the
+selection back where it belongs: inside the camera. Missing the larger flood is
+therefore a player action with consequences, not a fact the script sneaks into
+the ledger after the shutter closes.
+
 ## The grubby little lever
 
 The camera remains the game. I have not added a management screen where the
