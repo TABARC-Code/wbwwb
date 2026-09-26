@@ -20,6 +20,8 @@ function loadAct() {
   const context = {
     InfluencerPeep,
     WBWWBInfluencerNewsEngine: { create: () => ({ middle: "headline" }) },
+    WBWWBFloodFramingEngine: { create: () => ({ middle: "FLOODING CUTS OFF HOMES" }) },
+    WBWWB_LOCALE: "en",
     _chyPeeps() {},
     Stage_Screamer() {}
   };
@@ -58,4 +60,20 @@ test("the sports beat forces sport coverage before the scandal cycle", () => {
   assert.equal(scene.world.peeps.length, 2);
   assert.deepEqual(scene.world.peeps.map((peep) => peep.profile), ["trend", "trend"]);
   assert.deepEqual(scene.world.peeps.map((peep) => peep.antic), ["sport", "sport"]);
+});
+
+test("the flood beat records a misleading trickle crop against a severe event", () => {
+  const context = loadAct();
+  const scene = makeScene();
+  context.Stage_FloodFraming(scene);
+  assert.deepEqual(scene.world.peeps.map((peep) => peep.antic), ["weather", "weather"]);
+  const director = {
+    photoData: {},
+    caught: () => ({ influencer: scene.world.peeps[0] })
+  };
+  scene.director.callbacks.takePhoto(director);
+  assert.equal(director.photoData.story.event, "flood");
+  assert.equal(director.photoData.story.capturedSeverity, "trickle");
+  assert.equal(director.photoData.story.actualSeverity, "severe");
+  assert.equal(director.chyron, "FLOODING CUTS OFF HOMES");
 });
