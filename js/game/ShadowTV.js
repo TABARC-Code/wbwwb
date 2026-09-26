@@ -22,6 +22,9 @@
       subjects: story.subjects || null,
       cause: story.cause || null,
       origin: story.origin || null,
+      topic: story.topic || null,
+      profile: story.profile || null,
+      followers: number(story.followers),
       foreign: Boolean(story.foreign),
       authorityFailure: Boolean(story.authorityFailure)
     });
@@ -73,6 +76,12 @@
     facts.framingStrategy = headlines.strategy;
     facts.season = this.season;
     facts.neutralSeasonalHeadline = headlines.neutral || null;
+    facts.middleHeadline = headlines.middle || facts.headline;
+    facts.scandal = headlines.targetSide ? Object.freeze({
+      id: headlines.id,
+      targetSide: headlines.targetSide,
+      tags: Object.freeze((headlines.tags || []).slice())
+    }) : null;
     var frame = Object.freeze(facts);
 
     this.history.push(frame);
@@ -80,18 +89,27 @@
 
     // The texture is handed straight through, never placed in `frame`. The
     // displays own their Pixi sprites; the shadow history remains plain data.
+    function scandalTexture(resourceName) {
+      if (!resourceName || !global.PIXI || !global.PIXI.loader || !global.PIXI.loader.resources) return null;
+      var resource = global.PIXI.loader.resources[resourceName];
+      return resource && resource.texture;
+    }
     var displayOptions = {
-      photo: broadcast.photo,
       // Even an empty frame becomes ammunition here. These sets don't admit
       // failure; they manufacture suspicion or blame from the absence itself.
       fail: false,
       nothing: false
     };
+    if (headlines.targetSide && broadcast.photo && broadcast.scene && broadcast.scene.tv && broadcast.scene.tv.placePhoto) {
+      broadcast.scene.tv.placePhoto({ photo: broadcast.photo, text: headlines.middle, fail: false, nothing: false });
+    }
     if (broadcast.photo && this.leftDisplay && this.leftDisplay.placePhoto) {
+      displayOptions.photo = scandalTexture(headlines.leftImage) || broadcast.photo;
       displayOptions.text = headlines.left;
       this.leftDisplay.placePhoto(displayOptions);
     }
     if (broadcast.photo && this.rightDisplay && this.rightDisplay.placePhoto) {
+      displayOptions.photo = scandalTexture(headlines.rightImage) || broadcast.photo;
       displayOptions.text = headlines.right;
       this.rightDisplay.placePhoto(displayOptions);
     }
@@ -102,6 +120,9 @@
       headlines.channels,
       this.season
     );
+    if (broadcast.scene && broadcast.scene.ideologyModel && headlines.targetSide) {
+      broadcast.scene.ideologyModel.receiveNews(broadcast.scene, headlines);
+    }
     return frame;
   };
 
