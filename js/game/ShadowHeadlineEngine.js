@@ -92,6 +92,10 @@
     locale = generic[locale] ? locale : "en";
     var story = broadcast.story || {};
 
+    if (story.event === "flood" && global.WBWWBFloodFramingEngine) {
+      return global.WBWWBFloodFramingEngine.create(story, locale);
+    }
+
     if (story.event === "influencer" && global.WBWWBInfluencerNewsEngine) {
       return global.WBWWBInfluencerNewsEngine.create(story, locale);
     }
