@@ -48,6 +48,20 @@ function InfluencerPeep(scene, profile){
         self.liveLabel.tint = 0xffd24a;
         self.likeFlashTicks = _s(1.5);
     };
+    self.reactToPlayerChoice = function(result){
+        var reactions = {
+            sell: {text:"MERCH DEAL?", tint:0xffd24a, followers:140, sentiment:-0.35},
+            amplify: {text:"CLIP THIS!", tint:0xff4f72, followers:220, sentiment:0.12},
+            repair: {text:"ACTUALLY HELPED", tint:0x79c98b, followers:55, sentiment:0.65},
+            refuse: {text:"NO CONTENT?", tint:0x9aa4b2, followers:-20, sentiment:0.25}
+        };
+        var reaction = reactions[result.choice] || reactions.refuse;
+        self.followers = Math.max(0, self.followers + reaction.followers);
+        self.liveLabel.text = reaction.text;
+        self.liveLabel.tint = reaction.tint;
+        self.likeFlashTicks = _s(2);
+        return {sentiment:reaction.sentiment, reach:Math.max(0.1, Math.abs(reaction.followers)/100)};
+    };
 
     var normalUpdate = self.callbacks.update;
     self.callbacks.update = function(){
