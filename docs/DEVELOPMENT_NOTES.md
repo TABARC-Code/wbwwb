@@ -171,6 +171,13 @@ That is not presented as a clean happy ending: shadow coverage converts the
 same belonging into contempt for the smaller away group. The middle can move a
 crowd. The extremes make the movement meaner.
 
+That change now happens on the bodies rather than only in a hidden score. Left,
+right and undecided markers fade behind the same green-and-gold HOME scarf.
+Weapons and angry-red overlays are put away. Supporters drift towards their new
+team-mates, including people they were fighting moments earlier, and turn to
+heckle the orange-and-black AWAY pocket. Nothing in their convictions has been
+solved. A stronger shared identity has simply redrawn the border around “us”.
+
 ## Next pressure points
 
 The fixed clock and seeded random stream expose the next work rather neatly:
