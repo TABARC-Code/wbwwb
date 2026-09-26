@@ -123,6 +123,9 @@
     if (broadcast.scene && broadcast.scene.ideologyModel && headlines.targetSide) {
       broadcast.scene.ideologyModel.receiveNews(broadcast.scene, headlines);
     }
+    if (broadcast.scene && broadcast.scene.ideologyModel && headlines.coalition) {
+      broadcast.scene.ideologyModel.receiveSportsCoverage(broadcast.scene, headlines);
+    }
     return frame;
   };
 
