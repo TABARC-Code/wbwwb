@@ -37,6 +37,7 @@ function Scene_Game(){
         // colour behaviour, but it doesn't get to steal an actor mid-scene.
         audience: { allowTransform: false }
     });
+    self.ideologyModel = new WBWWBIdeologicalAudienceModel();
 
     // Two little bad-faith echoes. They're visible, but the controller behind
     // them stays headless and keeps the counterfactual record.
@@ -79,6 +80,7 @@ function Scene_Game(){
         self.camera.update();
         self.director.update();
         self.shadowTV.update(self, 1000/60);
+        self.ideologyModel.update(self, 1000/60);
 
         // This order is important
         self.zoomer.update();
@@ -119,6 +121,9 @@ function Scene_Game(){
     ////////////
 
     Stage_Start(self);
+    // Six ordinary-looking additions, from centre-left/right to committed
+    // extremes. They can join the original routines; only their media pull is new.
+    self.ideologyModel.seed(self);
     Stage_Hat(self);
     //Stage_Lovers(self);
     //Stage_Screamer(self, true);
