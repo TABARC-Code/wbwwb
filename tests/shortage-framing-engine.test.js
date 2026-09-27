@@ -19,3 +19,12 @@ test("the photographed shelf state changes the strength and centre report", () =
   assert.ok(empty.agitation > normal.agitation);
   assert.ok(empty.emphasis.left > normal.emphasis.left);
 });
+
+test("toilet-roll panic copy exists in every supported language", () => {
+  for (const locale of ["en", "de", "es", "fa", "pt", "tr"]) {
+    const story = engine.create({ event: "shortage", capturedState: "empty" }, locale);
+    assert.equal(typeof story.middle, "string");
+    assert.ok(story.middle.length > 10);
+    assert.notEqual(story.middle, undefined);
+  }
+});

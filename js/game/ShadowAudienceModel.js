@@ -127,6 +127,9 @@
       state.fear = clamp(state.fear + 0.2);
       state.anger = clamp(state.anger + 0.1);
     } else {
+      // A useful report creates an opportunity to help, not a compulsory halo.
+      // Main-screen attention and personal resistance decide who actually moves.
+      if (state.mainAttention < 0.2 + state.resistance * 0.3) return;
       state.narrative = "flood-aid";
       state.behaviour = "helping";
       state.practicalConcern = clamp(state.practicalConcern + 0.45 + 0.6 * state.mainAttention);
@@ -138,6 +141,7 @@
     if (!peep || !peep.shadowInfluence) return;
     var state = stateFor(peep);
     var strength = captured === "normal" ? 0.18 : captured === "hoard" ? 0.55 : 0.72;
+    if (strength < state.resistance * 0.95) return;
     state.narrative = "shortage-panic";
     state.behaviour = "stockpiling";
     state.habit = "buying";

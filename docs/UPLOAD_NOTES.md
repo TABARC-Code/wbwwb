@@ -147,3 +147,25 @@ The stage is gated by `SeasonalContext`. It appears when Christmas is the
 dominant calendar event, including runs using the reproducible `?date=` override.
 Outside that window the game moves directly from toilet roll to the existing
 trend sequence.
+
+## 27 September 2026 — the economy stops laundering outrage
+
+The deterministic playtest now covers complete player strategies as well as
+single broadcasts. It found a fairly nasty design loophole: selling one heated
+nine-person story paid eleven credits, while a local repair cost two. A player
+could exploit one panic and then afford five virtuous-looking interventions.
+The interface called that a dilemma; the arithmetic called it free money.
+
+I reduced the conversion of attention into cash and kept the other consequence
+tracks separate. Selling is still the quickest route to funds and an early run
+of exploitation can finance later repairs. It also leaves lost trust and a
+persistent exploitation total. Refusing bait preserves trust but cannot fund a
+material intervention, while repair-only play runs out of cash. None of those
+figures is labelled morality.
+
+`tools/virtual-playtest.js` now runs flood crops, shortage evidence, repeated
+Christmas-toy coverage, isolated agency choices and five eight-story economic
+strategies. Assertions fail if representative flood coverage becomes less
+useful than a misleading crop, panic stops escalating, cash becomes runaway, or
+exploit-then-repair quietly erases its earlier cost. The detailed figures and
+limits are recorded in `docs/VIRTUAL_PLAYTEST.md`.

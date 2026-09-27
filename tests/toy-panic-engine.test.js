@@ -18,3 +18,12 @@ test("both sides panic while attaching different blame", () => {
   assert.match(story.left, /RESELLERS/);
   assert.match(story.right, /ONLY ONE WITHOUT IT/);
 });
+
+test("Christmas toy coverage exists in every supported language", () => {
+  for (const locale of ["en", "de", "es", "fa", "pt", "tr"]) {
+    const story = engine.create({ event: "toy-panic", coverageCount: 3 }, locale);
+    assert.equal(typeof story.middle, "string");
+    assert.ok(story.left.length > 10);
+    assert.ok(story.right.length > 10);
+  }
+});

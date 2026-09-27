@@ -133,6 +133,7 @@ test("the photographed flood crop changes the crowd's immediate response", () =>
   assert.ok(denier.shadowInfluence.rightExposure > denier.shadowInfluence.leftExposure);
 
   const helper = makePeep(0);
+  helper.shadowInfluence = { resistance: 0.15 };
   scene = { tv: { x: 50, y: 0 }, world: { peeps: [helper] } };
   model = new ShadowAudienceModel({ tvRadius: 200, transform: false });
   model.exposeBroadcast(scene, { x: 0, y: 0 }, { x: 100, y: 0 }, channels, null,

@@ -86,7 +86,12 @@
     var result = { choice: choice, topic: opportunity.topic, targetSide: opportunity.targetSide, effects: {} };
     var attention = Math.max(1, opportunity.audience);
     if (choice === "sell") {
-      var profit = Math.max(1, Math.ceil(attention * (0.35 + opportunity.heat)));
+      // Attention is valuable, but it isn't a cash printer. The first version
+      // paid eleven credits for a nine-person panic while a repair cost two.
+      // That made the supposedly grubby choice strategically saintly: sell one
+      // scare, then buy every fix. Keeping the payout around one-to-four credits
+      // makes the quick buck useful without quietly deleting the trade-off.
+      var profit = Math.max(1, Math.ceil(attention * (0.12 + opportunity.heat * 0.18)));
       this.money += profit;
       this.reach += attention * 0.18;
       this.trust = clamp(this.trust - 0.1 - opportunity.heat * 0.06, 0, 1);

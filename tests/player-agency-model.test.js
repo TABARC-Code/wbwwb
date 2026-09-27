@@ -29,6 +29,14 @@ test("selling to both camps produces cash and reach at a trust cost", () => {
   assert.match(result.summary, /BOTH CAMPS/);
 });
 
+test("one heated story cannot bankroll a whole run of repairs", () => {
+  const model = new agency.Model({ money: 2 });
+  model.observe({ story: { topic: "toy" }, audience: 9, angryRatio: 0.72 });
+  const result = model.act("sell");
+  assert.equal(result.effects.money, 3);
+  assert.equal(model.snapshot().money, 5);
+});
+
 test("money can be turned into a small repair with larger effect in a heated moment", () => {
   const calm = new agency.Model({ money: 4 });
   calm.observe({ story: { topic: "housing" }, audience: 4, angryRatio: 0 });
