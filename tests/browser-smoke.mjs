@@ -39,6 +39,7 @@ try {
       typeof window.FloodEvidenceProp === "function" &&
       typeof window.WBWWBFloodFramingEngine?.create === "function" &&
       typeof window.WBWWBShortageFramingEngine?.create === "function" &&
+      typeof window.WBWWBToyPanicEngine?.create === "function" &&
       typeof window.WBWWBInfluencerNewsEngine?.create === "function",
     agencyModules: typeof window.WBWWBPlayerAgency?.Model === "function" &&
       typeof window.WBWWBAgencyPanel === "function" &&

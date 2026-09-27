@@ -125,7 +125,38 @@ function Stage_ToiletRollPanic(self){
             d.audience_cutToTV();
             if(!d.photoData.caughtShortage) return;
             evidence.forEach(function(prop){ prop.kill(); });
-            Stage_TrendFrenzy(self);
+            var christmas = self.shadowTV && self.shadowTV.season && self.shadowTV.season.event === "christmas";
+            if(christmas) Stage_ChristmasToyPanic(self);
+            else Stage_TrendFrenzy(self);
+        }
+    };
+}
+
+function Stage_ChristmasToyPanic(self){
+    var toy = new ToyEvidenceProp(self, 430, 340);
+    self.world.addProp(toy);
+    var captures = 0;
+    self.director.callbacks = {
+        takePhoto: function(d){
+            var caught = d.caught({toy:{_CLASS_:"ToyEvidenceProp"}}).toy;
+            if(caught){
+                var count = Math.min(3, captures+1);
+                d.photoData.caughtToy = caught;
+                d.photoData.audience = 3 + count*2;
+                d.photoData.story = {
+                    event:"toy-panic", topic:"toy", toyId:caught.toyId,
+                    coverageCount:count, subjects:"christmas-shoppers"
+                };
+                d.chyron = WBWWBToyPanicEngine.create(d.photoData.story, WBWWB_LOCALE).middle;
+            }else _chyPeeps(d);
+        },
+        movePhoto: function(d){ d.audience_movePhoto(); },
+        cutToTV: function(d){
+            d.audience_cutToTV();
+            if(!d.photoData.caughtToy) return;
+            captures++;
+            toy.setBuzz(captures);
+            if(captures>=3){ toy.kill(); Stage_TrendFrenzy(self); }
         }
     };
 }

@@ -100,6 +100,10 @@
       return global.WBWWBShortageFramingEngine.create(story, locale);
     }
 
+    if (story.event === "toy-panic" && global.WBWWBToyPanicEngine) {
+      return global.WBWWBToyPanicEngine.create(story, locale);
+    }
+
     if (story.event === "influencer" && global.WBWWBInfluencerNewsEngine) {
       return global.WBWWBInfluencerNewsEngine.create(story, locale);
     }

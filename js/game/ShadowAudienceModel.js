@@ -190,7 +190,7 @@
     state.phase = "active";
     state.activeAge = 0;
     this.metrics.activations += 1;
-    if (state.narrative === "shortage-panic") state.behaviour = "stockpiling";
+    if (state.narrative === "shortage-panic" || state.narrative === "toy-panic") state.behaviour = "stockpiling";
     else if (state.narrative === "flood-denial") state.behaviour = "mocking";
     else if (state.narrative === "flood-alarm") state.behaviour = "warning";
     else if (state.narrative === "flood-aid") state.behaviour = "helping";
@@ -214,6 +214,10 @@
       }
       if (framing && framing.strategy === "shared-panic-competing-blame") {
         this.applyShortageResponse(peeps[i], framing.evidence.captured);
+      }
+      if (framing && framing.strategy === "shared-toy-panic") {
+        this.applyShortageResponse(peeps[i], framing.evidence.coverageCount >= 3 ? "empty" : framing.evidence.coverageCount >= 2 ? "hoard" : "normal");
+        if (peeps[i].shadowInfluence) peeps[i].shadowInfluence.narrative = "toy-panic";
       }
     }
     for (var p = 0; p < peeps.length; p++) this.assess(scene, peeps[p], peeps);
@@ -337,7 +341,7 @@
     }
     var symbols = { susceptible: "", exposed: "?", active: "!", cooling: "·" };
     var habits = { buying: "£", decorating: "✦", observing: "○", "seeking-novelty": "+", ordinary: "" };
-    var floodSymbols = { "flood-denial": "HA!", "flood-alarm": "!!", "flood-aid": "+", "shortage-panic": "ROLLS!" };
+    var floodSymbols = { "flood-denial": "HA!", "flood-alarm": "!!", "flood-aid": "+", "shortage-panic": "ROLLS!", "toy-panic": "WANT!" };
     peep.shadowMarker.text = (floodSymbols[state.narrative] || symbols[state.phase] || "") + (habits[habit] || "");
     peep.shadowMarker.tint = state.leftAttention >= state.rightAttention ? 0xb66a9e : 0xd8795f;
     peep.shadowMarker.alpha = state.phase === "active" ? 1 : 0.65;

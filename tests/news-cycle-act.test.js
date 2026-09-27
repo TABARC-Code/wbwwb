@@ -37,13 +37,25 @@ function loadAct() {
       if (index >= 0) scene.world.props.splice(index, 1);
     };
   }
+  function ToyEvidenceProp(scene, x, y) {
+    this._CLASS_ = "ToyEvidenceProp";
+    this.toyId = "wobble-beast";
+    this.x = x; this.y = y; this.width = 103; this.height = 77;
+    this.setBuzz = (count) => { this.coverageCount = count; };
+    this.kill = () => {
+      const index = scene.world.props.indexOf(this);
+      if (index >= 0) scene.world.props.splice(index, 1);
+    };
+  }
   const context = {
     InfluencerPeep,
     FloodEvidenceProp,
     ShortageEvidenceProp,
+    ToyEvidenceProp,
     WBWWBInfluencerNewsEngine: { create: () => ({ middle: "headline" }) },
     WBWWBFloodFramingEngine: { create: () => ({ middle: "FLOODING CUTS OFF HOMES" }) },
     WBWWBShortageFramingEngine: { create: (story) => ({ middle: story.capturedState === "empty" ? "TOILET ROLL SHELF EMPTY AFTER RUSH" : "SHOP ASKS CUSTOMERS TO BUY NORMALLY" }) },
+    WBWWBToyPanicEngine: { create: (story) => ({ middle: "TOY COVERAGE " + story.coverageCount }) },
     WBWWB_LOCALE: "en",
     _chyPeeps() {},
     Stage_Screamer() {}
@@ -127,4 +139,21 @@ test("the toilet-roll beat makes the photographed shelf state the story", () => 
   assert.equal(director.photoData.story.capturedState, "empty");
   assert.equal(director.photoData.story.actualSupply, "adequate-before-rush");
   assert.match(director.chyron, /SHELF EMPTY/);
+});
+
+test("repeated pictures of one Christmas toy escalate the story", () => {
+  const context = loadAct();
+  const scene = makeScene();
+  context.Stage_ChristmasToyPanic(scene);
+  const toy = scene.world.props[0];
+  const director = {
+    photoData: {}, caught: () => ({ toy }), audience_cutToTV() {}
+  };
+  scene.director.callbacks.takePhoto(director);
+  assert.equal(director.photoData.story.coverageCount, 1);
+  scene.director.callbacks.cutToTV(director);
+  director.photoData = {};
+  scene.director.callbacks.takePhoto(director);
+  assert.equal(director.photoData.story.coverageCount, 2);
+  assert.equal(director.photoData.story.toyId, "wobble-beast");
 });

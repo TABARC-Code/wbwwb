@@ -28,6 +28,8 @@
       actualSeverity: story.actualSeverity || null,
       capturedState: story.capturedState || null,
       actualSupply: story.actualSupply || null,
+      coverageCount: number(story.coverageCount),
+      toyId: story.toyId || null,
       followers: number(story.followers),
       foreign: Boolean(story.foreign),
       authorityFailure: Boolean(story.authorityFailure),

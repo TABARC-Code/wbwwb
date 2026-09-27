@@ -124,3 +124,26 @@ These are patterns, not promises to paste real people into the game:
 
 The funniest candidates still need the same evidence rule: the player must
 photograph the behaviour that the headlines subsequently distort.
+
+## 27 September 2026 — the Christmas toy becomes compulsory
+
+A Christmas-only toy beat now uses repetition rather than three different
+objects. The player photographs the same fictional Wobble Beast up to three
+times. The first picture reports a new toy. The second says television coverage
+has raised sales. By the third, the centre can truthfully show bare shelves
+which the previous coverage helped create.
+
+Both extreme sets panic, but their leverage differs. One follows resellers,
+scalping and families priced out. The other tells parents their child may be the
+only one without the toy. Neither framing needs an invented toy shortage at the
+start; repetition, social proof and competitive buying do the work.
+
+My thinking here was to keep the object deliberately silly and generic. The
+Wobble Beast isn't a thin disguise for a current branded toy, and children are
+not treated as the villains. The joke belongs to the adults, broadcasters and
+resellers who turn a soft monster into a referendum on parental love.
+
+The stage is gated by `SeasonalContext`. It appears when Christmas is the
+dominant calendar event, including runs using the reproducible `?date=` override.
+Outside that window the game moves directly from toilet roll to the existing
+trend sequence.
