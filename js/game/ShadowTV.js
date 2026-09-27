@@ -28,7 +28,10 @@
       actualSeverity: story.actualSeverity || null,
       followers: number(story.followers),
       foreign: Boolean(story.foreign),
-      authorityFailure: Boolean(story.authorityFailure)
+      authorityFailure: Boolean(story.authorityFailure),
+      evidenceOrigin: story.evidenceOrigin || null,
+      photographed: Boolean(story.photographed),
+      observedAction: story.observedAction || null
     });
   }
 

@@ -158,6 +158,7 @@ function _chyPeeps(d){
                 d.chyron = textStrings["tooManyCrickets"];
             }
         }else if(caught.peeps.length>0){
+            p.capturedPeeps = caught.peeps.slice();
             if(caught.peeps.length==1){
                 d.chyron = textStrings["normalPeep"];
             }else{

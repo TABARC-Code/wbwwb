@@ -80,16 +80,17 @@ test("shadow history keeps story facts and manipulation provenance", () => {
   assert.equal(frame.evidenceSelection.right.crop, "shallow-trickle");
 });
 
-test("one-sided scandal leaves the other outlet and centre with boring copy", () => {
+test("an ordinary camera frame cannot summon an unrelated scandal", () => {
   global.WBWWB_LOCALE = "en";
   const shown = { centre: null, left: null, right: null };
   const display = (side) => ({ placePhoto: (options) => { shown[side] = { ...options }; } });
   const scene = { tv: display("centre"), world: { peeps: [] } };
   const shadow = new ShadowTV().attachDisplays(display("left"), display("right"));
   const frame = shadow.receiveBroadcast({ scene, photo: {}, headline: "ordinary", entry: { sequence: 2 } });
-  assert.equal(frame.scandal.targetSide, "right");
-  assert.equal(shown.centre.text, shown.left.text);
-  assert.notEqual(shown.right.text, shown.centre.text);
+  assert.equal(frame.scandal, null);
+  assert.equal(shown.centre, null);
+  assert.equal(shown.left.text, "THE SYSTEM FAILED THEM");
+  assert.equal(shown.right.text, "THEY'RE COMING FOR YOU");
 });
 
 test("flood coverage puts three different evidence selections on the televisions", () => {

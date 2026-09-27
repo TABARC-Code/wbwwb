@@ -100,6 +100,11 @@
       return global.WBWWBInfluencerNewsEngine.create(story, locale);
     }
 
+    if (story.event === "scandal" && global.WBWWBAudienceScandalEngine) {
+      var capturedScandal = global.WBWWBAudienceScandalEngine.create(story, locale);
+      if (capturedScandal) return capturedScandal;
+    }
+
     if (story.event === "flood" && story.foreign === true) {
       var pair = flood[locale] || flood.en;
       var floodLeft = channel(pair[0], ["institutional-blame", "causal-certainty"], {
@@ -116,14 +121,9 @@
       });
     }
 
-    if (!story.event && global.WBWWBAudienceScandalEngine) {
-      var scandal = global.WBWWBAudienceScandalEngine.create(frame, locale);
-      if (scandal) return scandal;
-    }
-
-    // Seasonal coverage recurs; it doesn't swallow every photograph. Every
-    // third ordinary bulletin is enough to make the calendar felt over time.
-    if (!story.event && broadcast.season && frame.sequence % 3 === 0 && global.WBWWBSeasonalNewsEngine) {
+    // The calendar may frame a photographed seasonal habit. It cannot replace
+    // an unrelated photograph merely because this is bulletin number three.
+    if (story.event === "seasonal-habit" && broadcast.season && global.WBWWBSeasonalNewsEngine) {
       var seasonal = global.WBWWBSeasonalNewsEngine.create(broadcast.season, locale);
       var seasonalLeft = channel(seasonal.left, ["economic-grievance", "seasonal-amplification"], {
         fear: 0.35, anger: 0.55, outgroupThreat: 0.05, institutionalDistrust: 0.72
@@ -142,7 +142,7 @@
     }
 
     var words = generic[locale];
-    var key = genericKey(frame);
+    var key = story.frameKey || genericKey(frame);
     var left = channel(words.left[key], profiles[key].left[0], profiles[key].left[1]);
     var right = channel(words.right[key], profiles[key].right[0], profiles[key].right[1]);
     return Object.freeze({

@@ -283,6 +283,11 @@ function Director(scene){
 
         // SOUND?
 		var data = self.photoData;
+		// Freeze the observed event before any outlet gets to frame it. The centre,
+		// left and right sets may argue over meaning; they share the photograph.
+		if(typeof WBWWBCaptureNarrativeEngine !== "undefined"){
+			data.story = WBWWBCaptureNarrativeEngine.infer(data, self.chyron);
+		}
 		var fail = false;
 		var nothing = data.ITS_NOTHING;
 

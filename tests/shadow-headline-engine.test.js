@@ -43,9 +43,9 @@ test("empty evidence records the claim manufactured from its absence", () => {
   assert.ok(headlines.channels.right.manipulations.includes("evidence-from-absence"));
 });
 
-test("every third ordinary bulletin can carry seasonal framing", () => {
+test("a photographed seasonal habit can carry seasonal framing", () => {
   const headlines = engine.create(
-    { season: { event: "christmas", meteorologicalSeason: "winter" } },
+    { story: { event: "seasonal-habit", observedAction: "buying" }, season: { event: "christmas", meteorologicalSeason: "winter" } },
     { sequence: 3, emptyFrame: false, cricketCount: 0, angryRatio: 0 },
     "en"
   );
@@ -53,11 +53,10 @@ test("every third ordinary bulletin can carry seasonal framing", () => {
   assert.equal(headlines.strategy, "seasonal-frame-substitution");
 });
 
-test("an occasional scandal is extreme on only one side", () => {
+test("an ordinary photograph is not replaced by an unrelated rotating scandal", () => {
   const headlines = engine.create({}, { sequence: 2, emptyFrame: false, cricketCount: 0, angryRatio: 0 }, "en");
-  assert.equal(headlines.strategy, "one-sided-scandal-amplification");
-  assert.equal(headlines.left, headlines.middle);
-  assert.notEqual(headlines.right, headlines.middle);
+  assert.equal(headlines.strategy, "generic-extreme-framing");
+  assert.equal(headlines.id, undefined);
 });
 
 test("influencer antics keep boring centre copy and one extreme response", () => {

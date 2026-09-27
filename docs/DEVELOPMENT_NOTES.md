@@ -113,8 +113,8 @@ story's puppets.
 override. It calculates Easter, carries Christmas pressure across New Year, and
 records the chosen date beside the run seed. `SeasonalNewsEngine` keeps a
 neutral event and two distorted treatments together across all six supported
-languages. Every third ordinary bulletin may pick up seasonal framing. The
-calendar therefore colours the news cycle without eating every photograph.
+languages. Seasonal framing now needs a photographed seasonal habit. The
+calendar therefore colours the news cycle without eating an unrelated photograph.
 
 Christmas can push spending and decoration. Easter can mix worship, novelty
 and chocolate commerce. New Year leans into reinvention. Ordinary dates still
@@ -212,6 +212,18 @@ practical aid the strongest response; nearby people can pass that on as well.
 I didn't add a saintly ending here. Help spreads slower than outrage, and all
 three televisions remain on screen, becuase the competing selection is the
 point.
+
+The same rule now sits under the rest of the game. `CaptureNarrativeEngine`
+records what was actually inside the shutter: hat, affection, fear, contempt,
+shouting, cricket, an empty frame, a visible seasonal habit, an influencer's
+current antic, or the selected flood crop. The side sets may distort that noun
+and verb. They don't get to swap in a private-jet scandal because an internal
+counter reached two. I had accidentally built precisely the sort of dishonest
+camera the original game was criticising, which was a bit too method.
+
+Seasonal reporting follows the same limit. Christmas can frame somebody the
+player actually photographs shopping or decorating. The date alone no longer
+replaces an unrelated photograph with a festive bulletin.
 
 ## The grubby little lever
 

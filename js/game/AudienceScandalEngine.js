@@ -72,9 +72,11 @@
     return Object.freeze({ headline: headline, effects: Object.freeze(effects), manipulations: Object.freeze(manipulations) });
   }
 
-  function create(frame, locale) {
-    if (!frame || frame.sequence % 4 !== 2) return null;
-    var story = stories[Math.floor(frame.sequence / 4) % stories.length];
+  function create(observation, locale) {
+    observation = observation && observation.story || observation || {};
+    if (!observation.capturedScandal) return null;
+    var story = stories.filter(function (candidate) { return candidate.id === observation.capturedScandal; })[0];
+    if (!story) return null;
     locale = story.copy[locale] ? locale : "en";
     var words = story.copy[locale];
     var calm = channel(words[0], { fear: 0.04, anger: 0.03, outgroupThreat: 0.01, institutionalDistrust: 0.04 }, ["procedural-reporting"]);
