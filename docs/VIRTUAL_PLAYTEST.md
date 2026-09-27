@@ -18,6 +18,7 @@ npm run playtest:virtual
 - flood photographs: trickle, representative scene and worst water;
 - toilet-roll photographs: normal stock, overloaded trolley and empty shelf;
 - Christmas toy coverage: first, second and third photograph of the same toy;
+- pet coverage: appealing pet, buying craze, wandering strays and bones;
 - player choices: sell, amplify, repair and refuse.
 
 ## Results after tuning
@@ -33,6 +34,10 @@ npm run playtest:virtual
 | Toy: first photograph | 12 ordinary |
 | Toy: second photograph | 9 stockpiling, 3 ordinary |
 | Toy: third photograph | 12 stockpiling |
+| Pet: appealing photograph | 12 ordinary |
+| Pet: viral buying craze | 12 pet-shopping |
+| Pet: abandoned animals | 7 accusing, 5 ordinary |
+| Pet: bones | 12 mourning |
 
 The first pass made all twelve people help after representative flood coverage
 and made all twelve hoard after trolley footage. My reading was that both were
@@ -44,6 +49,14 @@ The toy curve behaves as intended. Its first photograph creates recognition but
 no buying conversion. The second catches most of the crowd. The third produces
 the full panic, by which point the bare-shelf headline has become a consequence
 of the preceding coverage.
+
+The pet cycle uses four shorter influence windows because it is testing a chain,
+not four isolated broadcasts. The attractive first photograph produces no mass
+conversion. The second makes pet ownership fashionable. The third leaves three
+animals wandering through the square; most viewers who react reach for blame,
+not practical aid. The last image replaces one animal with a deliberately small
+pile of bones and interrupts the shopping behaviour. It is blunt. Making it
+cute would let the player dodge the consequence the earlier cute image caused.
 
 ## Agency comparison
 
@@ -86,6 +99,7 @@ failure and compromise rather than a disguised morality slider.
 
 This is a logic playtest, not a browser playthrough. It catches dead rules,
 identical choices, bad thresholds and runaway numbers. It cannot judge whether
-the toy is readable at phone size, whether three televisions crowd the camera,
-or whether the comic timing survives animation. Those remain browser and human
-playtest questions.
+the toy and pet are readable at phone size, whether three televisions crowd the
+camera, whether wandering strays move naturally, or whether the bone image is
+stark without becoming melodramatic. Those remain browser and human playtest
+questions.

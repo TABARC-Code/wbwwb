@@ -127,7 +127,7 @@ function Stage_ToiletRollPanic(self){
             evidence.forEach(function(prop){ prop.kill(); });
             var christmas = self.shadowTV && self.shadowTV.season && self.shadowTV.season.event === "christmas";
             if(christmas) Stage_ChristmasToyPanic(self);
-            else Stage_TrendFrenzy(self);
+            else Stage_PetCraze(self);
         }
     };
 }
@@ -156,7 +156,48 @@ function Stage_ChristmasToyPanic(self){
             if(!d.photoData.caughtToy) return;
             captures++;
             toy.setBuzz(captures);
-            if(captures>=3){ toy.kill(); Stage_TrendFrenzy(self); }
+            if(captures>=3){ toy.kill(); Stage_PetCraze(self); }
+        }
+    };
+}
+
+function Stage_PetCraze(self){
+    var phase = 0;
+    var phases = ["cute", "craze", "stray", "bones"];
+    var pets = [];
+    function clearPets(){ while(pets.length) pets.pop().kill(); }
+    function populate(state){
+        clearPets();
+        var positions = state === "cute" || state === "bones"
+            ? [[430, 350, 0]]
+            : [[245, 365, 0.28], [455, 330, -0.22], [690, 380, 0.2]];
+        positions.forEach(function(position){
+            var pet = new PetEvidenceProp(self, state, position[0], position[1], position[2]);
+            pets.push(pet); self.world.addProp(pet);
+        });
+    }
+    populate(phases[phase]);
+    self.director.callbacks = {
+        takePhoto: function(d){
+            var caught = d.caught({pet:{_CLASS_:"PetEvidenceProp", returnAll:true}}).pet;
+            if(caught.length){
+                var pet = caught.sort(function(a,b){ return b.width*b.height-a.width*a.height; })[0];
+                d.photoData.caughtPet = pet;
+                d.photoData.audience = [4, 8, 7, 9][phase];
+                d.photoData.story = {
+                    event:"pet-craze", topic:"pet", phase:pet.petState,
+                    coverageCount:phase+1, origin:pet.origin, subjects:"pets-and-owners"
+                };
+                d.chyron = WBWWBPetCrazeEngine.create(d.photoData.story, WBWWB_LOCALE).middle;
+            }else _chyPeeps(d);
+        },
+        movePhoto: function(d){ d.audience_movePhoto(); },
+        cutToTV: function(d){
+            d.audience_cutToTV();
+            if(!d.photoData.caughtPet) return;
+            phase++;
+            if(phase>=phases.length){ clearPets(); Stage_TrendFrenzy(self); }
+            else populate(phases[phase]);
         }
     };
 }

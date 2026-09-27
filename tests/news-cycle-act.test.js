@@ -47,15 +47,28 @@ function loadAct() {
       if (index >= 0) scene.world.props.splice(index, 1);
     };
   }
+  function PetEvidenceProp(scene, state, x, y, drift) {
+    this._CLASS_ = "PetEvidenceProp";
+    this.petState = state;
+    this.origin = "viral-photo-cycle";
+    this.x = x; this.y = y; this.width = state === "bones" ? 62 : 82; this.height = 61;
+    this.drift = drift;
+    this.kill = () => {
+      const index = scene.world.props.indexOf(this);
+      if (index >= 0) scene.world.props.splice(index, 1);
+    };
+  }
   const context = {
     InfluencerPeep,
     FloodEvidenceProp,
     ShortageEvidenceProp,
     ToyEvidenceProp,
+    PetEvidenceProp,
     WBWWBInfluencerNewsEngine: { create: () => ({ middle: "headline" }) },
     WBWWBFloodFramingEngine: { create: () => ({ middle: "FLOODING CUTS OFF HOMES" }) },
     WBWWBShortageFramingEngine: { create: (story) => ({ middle: story.capturedState === "empty" ? "TOILET ROLL SHELF EMPTY AFTER RUSH" : "SHOP ASKS CUSTOMERS TO BUY NORMALLY" }) },
     WBWWBToyPanicEngine: { create: (story) => ({ middle: "TOY COVERAGE " + story.coverageCount }) },
+    WBWWBPetCrazeEngine: { create: (story) => ({ middle: "PET " + story.phase }) },
     WBWWB_LOCALE: "en",
     _chyPeeps() {},
     Stage_Screamer() {}
@@ -156,4 +169,24 @@ test("repeated pictures of one Christmas toy escalate the story", () => {
   scene.director.callbacks.takePhoto(director);
   assert.equal(director.photoData.story.coverageCount, 2);
   assert.equal(director.photoData.story.toyId, "wobble-beast");
+});
+
+test("pet coverage creates demand, strays and finally bones", () => {
+  const context = loadAct();
+  const scene = makeScene();
+  context.Stage_PetCraze(scene);
+  const seen = [];
+  const director = {
+    photoData: {},
+    caught: () => ({ pet: scene.world.props.filter((prop) => prop._CLASS_ === "PetEvidenceProp") }),
+    audience_cutToTV() {}
+  };
+  for (let shot = 0; shot < 4; shot += 1) {
+    director.photoData = {};
+    scene.director.callbacks.takePhoto(director);
+    seen.push(director.photoData.story.phase);
+    scene.director.callbacks.cutToTV(director);
+  }
+  assert.deepEqual(seen, ["cute", "craze", "stray", "bones"]);
+  assert.equal(scene.world.props.filter((prop) => prop._CLASS_ === "PetEvidenceProp").length, 0);
 });

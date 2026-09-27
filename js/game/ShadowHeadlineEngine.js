@@ -104,6 +104,10 @@
       return global.WBWWBToyPanicEngine.create(story, locale);
     }
 
+    if (story.event === "pet-craze" && global.WBWWBPetCrazeEngine) {
+      return global.WBWWBPetCrazeEngine.create(story, locale);
+    }
+
     if (story.event === "influencer" && global.WBWWBInfluencerNewsEngine) {
       return global.WBWWBInfluencerNewsEngine.create(story, locale);
     }

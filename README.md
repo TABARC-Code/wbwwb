@@ -24,10 +24,11 @@ A technical modernization of the open-source `ncase/wbwwb` codebase.
 - Audio failure falls back to silent play instead of blocking startup.
 - The 960 × 540 game scales responsively without stretching.
 - Accessible language and sound controls sit outside the camera canvas.
+- Authored extension stories now include selective flood coverage, self-fulfilling shortages, a Christmas toy panic and a photographed pet craze whose abandoned animals remain visible in the square.
 
 ## Scene/content preservation
 
-The modernization preserves the canonical story and scene content. Original English artwork has been restored from the fork network; runtime and test seams are isolated from narrative code wherever practical.
+The modernization preserves the canonical ending and its central camera-to-news feedback loop, then places clearly separated authored stories before it. Original English artwork has been restored from the fork network; runtime and test seams are isolated from narrative code wherever practical.
 
 ## Run locally
 

@@ -148,6 +148,37 @@
     state.fear = clamp(state.fear + strength);
     state.familiarity = clamp(state.familiarity + strength * 0.3);
   };
+  ShadowAudienceModel.prototype.applyPetResponse = function (peep, phase) {
+    if (!peep || !peep.shadowInfluence) return;
+    var state = stateFor(peep);
+    if (phase === "cute" || phase === "craze") {
+      var demand = phase === "craze" ? 0.64 : 0.12;
+      if (demand < state.resistance * 0.92) return;
+      state.narrative = "pet-craze";
+      state.behaviour = "pet-shopping";
+      state.habit = "buying";
+      state.familiarity = clamp(state.familiarity + demand * 0.5);
+      state.fear = clamp(state.fear + demand * 0.35);
+      return;
+    }
+    if (phase === "stray") {
+      state.narrative = "pet-abandonment";
+      // The centre image can prompt practical help. Side-channel attention is
+      // better at producing a villain and a post than a home for the animal.
+      if (state.mainAttention >= Math.max(state.leftAttention, state.rightAttention)) {
+        state.behaviour = "helping";
+        state.practicalConcern = clamp(state.practicalConcern + 0.5);
+      } else {
+        state.behaviour = "accusing";
+        state.anger = clamp(state.anger + 0.28);
+      }
+      return;
+    }
+    state.narrative = "pet-neglect";
+    state.behaviour = "mourning";
+    state.practicalConcern = clamp(state.practicalConcern + 0.28);
+    state.anger = clamp(state.anger + 0.2);
+  };
   ShadowAudienceModel.prototype.allocateAttention = function (peep, mainTV, leftTV, rightTV, channels) {
     function score(tv, salience) {
       if (!tv) return 0;
@@ -195,6 +226,9 @@
     state.activeAge = 0;
     this.metrics.activations += 1;
     if (state.narrative === "shortage-panic" || state.narrative === "toy-panic") state.behaviour = "stockpiling";
+    else if (state.narrative === "pet-craze") state.behaviour = "pet-shopping";
+    else if (state.narrative === "pet-abandonment") state.behaviour = state.practicalConcern >= state.anger ? "helping" : "accusing";
+    else if (state.narrative === "pet-neglect") state.behaviour = "mourning";
     else if (state.narrative === "flood-denial") state.behaviour = "mocking";
     else if (state.narrative === "flood-alarm") state.behaviour = "warning";
     else if (state.narrative === "flood-aid") state.behaviour = "helping";
@@ -222,6 +256,9 @@
       if (framing && framing.strategy === "shared-toy-panic") {
         this.applyShortageResponse(peeps[i], framing.evidence.coverageCount >= 3 ? "empty" : framing.evidence.coverageCount >= 2 ? "hoard" : "normal");
         if (peeps[i].shadowInfluence) peeps[i].shadowInfluence.narrative = "toy-panic";
+      }
+      if (framing && framing.strategy === "pet-craze-consequence") {
+        this.applyPetResponse(peeps[i], framing.evidence.captured);
       }
     }
     for (var p = 0; p < peeps.length; p++) this.assess(scene, peeps[p], peeps);
@@ -300,7 +337,7 @@
           helped.practicalConcern = clamp(helped.practicalConcern + proximity * this.spreadStrength * 0.7);
           helped.fear = clamp(helped.fear - proximity * this.spreadStrength * 0.25);
           if (helped.behaviour === "ordinary" || helped.behaviour === "watchful") helped.behaviour = "helping";
-          helped.narrative = "flood-aid";
+          helped.narrative = sourceState.narrative || "practical-aid";
         }
         if (before === "susceptible") this.metrics.personTransmissions += 1;
       }
@@ -345,7 +382,7 @@
     }
     var symbols = { susceptible: "", exposed: "?", active: "!", cooling: "·" };
     var habits = { buying: "£", decorating: "✦", observing: "○", "seeking-novelty": "+", ordinary: "" };
-    var floodSymbols = { "flood-denial": "HA!", "flood-alarm": "!!", "flood-aid": "+", "shortage-panic": "ROLLS!", "toy-panic": "WANT!" };
+    var floodSymbols = { "flood-denial": "HA!", "flood-alarm": "!!", "flood-aid": "+", "shortage-panic": "ROLLS!", "toy-panic": "WANT!", "pet-craze": "PET!", "pet-abandonment": "HOME?", "pet-neglect": "..." };
     peep.shadowMarker.text = (floodSymbols[state.narrative] || symbols[state.phase] || "") + (habits[habit] || "");
     peep.shadowMarker.tint = state.leftAttention >= state.rightAttention ? 0xb66a9e : 0xd8795f;
     peep.shadowMarker.alpha = state.phase === "active" ? 1 : 0.65;

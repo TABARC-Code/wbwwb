@@ -5,6 +5,7 @@ const assert = require("node:assert/strict");
 const Flood = require("../js/game/FloodFramingEngine.js");
 const Shortage = require("../js/game/ShortageFramingEngine.js");
 const Toy = require("../js/game/ToyPanicEngine.js");
+const Pet = require("../js/game/PetCrazeEngine.js");
 const Audience = require("../js/game/ShadowAudienceModel.js");
 const Agency = require("../js/game/PlayerAgencyModel.js");
 
@@ -31,11 +32,11 @@ function means(peeps) {
   };
 }
 
-function runBroadcast(frame, peeps) {
+function runBroadcast(frame, peeps, spreadTicks) {
   const model = new Audience({ tvRadius: 330, personRadius: 125, spreadStrength: 0.07, transform: false });
   const scene = { tv: { x: 480, y: 270 }, world: { peeps } };
   model.exposeBroadcast(scene, { x: 165, y: 362 }, { x: 795, y: 362 }, frame.channels, null, frame);
-  for (let tick = 0; tick < 12; tick += 1) model.spread(scene, 500);
+  for (let tick = 0; tick < (spreadTicks == null ? 12 : spreadTicks); tick += 1) model.spread(scene, 500);
   return means(peeps);
 }
 
@@ -73,6 +74,7 @@ const report = {
   flood: {},
   shortage: {},
   christmasToy: [],
+  petCraze: [],
   agency: {},
   fullAgencyRun: []
 };
@@ -93,6 +95,12 @@ for (let coverageCount = 1; coverageCount <= 3; coverageCount += 1) {
   report.christmasToy.push({ coverageCount, agitation: frame.agitation, crowd: runBroadcast(frame, toyCrowd) });
 }
 
+const petCrowd = crowd();
+Pet.phases.forEach((phase) => {
+  const frame = Pet.create({ event: "pet-craze", phase }, "en");
+  report.petCraze.push({ phase, agitation: frame.agitation, crowd: runBroadcast(frame, petCrowd, 4) });
+});
+
 ["sell", "amplify", "repair", "refuse"].forEach((choice) => {
   report.agency[choice] = agencyChoice(choice, { event: "toy-panic", topic: "toy" }, 9, 0.72);
 });
@@ -109,6 +117,9 @@ assert.ok(report.flood.trickle.anger > report.flood.representative.anger, "trick
 assert.ok(report.flood.representative.practicalConcern > report.flood.trickle.practicalConcern, "representative flood coverage should produce more practical concern");
 assert.ok(report.shortage.empty.fear > report.shortage.normal.fear, "empty shelf should provoke more fear than normal stock");
 assert.ok(report.christmasToy[2].crowd.fear >= report.christmasToy[0].crowd.fear, "repeated toy coverage should not reduce fear");
+assert.ok((report.petCraze[1].crowd.behaviours["pet-shopping"] || 0) > 0, "viral pet coverage should produce imitation buying");
+assert.ok((report.petCraze[2].crowd.behaviours.helping || 0) + (report.petCraze[2].crowd.behaviours.accusing || 0) > 0, "abandoned pets should produce a visible response");
+assert.equal(report.petCraze[3].crowd.behaviours.mourning, 12, "the final consequence should interrupt the buying behaviour");
 assert.ok(report.agency.sell.money > report.agency.refuse.money, "selling should produce cash");
 assert.ok(report.agency.repair.change > 0, "repair should produce practical change");
 assert.ok(report.agency.refuse.trust > report.agency.amplify.trust, "refusal should preserve more trust than amplification");

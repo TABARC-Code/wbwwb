@@ -169,3 +169,35 @@ strategies. Assertions fail if representative flood coverage becomes less
 useful than a misleading crop, panic stops escalating, cash becomes runaway, or
 exploit-then-repair quietly erases its earlier cost. The detailed figures and
 limits are recorded in `docs/VIRTUAL_PLAYTEST.md`.
+
+## 27 September 2026 — the pet photograph outlives the trend
+
+A four-picture pet cycle now sits between the shortage stories and the broader
+influencer acts. The first photograph is simply appealing. The next report says
+sales rose after the image went viral, and three pets appear in the square. On
+the following beat they have become wandering strays. The final photograph is a
+small pile of bones.
+
+The sequence is causal rather than a rotating list of miserable headlines. No
+pet sales surge exists before the player photographs the attractive animal. No
+strays appear before the resulting craze is photographed. The bone image only
+arrives after abandonment has itself become another piece of content. If the
+camera misses the current evidence, the sequence does not advance.
+
+The side televisions use the same evidence but sell different villains. One
+blames an industry which cashed in and left shelters with the bill. The other
+blames feckless owners and disposable culture. Both were quite happy to promote
+acquisition one bulletin earlier. The centre television sticks to the visible
+event: home, sales, abandonment, death.
+
+I kept the bones small and bloodless. The point needs a full stop, not gore.
+The animal is not the joke; the absurdly short public attention span is. The
+wandering props visibly search across the square, while the influence model
+separates pet-shopping, practical help, accusation and mourning. Help can spread
+between nearby people without being incorrectly relabelled as flood aid.
+
+The virtual playtest reports no conversion from the first image, twelve
+pet-shopping responses after the craze, seven accusatory responses to the
+strays, and twelve mourning responses to the bones. Eighty Node tests and 94
+asset references pass. Browser timing and the visual weight of the last image
+still need a human playthrough.

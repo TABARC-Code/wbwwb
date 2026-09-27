@@ -159,3 +159,26 @@ test("shortage coverage makes both sides stockpile", () => {
   assert.equal(left.shadowInfluence.habit, "buying");
   assert.equal(right.shadowInfluence.habit, "buying");
 });
+
+test("pet fashion turns buying into abandonment rather than resetting the crowd", () => {
+  const model = new ShadowAudienceModel({ tvRadius: 700, transform: false });
+  const peep = { x: 480, y: 300, simulationId: 30, _CLASS_: "NormalPeep", ideology: { preference: 0 } };
+  const scene = { tv: { x: 480, y: 270 }, world: { peeps: [peep] } };
+  const channels = {
+    left: channel(0.4, 0.2),
+    right: channel(0.4, 0.2)
+  };
+  model.exposeBroadcast(scene, { x: 165, y: 362 }, { x: 795, y: 362 }, channels, null, {
+    strategy: "pet-craze-consequence", evidence: { captured: "craze" }
+  });
+  assert.equal(peep.shadowInfluence.behaviour, "pet-shopping");
+  model.exposeBroadcast(scene, { x: 165, y: 362 }, { x: 795, y: 362 }, channels, null, {
+    strategy: "pet-craze-consequence", evidence: { captured: "stray" }
+  });
+  assert.equal(peep.shadowInfluence.narrative, "pet-abandonment");
+  assert.ok(["helping", "accusing"].includes(peep.shadowInfluence.behaviour));
+  model.exposeBroadcast(scene, { x: 165, y: 362 }, { x: 795, y: 362 }, channels, null, {
+    strategy: "pet-craze-consequence", evidence: { captured: "bones" }
+  });
+  assert.equal(peep.shadowInfluence.behaviour, "mourning");
+});
