@@ -123,7 +123,8 @@
       this.leftDisplay,
       this.rightDisplay,
       headlines.channels,
-      this.season
+      this.season,
+      headlines
     );
     if (broadcast.scene && broadcast.scene.ideologyModel && headlines.targetSide) {
       broadcast.scene.ideologyModel.receiveNews(broadcast.scene, headlines);

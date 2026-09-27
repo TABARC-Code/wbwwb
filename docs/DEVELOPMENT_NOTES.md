@@ -205,6 +205,14 @@ selection back where it belongs: inside the camera. Missing the larger flood is
 therefore a player action with consequences, not a fact the script sneaks into
 the ledger after the shutter closes.
 
+That crop now changes more than the caption. A trickle crop gives the denial
+set the loudest repeat and sympathetic people start mocking the emergency. The
+worst-water crop produces alarm and warning. A representative frame makes
+practical aid the strongest response; nearby people can pass that on as well.
+I didn't add a saintly ending here. Help spreads slower than outrage, and all
+three televisions remain on screen, becuase the competing selection is the
+point.
+
 ## The grubby little lever
 
 The camera remains the game. I have not added a management screen where the

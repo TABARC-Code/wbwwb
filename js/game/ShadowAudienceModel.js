@@ -46,6 +46,8 @@
     state.leftAttention = clamp(state.leftAttention);
     state.rightAttention = clamp(state.rightAttention);
     state.mainAttention = clamp(state.mainAttention);
+    state.practicalConcern = clamp(state.practicalConcern);
+    state.narrative = state.narrative || null;
     return state;
   }
   function pressure(state) {
@@ -91,11 +93,11 @@
     }
     return state;
   };
-  ShadowAudienceModel.prototype.applyChannel = function (peep, tv, channel, side) {
+  ShadowAudienceModel.prototype.applyChannel = function (peep, tv, channel, side, weight) {
     if (!peep || !tv || !channel) return false;
     var proximity = Math.max(0, 1 - distance(peep, tv) / this.tvRadius);
     if (!proximity) return false;
-    var dose = proximity * this.broadcastStrength;
+    var dose = proximity * this.broadcastStrength * (Number(weight) || 1);
     var sensationalism = pressure(channel.effects);
     dose *= (0.6 + sensationalism * 0.55) * Math.max(0.12, stateFor(peep)[side + "Attention"]);
     var state = this.addDose(peep, channel.effects, dose, "tv-" + side);
@@ -106,6 +108,31 @@
       state.credibility = clamp(state.credibility - state.confusion * 0.025);
     }
     return true;
+  };
+  ShadowAudienceModel.prototype.applyFloodResponse = function (peep, selected) {
+    if (!peep || !peep.shadowInfluence) return;
+    var state = stateFor(peep);
+    var preference = peep.ideology ? Math.sign(peep.ideology.preference) : 0;
+    var receptive = selected === "trickle" ? preference >= 0 : selected === "extreme" ? preference <= 0 : true;
+    if (!receptive) return;
+
+    if (selected === "trickle") {
+      state.narrative = "flood-denial";
+      state.behaviour = "mocking";
+      state.anger = clamp(state.anger + 0.16);
+      state.institutionalDistrust = clamp(state.institutionalDistrust + 0.2);
+    } else if (selected === "extreme") {
+      state.narrative = "flood-alarm";
+      state.behaviour = "warning";
+      state.fear = clamp(state.fear + 0.2);
+      state.anger = clamp(state.anger + 0.1);
+    } else {
+      state.narrative = "flood-aid";
+      state.behaviour = "helping";
+      state.practicalConcern = clamp(state.practicalConcern + 0.45 + 0.6 * state.mainAttention);
+      state.anger = clamp(state.anger - 0.12 * state.mainAttention);
+      state.institutionalDistrust = clamp(state.institutionalDistrust - 0.1 * state.mainAttention);
+    }
   };
   ShadowAudienceModel.prototype.allocateAttention = function (peep, mainTV, leftTV, rightTV, channels) {
     function score(tv, salience) {
@@ -147,26 +174,33 @@
     if (!peep.shadowInfluence) return peep;
     var state = stateFor(peep);
     if (state.phase !== "exposed") return peep;
-    var adoption = pressure(state) * state.susceptibility +
+    var adoption = Math.max(pressure(state), state.practicalConcern) * state.susceptibility +
       this.socialProof(peep, peeps || scene.world.peeps) * this.socialProofWeight;
     if (adoption < state.adoptionThreshold) return peep;
     state.phase = "active";
     state.activeAge = 0;
     this.metrics.activations += 1;
-    if (state.outgroupThreat >= 0.7) state.behaviour = "accusing";
+    if (state.narrative === "flood-denial") state.behaviour = "mocking";
+    else if (state.narrative === "flood-alarm") state.behaviour = "warning";
+    else if (state.narrative === "flood-aid") state.behaviour = "helping";
+    else if (state.outgroupThreat >= 0.7) state.behaviour = "accusing";
     else if (state.anger >= state.fear) state.behaviour = "agitating";
     else state.behaviour = "avoiding";
     this.assignHabit(state);
     return this.maybeTransform(scene, peep);
   };
-  ShadowAudienceModel.prototype.exposeBroadcast = function (scene, leftTV, rightTV, channels, season) {
+  ShadowAudienceModel.prototype.exposeBroadcast = function (scene, leftTV, rightTV, channels, season, framing) {
     if (!scene || !scene.world || !channels) return;
     this.setSeason(season);
     var peeps = scene.world.peeps.slice();
     for (var i = 0; i < peeps.length; i++) {
       this.allocateAttention(peeps[i], scene.tv, leftTV, rightTV, channels);
-      this.applyChannel(peeps[i], leftTV, channels.left, "left");
-      this.applyChannel(peeps[i], rightTV, channels.right, "right");
+      var emphasis = framing && framing.emphasis || {};
+      this.applyChannel(peeps[i], leftTV, channels.left, "left", emphasis.left);
+      this.applyChannel(peeps[i], rightTV, channels.right, "right", emphasis.right);
+      if (framing && framing.id === "flood-selective-evidence") {
+        this.applyFloodResponse(peeps[i], framing.evidence.captured);
+      }
     }
     for (var p = 0; p < peeps.length; p++) this.assess(scene, peeps[p], peeps);
   };
@@ -228,13 +262,24 @@
         var proximity = Math.max(0, 1 - distance(active[i], peeps[j]) / this.personRadius);
         if (!proximity) continue;
         var targetFactor = 1;
-        if (sourceState.behaviour === "accusing") {
+        if (sourceState.behaviour === "accusing" || sourceState.behaviour === "mocking") {
           targetFactor = active[i].type && peeps[j].type && active[i].type !== peeps[j].type ? 1.35 : 0.55;
         } else if (sourceState.behaviour === "avoiding") {
           targetFactor = 0.25;
+        } else if (sourceState.behaviour === "helping") {
+          // Practical action travels too, only without pretending kindness is
+          // magically viral. It is slower and needs close contact.
+          targetFactor = 0.5;
         }
         var before = stateFor(peeps[j]).phase;
         this.addDose(peeps[j], sourceState, proximity * this.spreadStrength * infectiousness * targetFactor, "person");
+        if (sourceState.behaviour === "helping") {
+          var helped = stateFor(peeps[j]);
+          helped.practicalConcern = clamp(helped.practicalConcern + proximity * this.spreadStrength * 0.7);
+          helped.fear = clamp(helped.fear - proximity * this.spreadStrength * 0.25);
+          if (helped.behaviour === "ordinary" || helped.behaviour === "watchful") helped.behaviour = "helping";
+          helped.narrative = "flood-aid";
+        }
         if (before === "susceptible") this.metrics.personTransmissions += 1;
       }
     }
@@ -278,7 +323,8 @@
     }
     var symbols = { susceptible: "", exposed: "?", active: "!", cooling: "·" };
     var habits = { buying: "£", decorating: "✦", observing: "○", "seeking-novelty": "+", ordinary: "" };
-    peep.shadowMarker.text = (symbols[state.phase] || "") + (habits[habit] || "");
+    var floodSymbols = { "flood-denial": "HA!", "flood-alarm": "!!", "flood-aid": "+" };
+    peep.shadowMarker.text = (floodSymbols[state.narrative] || symbols[state.phase] || "") + (habits[habit] || "");
     peep.shadowMarker.tint = state.leftAttention >= state.rightAttention ? 0xb66a9e : 0xd8795f;
     peep.shadowMarker.alpha = state.phase === "active" ? 1 : 0.65;
   };

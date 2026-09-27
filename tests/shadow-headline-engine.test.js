@@ -32,6 +32,9 @@ test("the photographer's flood crop determines which extreme receives the strong
   assert.equal(rightCue.targetSide, "right");
   assert.equal(representative.targetSide, null);
   assert.ok(representative.agitation < rightCue.agitation);
+  assert.ok(leftCue.emphasis.left > leftCue.emphasis.right);
+  assert.ok(rightCue.emphasis.right > rightCue.emphasis.left);
+  assert.ok(representative.emphasis.middle > representative.emphasis.left);
 });
 
 test("empty evidence records the claim manufactured from its absence", () => {

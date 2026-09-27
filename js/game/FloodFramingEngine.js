@@ -38,12 +38,20 @@
       { crop: "shallow-trickle", relationToEvent: "real-but-unrepresentative-low" });
     var selected = story.capturedSeverity || "representative";
     var targetSide = selected === "trickle" ? "right" : selected === "extreme" ? "left" : null;
+    // All three pictures are true bits of the same place. The photographer's
+    // crop decides which one gets repeated loudest; that's the dirty trick.
+    var emphasis = selected === "trickle"
+      ? { left: 0.55, middle: 0.42, right: 1.45 }
+      : selected === "extreme"
+        ? { left: 1.45, middle: 0.42, right: 0.55 }
+        : { left: 0.62, middle: 1.2, right: 0.62 };
     return Object.freeze({
       id: "flood-selective-evidence", targetSide: targetSide,
       agitation: targetSide ? 0.82 : 0.34,
       middle: words[0], left: words[1], right: words[2],
       middleImage: "flood_actual", leftImage: "flood_extreme", rightImage: "flood_trickle",
       channels: Object.freeze({ left: left, right: right }),
+      emphasis: Object.freeze(emphasis),
       evidence: Object.freeze({ captured: selected, actual: "representative-wide-view", left: left.evidence, right: right.evidence }),
       tags: Object.freeze(["flood", "selective-evidence", "scale-distortion"]),
       strategy: "selective-visual-evidence"

@@ -112,3 +112,32 @@ test("central attention assists recovery from sensational pressure", () => {
   assert.ok(peep.shadowInfluence.fear < 0.6);
   assert.ok(peep.shadowInfluence.credibility > 0.4);
 });
+
+test("the photographed flood crop changes the crowd's immediate response", () => {
+  const makePeep = (preference) => ({
+    x: 50, y: 0, simulationId: preference + 10, _CLASS_: "NormalPeep",
+    ideology: { preference }
+  });
+  const channels = { left: channel(0.8, 0.5), right: channel(0.1, 0.9) };
+  const framing = (captured, emphasis) => ({
+    id: "flood-selective-evidence", evidence: { captured }, emphasis
+  });
+
+  const denier = makePeep(2);
+  let scene = { tv: { x: 50, y: 0 }, world: { peeps: [denier] } };
+  let model = new ShadowAudienceModel({ tvRadius: 200, transform: false });
+  model.exposeBroadcast(scene, { x: 0, y: 0 }, { x: 100, y: 0 }, channels, null,
+    framing("trickle", { left: 0.55, middle: 0.42, right: 1.45 }));
+  assert.equal(denier.shadowInfluence.narrative, "flood-denial");
+  assert.equal(denier.shadowInfluence.behaviour, "mocking");
+  assert.ok(denier.shadowInfluence.rightExposure > denier.shadowInfluence.leftExposure);
+
+  const helper = makePeep(0);
+  scene = { tv: { x: 50, y: 0 }, world: { peeps: [helper] } };
+  model = new ShadowAudienceModel({ tvRadius: 200, transform: false });
+  model.exposeBroadcast(scene, { x: 0, y: 0 }, { x: 100, y: 0 }, channels, null,
+    framing("representative", { left: 0.62, middle: 1.2, right: 0.62 }));
+  assert.equal(helper.shadowInfluence.narrative, "flood-aid");
+  assert.equal(helper.shadowInfluence.behaviour, "helping");
+  assert.ok(helper.shadowInfluence.practicalConcern > 0);
+});
