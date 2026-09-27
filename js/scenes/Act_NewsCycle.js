@@ -94,6 +94,37 @@ function Stage_FloodFraming(self){
             d.audience_cutToTV();
             if(!d.photoData.caughtFlood) return;
             fragments.forEach(function(fragment){ fragment.kill(); });
+            Stage_ToiletRollPanic(self);
+        }
+    };
+}
+
+function Stage_ToiletRollPanic(self){
+    var evidence = [
+        new ShortageEvidenceProp(self, "normal", 125, 365),
+        new ShortageEvidenceProp(self, "hoard", 425, 335),
+        new ShortageEvidenceProp(self, "empty", 735, 365)
+    ];
+    evidence.forEach(function(prop){ self.world.addProp(prop); });
+    self.director.callbacks = {
+        takePhoto: function(d){
+            var caught = d.caught({shortage:{_CLASS_:"ShortageEvidenceProp", returnAll:true}}).shortage;
+            if(caught.length){
+                var prop = caught.sort(function(a,b){ return b.width*b.height-a.width*a.height; })[0];
+                d.photoData.caughtShortage = prop;
+                d.photoData.audience = prop.shortageState === "normal" ? 4 : 8;
+                d.photoData.story = {
+                    event:"shortage", topic:"shortage", capturedState:prop.shortageState,
+                    actualSupply:prop.actualSupply, subjects:"shoppers"
+                };
+                d.chyron = WBWWBShortageFramingEngine.create(d.photoData.story, WBWWB_LOCALE).middle;
+            }else _chyPeeps(d);
+        },
+        movePhoto: function(d){ d.audience_movePhoto(); },
+        cutToTV: function(d){
+            d.audience_cutToTV();
+            if(!d.photoData.caughtShortage) return;
+            evidence.forEach(function(prop){ prop.kill(); });
             Stage_TrendFrenzy(self);
         }
     };

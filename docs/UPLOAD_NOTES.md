@@ -77,3 +77,50 @@ argument, player agency, simulation rules or visible behaviour. Small repairs
 can remain in the commit message. Substantial notes should record what changed,
 why it changed, which modules were touched, which checks ran, and what remains
 unproved.
+
+## 27 September 2026 — toilet roll manufactures its own emergency
+
+### What changed
+
+A toilet-roll beat now follows the flood. The player can photograph ordinary
+stock, an overloaded trolley or an almost empty shelf. The centre reports the
+selected scene. Both extreme televisions panic over it, though one blames
+profiteers and hoarders while the other presents shopping as a race against
+everybody else.
+
+The crowd response is shared across left and right. People begin stockpiling,
+then pass the behaviour to nearby people through the existing influence model.
+The photographed hoarding therefore helps manufacture the shortage that later
+coverage claims merely to observe.
+
+### Reasoning and research
+
+The useful comic shape came from two real patterns. Toilet-paper panic buying
+has repeatedly turned perceived scarcity into empty shelves, and coverage of
+queues or loaded trolleys can make stockpiling appear to be the normal,
+protective thing to do. My aim was to preserve that feedback loop without
+recreating a particular public-health emergency or turning frightened people
+into a cheap punchline.
+
+Sources used for the mechanism:
+
+- https://pmc.ncbi.nlm.nih.gov/articles/PMC8520319/
+- https://cnr.ncsu.edu/news/2020/05/coronavirus-toilet-paper-shortage/
+- https://pmc.ncbi.nlm.nih.gov/articles/PMC7908195/
+- https://www.theguardian.com/australia-news/2026/mar/28/psychology-panic-buying-stockpiling-scarcity-mindset
+
+### Story leads worth developing later
+
+These are patterns, not promises to paste real people into the game:
+
+- a bidet influencer treats a shortage as the launch of civilisation 2.0;
+- one remaining soft drink can becomes a luxury status object and selfie prop;
+- a harmless squishy toy creates queues, counterfeit versions and dangerous
+  “life-hack” videos;
+- viral chocolate or matcha produces a craze whose colourful photograph hides
+  the dull agricultural supply problem underneath;
+- a collectible blind box offers a ready-made loop of scarcity, resale,
+  disappointment and another unboxing video.
+
+The funniest candidates still need the same evidence rule: the player must
+photograph the behaviour that the headlines subsequently distort.

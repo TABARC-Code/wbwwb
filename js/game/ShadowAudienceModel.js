@@ -134,6 +134,16 @@
       state.institutionalDistrust = clamp(state.institutionalDistrust - 0.1 * state.mainAttention);
     }
   };
+  ShadowAudienceModel.prototype.applyShortageResponse = function (peep, captured) {
+    if (!peep || !peep.shadowInfluence) return;
+    var state = stateFor(peep);
+    var strength = captured === "normal" ? 0.18 : captured === "hoard" ? 0.55 : 0.72;
+    state.narrative = "shortage-panic";
+    state.behaviour = "stockpiling";
+    state.habit = "buying";
+    state.fear = clamp(state.fear + strength);
+    state.familiarity = clamp(state.familiarity + strength * 0.3);
+  };
   ShadowAudienceModel.prototype.allocateAttention = function (peep, mainTV, leftTV, rightTV, channels) {
     function score(tv, salience) {
       if (!tv) return 0;
@@ -180,7 +190,8 @@
     state.phase = "active";
     state.activeAge = 0;
     this.metrics.activations += 1;
-    if (state.narrative === "flood-denial") state.behaviour = "mocking";
+    if (state.narrative === "shortage-panic") state.behaviour = "stockpiling";
+    else if (state.narrative === "flood-denial") state.behaviour = "mocking";
     else if (state.narrative === "flood-alarm") state.behaviour = "warning";
     else if (state.narrative === "flood-aid") state.behaviour = "helping";
     else if (state.outgroupThreat >= 0.7) state.behaviour = "accusing";
@@ -200,6 +211,9 @@
       this.applyChannel(peeps[i], rightTV, channels.right, "right", emphasis.right);
       if (framing && framing.id === "flood-selective-evidence") {
         this.applyFloodResponse(peeps[i], framing.evidence.captured);
+      }
+      if (framing && framing.strategy === "shared-panic-competing-blame") {
+        this.applyShortageResponse(peeps[i], framing.evidence.captured);
       }
     }
     for (var p = 0; p < peeps.length; p++) this.assess(scene, peeps[p], peeps);
@@ -323,7 +337,7 @@
     }
     var symbols = { susceptible: "", exposed: "?", active: "!", cooling: "·" };
     var habits = { buying: "£", decorating: "✦", observing: "○", "seeking-novelty": "+", ordinary: "" };
-    var floodSymbols = { "flood-denial": "HA!", "flood-alarm": "!!", "flood-aid": "+" };
+    var floodSymbols = { "flood-denial": "HA!", "flood-alarm": "!!", "flood-aid": "+", "shortage-panic": "ROLLS!" };
     peep.shadowMarker.text = (floodSymbols[state.narrative] || symbols[state.phase] || "") + (habits[habit] || "");
     peep.shadowMarker.tint = state.leftAttention >= state.rightAttention ? 0xb66a9e : 0xd8795f;
     peep.shadowMarker.alpha = state.phase === "active" ? 1 : 0.65;

@@ -26,6 +26,8 @@
       profile: story.profile || null,
       capturedSeverity: story.capturedSeverity || null,
       actualSeverity: story.actualSeverity || null,
+      capturedState: story.capturedState || null,
+      actualSupply: story.actualSupply || null,
       followers: number(story.followers),
       foreign: Boolean(story.foreign),
       authorityFailure: Boolean(story.authorityFailure),

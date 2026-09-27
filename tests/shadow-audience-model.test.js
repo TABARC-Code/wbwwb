@@ -141,3 +141,20 @@ test("the photographed flood crop changes the crowd's immediate response", () =>
   assert.equal(helper.shadowInfluence.behaviour, "helping");
   assert.ok(helper.shadowInfluence.practicalConcern > 0);
 });
+
+test("shortage coverage makes both sides stockpile", () => {
+  const left = { x: 40, y: 0, simulationId: 20, ideology: { preference: -2 } };
+  const right = { x: 60, y: 0, simulationId: 21, ideology: { preference: 2 } };
+  const scene = { tv: { x: 50, y: 0 }, world: { peeps: [left, right] } };
+  const model = new ShadowAudienceModel({ tvRadius: 200, transform: false });
+  model.exposeBroadcast(scene, { x: 0, y: 0 }, { x: 100, y: 0 }, {
+    left: channel(0.9, 0.8), right: channel(0.9, 0.8)
+  }, null, {
+    strategy: "shared-panic-competing-blame", evidence: { captured: "empty" },
+    emphasis: { left: 1.3, right: 1.3 }
+  });
+  assert.equal(left.shadowInfluence.behaviour, "stockpiling");
+  assert.equal(right.shadowInfluence.behaviour, "stockpiling");
+  assert.equal(left.shadowInfluence.habit, "buying");
+  assert.equal(right.shadowInfluence.habit, "buying");
+});

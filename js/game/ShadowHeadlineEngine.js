@@ -96,6 +96,10 @@
       return global.WBWWBFloodFramingEngine.create(story, locale);
     }
 
+    if (story.event === "shortage" && global.WBWWBShortageFramingEngine) {
+      return global.WBWWBShortageFramingEngine.create(story, locale);
+    }
+
     if (story.event === "influencer" && global.WBWWBInfluencerNewsEngine) {
       return global.WBWWBInfluencerNewsEngine.create(story, locale);
     }

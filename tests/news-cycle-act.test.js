@@ -27,11 +27,23 @@ function loadAct() {
       if (index >= 0) scene.world.props.splice(index, 1);
     };
   }
+  function ShortageEvidenceProp(scene, state, x, y) {
+    this._CLASS_ = "ShortageEvidenceProp";
+    this.shortageState = state;
+    this.actualSupply = "adequate-before-rush";
+    this.x = x; this.y = y; this.width = 109; this.height = 61;
+    this.kill = () => {
+      const index = scene.world.props.indexOf(this);
+      if (index >= 0) scene.world.props.splice(index, 1);
+    };
+  }
   const context = {
     InfluencerPeep,
     FloodEvidenceProp,
+    ShortageEvidenceProp,
     WBWWBInfluencerNewsEngine: { create: () => ({ middle: "headline" }) },
     WBWWBFloodFramingEngine: { create: () => ({ middle: "FLOODING CUTS OFF HOMES" }) },
+    WBWWBShortageFramingEngine: { create: (story) => ({ middle: story.capturedState === "empty" ? "TOILET ROLL SHELF EMPTY AFTER RUSH" : "SHOP ASKS CUSTOMERS TO BUY NORMALLY" }) },
     WBWWB_LOCALE: "en",
     _chyPeeps() {},
     Stage_Screamer() {}
@@ -101,4 +113,18 @@ test("the flood beat records whichever evidence fragment enters the camera", () 
   scene.director.callbacks.takePhoto(director);
   assert.equal(director.photoData.story.capturedSeverity, "extreme");
   assert.equal(director.photoData.story.actualSeverity, "severe");
+});
+
+test("the toilet-roll beat makes the photographed shelf state the story", () => {
+  const context = loadAct();
+  const scene = makeScene();
+  context.Stage_ToiletRollPanic(scene);
+  assert.deepEqual(scene.world.props.map((prop) => prop.shortageState), ["normal", "hoard", "empty"]);
+  const empty = scene.world.props[2];
+  const director = { photoData: {}, caught: () => ({ shortage: [empty] }) };
+  scene.director.callbacks.takePhoto(director);
+  assert.equal(director.photoData.story.event, "shortage");
+  assert.equal(director.photoData.story.capturedState, "empty");
+  assert.equal(director.photoData.story.actualSupply, "adequate-before-rush");
+  assert.match(director.chyron, /SHELF EMPTY/);
 });
