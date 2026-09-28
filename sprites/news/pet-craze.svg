@@ -1,6 +1,9 @@
 <svg xmlns="http://www.w3.org/2000/svg" width="240" height="180" viewBox="0 0 240 180">
-  <rect width="240" height="180" rx="18" fill="#e05b62"/><path d="M18 18h204v144H18z" fill="#f7dfa0" stroke="#302c38" stroke-width="7"/>
-  <path d="M65 81L54 49l30 16c11-6 22-6 33 0l30-16-11 32c7 11 7 31 0 43-8 16-23 22-36 22s-28-6-36-22c-7-12-7-32 1-43z" fill="#d78257" stroke="#302c38" stroke-width="6"/>
-  <circle cx="85" cy="95" r="6" fill="#302c38"/><circle cx="117" cy="95" r="6" fill="#302c38"/><path d="M94 112q7 7 14 0" fill="none" stroke="#302c38" stroke-width="4"/>
-  <path d="M150 54h58v78h-58z" fill="#fff" stroke="#302c38" stroke-width="5"/><text x="179" y="82" text-anchor="middle" font-family="sans-serif" font-size="17" font-weight="bold" fill="#302c38">SOLD</text><text x="179" y="111" text-anchor="middle" font-family="sans-serif" font-size="25" font-weight="bold" fill="#d9424c">£££</text>
+  <g fill="#f8f8f6" stroke="#555" stroke-width="7" stroke-linecap="round" stroke-linejoin="round">
+    <path d="M23 111Q18 76 46 67Q75 57 94 78Q107 96 96 124Q86 145 51 144Q25 142 23 111Z"/><path d="M30 76L20 53L49 67M80 68L101 51L92 82"/>
+    <path d="M75 97Q72 49 113 38Q153 27 182 59Q204 84 187 124Q173 155 122 153Q77 151 75 97Z"/><path d="M87 57L70 24L116 41M166 42L201 21L182 65"/>
+    <path d="M156 111Q151 79 178 70Q207 60 224 81Q237 99 226 127Q216 146 184 145Q159 142 156 111Z"/><path d="M165 78L156 55L184 70M211 70L231 54L224 84"/>
+  </g>
+  <g fill="none" stroke="#555" stroke-width="5" stroke-linecap="round"><path d="M43 99h1M75 99h1M54 117q8 7 15 0M112 79h2M153 79h2M126 103q11 9 21 0M179 101h1M209 101h1M188 119q7 6 14 0"/></g>
+  <g fill="#ff3344" stroke="#555" stroke-width="4"><path d="M54 37C44 25 31 39 54 56C78 39 65 25 54 37Z"/><path d="M129 13C116-2 99 16 129 37C159 16 142-2 129 13Z"/><path d="M196 43C186 31 173 45 196 62C219 45 206 31 196 43Z"/></g>
 </svg>

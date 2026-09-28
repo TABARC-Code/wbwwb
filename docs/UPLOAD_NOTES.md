@@ -201,3 +201,25 @@ pet-shopping responses after the craze, seven accusatory responses to the
 strays, and twelve mourning responses to the bones. Eighty Node tests and 94
 asset references pass. Browser timing and the visual weight of the last image
 still need a human playthrough.
+
+## 28 September 2026 — extension artwork returns to the park
+
+The first extension sprites were legible, but stylistically wrong. They used
+solid coloured rectangular panels, printed labels and a polished infographic
+palette. The original game does almost the opposite: transparent space, loose
+charcoal outlines, off-white figures, tiny facial marks and sudden red accents.
+Putting the old assets beside the new ones made the join painfully obvious.
+
+All fifteen extension SVGs have been redrawn in that visual grammar. The flood
+is now houses, uneven water lines and one red warning mark. Toilet rolls are
+plain outlined objects rather than supermarket illustrations. The Wobble Beast
+and pet stages use the same simple white-body construction as the people, with
+red hearts reserved for contagious desire. Strays lose the heart and colour;
+the bone pile stays small, grey and bloodless. Scandal art now resembles props
+which could exist in the park: a crossed-out report, a censored phone image,
+two opposed mascots and a private jet.
+
+No words are baked into the new art. Headlines already supply the framing and
+translations; putting English labels inside a sprite would undermine both.
+The SVGs retain their former manifest names and dimensions, so this is an art
+replacement rather than a new rules change.
