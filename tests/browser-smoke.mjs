@@ -69,11 +69,22 @@ try {
     Game.sceneManager.gotoScene("Game");
     const scene = Game.scene;
     const beforeClasses = scene.world.peeps.map((peep) => peep._CLASS_);
+    const ordinary = scene.shadowTV.receiveBroadcast({
+      scene,
+      headline: "PEOPLE GATHER IN THE PARK",
+      photo: PIXI.Texture.WHITE,
+      entry: { sequence: 3, audience: 4, seed: Game.seed },
+      story: window.WBWWBCaptureNarrativeEngine.infer({}, "PEOPLE GATHER IN THE PARK"),
+      data: {}
+    });
     scene.shadowTV.receiveBroadcast({
       scene,
       headline: "CHRISTMAS SHOPPING BEGINS",
       photo: PIXI.Texture.WHITE,
-      entry: { sequence: 3, audience: 4, seed: Game.seed },
+      entry: { sequence: 4, audience: 4, seed: Game.seed },
+      story: window.WBWWBCaptureNarrativeEngine.infer({
+        capturedPeeps: [{ seasonalHabit: "buying" }]
+      }, "CHRISTMAS SHOPPING BEGINS"),
       data: {}
     });
     const latest = scene.shadowTV.latest();
@@ -81,6 +92,7 @@ try {
       displayCount: scene.world.props.filter((prop) => prop._CLASS_ === "ShadowTVDisplay").length,
       tvCount: scene.world.props.filter((prop) => prop._CLASS_ === "TV" || prop._CLASS_ === "ShadowTVDisplay").length,
       strategy: latest?.framingStrategy,
+      ordinaryStrategy: ordinary.framingStrategy,
       season: latest?.season?.event,
       influenced: scene.world.peeps.filter((peep) => peep.shadowInfluence).length,
       classesPreserved: beforeClasses.every((name, index) => scene.world.peeps[index]?._CLASS_ === name),
@@ -90,6 +102,7 @@ try {
   if (shadowResult.displayCount !== 2) failures.push(`expected two shadow displays; found ${shadowResult.displayCount}`);
   if (shadowResult.tvCount !== 3) failures.push(`expected three televisions; found ${shadowResult.tvCount}`);
   if (shadowResult.strategy !== "seasonal-frame-substitution") failures.push(`seasonal strategy missing: ${shadowResult.strategy}`);
+  if (shadowResult.ordinaryStrategy !== "generic-extreme-framing") failures.push("ordinary evidence was replaced by seasonal news");
   if (shadowResult.season !== "christmas") failures.push(`expected Christmas context; found ${shadowResult.season}`);
   if (!shadowResult.influenced) failures.push("a real shadow broadcast influenced nobody");
   if (!shadowResult.classesPreserved) failures.push("canonical peep classes changed after a shadow broadcast");

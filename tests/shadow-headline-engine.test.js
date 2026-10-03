@@ -59,6 +59,22 @@ test("an ordinary photograph is not replaced by an unrelated rotating scandal", 
   assert.equal(headlines.id, undefined);
 });
 
+test("the Christmas calendar cannot turn ordinary camera evidence into seasonal news", () => {
+  const capture = require("../js/game/CaptureNarrativeEngine.js");
+  const season = { event: "christmas", meteorologicalSeason: "winter" };
+  const ordinary = engine.create({ story: capture.infer({}, "PEOPLE GATHER"), season },
+    { sequence: 3, emptyFrame: false, cricketCount: 0, angryRatio: 0 }, "en");
+  assert.equal(ordinary.strategy, "generic-extreme-framing");
+  assert.equal(ordinary.neutral, undefined);
+
+  const photographed = engine.create({
+    story: capture.infer({ capturedPeeps: [{ seasonalHabit: "buying" }] }, "CHRISTMAS SHOPPING BEGINS"),
+    season
+  }, { sequence: 4, emptyFrame: false, cricketCount: 0, angryRatio: 0 }, "en");
+  assert.equal(photographed.strategy, "seasonal-frame-substitution");
+  assert.equal(photographed.neutral, "CHRISTMAS SHOPPING BEGINS");
+});
+
 test("influencer antics keep boring centre copy and one extreme response", () => {
   const headlines = engine.create(
     { story: { event: "influencer", topic: "conspiracy" } },
