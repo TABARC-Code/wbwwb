@@ -122,6 +122,18 @@ try {
 
   if (failures.length) throw new Error(failures.join("\n"));
   console.log(`Browser smoke passed: ${result.scene}, locale ${result.locale}, seed ${result.seed}.`);
+} catch (error) {
+  const diagnostics = await page.evaluate(() => ({
+    assetError: window.Game?.assetError?.message || null,
+    pending: Object.entries(window.Game?.manifest || {}).filter(([key, src]) =>
+      /\.mp3(?:\?|#|$)/i.test(src)
+        ? window.Game.sounds[key]?.state?.() !== "loaded"
+        : !window.PIXI?.loader?.resources[key]
+    ).map(([key, src]) => ({ key, src, soundState: window.Game.sounds[key]?.state?.() })),
+    audioWarnings: window.Game?.audioWarnings || []
+  })).catch(() => null);
+  console.error(JSON.stringify({ failures, diagnostics }, null, 2));
+  throw error;
 } finally {
   await browser.close();
 }
