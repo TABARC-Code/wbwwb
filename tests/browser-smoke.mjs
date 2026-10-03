@@ -64,7 +64,19 @@ try {
   if (!result.influencerModules) failures.push("influencer acts or news engine did not load");
   if (!result.agencyModules) failures.push("player agency model or controls did not load");
 
-  await page.waitForFunction(() => window.Game?.sounds?.bg_park?.state?.() === "loaded", null, { timeout: 60_000 });
+  await page.waitForFunction(() => {
+    if (window.Game?.assetError) return true;
+    const manifest = window.Game?.manifest;
+    if (!manifest) return false;
+    return Object.entries(manifest).every(([key, src]) =>
+      /\.mp3(?:\?|#|$)/i.test(src)
+        ? window.Game.sounds[key]?.state?.() === "loaded"
+        : Boolean(window.PIXI?.loader?.resources[key])
+    );
+  }, null, { timeout: 60_000 });
+  const assetFailure = await page.evaluate(() => window.Game?.assetError?.message || null);
+  if (assetFailure) failures.push(`asset error: ${assetFailure}`);
+  if (failures.length) throw new Error(failures.join("\n"));
   const shadowResult = await page.evaluate(() => {
     Game.sceneManager.gotoScene("Game");
     const scene = Game.scene;
