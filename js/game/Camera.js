@@ -162,6 +162,9 @@ function Camera(scene, options){
 		new PIXI.RenderTexture(Game.renderer, self.width, self.height),
 		new PIXI.RenderTexture(Game.renderer, self.width, self.height)
 	];
+	if(scene.onDispose) scene.onDispose(function(){
+		renderTexturePool.forEach(function(texture){ texture.destroy(true); });
+	});
 	self.getTexture = function(){
 
 		// TAKE THE TEXTURE!

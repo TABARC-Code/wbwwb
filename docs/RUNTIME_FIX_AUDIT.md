@@ -14,3 +14,18 @@ Four fixes were applied together, then reviewed:
 Targeted tests check concurrency, stalled images, stalled and already-loaded audio, panel cleanup and click coordinates. The full syntax, locale, asset and virtual-playtest checks pass locally. A local Chromium smoke run also passed after these changes. The temporary local harness used a separately installed Chromium because the pinned download was unavailable, and ignored the workspace proxy certificate only in that temporary harness; repository tests retain normal certificate validation.
 
 A wider browser regression pass and GitHub CI remain the final checks for this batch. No merge into `master` or `main` is part of this work.
+
+## Batch 1 CI result
+
+GitHub Actions run 37175447705 passed on commit `b18f063e2fe81b2789ee53a4dacc667bc98567a3`, including the pinned Chromium browser smoke test. This confirms that the earlier startup failure no longer occurs in that tested environment.
+
+## Batch 2: audit of neighbouring code
+
+The review found four further lifecycle/input issues:
+
+5. Scene changes left old tweens and callbacks active after their display objects were destroyed. Transitions now cancel those tweens and validate the destination before tearing down the current scene.
+6. Camera and preloader render-texture pools were never released. They now register disposal callbacks, preserving shared asset textures.
+7. Repeated Start activations could queue multiple delayed scene changes. Startup now accepts one activation, cancels its timer on disposal and ignores late loading callbacks for a departed preloader.
+8. Resuming from the pause overlay unconditionally enabled sound. It now restores the player's mute preference, including when the sound control is used while paused.
+
+The second four-fix audit checks cleanup ordering, render-texture disposal and retained mute preferences. Browser coverage now includes repeated Start activation, mouse capture on desktop, touch capture at portrait and landscape phone sizes, interrupted captures, post-credit scenes and replay through the quote scene. These are automated integration checks, not a claim that every authored story has received a human playthrough.

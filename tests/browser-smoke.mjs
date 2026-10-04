@@ -2,7 +2,7 @@ import { chromium } from "playwright";
 
 const target = process.env.WBWWB_TEST_URL || "http://127.0.0.1:4173/?lang=en&seed=browser-smoke&date=2026-12-20";
 const browser = await chromium.launch({ headless: true });
-const page = await browser.newPage({ viewport: { width: 1280, height: 720 } });
+const page = await browser.newPage({ hasTouch: true, viewport: { width: 1280, height: 720 } });
 const failures = [];
 
 page.on("pageerror", (error) => failures.push(`page error: ${error.message}`));
@@ -71,6 +71,22 @@ try {
   const assetFailure = await page.evaluate(() => window.Game?.assetError?.message || null);
   if (assetFailure) failures.push(`asset error: ${assetFailure}`);
   if (failures.length) throw new Error(failures.join("\n"));
+  // Exercise the actual start control, including repeated activation.
+  await page.evaluate(() => {
+    window.startTransitions = 0;
+    const original = Game.sceneManager.gotoScene;
+    Game.sceneManager.gotoScene = function (name) {
+      if (name === "Quote") window.startTransitions++;
+      return original(name);
+    };
+    const button = Game.stage.children.find(child => child.x === 278 && child.y === 250);
+    if (!button?.mousedown) throw new Error("Start control is not ready");
+    button.mousedown({ global: { x: 278, y: 250 } });
+    button.mousedown({ global: { x: 278, y: 250 } });
+  });
+  await page.waitForTimeout(350);
+  if (await page.evaluate(() => window.startTransitions) !== 1) failures.push("repeated Start scheduled multiple scene transitions");
+
   const shadowResult = await page.evaluate(() => {
     Game.sceneManager.gotoScene("Game");
     const scene = Game.scene;
@@ -113,6 +129,47 @@ try {
   if (!shadowResult.influenced) failures.push("a real shadow broadcast influenced nobody");
   if (!shadowResult.classesPreserved) failures.push("canonical peep classes changed after a shadow broadcast");
   if (shadowResult.ideologicalCount !== 6) failures.push(`expected six ideological variants; found ${shadowResult.ideologicalCount}`);
+
+  // Check real pointer input after CSS scaling, then leave with a capture in flight.
+  for (const viewport of [
+    { width: 1280, height: 720, touch: false },
+    { width: 375, height: 667, touch: true },
+    { width: 812, height: 375, touch: true }
+  ]) {
+    await page.setViewportSize({ width: viewport.width, height: viewport.height });
+    await page.evaluate(() => {
+      Game.sceneManager.gotoScene("Game");
+      for (let i = 0; i < 90; i++) Game.update(1000 / 60);
+    });
+    const bounds = await page.locator("#stage canvas").boundingBox();
+    const x = bounds.x + bounds.width * 0.25;
+    const y = bounds.y + bounds.height * (190 / 540);
+    if (viewport.touch) await page.touchscreen.tap(x, y);
+    else await page.mouse.click(x, y);
+    const capture = await page.evaluate(() => ({
+      x: Game.scene.camera.x, y: Game.scene.camera.y,
+      frozen: Game.scene.camera.frozen, hasPhoto: Boolean(Game.scene.camera.photoTexture)
+    }));
+    if (!capture.frozen || !capture.hasPhoto || Math.abs(capture.x - 240) > 2 || Math.abs(capture.y - 190) > 2) {
+      failures.push(`camera input failed at ${viewport.width}x${viewport.height}: ${JSON.stringify(capture)}`);
+    }
+  }
+  await page.evaluate(() => {
+    Game.sceneManager.gotoScene("Post_Credits");
+    for (let i = 0; i < 90; i++) Game.update(1000 / 60);
+    Game.sceneManager.gotoScene("Post_Post_Credits");
+    for (let i = 0; i < 90; i++) Game.update(1000 / 60);
+    Game.sceneManager.gotoScene("Quote");
+    for (let i = 0; i < 1200; i++) Game.update(1000 / 60);
+  });
+  await page.locator("#sound-toggle").click();
+  const staysMuted = await page.evaluate(() => {
+    window.dispatchEvent(new Event("blur"));
+    document.querySelector("#paused").click();
+    return Game.soundMuted && Howler._muted;
+  });
+  if (!staysMuted) failures.push("pause/resume overrode the sound-off choice");
+  await page.waitForTimeout(100);
 
   if (failures.length) throw new Error(failures.join("\n"));
   console.log(`Browser smoke passed: ${result.scene}, locale ${result.locale}, seed ${result.seed}.`);

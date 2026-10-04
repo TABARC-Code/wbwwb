@@ -67,7 +67,8 @@
     var muted = false;
     sound.addEventListener("click", function () {
       muted = !muted;
-      if (global.Howler) global.Howler.mute(muted);
+      if (global.Game) global.Game.soundMuted = muted;
+      if (global.Howler) global.Howler.mute(muted || Boolean(global.Game && global.Game.paused));
       sound.textContent = muted ? words.soundOff : words.soundOn;
       sound.setAttribute("aria-pressed", String(muted));
     });

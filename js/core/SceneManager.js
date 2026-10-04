@@ -11,12 +11,17 @@ function SceneManager(){
 
 	self.gotoScene = function(sceneName){
 
+		var Scene_Class = window["Scene_"+sceneName];
+		if(typeof Scene_Class !== "function") throw new Error("Unknown scene: "+sceneName);
+
 		// Old scene
 		var oldScene = Game.scene;
 		if(oldScene){
 			oldScene.kill();
 			if(oldScene.dispose) oldScene.dispose();
 		}
+		// Tweens belong to the departing scene; their callbacks must not touch destroyed objects.
+		if(typeof Tween !== "undefined" && Tween.removeAllTweens) Tween.removeAllTweens();
 		if(Game.stage.removeAllListeners) Game.stage.removeAllListeners();
 		var removed = Game.stage.removeChildren();
 		removed.forEach(function(child){
@@ -24,10 +29,6 @@ function SceneManager(){
 		});
 
 		// New scene
-		var Scene_Class = window["Scene_"+sceneName];
-		if(typeof Scene_Class !== "function"){
-			throw new Error("Unknown scene: "+sceneName);
-		}
 		var newScene = new Scene_Class();
 		Game.scene = newScene;
 

@@ -15,6 +15,7 @@ This file is runtime infrastructure. Scene/gameplay content remains unchanged.
   Game.height = 540;
   Game.stats = true;
   Game.paused = false;
+  Game.soundMuted = false;
   Game.assetError = null;
   Game.audioWarnings = [];
   Game.assetsReady = false;
@@ -171,7 +172,7 @@ This file is runtime infrastructure. Scene/gameplay content remains unchanged.
     paused.style.display = "none";
     Game.paused = false;
     Game.clock.reset();
-    Howler.mute(false);
+    Howler.mute(Game.soundMuted);
   };
 
   Game.manifest = {};

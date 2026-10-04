@@ -99,14 +99,48 @@ test('an old agency result cannot hide a new offer or retain a departed scene li
 test('a camera click captures its own coordinates without a preceding move', () => {
   function Container() { this.scale = {}; this.children = []; this.addChild = x => this.children.push(x); }
   function Sprite() { this.scale = {}; this.anchor = {}; }
+  let destroyed = 0, dispose;
   const context = { Game: { width: 960, height: 540, stage: {}, addToManifest() {}, sounds: {} },
-    PIXI: { Container, Sprite, RenderTexture: function () {}, loader: { resources: { cam_frame: {}, cam_flash: {} } } } };
+    PIXI: { Container, Sprite, RenderTexture: function () { this.destroy = () => { destroyed++; }; }, loader: { resources: { cam_frame: {}, cam_flash: {} } } } };
   load(context, 'js/game/Camera.js');
-  const scene = { graphics: new Container(), director: { takePhoto() {} } };
+  const scene = { graphics: new Container(), director: { takePhoto() {} }, onDispose(fn) { dispose = fn; } };
   const camera = new context.Camera(scene, { noIntro: true });
   camera.noSounds = true;
   let captured;
   camera.takePhoto = () => { captured = [camera.x, camera.y]; };
   context.Game.stage.mousedown({ data: { global: { x: 240, y: 180 } } });
   assert.deepEqual(captured, [240, 180]);
+  dispose();
+  assert.equal(destroyed, 2);
+});
+
+test('scene changes cancel old tweens before destroying their display targets', () => {
+  const order = [];
+  const context = { Game: { scene: { kill() { order.push('kill'); }, dispose() { order.push('dispose'); } },
+    stage: { removeAllListeners() {}, removeChildren() { return [{ destroy() { order.push('destroy'); } }]; } } },
+    Tween: { removeAllTweens() { order.push('cancel tweens'); } },
+    Scene_Next: function () { order.push('new scene'); } };
+  context.window = context;
+  load(context, 'js/core/SceneManager.js');
+  const manager = new context.SceneManager();
+  assert.throws(() => manager.gotoScene('Missing'), /Unknown scene/);
+  assert.equal(order.length, 0);
+  manager.gotoScene('Next');
+  assert.deepEqual(order, ['kill', 'dispose', 'cancel tweens', 'destroy', 'new scene']);
+});
+
+test('resuming after focus loss preserves the player mute choice', () => {
+  const elements = { modal_shade: { style: {} }, paused: { style: {} } };
+  let mute;
+  const context = { document: { getElementById: id => elements[id] }, addEventListener() {},
+    WBWWBFixedStepClock: class { reset() {} }, WBWWBEditorialLedger: class {},
+    Howler: { mute(value) { mute = value; } } };
+  context.window = context;
+  load(context, 'js/core/Game.js');
+  context.Game.soundMuted = true;
+  elements.paused.onclick();
+  assert.equal(mute, true);
+  context.Game.soundMuted = false;
+  elements.paused.onclick();
+  assert.equal(mute, false);
 });
