@@ -92,6 +92,11 @@ function Camera(scene, options){
 			self.frozen = true;
 		}
 
+		// A click can arrive without a preceding move (notably after a resize).
+		var pos = mouseData.data.global;
+		self.x = pos.x;
+		self.y = pos.y;
+
 		// Take Texture
 		self.takePhoto();
 

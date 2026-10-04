@@ -21,6 +21,7 @@
 
   var loader = {
     resources: legacyResources,
+    timeoutMs: 30000,
 
     add: function (name, src) {
       queue.push({ name: name, src: src });
@@ -66,22 +67,30 @@
         emit("progress", completed / items.length);
       }
 
-      return items.reduce(function (promise, item) {
-        return promise.then(function () {
-          return PIXI.Assets.load(item.src).then(function (asset) {
-            var resource = {
-              name: item.name,
-              url: item.src,
-              data: asset && asset.data ? asset.data : null,
-              texture: asset && asset.textures ? null : asset,
-              spritesheet: asset && asset.textures ? asset : null
-            };
-
-            legacyResources[item.name] = resource;
-            updateProgress();
-          });
+      // Bound concurrency without making every sprite wait for the previous one.
+      var next = 0;
+      function loadItem(item) {
+        return new Promise(function (resolve, reject) {
+          var timeout = setTimeout(function () {
+            reject(new Error("Asset loading timed out: " + item.src));
+          }, loader.timeoutMs);
+          Promise.resolve().then(function () { return PIXI.Assets.load(item.src); })
+            .then(resolve, reject).finally(function () { clearTimeout(timeout); });
+        }).then(function (asset) {
+          legacyResources[item.name] = {
+            name: item.name,
+            url: item.src,
+            data: asset && asset.data ? asset.data : null,
+            texture: asset && asset.textures ? null : asset,
+            spritesheet: asset && asset.textures ? asset : null
+          };
+          updateProgress();
         });
-      }, Promise.resolve()).then(function () {
+      }
+      async function worker() {
+        while (next < items.length) await loadItem(items[next++]);
+      }
+      return Promise.all(Array.from({ length: Math.min(4, items.length) }, worker)).then(function () {
         emit("complete", loader, legacyResources);
         if (callback) callback(loader, legacyResources);
         return loader;

@@ -21,17 +21,20 @@
       if(button) button.textContent = words[index];
     }, this);
     var self = this;
-    if (this.root) this.root.addEventListener("click", function (event) {
+    this.hideTimer = null;
+    this.handleClick = function (event) {
       var button = event.target.closest("button[data-agency-action]");
       if (!button || !self.model.pending) return;
       var result = self.model.act(button.dataset.agencyAction);
       if (result && result.rejected) { self.status.textContent = result.summary; return; }
       if (result && self.onChoice) self.onChoice(result);
       self.renderResult(result);
-    });
+    };
+    if (this.root) this.root.addEventListener("click", this.handleClick);
   }
   AgencyPanel.prototype.offer = function (opportunity) {
     if (!this.root || !opportunity) return;
+    global.clearTimeout(this.hideTimer);
     this.views.innerHTML = "";
     opportunity.views.forEach(function (view) {
       var line = document.createElement("span"); line.textContent = view; this.views.appendChild(line);
@@ -47,7 +50,15 @@
   };
   AgencyPanel.prototype.renderResult = function (result) {
     this.renderStatus(result && result.summary);
-    var self = this; global.setTimeout(function () { if (self.root) self.root.hidden = true; }, 2400);
+    global.clearTimeout(this.hideTimer);
+    var self = this; this.hideTimer = global.setTimeout(function () { if (self.root) self.root.hidden = true; }, 2400);
+  };
+  AgencyPanel.prototype.dispose = function () {
+    global.clearTimeout(this.hideTimer);
+    if (this.root) {
+      this.root.removeEventListener("click", this.handleClick);
+      this.root.hidden = true;
+    }
   };
   global.WBWWBAgencyPanel = AgencyPanel;
 })(window);

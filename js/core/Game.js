@@ -17,6 +17,8 @@ This file is runtime infrastructure. Scene/gameplay content remains unchanged.
   Game.paused = false;
   Game.assetError = null;
   Game.audioWarnings = [];
+  Game.assetsReady = false;
+  Game.assetTimeoutMs = 30000;
   Game.clock = new WBWWBFixedStepClock({ stepMs: 1000 / 60, maxSteps: 8 });
   Game.seed = null;
   Game.randomSource = null;
@@ -197,12 +199,14 @@ This file is runtime infrastructure. Scene/gameplay content remains unchanged.
 
   Game.loadAssets = function (completeCallback, progressCallback, PRELOADER, errorCallback) {
     var manifest = PRELOADER ? Game.manifest2 : Game.manifest;
+    if (!PRELOADER) Game.assetsReady = false;
     progressCallback = progressCallback || function () {};
     errorCallback = errorCallback || Game.showAssetError;
 
     var entries = Object.keys(manifest);
     if (!entries.length) {
       progressCallback(1);
+      if (!PRELOADER) Game.assetsReady = true;
       completeCallback();
       return;
     }
@@ -230,28 +234,28 @@ This file is runtime infrastructure. Scene/gameplay content remains unchanged.
 
         Game.sounds[key] = sound;
 
-        soundPromises.push(new Promise(function (resolve, reject) {
+        soundPromises.push(new Promise(function (resolve) {
           var settled = false;
-
-          sound.once("load", function () {
-            if (!settled) {
-              settled = true;
-              progress();
-              resolve();
-            }
-          });
-
-          sound.once("loaderror", function (_id, error) {
-            if (!settled) {
-              settled = true;
-              // Silence is a degraded experience, not a dead game. This was
-              // the old 82% loader trap: one codec sulked and nobody got in.
+          function finish(error) {
+            if (settled) return;
+            settled = true;
+            clearTimeout(timeout);
+            sound.off("load", loaded);
+            sound.off("loaderror", failed);
+            if (error) {
+              sound.unload();
               console.warn("Audio failed to load; continuing silently:", src, error);
               Game.audioWarnings.push({ src: src, error: String(error) });
-              progress();
-              resolve();
             }
-          });
+            progress();
+            resolve();
+          }
+          function loaded() { finish(); }
+          function failed(_id, error) { finish(error || "Audio load failed"); }
+          var timeout = setTimeout(function () { finish("Audio loading timed out"); }, Game.assetTimeoutMs);
+          sound.once("load", loaded);
+          sound.once("loaderror", failed);
+          if (sound.state() === "loaded") loaded();
         }));
       } else {
         imageEntries.push({ key: key, src: src });
@@ -271,6 +275,7 @@ This file is runtime infrastructure. Scene/gameplay content remains unchanged.
 
     Promise.all([imagePromise].concat(soundPromises))
       .then(function () {
+        if (!PRELOADER) Game.assetsReady = true;
         completeCallback();
       })
       .catch(function (error) {

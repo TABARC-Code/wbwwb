@@ -43,6 +43,8 @@ function Scene_Game(){
         self.applyAgencyChoice(result);
     });
 
+    self.onDispose(function(){ self.agencyPanel.dispose(); });
+
     self.applyAgencyChoice = function(result){
         if(!result || !result.effects) return;
         var peeps = self.world.peeps;

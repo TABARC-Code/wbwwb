@@ -66,13 +66,7 @@ try {
 
   await page.waitForFunction(() => {
     if (window.Game?.assetError) return true;
-    const manifest = window.Game?.manifest;
-    if (!manifest) return false;
-    return Object.entries(manifest).every(([key, src]) =>
-      /\.mp3(?:\?|#|$)/i.test(src)
-        ? window.Game.sounds[key]?.state?.() === "loaded"
-        : Boolean(window.PIXI?.loader?.resources[key])
-    );
+    return window.Game?.assetsReady === true;
   }, null, { timeout: 60_000 });
   const assetFailure = await page.evaluate(() => window.Game?.assetError?.message || null);
   if (assetFailure) failures.push(`asset error: ${assetFailure}`);
