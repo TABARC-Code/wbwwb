@@ -267,6 +267,6 @@ The fixed clock and seeded random stream expose the next work rather neatly:
 2. Character behaviour needs data describing what can be observed and transmitted.
 3. Captures need relationships, not merely overlapping rectangles.
 4. The editorial ledger needs novelty, ambiguity and framing fields derived from play, not invented as moral scores.
-5. A browser screenshot suite needs a dependable Chromium runtime in CI.
+5. Extend browser coverage across authored progression, optional scenarios and real devices.
 
-The last point is still open locally. The pure and static checks pass; the available browser download timed out and the remote browser cannot reach a loopback development server. That is a testing limitation, not evidence that rendering works. CI should settle it before this branch replaces the public build.
+Chromium now runs in the standalone branch CI. Startup, asset readiness, scaled mouse/touch input, scene disposal and mute behaviour have passing browser smoke coverage. The authored walkthrough adds camera-driven progression and agency choices. Local browser installation remains unavailable in this workspace; physical-device readability and human pacing checks remain separate work. See `AUTHORED_PLAYTHROUGH_AUDIT.md` for the latest audited scope and results.
