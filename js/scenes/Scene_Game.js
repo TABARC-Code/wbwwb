@@ -117,6 +117,8 @@ function Scene_Game(){
 
         // This order is important
         self.zoomer.update();
+        // Completing the zoom can enter Credits and destroy this scene now.
+        if(g.destroyed) return;
         self.shaker.update();
         g.scale.x = g.scale.y = self.scale;
         g.x = self.x + self.offX;

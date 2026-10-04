@@ -7,14 +7,14 @@ import assert from 'node:assert/strict';
 const browser = await chromium.launch({headless: true});
 const reports = [];
 try {
-  for (const [date, policy] of [['2026-12-20','sell'], ['2026-07-10','mixed']]) {
+  for (const [date, policy] of [['2026-12-20','sell'], ['2026-12-20','mixed'], ['2026-07-10','sell'], ['2026-07-10','mixed']]) {
     const page = await browser.newPage();
     const errors = [];
     page.on('pageerror', e=>errors.push(e.message));
     page.on('console', msg=>{if(msg.type()==='error') errors.push(msg.text());});
     const base = process.env.WBWWB_TEST_URL || 'http://127.0.0.1:4173/';
     const url = new URL(base);
-    url.search = new URLSearchParams({lang:'en',seed:'authored-'+policy,date}).toString();
+    url.search = new URLSearchParams({lang:'en',seed:date.includes('-12-') ? 'authored-sell' : 'authored-mixed',date}).toString();
     await page.goto(url.href, {waitUntil:'networkidle',timeout:60000});
     await page.waitForFunction(()=>Game.assetsReady || Game.assetError, null, {timeout:60000});
     const report = await page.evaluate(({date,policy})=>{
@@ -35,6 +35,13 @@ try {
       const select = (name)=>scene.world.props.find(p=>p._CLASS_===name);
       tick(90);
       function snap(name, expectedEvent, phase, selected) {
+        if(name && !selected) selected=waitUntil(()=>{
+          for(const prop of scene.world.props.filter(p=>p._CLASS_===name)) {
+            const point={x:Math.max(120,Math.min(840,prop.x)),y:Math.max(67.5,Math.min(472.5,prop.y+(prop.z||0)-prop.height/2))};
+            if(WBWWBCaptureAnalysis.analyse([prop],{...point,width:240,height:135},0.33).length) return {prop,point};
+          }
+          return null;
+        }, `visible ${name}`);
         const prop = selected?.prop || (name && select(name));
         check(!name || prop, `Missing ${name} after ${shots.length} photos`);
         if(prop && /EvidenceProp$/.test(name)) {

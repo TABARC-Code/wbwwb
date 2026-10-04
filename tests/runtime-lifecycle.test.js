@@ -144,3 +144,34 @@ test('resuming after focus loss preserves the player mute choice', () => {
   elements.paused.onclick();
   assert.equal(mute, false);
 });
+
+test('the final zoom stops updating graphics after its scene is destroyed', () => {
+  let shakeUpdates = 0;
+  const noOp = function () {};
+  const context = {
+    PIXI: {Container: class { constructor(){this.scale={x:1,y:1};} }},
+    Game: {stage:{addChild:noOp,removeChild:noOp},width:960,height:540},
+    Scene: function(){this.onDispose=noOp;},
+    World: function(){this.peeps=[];this.addProp=noOp;this.update=noOp;},
+    Camera: function(){this.update=noOp;}, Director: function(){this.update=noOp;},
+    TV: function(){}, ShadowTV: function(){this.attachDisplays=noOp;this.update=noOp;},
+    WBWWBIdeologicalAudienceModel: function(){this.seed=noOp;this.update=noOp;},
+    WBWWBPlayerAgency:{Model:function(){}}, WBWWBAgencyPanel:function(){},
+    ScreenShake:function(){this.update=()=>shakeUpdates++;},
+    ScreenZoomOut:function(scene){
+      this.timer=this.fullTimer=1; this.fixLaptop=noOp;
+      this.update=()=>{if(this.finish){scene.graphics.destroyed=true;scene.graphics.scale=null;context.Game.scene={};}};
+    },
+    MakeSprite:()=>({}), Tween_get:()=>({to(){return this;},call(){return this;}}),
+    _s:x=>x, BEAT:1, Ease:{quadInOut:noOp}, Stage_Start:noOp, Stage_Hat:noOp
+  };
+  load(context,'js/scenes/Scene_Game.js');
+  const scene = new context.Scene_Game();
+  context.Game.scene=scene;
+  scene.update();
+  assert.equal(shakeUpdates,1);
+  scene.zoomer.finish=true;
+  assert.doesNotThrow(()=>scene.update());
+  assert.equal(shakeUpdates,1);
+  assert.notEqual(context.Game.scene,scene);
+});
