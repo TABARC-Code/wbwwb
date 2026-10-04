@@ -25,6 +25,12 @@ try {
       Game.sceneManager.gotoScene('Game');
       const scene = Game.scene;
       const shots = [];
+      const seatAudience = scene.director.audience_cutToTV;
+      scene.director.audience_cutToTV = function (...args) {
+        const result = seatAudience.apply(this,args);
+        this.photoData.seatedAudience = scene.world.peeps.filter(p=>p.isWatching).length;
+        return result;
+      };
       const tick = (n)=>{for(let i=0;i<n;i++) Game.update(1000/60);};
       const select = (name)=>scene.world.props.find(p=>p._CLASS_===name);
       tick(90);
@@ -39,7 +45,7 @@ try {
         Game.stage.mousedown({global:point});
         const data = scene.director.photoData;
         tick(100); // Centre TV cut and agency offer, before audience/stage transition.
-        check(data.story?.event===expectedEvent, `Expected ${expectedEvent}; got ${JSON.stringify(data.story)}`);
+        check(data.story?.event===expectedEvent, `Shot ${shots.length+1}: expected ${expectedEvent}; got ${JSON.stringify(data.story)}`);
         if(phase) check(data.story.phase===phase, `Expected pet phase ${phase}`);
         const offered = Boolean(scene.agency.pending);
         const expectedOffer = ['influencer','flood','shortage','toy-panic','pet-craze'].includes(expectedEvent);
@@ -55,9 +61,18 @@ try {
         shots.push({event:expectedEvent,topic:data.story.topic||null,phase:data.story.phase||null,
           authoredAudience:entry.audience,choice,money:scene.agency.money});
         tick(600);
+        shots[shots.length-1].seatedAudience = data.seatedAudience || 0;
         check(!scene.camera.frozen, 'Capture animation did not finish');
       }
-      snap(null,'empty');
+      let emptyPoint;
+      for(let attempt=0;attempt<600 && !emptyPoint;attempt++) {
+        for(let y=67.5;y<=472.5 && !emptyPoint;y+=45) for(let x=120;x<=840 && !emptyPoint;x+=60) {
+          if(!WBWWBCaptureAnalysis.analyse(scene.world.props,{x,y,width:240,height:135},0.33).length) emptyPoint={x,y};
+        }
+        if(!emptyPoint) tick(1);
+      }
+      check(emptyPoint,'Could not find an empty frame');
+      snap(null,'empty',null,{point:emptyPoint});
       check(scene.agency.money===2,'Empty photograph earned money');
       snap('HatPeep','fashion');
       snap('LoverPeep','affection');
