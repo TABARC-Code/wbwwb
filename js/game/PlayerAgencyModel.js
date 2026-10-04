@@ -84,6 +84,7 @@
   PlayerAgencyModel.prototype.act = function (choice) {
     var opportunity = this.pending;
     if (!opportunity) return null;
+    var before = this.snapshot();
     var result = { choice: choice, topic: opportunity.topic, targetSide: opportunity.targetSide, effects: {} };
     var attention = Math.max(1, opportunity.audience);
     if (choice === "sell") {
@@ -97,14 +98,12 @@
       this.reach += attention * 0.18;
       this.trust = clamp(this.trust - 0.1 - opportunity.heat * 0.06, 0, 1);
       this.exploitation += 0.2 + opportunity.heat * 0.2;
-      result.effects = { money: profit, reach: attention * 0.18, trust: -0.1 };
       result.summary = "SOLD RIVAL IDENTITIES TO BOTH CAMPS";
     } else if (choice === "amplify") {
       this.reach += attention * 0.32;
       this.influence += 0.18 + opportunity.heat * 0.22;
       this.trust = clamp(this.trust - 0.07, 0, 1);
       this.exploitation += 0.12;
-      result.effects = { reach: attention * 0.32, influence: 0.18, trust: -0.07 };
       result.summary = "PUSHED THE HOTTEST VERSION";
     } else if (choice === "repair") {
       if (this.money < opportunity.repairCost) return { choice: choice, rejected: true, summary: "NOT ENOUGH CASH FOR THE FIX" };
@@ -113,15 +112,20 @@
       this.change += change;
       this.trust = clamp(this.trust + 0.12, 0, 1);
       this.influence += 0.06;
-      result.effects = { money: -opportunity.repairCost, change: change, trust: 0.12 };
       result.summary = "FUNDED A SMALL LOCAL FIX";
     } else {
       this.trust = clamp(this.trust + 0.07, 0, 1);
       this.reach = Math.max(0, this.reach - 0.08);
       result.choice = "refuse";
-      result.effects = { trust: 0.07, reach: -0.08 };
       result.summary = "REFUSED TO TURN IT INTO BAIT";
     }
+    // Report the actual deltas, including heat, clamping and secondary effects.
+    var after = this.snapshot();
+    Object.keys(after).forEach(function (key) {
+      var delta = after[key] - before[key];
+      if (delta !== 0) result.effects[key] = delta;
+    });
+    Object.freeze(result.effects);
     this.pending = null;
     this.history.push(Object.freeze(result));
     return result;

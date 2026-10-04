@@ -30,6 +30,8 @@ jobs:
 
       - run: npm run playtest:virtual
 
+      - run: npm run playtest:309
+
       - run: npx playwright install --with-deps chromium
 
       - name: Start test server

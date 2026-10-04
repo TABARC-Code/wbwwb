@@ -66,3 +66,20 @@ test("influencer mentions create presence while opinion remains a separate signa
   assert.ok(model.snapshot().publicOpinion > -1 && model.snapshot().publicOpinion < 1);
   assert.notEqual(model.snapshot().presence, model.snapshot().publicOpinion);
 });
+
+test("choice effects report all actual deltas at trust and reach limits", () => {
+  for (const choice of ["sell", "amplify", "repair", "refuse"]) {
+    for (const trust of [0, 0.5, 1]) {
+      const model = new agency.Model({ money: 4 });
+      model.trust = trust;
+      model.observe({story: {topic: "toy"}, audience: 12, angryRatio: 1});
+      const before = model.snapshot();
+      const result = model.act(choice);
+      const after = model.snapshot();
+      for (const key of Object.keys(after)) {
+        assert.ok(Math.abs((result.effects[key] || 0) - (after[key] - before[key])) < 1e-9, `${choice}: ${key}`);
+      }
+      assert.ok(Object.isFrozen(result.effects));
+    }
+  }
+});

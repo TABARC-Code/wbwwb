@@ -188,7 +188,14 @@
     var right = score.call(this, rightTV, 0.55 + pressure(channels.right.effects) * 0.65);
     var main = score.call(this, mainTV, 0.78);
     var total = left + right + main;
-    if (!total) return false;
+    if (!total) {
+      if (peep.shadowInfluence) {
+        peep.shadowInfluence.leftAttention = 0;
+        peep.shadowInfluence.rightAttention = 0;
+        peep.shadowInfluence.mainAttention = 0;
+      }
+      return false;
+    }
     var state = stateFor(peep);
     var fatiguePenalty = 1 - state.fatigue * 0.45;
     state.leftAttention = clamp(left / total * fatiguePenalty);
@@ -243,7 +250,7 @@
     this.setSeason(season);
     var peeps = scene.world.peeps.slice();
     for (var i = 0; i < peeps.length; i++) {
-      this.allocateAttention(peeps[i], scene.tv, leftTV, rightTV, channels);
+      if (!this.allocateAttention(peeps[i], scene.tv, leftTV, rightTV, channels)) continue;
       var emphasis = framing && framing.emphasis || {};
       this.applyChannel(peeps[i], leftTV, channels.left, "left", emphasis.left);
       this.applyChannel(peeps[i], rightTV, channels.right, "right", emphasis.right);

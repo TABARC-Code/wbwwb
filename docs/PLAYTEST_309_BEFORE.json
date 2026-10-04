@@ -1,0 +1,6831 @@
+{
+  "scope": "Renderer-free models; 103 seeds x 3 policies x 12 stories. No human, device or full UI playthrough claims.",
+  "total": 309,
+  "passed": 0,
+  "checks": 22251,
+  "failures": {
+    "out-of-range-story-response": 309,
+    "stale-out-of-range-attention": 309,
+    "inaccurate-choice-effects": 309
+  },
+  "strategies": {
+    "sell": {
+      "money": 56.0097,
+      "trust": 0,
+      "change": 0,
+      "exploitation": 3.4275
+    },
+    "refuse": {
+      "money": 2,
+      "trust": 1,
+      "change": 0,
+      "exploitation": 0
+    },
+    "mixed": {
+      "money": 2.9612,
+      "trust": 0.6388,
+      "change": 1.9917,
+      "exploitation": 1.1925
+    }
+  },
+  "runs": [
+    {
+      "seed": 1,
+      "policy": "sell",
+      "crowd": 20,
+      "checks": 72,
+      "failures": [
+        "out-of-range-story-response",
+        "stale-out-of-range-attention",
+        "inaccurate-choice-effects"
+      ],
+      "rejected": 0,
+      "final": {
+        "money": 54,
+        "reach": 43.20000000000001,
+        "trust": 0,
+        "change": 0,
+        "exploitation": 3.3739999999999997,
+        "influence": 0,
+        "presence": 0,
+        "publicOpinion": 0
+      }
+    },
+    {
+      "seed": 1,
+      "policy": "refuse",
+      "crowd": 20,
+      "checks": 72,
+      "failures": [
+        "out-of-range-story-response",
+        "stale-out-of-range-attention",
+        "inaccurate-choice-effects"
+      ],
+      "rejected": 0,
+      "final": {
+        "money": 2,
+        "reach": 0,
+        "trust": 1,
+        "change": 0,
+        "exploitation": 0,
+        "influence": 0,
+        "presence": 0,
+        "publicOpinion": 0
+      }
+    },
+    {
+      "seed": 1,
+      "policy": "mixed",
+      "crowd": 20,
+      "checks": 72,
+      "failures": [
+        "out-of-range-story-response",
+        "stale-out-of-range-attention",
+        "inaccurate-choice-effects"
+      ],
+      "rejected": 0,
+      "final": {
+        "money": 3,
+        "reach": 30,
+        "trust": 0.6392,
+        "change": 1.9475000000000002,
+        "exploitation": 1.1960000000000002,
+        "influence": 1.1596000000000002,
+        "presence": 0,
+        "publicOpinion": 0
+      }
+    },
+    {
+      "seed": 2,
+      "policy": "sell",
+      "crowd": 20,
+      "checks": 72,
+      "failures": [
+        "out-of-range-story-response",
+        "stale-out-of-range-attention",
+        "inaccurate-choice-effects"
+      ],
+      "rejected": 0,
+      "final": {
+        "money": 55,
+        "reach": 43.20000000000001,
+        "trust": 0,
+        "change": 0,
+        "exploitation": 3.384,
+        "influence": 0,
+        "presence": 0,
+        "publicOpinion": 0
+      }
+    },
+    {
+      "seed": 2,
+      "policy": "refuse",
+      "crowd": 20,
+      "checks": 72,
+      "failures": [
+        "out-of-range-story-response",
+        "stale-out-of-range-attention",
+        "inaccurate-choice-effects"
+      ],
+      "rejected": 0,
+      "final": {
+        "money": 2,
+        "reach": 0,
+        "trust": 1,
+        "change": 0,
+        "exploitation": 0,
+        "influence": 0,
+        "presence": 0,
+        "publicOpinion": 0
+      }
+    },
+    {
+      "seed": 2,
+      "policy": "mixed",
+      "crowd": 20,
+      "checks": 72,
+      "failures": [
+        "out-of-range-story-response",
+        "stale-out-of-range-attention",
+        "inaccurate-choice-effects"
+      ],
+      "rejected": 0,
+      "final": {
+        "money": 3,
+        "reach": 30,
+        "trust": 0.6421999999999999,
+        "change": 1.9475000000000002,
+        "exploitation": 1.186,
+        "influence": 1.1816000000000002,
+        "presence": 0,
+        "publicOpinion": 0
+      }
+    },
+    {
+      "seed": 3,
+      "policy": "sell",
+      "crowd": 20,
+      "checks": 72,
+      "failures": [
+        "out-of-range-story-response",
+        "stale-out-of-range-attention",
+        "inaccurate-choice-effects"
+      ],
+      "rejected": 0,
+      "final": {
+        "money": 50,
+        "reach": 43.20000000000001,
+        "trust": 0,
+        "change": 0,
+        "exploitation": 3.1140000000000003,
+        "influence": 0,
+        "presence": 0,
+        "publicOpinion": 0
+      }
+    },
+    {
+      "seed": 3,
+      "policy": "refuse",
+      "crowd": 20,
+      "checks": 72,
+      "failures": [
+        "out-of-range-story-response",
+        "stale-out-of-range-attention",
+        "inaccurate-choice-effects"
+      ],
+      "rejected": 0,
+      "final": {
+        "money": 2,
+        "reach": 0,
+        "trust": 1,
+        "change": 0,
+        "exploitation": 0,
+        "influence": 0,
+        "presence": 0,
+        "publicOpinion": 0
+      }
+    },
+    {
+      "seed": 3,
+      "policy": "mixed",
+      "crowd": 20,
+      "checks": 72,
+      "failures": [
+        "out-of-range-story-response",
+        "stale-out-of-range-attention",
+        "inaccurate-choice-effects"
+      ],
+      "rejected": 0,
+      "final": {
+        "money": 2,
+        "reach": 30,
+        "trust": 0.6571999999999999,
+        "change": 1.7725,
+        "exploitation": 1.1360000000000001,
+        "influence": 1.0936000000000001,
+        "presence": 0,
+        "publicOpinion": 0
+      }
+    },
+    {
+      "seed": 4,
+      "policy": "sell",
+      "crowd": 20,
+      "checks": 72,
+      "failures": [
+        "out-of-range-story-response",
+        "stale-out-of-range-attention",
+        "inaccurate-choice-effects"
+      ],
+      "rejected": 0,
+      "final": {
+        "money": 58,
+        "reach": 42.48000000000001,
+        "trust": 0,
+        "change": 0,
+        "exploitation": 3.624,
+        "influence": 0,
+        "presence": 0,
+        "publicOpinion": 0
+      }
+    },
+    {
+      "seed": 4,
+      "policy": "refuse",
+      "crowd": 20,
+      "checks": 72,
+      "failures": [
+        "out-of-range-story-response",
+        "stale-out-of-range-attention",
+        "inaccurate-choice-effects"
+      ],
+      "rejected": 0,
+      "final": {
+        "money": 2,
+        "reach": 0,
+        "trust": 1,
+        "change": 0,
+        "exploitation": 0,
+        "influence": 0,
+        "presence": 0,
+        "publicOpinion": 0
+      }
+    },
+    {
+      "seed": 4,
+      "policy": "mixed",
+      "crowd": 20,
+      "checks": 72,
+      "failures": [
+        "out-of-range-story-response",
+        "stale-out-of-range-attention",
+        "inaccurate-choice-effects"
+      ],
+      "rejected": 0,
+      "final": {
+        "money": 4,
+        "reach": 29.5,
+        "trust": 0.6211999999999999,
+        "change": 2.0975,
+        "exploitation": 1.2560000000000002,
+        "influence": 1.2366000000000001,
+        "presence": 0,
+        "publicOpinion": 0
+      }
+    },
+    {
+      "seed": 5,
+      "policy": "sell",
+      "crowd": 20,
+      "checks": 72,
+      "failures": [
+        "out-of-range-story-response",
+        "stale-out-of-range-attention",
+        "inaccurate-choice-effects"
+      ],
+      "rejected": 0,
+      "final": {
+        "money": 51,
+        "reach": 43.20000000000001,
+        "trust": 0,
+        "change": 0,
+        "exploitation": 3.2240000000000006,
+        "influence": 0,
+        "presence": 0,
+        "publicOpinion": 0
+      }
+    },
+    {
+      "seed": 5,
+      "policy": "refuse",
+      "crowd": 20,
+      "checks": 72,
+      "failures": [
+        "out-of-range-story-response",
+        "stale-out-of-range-attention",
+        "inaccurate-choice-effects"
+      ],
+      "rejected": 0,
+      "final": {
+        "money": 2,
+        "reach": 0,
+        "trust": 1,
+        "change": 0,
+        "exploitation": 0,
+        "influence": 0,
+        "presence": 0,
+        "publicOpinion": 0
+      }
+    },
+    {
+      "seed": 5,
+      "policy": "mixed",
+      "crowd": 20,
+      "checks": 72,
+      "failures": [
+        "out-of-range-story-response",
+        "stale-out-of-range-attention",
+        "inaccurate-choice-effects"
+      ],
+      "rejected": 0,
+      "final": {
+        "money": 2,
+        "reach": 30,
+        "trust": 0.6541999999999998,
+        "change": 1.8599999999999999,
+        "exploitation": 1.1460000000000004,
+        "influence": 1.1266000000000003,
+        "presence": 0,
+        "publicOpinion": 0
+      }
+    },
+    {
+      "seed": 6,
+      "policy": "sell",
+      "crowd": 20,
+      "checks": 72,
+      "failures": [
+        "out-of-range-story-response",
+        "stale-out-of-range-attention",
+        "inaccurate-choice-effects"
+      ],
+      "rejected": 0,
+      "final": {
+        "money": 50,
+        "reach": 41.04000000000001,
+        "trust": 0,
+        "change": 0,
+        "exploitation": 3.2140000000000004,
+        "influence": 0,
+        "presence": 0,
+        "publicOpinion": 0
+      }
+    },
+    {
+      "seed": 6,
+      "policy": "refuse",
+      "crowd": 20,
+      "checks": 72,
+      "failures": [
+        "out-of-range-story-response",
+        "stale-out-of-range-attention",
+        "inaccurate-choice-effects"
+      ],
+      "rejected": 0,
+      "final": {
+        "money": 2,
+        "reach": 0,
+        "trust": 1,
+        "change": 0,
+        "exploitation": 0,
+        "influence": 0,
+        "presence": 0,
+        "publicOpinion": 0
+      }
+    },
+    {
+      "seed": 6,
+      "policy": "mixed",
+      "crowd": 20,
+      "checks": 72,
+      "failures": [
+        "out-of-range-story-response",
+        "stale-out-of-range-attention",
+        "inaccurate-choice-effects"
+      ],
+      "rejected": 0,
+      "final": {
+        "money": 2,
+        "reach": 28.5,
+        "trust": 0.6511999999999999,
+        "change": 1.8474999999999997,
+        "exploitation": 1.1560000000000001,
+        "influence": 1.1156000000000001,
+        "presence": 0,
+        "publicOpinion": 0
+      }
+    },
+    {
+      "seed": 7,
+      "policy": "sell",
+      "crowd": 20,
+      "checks": 72,
+      "failures": [
+        "out-of-range-story-response",
+        "stale-out-of-range-attention",
+        "inaccurate-choice-effects"
+      ],
+      "rejected": 0,
+      "final": {
+        "money": 51,
+        "reach": 43.20000000000001,
+        "trust": 0,
+        "change": 0,
+        "exploitation": 3.1940000000000004,
+        "influence": 0,
+        "presence": 0,
+        "publicOpinion": 0
+      }
+    },
+    {
+      "seed": 7,
+      "policy": "refuse",
+      "crowd": 20,
+      "checks": 72,
+      "failures": [
+        "out-of-range-story-response",
+        "stale-out-of-range-attention",
+        "inaccurate-choice-effects"
+      ],
+      "rejected": 0,
+      "final": {
+        "money": 2,
+        "reach": 0,
+        "trust": 1,
+        "change": 0,
+        "exploitation": 0,
+        "influence": 0,
+        "presence": 0,
+        "publicOpinion": 0
+      }
+    },
+    {
+      "seed": 7,
+      "policy": "mixed",
+      "crowd": 20,
+      "checks": 72,
+      "failures": [
+        "out-of-range-story-response",
+        "stale-out-of-range-attention",
+        "inaccurate-choice-effects"
+      ],
+      "rejected": 0,
+      "final": {
+        "money": 2,
+        "reach": 30,
+        "trust": 0.6571999999999999,
+        "change": 1.8475000000000001,
+        "exploitation": 1.1360000000000001,
+        "influence": 1.1156000000000001,
+        "presence": 0,
+        "publicOpinion": 0
+      }
+    },
+    {
+      "seed": 8,
+      "policy": "sell",
+      "crowd": 20,
+      "checks": 72,
+      "failures": [
+        "out-of-range-story-response",
+        "stale-out-of-range-attention",
+        "inaccurate-choice-effects"
+      ],
+      "rejected": 0,
+      "final": {
+        "money": 53,
+        "reach": 43.20000000000001,
+        "trust": 0,
+        "change": 0,
+        "exploitation": 3.164,
+        "influence": 0,
+        "presence": 0,
+        "publicOpinion": 0
+      }
+    },
+    {
+      "seed": 8,
+      "policy": "refuse",
+      "crowd": 20,
+      "checks": 72,
+      "failures": [
+        "out-of-range-story-response",
+        "stale-out-of-range-attention",
+        "inaccurate-choice-effects"
+      ],
+      "rejected": 0,
+      "final": {
+        "money": 2,
+        "reach": 0,
+        "trust": 1,
+        "change": 0,
+        "exploitation": 0,
+        "influence": 0,
+        "presence": 0,
+        "publicOpinion": 0
+      }
+    },
+    {
+      "seed": 8,
+      "policy": "mixed",
+      "crowd": 20,
+      "checks": 72,
+      "failures": [
+        "out-of-range-story-response",
+        "stale-out-of-range-attention",
+        "inaccurate-choice-effects"
+      ],
+      "rejected": 0,
+      "final": {
+        "money": 2,
+        "reach": 30,
+        "trust": 0.6571999999999999,
+        "change": 1.81,
+        "exploitation": 1.1360000000000001,
+        "influence": 1.1156000000000001,
+        "presence": 0,
+        "publicOpinion": 0
+      }
+    },
+    {
+      "seed": 9,
+      "policy": "sell",
+      "crowd": 20,
+      "checks": 72,
+      "failures": [
+        "out-of-range-story-response",
+        "stale-out-of-range-attention",
+        "inaccurate-choice-effects"
+      ],
+      "rejected": 0,
+      "final": {
+        "money": 51,
+        "reach": 43.20000000000001,
+        "trust": 0,
+        "change": 0,
+        "exploitation": 3.214,
+        "influence": 0,
+        "presence": 0,
+        "publicOpinion": 0
+      }
+    },
+    {
+      "seed": 9,
+      "policy": "refuse",
+      "crowd": 20,
+      "checks": 72,
+      "failures": [
+        "out-of-range-story-response",
+        "stale-out-of-range-attention",
+        "inaccurate-choice-effects"
+      ],
+      "rejected": 0,
+      "final": {
+        "money": 2,
+        "reach": 0,
+        "trust": 1,
+        "change": 0,
+        "exploitation": 0,
+        "influence": 0,
+        "presence": 0,
+        "publicOpinion": 0
+      }
+    },
+    {
+      "seed": 9,
+      "policy": "mixed",
+      "crowd": 20,
+      "checks": 72,
+      "failures": [
+        "out-of-range-story-response",
+        "stale-out-of-range-attention",
+        "inaccurate-choice-effects"
+      ],
+      "rejected": 0,
+      "final": {
+        "money": 2,
+        "reach": 30,
+        "trust": 0.6511999999999999,
+        "change": 1.8474999999999997,
+        "exploitation": 1.1560000000000001,
+        "influence": 1.1156000000000001,
+        "presence": 0,
+        "publicOpinion": 0
+      }
+    },
+    {
+      "seed": 10,
+      "policy": "sell",
+      "crowd": 20,
+      "checks": 72,
+      "failures": [
+        "out-of-range-story-response",
+        "stale-out-of-range-attention",
+        "inaccurate-choice-effects"
+      ],
+      "rejected": 0,
+      "final": {
+        "money": 46,
+        "reach": 41.04000000000001,
+        "trust": 0,
+        "change": 0,
+        "exploitation": 3.024,
+        "influence": 0,
+        "presence": 0,
+        "publicOpinion": 0
+      }
+    },
+    {
+      "seed": 10,
+      "policy": "refuse",
+      "crowd": 20,
+      "checks": 72,
+      "failures": [
+        "out-of-range-story-response",
+        "stale-out-of-range-attention",
+        "inaccurate-choice-effects"
+      ],
+      "rejected": 0,
+      "final": {
+        "money": 2,
+        "reach": 0,
+        "trust": 1,
+        "change": 0,
+        "exploitation": 0,
+        "influence": 0,
+        "presence": 0,
+        "publicOpinion": 0
+      }
+    },
+    {
+      "seed": 10,
+      "policy": "mixed",
+      "crowd": 20,
+      "checks": 72,
+      "failures": [
+        "out-of-range-story-response",
+        "stale-out-of-range-attention",
+        "inaccurate-choice-effects"
+      ],
+      "rejected": 0,
+      "final": {
+        "money": 1,
+        "reach": 28.5,
+        "trust": 0.6631999999999999,
+        "change": 1.71,
+        "exploitation": 1.116,
+        "influence": 1.0716,
+        "presence": 0,
+        "publicOpinion": 0
+      }
+    },
+    {
+      "seed": 11,
+      "policy": "sell",
+      "crowd": 20,
+      "checks": 72,
+      "failures": [
+        "out-of-range-story-response",
+        "stale-out-of-range-attention",
+        "inaccurate-choice-effects"
+      ],
+      "rejected": 0,
+      "final": {
+        "money": 55,
+        "reach": 43.20000000000001,
+        "trust": 0,
+        "change": 0,
+        "exploitation": 3.3340000000000005,
+        "influence": 0,
+        "presence": 0,
+        "publicOpinion": 0
+      }
+    },
+    {
+      "seed": 11,
+      "policy": "refuse",
+      "crowd": 20,
+      "checks": 72,
+      "failures": [
+        "out-of-range-story-response",
+        "stale-out-of-range-attention",
+        "inaccurate-choice-effects"
+      ],
+      "rejected": 0,
+      "final": {
+        "money": 2,
+        "reach": 0,
+        "trust": 1,
+        "change": 0,
+        "exploitation": 0,
+        "influence": 0,
+        "presence": 0,
+        "publicOpinion": 0
+      }
+    },
+    {
+      "seed": 11,
+      "policy": "mixed",
+      "crowd": 20,
+      "checks": 72,
+      "failures": [
+        "out-of-range-story-response",
+        "stale-out-of-range-attention",
+        "inaccurate-choice-effects"
+      ],
+      "rejected": 0,
+      "final": {
+        "money": 3,
+        "reach": 30,
+        "trust": 0.6451999999999999,
+        "change": 1.935,
+        "exploitation": 1.1760000000000002,
+        "influence": 1.1486000000000003,
+        "presence": 0,
+        "publicOpinion": 0
+      }
+    },
+    {
+      "seed": 12,
+      "policy": "sell",
+      "crowd": 20,
+      "checks": 72,
+      "failures": [
+        "out-of-range-story-response",
+        "stale-out-of-range-attention",
+        "inaccurate-choice-effects"
+      ],
+      "rejected": 0,
+      "final": {
+        "money": 49,
+        "reach": 43.20000000000001,
+        "trust": 0,
+        "change": 0,
+        "exploitation": 3.084,
+        "influence": 0,
+        "presence": 0,
+        "publicOpinion": 0
+      }
+    },
+    {
+      "seed": 12,
+      "policy": "refuse",
+      "crowd": 20,
+      "checks": 72,
+      "failures": [
+        "out-of-range-story-response",
+        "stale-out-of-range-attention",
+        "inaccurate-choice-effects"
+      ],
+      "rejected": 0,
+      "final": {
+        "money": 2,
+        "reach": 0,
+        "trust": 1,
+        "change": 0,
+        "exploitation": 0,
+        "influence": 0,
+        "presence": 0,
+        "publicOpinion": 0
+      }
+    },
+    {
+      "seed": 12,
+      "policy": "mixed",
+      "crowd": 20,
+      "checks": 72,
+      "failures": [
+        "out-of-range-story-response",
+        "stale-out-of-range-attention",
+        "inaccurate-choice-effects"
+      ],
+      "rejected": 0,
+      "final": {
+        "money": 1,
+        "reach": 30,
+        "trust": 0.6631999999999999,
+        "change": 1.76,
+        "exploitation": 1.116,
+        "influence": 1.0936000000000001,
+        "presence": 0,
+        "publicOpinion": 0
+      }
+    },
+    {
+      "seed": 13,
+      "policy": "sell",
+      "crowd": 20,
+      "checks": 72,
+      "failures": [
+        "out-of-range-story-response",
+        "stale-out-of-range-attention",
+        "inaccurate-choice-effects"
+      ],
+      "rejected": 0,
+      "final": {
+        "money": 53,
+        "reach": 38.879999999999995,
+        "trust": 0,
+        "change": 0,
+        "exploitation": 3.5040000000000004,
+        "influence": 0,
+        "presence": 0,
+        "publicOpinion": 0
+      }
+    },
+    {
+      "seed": 13,
+      "policy": "refuse",
+      "crowd": 20,
+      "checks": 72,
+      "failures": [
+        "out-of-range-story-response",
+        "stale-out-of-range-attention",
+        "inaccurate-choice-effects"
+      ],
+      "rejected": 0,
+      "final": {
+        "money": 2,
+        "reach": 0,
+        "trust": 1,
+        "change": 0,
+        "exploitation": 0,
+        "influence": 0,
+        "presence": 0,
+        "publicOpinion": 0
+      }
+    },
+    {
+      "seed": 13,
+      "policy": "mixed",
+      "crowd": 20,
+      "checks": 72,
+      "failures": [
+        "out-of-range-story-response",
+        "stale-out-of-range-attention",
+        "inaccurate-choice-effects"
+      ],
+      "rejected": 0,
+      "final": {
+        "money": 2,
+        "reach": 27,
+        "trust": 0.6331999999999999,
+        "change": 2.0349999999999997,
+        "exploitation": 1.2160000000000002,
+        "influence": 1.2036000000000002,
+        "presence": 0,
+        "publicOpinion": 0
+      }
+    },
+    {
+      "seed": 14,
+      "policy": "sell",
+      "crowd": 20,
+      "checks": 72,
+      "failures": [
+        "out-of-range-story-response",
+        "stale-out-of-range-attention",
+        "inaccurate-choice-effects"
+      ],
+      "rejected": 0,
+      "final": {
+        "money": 55,
+        "reach": 43.20000000000001,
+        "trust": 0,
+        "change": 0,
+        "exploitation": 3.464,
+        "influence": 0,
+        "presence": 0,
+        "publicOpinion": 0
+      }
+    },
+    {
+      "seed": 14,
+      "policy": "refuse",
+      "crowd": 20,
+      "checks": 72,
+      "failures": [
+        "out-of-range-story-response",
+        "stale-out-of-range-attention",
+        "inaccurate-choice-effects"
+      ],
+      "rejected": 0,
+      "final": {
+        "money": 2,
+        "reach": 0,
+        "trust": 1,
+        "change": 0,
+        "exploitation": 0,
+        "influence": 0,
+        "presence": 0,
+        "publicOpinion": 0
+      }
+    },
+    {
+      "seed": 14,
+      "policy": "mixed",
+      "crowd": 20,
+      "checks": 72,
+      "failures": [
+        "out-of-range-story-response",
+        "stale-out-of-range-attention",
+        "inaccurate-choice-effects"
+      ],
+      "rejected": 0,
+      "final": {
+        "money": 3,
+        "reach": 30,
+        "trust": 0.6331999999999999,
+        "change": 1.9975,
+        "exploitation": 1.2160000000000002,
+        "influence": 1.1926,
+        "presence": 0,
+        "publicOpinion": 0
+      }
+    },
+    {
+      "seed": 15,
+      "policy": "sell",
+      "crowd": 20,
+      "checks": 72,
+      "failures": [
+        "out-of-range-story-response",
+        "stale-out-of-range-attention",
+        "inaccurate-choice-effects"
+      ],
+      "rejected": 0,
+      "final": {
+        "money": 46,
+        "reach": 41.04000000000001,
+        "trust": 0,
+        "change": 0,
+        "exploitation": 3.1540000000000004,
+        "influence": 0,
+        "presence": 0,
+        "publicOpinion": 0
+      }
+    },
+    {
+      "seed": 15,
+      "policy": "refuse",
+      "crowd": 20,
+      "checks": 72,
+      "failures": [
+        "out-of-range-story-response",
+        "stale-out-of-range-attention",
+        "inaccurate-choice-effects"
+      ],
+      "rejected": 0,
+      "final": {
+        "money": 2,
+        "reach": 0,
+        "trust": 1,
+        "change": 0,
+        "exploitation": 0,
+        "influence": 0,
+        "presence": 0,
+        "publicOpinion": 0
+      }
+    },
+    {
+      "seed": 15,
+      "policy": "mixed",
+      "crowd": 20,
+      "checks": 72,
+      "failures": [
+        "out-of-range-story-response",
+        "stale-out-of-range-attention",
+        "inaccurate-choice-effects"
+      ],
+      "rejected": 0,
+      "final": {
+        "money": 1,
+        "reach": 28.5,
+        "trust": 0.6571999999999999,
+        "change": 1.81,
+        "exploitation": 1.1360000000000001,
+        "influence": 1.1046000000000002,
+        "presence": 0,
+        "publicOpinion": 0
+      }
+    },
+    {
+      "seed": 16,
+      "policy": "sell",
+      "crowd": 20,
+      "checks": 72,
+      "failures": [
+        "out-of-range-story-response",
+        "stale-out-of-range-attention",
+        "inaccurate-choice-effects"
+      ],
+      "rejected": 0,
+      "final": {
+        "money": 56,
+        "reach": 43.20000000000001,
+        "trust": 0,
+        "change": 0,
+        "exploitation": 3.4939999999999998,
+        "influence": 0,
+        "presence": 0,
+        "publicOpinion": 0
+      }
+    },
+    {
+      "seed": 16,
+      "policy": "refuse",
+      "crowd": 20,
+      "checks": 72,
+      "failures": [
+        "out-of-range-story-response",
+        "stale-out-of-range-attention",
+        "inaccurate-choice-effects"
+      ],
+      "rejected": 0,
+      "final": {
+        "money": 2,
+        "reach": 0,
+        "trust": 1,
+        "change": 0,
+        "exploitation": 0,
+        "influence": 0,
+        "presence": 0,
+        "publicOpinion": 0
+      }
+    },
+    {
+      "seed": 16,
+      "policy": "mixed",
+      "crowd": 20,
+      "checks": 72,
+      "failures": [
+        "out-of-range-story-response",
+        "stale-out-of-range-attention",
+        "inaccurate-choice-effects"
+      ],
+      "rejected": 0,
+      "final": {
+        "money": 3,
+        "reach": 30,
+        "trust": 0.6361999999999999,
+        "change": 2.0475,
+        "exploitation": 1.206,
+        "influence": 1.1926,
+        "presence": 0,
+        "publicOpinion": 0
+      }
+    },
+    {
+      "seed": 17,
+      "policy": "sell",
+      "crowd": 20,
+      "checks": 72,
+      "failures": [
+        "out-of-range-story-response",
+        "stale-out-of-range-attention",
+        "inaccurate-choice-effects"
+      ],
+      "rejected": 0,
+      "final": {
+        "money": 52,
+        "reach": 43.20000000000001,
+        "trust": 0,
+        "change": 0,
+        "exploitation": 3.3040000000000003,
+        "influence": 0,
+        "presence": 0,
+        "publicOpinion": 0
+      }
+    },
+    {
+      "seed": 17,
+      "policy": "refuse",
+      "crowd": 20,
+      "checks": 72,
+      "failures": [
+        "out-of-range-story-response",
+        "stale-out-of-range-attention",
+        "inaccurate-choice-effects"
+      ],
+      "rejected": 0,
+      "final": {
+        "money": 2,
+        "reach": 0,
+        "trust": 1,
+        "change": 0,
+        "exploitation": 0,
+        "influence": 0,
+        "presence": 0,
+        "publicOpinion": 0
+      }
+    },
+    {
+      "seed": 17,
+      "policy": "mixed",
+      "crowd": 20,
+      "checks": 72,
+      "failures": [
+        "out-of-range-story-response",
+        "stale-out-of-range-attention",
+        "inaccurate-choice-effects"
+      ],
+      "rejected": 0,
+      "final": {
+        "money": 2,
+        "reach": 30,
+        "trust": 0.6541999999999998,
+        "change": 1.9599999999999997,
+        "exploitation": 1.1460000000000004,
+        "influence": 1.1266,
+        "presence": 0,
+        "publicOpinion": 0
+      }
+    },
+    {
+      "seed": 18,
+      "policy": "sell",
+      "crowd": 20,
+      "checks": 72,
+      "failures": [
+        "out-of-range-story-response",
+        "stale-out-of-range-attention",
+        "inaccurate-choice-effects"
+      ],
+      "rejected": 0,
+      "final": {
+        "money": 54,
+        "reach": 43.20000000000001,
+        "trust": 0,
+        "change": 0,
+        "exploitation": 3.4140000000000006,
+        "influence": 0,
+        "presence": 0,
+        "publicOpinion": 0
+      }
+    },
+    {
+      "seed": 18,
+      "policy": "refuse",
+      "crowd": 20,
+      "checks": 72,
+      "failures": [
+        "out-of-range-story-response",
+        "stale-out-of-range-attention",
+        "inaccurate-choice-effects"
+      ],
+      "rejected": 0,
+      "final": {
+        "money": 2,
+        "reach": 0,
+        "trust": 1,
+        "change": 0,
+        "exploitation": 0,
+        "influence": 0,
+        "presence": 0,
+        "publicOpinion": 0
+      }
+    },
+    {
+      "seed": 18,
+      "policy": "mixed",
+      "crowd": 20,
+      "checks": 72,
+      "failures": [
+        "out-of-range-story-response",
+        "stale-out-of-range-attention",
+        "inaccurate-choice-effects"
+      ],
+      "rejected": 0,
+      "final": {
+        "money": 2,
+        "reach": 30,
+        "trust": 0.6422,
+        "change": 1.9350000000000003,
+        "exploitation": 1.186,
+        "influence": 1.2256000000000002,
+        "presence": 0,
+        "publicOpinion": 0
+      }
+    },
+    {
+      "seed": 19,
+      "policy": "sell",
+      "crowd": 21,
+      "checks": 72,
+      "failures": [
+        "out-of-range-story-response",
+        "stale-out-of-range-attention",
+        "inaccurate-choice-effects"
+      ],
+      "rejected": 0,
+      "final": {
+        "money": 66,
+        "reach": 45.36000000000001,
+        "trust": 0,
+        "change": 0,
+        "exploitation": 3.9954285714285716,
+        "influence": 0,
+        "presence": 0,
+        "publicOpinion": 0
+      }
+    },
+    {
+      "seed": 19,
+      "policy": "refuse",
+      "crowd": 21,
+      "checks": 72,
+      "failures": [
+        "out-of-range-story-response",
+        "stale-out-of-range-attention",
+        "inaccurate-choice-effects"
+      ],
+      "rejected": 0,
+      "final": {
+        "money": 2,
+        "reach": 0,
+        "trust": 1,
+        "change": 0,
+        "exploitation": 0,
+        "influence": 0,
+        "presence": 0,
+        "publicOpinion": 0
+      }
+    },
+    {
+      "seed": 19,
+      "policy": "mixed",
+      "crowd": 21,
+      "checks": 72,
+      "failures": [
+        "out-of-range-story-response",
+        "stale-out-of-range-attention",
+        "inaccurate-choice-effects"
+      ],
+      "rejected": 0,
+      "final": {
+        "money": 5,
+        "reach": 31.5,
+        "trust": 0.6032,
+        "change": 2.376666666666667,
+        "exploitation": 1.3159999999999998,
+        "influence": 1.333504761904762,
+        "presence": 0,
+        "publicOpinion": 0
+      }
+    },
+    {
+      "seed": 20,
+      "policy": "sell",
+      "crowd": 21,
+      "checks": 72,
+      "failures": [
+        "out-of-range-story-response",
+        "stale-out-of-range-attention",
+        "inaccurate-choice-effects"
+      ],
+      "rejected": 0,
+      "final": {
+        "money": 71,
+        "reach": 45.36000000000001,
+        "trust": 0,
+        "change": 0,
+        "exploitation": 4.077809523809524,
+        "influence": 0,
+        "presence": 0,
+        "publicOpinion": 0
+      }
+    },
+    {
+      "seed": 20,
+      "policy": "refuse",
+      "crowd": 21,
+      "checks": 72,
+      "failures": [
+        "out-of-range-story-response",
+        "stale-out-of-range-attention",
+        "inaccurate-choice-effects"
+      ],
+      "rejected": 0,
+      "final": {
+        "money": 2,
+        "reach": 0,
+        "trust": 1,
+        "change": 0,
+        "exploitation": 0,
+        "influence": 0,
+        "presence": 0,
+        "publicOpinion": 0
+      }
+    },
+    {
+      "seed": 20,
+      "policy": "mixed",
+      "crowd": 21,
+      "checks": 72,
+      "failures": [
+        "out-of-range-story-response",
+        "stale-out-of-range-attention",
+        "inaccurate-choice-effects"
+      ],
+      "rejected": 0,
+      "final": {
+        "money": 6,
+        "reach": 31.5,
+        "trust": 0.5974857142857142,
+        "change": 2.4558333333333335,
+        "exploitation": 1.3350476190476193,
+        "influence": 1.333504761904762,
+        "presence": 0,
+        "publicOpinion": 0
+      }
+    },
+    {
+      "seed": 21,
+      "policy": "sell",
+      "crowd": 21,
+      "checks": 72,
+      "failures": [
+        "out-of-range-story-response",
+        "stale-out-of-range-attention",
+        "inaccurate-choice-effects"
+      ],
+      "rejected": 0,
+      "final": {
+        "money": 50,
+        "reach": 45.36000000000001,
+        "trust": 0,
+        "change": 0,
+        "exploitation": 3.1287619047619044,
+        "influence": 0,
+        "presence": 0,
+        "publicOpinion": 0
+      }
+    },
+    {
+      "seed": 21,
+      "policy": "refuse",
+      "crowd": 21,
+      "checks": 72,
+      "failures": [
+        "out-of-range-story-response",
+        "stale-out-of-range-attention",
+        "inaccurate-choice-effects"
+      ],
+      "rejected": 0,
+      "final": {
+        "money": 2,
+        "reach": 0,
+        "trust": 1,
+        "change": 0,
+        "exploitation": 0,
+        "influence": 0,
+        "presence": 0,
+        "publicOpinion": 0
+      }
+    },
+    {
+      "seed": 21,
+      "policy": "mixed",
+      "crowd": 21,
+      "checks": 72,
+      "failures": [
+        "out-of-range-story-response",
+        "stale-out-of-range-attention",
+        "inaccurate-choice-effects"
+      ],
+      "rejected": 0,
+      "final": {
+        "money": 2,
+        "reach": 31.5,
+        "trust": 0.660342857142857,
+        "change": 1.8171428571428572,
+        "exploitation": 1.1255238095238096,
+        "influence": 1.0820761904761906,
+        "presence": 0,
+        "publicOpinion": 0
+      }
+    },
+    {
+      "seed": 22,
+      "policy": "sell",
+      "crowd": 21,
+      "checks": 72,
+      "failures": [
+        "out-of-range-story-response",
+        "stale-out-of-range-attention",
+        "inaccurate-choice-effects"
+      ],
+      "rejected": 0,
+      "final": {
+        "money": 65,
+        "reach": 45.36000000000001,
+        "trust": 0,
+        "change": 0,
+        "exploitation": 3.8425714285714285,
+        "influence": 0,
+        "presence": 0,
+        "publicOpinion": 0
+      }
+    },
+    {
+      "seed": 22,
+      "policy": "refuse",
+      "crowd": 21,
+      "checks": 72,
+      "failures": [
+        "out-of-range-story-response",
+        "stale-out-of-range-attention",
+        "inaccurate-choice-effects"
+      ],
+      "rejected": 0,
+      "final": {
+        "money": 2,
+        "reach": 0,
+        "trust": 1,
+        "change": 0,
+        "exploitation": 0,
+        "influence": 0,
+        "presence": 0,
+        "publicOpinion": 0
+      }
+    },
+    {
+      "seed": 22,
+      "policy": "mixed",
+      "crowd": 21,
+      "checks": 72,
+      "failures": [
+        "out-of-range-story-response",
+        "stale-out-of-range-attention",
+        "inaccurate-choice-effects"
+      ],
+      "rejected": 0,
+      "final": {
+        "money": 5,
+        "reach": 31.5,
+        "trust": 0.6099142857142856,
+        "change": 2.2373809523809522,
+        "exploitation": 1.293619047619048,
+        "influence": 1.312552380952381,
+        "presence": 0,
+        "publicOpinion": 0
+      }
+    },
+    {
+      "seed": 23,
+      "policy": "sell",
+      "crowd": 21,
+      "checks": 72,
+      "failures": [
+        "out-of-range-story-response",
+        "stale-out-of-range-attention",
+        "inaccurate-choice-effects"
+      ],
+      "rejected": 0,
+      "final": {
+        "money": 61,
+        "reach": 45.36000000000001,
+        "trust": 0,
+        "change": 0,
+        "exploitation": 3.6873333333333336,
+        "influence": 0,
+        "presence": 0,
+        "publicOpinion": 0
+      }
+    },
+    {
+      "seed": 23,
+      "policy": "refuse",
+      "crowd": 21,
+      "checks": 72,
+      "failures": [
+        "out-of-range-story-response",
+        "stale-out-of-range-attention",
+        "inaccurate-choice-effects"
+      ],
+      "rejected": 0,
+      "final": {
+        "money": 2,
+        "reach": 0,
+        "trust": 1,
+        "change": 0,
+        "exploitation": 0,
+        "influence": 0,
+        "presence": 0,
+        "publicOpinion": 0
+      }
+    },
+    {
+      "seed": 23,
+      "policy": "mixed",
+      "crowd": 21,
+      "checks": 72,
+      "failures": [
+        "out-of-range-story-response",
+        "stale-out-of-range-attention",
+        "inaccurate-choice-effects"
+      ],
+      "rejected": 0,
+      "final": {
+        "money": 3,
+        "reach": 31.5,
+        "trust": 0.6317714285714284,
+        "change": 2.253452380952381,
+        "exploitation": 1.220761904761905,
+        "influence": 1.2077904761904765,
+        "presence": 0,
+        "publicOpinion": 0
+      }
+    },
+    {
+      "seed": 24,
+      "policy": "sell",
+      "crowd": 21,
+      "checks": 72,
+      "failures": [
+        "out-of-range-story-response",
+        "stale-out-of-range-attention",
+        "inaccurate-choice-effects"
+      ],
+      "rejected": 0,
+      "final": {
+        "money": 54,
+        "reach": 41.04000000000001,
+        "trust": 0,
+        "change": 0,
+        "exploitation": 3.4430476190476185,
+        "influence": 0,
+        "presence": 0,
+        "publicOpinion": 0
+      }
+    },
+    {
+      "seed": 24,
+      "policy": "refuse",
+      "crowd": 21,
+      "checks": 72,
+      "failures": [
+        "out-of-range-story-response",
+        "stale-out-of-range-attention",
+        "inaccurate-choice-effects"
+      ],
+      "rejected": 0,
+      "final": {
+        "money": 2,
+        "reach": 0,
+        "trust": 1,
+        "change": 0,
+        "exploitation": 0,
+        "influence": 0,
+        "presence": 0,
+        "publicOpinion": 0
+      }
+    },
+    {
+      "seed": 24,
+      "policy": "mixed",
+      "crowd": 21,
+      "checks": 72,
+      "failures": [
+        "out-of-range-story-response",
+        "stale-out-of-range-attention",
+        "inaccurate-choice-effects"
+      ],
+      "rejected": 0,
+      "final": {
+        "money": 3,
+        "reach": 28.5,
+        "trust": 0.6346285714285714,
+        "change": 1.9838095238095237,
+        "exploitation": 1.2112380952380954,
+        "influence": 1.1868380952380955,
+        "presence": 0,
+        "publicOpinion": 0
+      }
+    },
+    {
+      "seed": 25,
+      "policy": "sell",
+      "crowd": 21,
+      "checks": 72,
+      "failures": [
+        "out-of-range-story-response",
+        "stale-out-of-range-attention",
+        "inaccurate-choice-effects"
+      ],
+      "rejected": 0,
+      "final": {
+        "money": 53,
+        "reach": 45.36000000000001,
+        "trust": 0,
+        "change": 0,
+        "exploitation": 3.281142857142857,
+        "influence": 0,
+        "presence": 0,
+        "publicOpinion": 0
+      }
+    },
+    {
+      "seed": 25,
+      "policy": "refuse",
+      "crowd": 21,
+      "checks": 72,
+      "failures": [
+        "out-of-range-story-response",
+        "stale-out-of-range-attention",
+        "inaccurate-choice-effects"
+      ],
+      "rejected": 0,
+      "final": {
+        "money": 2,
+        "reach": 0,
+        "trust": 1,
+        "change": 0,
+        "exploitation": 0,
+        "influence": 0,
+        "presence": 0,
+        "publicOpinion": 0
+      }
+    },
+    {
+      "seed": 25,
+      "policy": "mixed",
+      "crowd": 21,
+      "checks": 72,
+      "failures": [
+        "out-of-range-story-response",
+        "stale-out-of-range-attention",
+        "inaccurate-choice-effects"
+      ],
+      "rejected": 0,
+      "final": {
+        "money": 2,
+        "reach": 31.5,
+        "trust": 0.6546285714285712,
+        "change": 1.9361904761904762,
+        "exploitation": 1.1445714285714286,
+        "influence": 1.1239809523809525,
+        "presence": 0,
+        "publicOpinion": 0
+      }
+    },
+    {
+      "seed": 26,
+      "policy": "sell",
+      "crowd": 21,
+      "checks": 72,
+      "failures": [
+        "out-of-range-story-response",
+        "stale-out-of-range-attention",
+        "inaccurate-choice-effects"
+      ],
+      "rejected": 0,
+      "final": {
+        "money": 62,
+        "reach": 45.36000000000001,
+        "trust": 0,
+        "change": 0,
+        "exploitation": 3.6049523809523807,
+        "influence": 0,
+        "presence": 0,
+        "publicOpinion": 0
+      }
+    },
+    {
+      "seed": 26,
+      "policy": "refuse",
+      "crowd": 21,
+      "checks": 72,
+      "failures": [
+        "out-of-range-story-response",
+        "stale-out-of-range-attention",
+        "inaccurate-choice-effects"
+      ],
+      "rejected": 0,
+      "final": {
+        "money": 2,
+        "reach": 0,
+        "trust": 1,
+        "change": 0,
+        "exploitation": 0,
+        "influence": 0,
+        "presence": 0,
+        "publicOpinion": 0
+      }
+    },
+    {
+      "seed": 26,
+      "policy": "mixed",
+      "crowd": 21,
+      "checks": 72,
+      "failures": [
+        "out-of-range-story-response",
+        "stale-out-of-range-attention",
+        "inaccurate-choice-effects"
+      ],
+      "rejected": 0,
+      "final": {
+        "money": 4,
+        "reach": 31.5,
+        "trust": 0.6346285714285714,
+        "change": 2.1266666666666665,
+        "exploitation": 1.2112380952380954,
+        "influence": 1.2392190476190479,
+        "presence": 0,
+        "publicOpinion": 0
+      }
+    },
+    {
+      "seed": 27,
+      "policy": "sell",
+      "crowd": 21,
+      "checks": 72,
+      "failures": [
+        "out-of-range-story-response",
+        "stale-out-of-range-attention",
+        "inaccurate-choice-effects"
+      ],
+      "rejected": 0,
+      "final": {
+        "money": 46,
+        "reach": 43.20000000000001,
+        "trust": 0,
+        "change": 0,
+        "exploitation": 3.0620952380952384,
+        "influence": 0,
+        "presence": 0,
+        "publicOpinion": 0
+      }
+    },
+    {
+      "seed": 27,
+      "policy": "refuse",
+      "crowd": 21,
+      "checks": 72,
+      "failures": [
+        "out-of-range-story-response",
+        "stale-out-of-range-attention",
+        "inaccurate-choice-effects"
+      ],
+      "rejected": 0,
+      "final": {
+        "money": 2,
+        "reach": 0,
+        "trust": 1,
+        "change": 0,
+        "exploitation": 0,
+        "influence": 0,
+        "presence": 0,
+        "publicOpinion": 0
+      }
+    },
+    {
+      "seed": 27,
+      "policy": "mixed",
+      "crowd": 21,
+      "checks": 72,
+      "failures": [
+        "out-of-range-story-response",
+        "stale-out-of-range-attention",
+        "inaccurate-choice-effects"
+      ],
+      "rejected": 0,
+      "final": {
+        "money": 1,
+        "reach": 30,
+        "trust": 0.660342857142857,
+        "change": 1.7219047619047623,
+        "exploitation": 1.1255238095238096,
+        "influence": 1.0925523809523812,
+        "presence": 0,
+        "publicOpinion": 0
+      }
+    },
+    {
+      "seed": 28,
+      "policy": "sell",
+      "crowd": 21,
+      "checks": 72,
+      "failures": [
+        "out-of-range-story-response",
+        "stale-out-of-range-attention",
+        "inaccurate-choice-effects"
+      ],
+      "rejected": 0,
+      "final": {
+        "money": 67,
+        "reach": 45.36000000000001,
+        "trust": 0,
+        "change": 0,
+        "exploitation": 3.8811428571428577,
+        "influence": 0,
+        "presence": 0,
+        "publicOpinion": 0
+      }
+    },
+    {
+      "seed": 28,
+      "policy": "refuse",
+      "crowd": 21,
+      "checks": 72,
+      "failures": [
+        "out-of-range-story-response",
+        "stale-out-of-range-attention",
+        "inaccurate-choice-effects"
+      ],
+      "rejected": 0,
+      "final": {
+        "money": 2,
+        "reach": 0,
+        "trust": 1,
+        "change": 0,
+        "exploitation": 0,
+        "influence": 0,
+        "presence": 0,
+        "publicOpinion": 0
+      }
+    },
+    {
+      "seed": 28,
+      "policy": "mixed",
+      "crowd": 21,
+      "checks": 72,
+      "failures": [
+        "out-of-range-story-response",
+        "stale-out-of-range-attention",
+        "inaccurate-choice-effects"
+      ],
+      "rejected": 0,
+      "final": {
+        "money": 5,
+        "reach": 31.5,
+        "trust": 0.6146285714285713,
+        "change": 2.329047619047619,
+        "exploitation": 1.2779047619047619,
+        "influence": 1.2916,
+        "presence": 0,
+        "publicOpinion": 0
+      }
+    },
+    {
+      "seed": 29,
+      "policy": "sell",
+      "crowd": 21,
+      "checks": 72,
+      "failures": [
+        "out-of-range-story-response",
+        "stale-out-of-range-attention",
+        "inaccurate-choice-effects"
+      ],
+      "rejected": 0,
+      "final": {
+        "money": 51,
+        "reach": 45.36000000000001,
+        "trust": 0,
+        "change": 0,
+        "exploitation": 3.147809523809524,
+        "influence": 0,
+        "presence": 0,
+        "publicOpinion": 0
+      }
+    },
+    {
+      "seed": 29,
+      "policy": "refuse",
+      "crowd": 21,
+      "checks": 72,
+      "failures": [
+        "out-of-range-story-response",
+        "stale-out-of-range-attention",
+        "inaccurate-choice-effects"
+      ],
+      "rejected": 0,
+      "final": {
+        "money": 2,
+        "reach": 0,
+        "trust": 1,
+        "change": 0,
+        "exploitation": 0,
+        "influence": 0,
+        "presence": 0,
+        "publicOpinion": 0
+      }
+    },
+    {
+      "seed": 29,
+      "policy": "mixed",
+      "crowd": 21,
+      "checks": 72,
+      "failures": [
+        "out-of-range-story-response",
+        "stale-out-of-range-attention",
+        "inaccurate-choice-effects"
+      ],
+      "rejected": 0,
+      "final": {
+        "money": 2,
+        "reach": 31.5,
+        "trust": 0.6574857142857141,
+        "change": 1.817142857142857,
+        "exploitation": 1.135047619047619,
+        "influence": 1.092552380952381,
+        "presence": 0,
+        "publicOpinion": 0
+      }
+    },
+    {
+      "seed": 30,
+      "policy": "sell",
+      "crowd": 21,
+      "checks": 72,
+      "failures": [
+        "out-of-range-story-response",
+        "stale-out-of-range-attention",
+        "inaccurate-choice-effects"
+      ],
+      "rejected": 0,
+      "final": {
+        "money": 48,
+        "reach": 38.879999999999995,
+        "trust": 0,
+        "change": 0,
+        "exploitation": 3.3478095238095236,
+        "influence": 0,
+        "presence": 0,
+        "publicOpinion": 0
+      }
+    },
+    {
+      "seed": 30,
+      "policy": "refuse",
+      "crowd": 21,
+      "checks": 72,
+      "failures": [
+        "out-of-range-story-response",
+        "stale-out-of-range-attention",
+        "inaccurate-choice-effects"
+      ],
+      "rejected": 0,
+      "final": {
+        "money": 2,
+        "reach": 0,
+        "trust": 1,
+        "change": 0,
+        "exploitation": 0,
+        "influence": 0,
+        "presence": 0,
+        "publicOpinion": 0
+      }
+    },
+    {
+      "seed": 30,
+      "policy": "mixed",
+      "crowd": 21,
+      "checks": 72,
+      "failures": [
+        "out-of-range-story-response",
+        "stale-out-of-range-attention",
+        "inaccurate-choice-effects"
+      ],
+      "rejected": 0,
+      "final": {
+        "money": 1,
+        "reach": 27,
+        "trust": 0.6403428571428571,
+        "change": 1.936190476190476,
+        "exploitation": 1.192190476190476,
+        "influence": 1.1449333333333336,
+        "presence": 0,
+        "publicOpinion": 0
+      }
+    },
+    {
+      "seed": 31,
+      "policy": "sell",
+      "crowd": 21,
+      "checks": 72,
+      "failures": [
+        "out-of-range-story-response",
+        "stale-out-of-range-attention",
+        "inaccurate-choice-effects"
+      ],
+      "rejected": 0,
+      "final": {
+        "money": 54,
+        "reach": 45.36000000000001,
+        "trust": 0,
+        "change": 0,
+        "exploitation": 3.2335238095238092,
+        "influence": 0,
+        "presence": 0,
+        "publicOpinion": 0
+      }
+    },
+    {
+      "seed": 31,
+      "policy": "refuse",
+      "crowd": 21,
+      "checks": 72,
+      "failures": [
+        "out-of-range-story-response",
+        "stale-out-of-range-attention",
+        "inaccurate-choice-effects"
+      ],
+      "rejected": 0,
+      "final": {
+        "money": 2,
+        "reach": 0,
+        "trust": 1,
+        "change": 0,
+        "exploitation": 0,
+        "influence": 0,
+        "presence": 0,
+        "publicOpinion": 0
+      }
+    },
+    {
+      "seed": 31,
+      "policy": "mixed",
+      "crowd": 21,
+      "checks": 72,
+      "failures": [
+        "out-of-range-story-response",
+        "stale-out-of-range-attention",
+        "inaccurate-choice-effects"
+      ],
+      "rejected": 0,
+      "final": {
+        "money": 3,
+        "reach": 31.5,
+        "trust": 0.6517714285714286,
+        "change": 1.8528571428571428,
+        "exploitation": 1.154095238095238,
+        "influence": 1.134457142857143,
+        "presence": 0,
+        "publicOpinion": 0
+      }
+    },
+    {
+      "seed": 32,
+      "policy": "sell",
+      "crowd": 21,
+      "checks": 72,
+      "failures": [
+        "out-of-range-story-response",
+        "stale-out-of-range-attention",
+        "inaccurate-choice-effects"
+      ],
+      "rejected": 0,
+      "final": {
+        "money": 57,
+        "reach": 45.36000000000001,
+        "trust": 0,
+        "change": 0,
+        "exploitation": 3.395428571428572,
+        "influence": 0,
+        "presence": 0,
+        "publicOpinion": 0
+      }
+    },
+    {
+      "seed": 32,
+      "policy": "refuse",
+      "crowd": 21,
+      "checks": 72,
+      "failures": [
+        "out-of-range-story-response",
+        "stale-out-of-range-attention",
+        "inaccurate-choice-effects"
+      ],
+      "rejected": 0,
+      "final": {
+        "money": 2,
+        "reach": 0,
+        "trust": 1,
+        "change": 0,
+        "exploitation": 0,
+        "influence": 0,
+        "presence": 0,
+        "publicOpinion": 0
+      }
+    },
+    {
+      "seed": 32,
+      "policy": "mixed",
+      "crowd": 21,
+      "checks": 72,
+      "failures": [
+        "out-of-range-story-response",
+        "stale-out-of-range-attention",
+        "inaccurate-choice-effects"
+      ],
+      "rejected": 0,
+      "final": {
+        "money": 3,
+        "reach": 31.5,
+        "trust": 0.640342857142857,
+        "change": 1.96,
+        "exploitation": 1.1921904761904765,
+        "influence": 1.176361904761905,
+        "presence": 0,
+        "publicOpinion": 0
+      }
+    },
+    {
+      "seed": 33,
+      "policy": "sell",
+      "crowd": 21,
+      "checks": 72,
+      "failures": [
+        "out-of-range-story-response",
+        "stale-out-of-range-attention",
+        "inaccurate-choice-effects"
+      ],
+      "rejected": 0,
+      "final": {
+        "money": 70,
+        "reach": 45.36000000000001,
+        "trust": 0,
+        "change": 0,
+        "exploitation": 4.058285714285715,
+        "influence": 0,
+        "presence": 0,
+        "publicOpinion": 0
+      }
+    },
+    {
+      "seed": 33,
+      "policy": "refuse",
+      "crowd": 21,
+      "checks": 72,
+      "failures": [
+        "out-of-range-story-response",
+        "stale-out-of-range-attention",
+        "inaccurate-choice-effects"
+      ],
+      "rejected": 0,
+      "final": {
+        "money": 2,
+        "reach": 0,
+        "trust": 1,
+        "change": 0,
+        "exploitation": 0,
+        "influence": 0,
+        "presence": 0,
+        "publicOpinion": 0
+      }
+    },
+    {
+      "seed": 33,
+      "policy": "mixed",
+      "crowd": 21,
+      "checks": 72,
+      "failures": [
+        "out-of-range-story-response",
+        "stale-out-of-range-attention",
+        "inaccurate-choice-effects"
+      ],
+      "rejected": 0,
+      "final": {
+        "money": 6,
+        "reach": 31.5,
+        "trust": 0.6013428571428571,
+        "change": 2.435595238095238,
+        "exploitation": 1.3221904761904764,
+        "influence": 1.3439809523809525,
+        "presence": 0,
+        "publicOpinion": 0
+      }
+    },
+    {
+      "seed": 34,
+      "policy": "sell",
+      "crowd": 21,
+      "checks": 72,
+      "failures": [
+        "out-of-range-story-response",
+        "stale-out-of-range-attention",
+        "inaccurate-choice-effects"
+      ],
+      "rejected": 0,
+      "final": {
+        "money": 61,
+        "reach": 45.36000000000001,
+        "trust": 0,
+        "change": 0,
+        "exploitation": 3.63352380952381,
+        "influence": 0,
+        "presence": 0,
+        "publicOpinion": 0
+      }
+    },
+    {
+      "seed": 34,
+      "policy": "refuse",
+      "crowd": 21,
+      "checks": 72,
+      "failures": [
+        "out-of-range-story-response",
+        "stale-out-of-range-attention",
+        "inaccurate-choice-effects"
+      ],
+      "rejected": 0,
+      "final": {
+        "money": 2,
+        "reach": 0,
+        "trust": 1,
+        "change": 0,
+        "exploitation": 0,
+        "influence": 0,
+        "presence": 0,
+        "publicOpinion": 0
+      }
+    },
+    {
+      "seed": 34,
+      "policy": "mixed",
+      "crowd": 21,
+      "checks": 72,
+      "failures": [
+        "out-of-range-story-response",
+        "stale-out-of-range-attention",
+        "inaccurate-choice-effects"
+      ],
+      "rejected": 0,
+      "final": {
+        "money": 4,
+        "reach": 31.5,
+        "trust": 0.6231999999999999,
+        "change": 2.138571428571429,
+        "exploitation": 1.2493333333333334,
+        "influence": 1.2182666666666668,
+        "presence": 0,
+        "publicOpinion": 0
+      }
+    },
+    {
+      "seed": 35,
+      "policy": "sell",
+      "crowd": 21,
+      "checks": 72,
+      "failures": [
+        "out-of-range-story-response",
+        "stale-out-of-range-attention",
+        "inaccurate-choice-effects"
+      ],
+      "rejected": 0,
+      "final": {
+        "money": 53,
+        "reach": 45.36000000000001,
+        "trust": 0,
+        "change": 0,
+        "exploitation": 3.328761904761905,
+        "influence": 0,
+        "presence": 0,
+        "publicOpinion": 0
+      }
+    },
+    {
+      "seed": 35,
+      "policy": "refuse",
+      "crowd": 21,
+      "checks": 72,
+      "failures": [
+        "out-of-range-story-response",
+        "stale-out-of-range-attention",
+        "inaccurate-choice-effects"
+      ],
+      "rejected": 0,
+      "final": {
+        "money": 2,
+        "reach": 0,
+        "trust": 1,
+        "change": 0,
+        "exploitation": 0,
+        "influence": 0,
+        "presence": 0,
+        "publicOpinion": 0
+      }
+    },
+    {
+      "seed": 35,
+      "policy": "mixed",
+      "crowd": 21,
+      "checks": 72,
+      "failures": [
+        "out-of-range-story-response",
+        "stale-out-of-range-attention",
+        "inaccurate-choice-effects"
+      ],
+      "rejected": 0,
+      "final": {
+        "money": 2,
+        "reach": 31.5,
+        "trust": 0.6489142857142857,
+        "change": 1.948095238095238,
+        "exploitation": 1.1636190476190476,
+        "influence": 1.1449333333333334,
+        "presence": 0,
+        "publicOpinion": 0
+      }
+    },
+    {
+      "seed": 36,
+      "policy": "sell",
+      "crowd": 21,
+      "checks": 72,
+      "failures": [
+        "out-of-range-story-response",
+        "stale-out-of-range-attention",
+        "inaccurate-choice-effects"
+      ],
+      "rejected": 0,
+      "final": {
+        "money": 55,
+        "reach": 45.36000000000001,
+        "trust": 0,
+        "change": 0,
+        "exploitation": 3.2335238095238097,
+        "influence": 0,
+        "presence": 0,
+        "publicOpinion": 0
+      }
+    },
+    {
+      "seed": 36,
+      "policy": "refuse",
+      "crowd": 21,
+      "checks": 72,
+      "failures": [
+        "out-of-range-story-response",
+        "stale-out-of-range-attention",
+        "inaccurate-choice-effects"
+      ],
+      "rejected": 0,
+      "final": {
+        "money": 2,
+        "reach": 0,
+        "trust": 1,
+        "change": 0,
+        "exploitation": 0,
+        "influence": 0,
+        "presence": 0,
+        "publicOpinion": 0
+      }
+    },
+    {
+      "seed": 36,
+      "policy": "mixed",
+      "crowd": 21,
+      "checks": 72,
+      "failures": [
+        "out-of-range-story-response",
+        "stale-out-of-range-attention",
+        "inaccurate-choice-effects"
+      ],
+      "rejected": 0,
+      "final": {
+        "money": 3,
+        "reach": 31.5,
+        "trust": 0.6546285714285714,
+        "change": 1.8885714285714286,
+        "exploitation": 1.1445714285714286,
+        "influence": 1.113504761904762,
+        "presence": 0,
+        "publicOpinion": 0
+      }
+    },
+    {
+      "seed": 37,
+      "policy": "sell",
+      "crowd": 21,
+      "checks": 72,
+      "failures": [
+        "out-of-range-story-response",
+        "stale-out-of-range-attention",
+        "inaccurate-choice-effects"
+      ],
+      "rejected": 0,
+      "final": {
+        "money": 55,
+        "reach": 45.36000000000001,
+        "trust": 0,
+        "change": 0,
+        "exploitation": 3.1954285714285713,
+        "influence": 0,
+        "presence": 0,
+        "publicOpinion": 0
+      }
+    },
+    {
+      "seed": 37,
+      "policy": "refuse",
+      "crowd": 21,
+      "checks": 72,
+      "failures": [
+        "out-of-range-story-response",
+        "stale-out-of-range-attention",
+        "inaccurate-choice-effects"
+      ],
+      "rejected": 0,
+      "final": {
+        "money": 2,
+        "reach": 0,
+        "trust": 1,
+        "change": 0,
+        "exploitation": 0,
+        "influence": 0,
+        "presence": 0,
+        "publicOpinion": 0
+      }
+    },
+    {
+      "seed": 37,
+      "policy": "mixed",
+      "crowd": 21,
+      "checks": 72,
+      "failures": [
+        "out-of-range-story-response",
+        "stale-out-of-range-attention",
+        "inaccurate-choice-effects"
+      ],
+      "rejected": 0,
+      "final": {
+        "money": 3,
+        "reach": 31.5,
+        "trust": 0.6546285714285714,
+        "change": 1.840952380952381,
+        "exploitation": 1.1445714285714286,
+        "influence": 1.113504761904762,
+        "presence": 0,
+        "publicOpinion": 0
+      }
+    },
+    {
+      "seed": 38,
+      "policy": "sell",
+      "crowd": 21,
+      "checks": 72,
+      "failures": [
+        "out-of-range-story-response",
+        "stale-out-of-range-attention",
+        "inaccurate-choice-effects"
+      ],
+      "rejected": 0,
+      "final": {
+        "money": 61,
+        "reach": 45.36000000000001,
+        "trust": 0,
+        "change": 0,
+        "exploitation": 3.576380952380953,
+        "influence": 0,
+        "presence": 0,
+        "publicOpinion": 0
+      }
+    },
+    {
+      "seed": 38,
+      "policy": "refuse",
+      "crowd": 21,
+      "checks": 72,
+      "failures": [
+        "out-of-range-story-response",
+        "stale-out-of-range-attention",
+        "inaccurate-choice-effects"
+      ],
+      "rejected": 0,
+      "final": {
+        "money": 2,
+        "reach": 0,
+        "trust": 1,
+        "change": 0,
+        "exploitation": 0,
+        "influence": 0,
+        "presence": 0,
+        "publicOpinion": 0
+      }
+    },
+    {
+      "seed": 38,
+      "policy": "mixed",
+      "crowd": 21,
+      "checks": 72,
+      "failures": [
+        "out-of-range-story-response",
+        "stale-out-of-range-attention",
+        "inaccurate-choice-effects"
+      ],
+      "rejected": 0,
+      "final": {
+        "money": 4,
+        "reach": 31.5,
+        "trust": 0.6289142857142856,
+        "change": 2.102857142857143,
+        "exploitation": 1.2302857142857144,
+        "influence": 1.2077904761904765,
+        "presence": 0,
+        "publicOpinion": 0
+      }
+    },
+    {
+      "seed": 39,
+      "policy": "sell",
+      "crowd": 21,
+      "checks": 72,
+      "failures": [
+        "out-of-range-story-response",
+        "stale-out-of-range-attention",
+        "inaccurate-choice-effects"
+      ],
+      "rejected": 0,
+      "final": {
+        "money": 55,
+        "reach": 41.04000000000001,
+        "trust": 0,
+        "change": 0,
+        "exploitation": 3.5668571428571436,
+        "influence": 0,
+        "presence": 0,
+        "publicOpinion": 0
+      }
+    },
+    {
+      "seed": 39,
+      "policy": "refuse",
+      "crowd": 21,
+      "checks": 72,
+      "failures": [
+        "out-of-range-story-response",
+        "stale-out-of-range-attention",
+        "inaccurate-choice-effects"
+      ],
+      "rejected": 0,
+      "final": {
+        "money": 2,
+        "reach": 0,
+        "trust": 1,
+        "change": 0,
+        "exploitation": 0,
+        "influence": 0,
+        "presence": 0,
+        "publicOpinion": 0
+      }
+    },
+    {
+      "seed": 39,
+      "policy": "mixed",
+      "crowd": 21,
+      "checks": 72,
+      "failures": [
+        "out-of-range-story-response",
+        "stale-out-of-range-attention",
+        "inaccurate-choice-effects"
+      ],
+      "rejected": 0,
+      "final": {
+        "money": 3,
+        "reach": 28.5,
+        "trust": 0.6289142857142856,
+        "change": 2.079047619047619,
+        "exploitation": 1.2302857142857144,
+        "influence": 1.2182666666666668,
+        "presence": 0,
+        "publicOpinion": 0
+      }
+    },
+    {
+      "seed": 40,
+      "policy": "sell",
+      "crowd": 21,
+      "checks": 72,
+      "failures": [
+        "out-of-range-story-response",
+        "stale-out-of-range-attention",
+        "inaccurate-choice-effects"
+      ],
+      "rejected": 0,
+      "final": {
+        "money": 50,
+        "reach": 45.36000000000001,
+        "trust": 0,
+        "change": 0,
+        "exploitation": 3.1763809523809523,
+        "influence": 0,
+        "presence": 0,
+        "publicOpinion": 0
+      }
+    },
+    {
+      "seed": 40,
+      "policy": "refuse",
+      "crowd": 21,
+      "checks": 72,
+      "failures": [
+        "out-of-range-story-response",
+        "stale-out-of-range-attention",
+        "inaccurate-choice-effects"
+      ],
+      "rejected": 0,
+      "final": {
+        "money": 2,
+        "reach": 0,
+        "trust": 1,
+        "change": 0,
+        "exploitation": 0,
+        "influence": 0,
+        "presence": 0,
+        "publicOpinion": 0
+      }
+    },
+    {
+      "seed": 40,
+      "policy": "mixed",
+      "crowd": 21,
+      "checks": 72,
+      "failures": [
+        "out-of-range-story-response",
+        "stale-out-of-range-attention",
+        "inaccurate-choice-effects"
+      ],
+      "rejected": 0,
+      "final": {
+        "money": 1,
+        "reach": 31.5,
+        "trust": 0.6631999999999999,
+        "change": 1.8766666666666665,
+        "exploitation": 1.116,
+        "influence": 1.092552380952381,
+        "presence": 0,
+        "publicOpinion": 0
+      }
+    },
+    {
+      "seed": 41,
+      "policy": "sell",
+      "crowd": 21,
+      "checks": 72,
+      "failures": [
+        "out-of-range-story-response",
+        "stale-out-of-range-attention",
+        "inaccurate-choice-effects"
+      ],
+      "rejected": 0,
+      "final": {
+        "money": 60,
+        "reach": 45.36000000000001,
+        "trust": 0,
+        "change": 0,
+        "exploitation": 3.500190476190477,
+        "influence": 0,
+        "presence": 0,
+        "publicOpinion": 0
+      }
+    },
+    {
+      "seed": 41,
+      "policy": "refuse",
+      "crowd": 21,
+      "checks": 72,
+      "failures": [
+        "out-of-range-story-response",
+        "stale-out-of-range-attention",
+        "inaccurate-choice-effects"
+      ],
+      "rejected": 0,
+      "final": {
+        "money": 2,
+        "reach": 0,
+        "trust": 1,
+        "change": 0,
+        "exploitation": 0,
+        "influence": 0,
+        "presence": 0,
+        "publicOpinion": 0
+      }
+    },
+    {
+      "seed": 41,
+      "policy": "mixed",
+      "crowd": 21,
+      "checks": 72,
+      "failures": [
+        "out-of-range-story-response",
+        "stale-out-of-range-attention",
+        "inaccurate-choice-effects"
+      ],
+      "rejected": 0,
+      "final": {
+        "money": 4,
+        "reach": 31.5,
+        "trust": 0.6346285714285714,
+        "change": 2.055238095238095,
+        "exploitation": 1.2112380952380954,
+        "influence": 1.1868380952380955,
+        "presence": 0,
+        "publicOpinion": 0
+      }
+    },
+    {
+      "seed": 42,
+      "policy": "sell",
+      "crowd": 21,
+      "checks": 72,
+      "failures": [
+        "out-of-range-story-response",
+        "stale-out-of-range-attention",
+        "inaccurate-choice-effects"
+      ],
+      "rejected": 0,
+      "final": {
+        "money": 74,
+        "reach": 45.00000000000001,
+        "trust": 0,
+        "change": 0,
+        "exploitation": 4.242095238095239,
+        "influence": 0,
+        "presence": 0,
+        "publicOpinion": 0
+      }
+    },
+    {
+      "seed": 42,
+      "policy": "refuse",
+      "crowd": 21,
+      "checks": 72,
+      "failures": [
+        "out-of-range-story-response",
+        "stale-out-of-range-attention",
+        "inaccurate-choice-effects"
+      ],
+      "rejected": 0,
+      "final": {
+        "money": 2,
+        "reach": 0,
+        "trust": 1,
+        "change": 0,
+        "exploitation": 0,
+        "influence": 0,
+        "presence": 0,
+        "publicOpinion": 0
+      }
+    },
+    {
+      "seed": 42,
+      "policy": "mixed",
+      "crowd": 21,
+      "checks": 72,
+      "failures": [
+        "out-of-range-story-response",
+        "stale-out-of-range-attention",
+        "inaccurate-choice-effects"
+      ],
+      "rejected": 0,
+      "final": {
+        "money": 7,
+        "reach": 31,
+        "trust": 0.5851999999999999,
+        "change": 2.530833333333333,
+        "exploitation": 1.376,
+        "influence": 1.4031714285714287,
+        "presence": 0,
+        "publicOpinion": 0
+      }
+    },
+    {
+      "seed": 43,
+      "policy": "sell",
+      "crowd": 21,
+      "checks": 72,
+      "failures": [
+        "out-of-range-story-response",
+        "stale-out-of-range-attention",
+        "inaccurate-choice-effects"
+      ],
+      "rejected": 0,
+      "final": {
+        "money": 60,
+        "reach": 45.36000000000001,
+        "trust": 0,
+        "change": 0,
+        "exploitation": 3.6173333333333333,
+        "influence": 0,
+        "presence": 0,
+        "publicOpinion": 0
+      }
+    },
+    {
+      "seed": 43,
+      "policy": "refuse",
+      "crowd": 21,
+      "checks": 72,
+      "failures": [
+        "out-of-range-story-response",
+        "stale-out-of-range-attention",
+        "inaccurate-choice-effects"
+      ],
+      "rejected": 0,
+      "final": {
+        "money": 2,
+        "reach": 0,
+        "trust": 1,
+        "change": 0,
+        "exploitation": 0,
+        "influence": 0,
+        "presence": 0,
+        "publicOpinion": 0
+      }
+    },
+    {
+      "seed": 43,
+      "policy": "mixed",
+      "crowd": 21,
+      "checks": 72,
+      "failures": [
+        "out-of-range-story-response",
+        "stale-out-of-range-attention",
+        "inaccurate-choice-effects"
+      ],
+      "rejected": 0,
+      "final": {
+        "money": 3,
+        "reach": 31.5,
+        "trust": 0.640342857142857,
+        "change": 2.1540476190476188,
+        "exploitation": 1.1921904761904765,
+        "influence": 1.2496952380952382,
+        "presence": 0,
+        "publicOpinion": 0
+      }
+    },
+    {
+      "seed": 44,
+      "policy": "sell",
+      "crowd": 21,
+      "checks": 72,
+      "failures": [
+        "out-of-range-story-response",
+        "stale-out-of-range-attention",
+        "inaccurate-choice-effects"
+      ],
+      "rejected": 0,
+      "final": {
+        "money": 46,
+        "reach": 45.36000000000001,
+        "trust": 0,
+        "change": 0,
+        "exploitation": 3.024,
+        "influence": 0,
+        "presence": 0,
+        "publicOpinion": 0
+      }
+    },
+    {
+      "seed": 44,
+      "policy": "refuse",
+      "crowd": 21,
+      "checks": 72,
+      "failures": [
+        "out-of-range-story-response",
+        "stale-out-of-range-attention",
+        "inaccurate-choice-effects"
+      ],
+      "rejected": 0,
+      "final": {
+        "money": 2,
+        "reach": 0,
+        "trust": 1,
+        "change": 0,
+        "exploitation": 0,
+        "influence": 0,
+        "presence": 0,
+        "publicOpinion": 0
+      }
+    },
+    {
+      "seed": 44,
+      "policy": "mixed",
+      "crowd": 21,
+      "checks": 72,
+      "failures": [
+        "out-of-range-story-response",
+        "stale-out-of-range-attention",
+        "inaccurate-choice-effects"
+      ],
+      "rejected": 0,
+      "final": {
+        "money": 1,
+        "reach": 31.5,
+        "trust": 0.6631999999999999,
+        "change": 1.71,
+        "exploitation": 1.116,
+        "influence": 1.0716,
+        "presence": 0,
+        "publicOpinion": 0
+      }
+    },
+    {
+      "seed": 45,
+      "policy": "sell",
+      "crowd": 21,
+      "checks": 72,
+      "failures": [
+        "out-of-range-story-response",
+        "stale-out-of-range-attention",
+        "inaccurate-choice-effects"
+      ],
+      "rejected": 0,
+      "final": {
+        "money": 55,
+        "reach": 42.12000000000001,
+        "trust": 0,
+        "change": 0,
+        "exploitation": 3.452571428571429,
+        "influence": 0,
+        "presence": 0,
+        "publicOpinion": 0
+      }
+    },
+    {
+      "seed": 45,
+      "policy": "refuse",
+      "crowd": 21,
+      "checks": 72,
+      "failures": [
+        "out-of-range-story-response",
+        "stale-out-of-range-attention",
+        "inaccurate-choice-effects"
+      ],
+      "rejected": 0,
+      "final": {
+        "money": 2,
+        "reach": 0,
+        "trust": 1,
+        "change": 0,
+        "exploitation": 0,
+        "influence": 0,
+        "presence": 0,
+        "publicOpinion": 0
+      }
+    },
+    {
+      "seed": 45,
+      "policy": "mixed",
+      "crowd": 21,
+      "checks": 72,
+      "failures": [
+        "out-of-range-story-response",
+        "stale-out-of-range-attention",
+        "inaccurate-choice-effects"
+      ],
+      "rejected": 0,
+      "final": {
+        "money": 2,
+        "reach": 29,
+        "trust": 0.6431999999999999,
+        "change": 2.031428571428571,
+        "exploitation": 1.182666666666667,
+        "influence": 1.1868380952380955,
+        "presence": 0,
+        "publicOpinion": 0
+      }
+    },
+    {
+      "seed": 46,
+      "policy": "sell",
+      "crowd": 21,
+      "checks": 72,
+      "failures": [
+        "out-of-range-story-response",
+        "stale-out-of-range-attention",
+        "inaccurate-choice-effects"
+      ],
+      "rejected": 0,
+      "final": {
+        "money": 60,
+        "reach": 45.36000000000001,
+        "trust": 0,
+        "change": 0,
+        "exploitation": 3.4811428571428573,
+        "influence": 0,
+        "presence": 0,
+        "publicOpinion": 0
+      }
+    },
+    {
+      "seed": 46,
+      "policy": "refuse",
+      "crowd": 21,
+      "checks": 72,
+      "failures": [
+        "out-of-range-story-response",
+        "stale-out-of-range-attention",
+        "inaccurate-choice-effects"
+      ],
+      "rejected": 0,
+      "final": {
+        "money": 2,
+        "reach": 0,
+        "trust": 1,
+        "change": 0,
+        "exploitation": 0,
+        "influence": 0,
+        "presence": 0,
+        "publicOpinion": 0
+      }
+    },
+    {
+      "seed": 46,
+      "policy": "mixed",
+      "crowd": 21,
+      "checks": 72,
+      "failures": [
+        "out-of-range-story-response",
+        "stale-out-of-range-attention",
+        "inaccurate-choice-effects"
+      ],
+      "rejected": 0,
+      "final": {
+        "money": 4,
+        "reach": 31.5,
+        "trust": 0.6346285714285714,
+        "change": 2.0433333333333334,
+        "exploitation": 1.2112380952380954,
+        "influence": 1.176361904761905,
+        "presence": 0,
+        "publicOpinion": 0
+      }
+    },
+    {
+      "seed": 47,
+      "policy": "sell",
+      "crowd": 21,
+      "checks": 72,
+      "failures": [
+        "out-of-range-story-response",
+        "stale-out-of-range-attention",
+        "inaccurate-choice-effects"
+      ],
+      "rejected": 0,
+      "final": {
+        "money": 53,
+        "reach": 45.36000000000001,
+        "trust": 0,
+        "change": 0,
+        "exploitation": 3.2811428571428567,
+        "influence": 0,
+        "presence": 0,
+        "publicOpinion": 0
+      }
+    },
+    {
+      "seed": 47,
+      "policy": "refuse",
+      "crowd": 21,
+      "checks": 72,
+      "failures": [
+        "out-of-range-story-response",
+        "stale-out-of-range-attention",
+        "inaccurate-choice-effects"
+      ],
+      "rejected": 0,
+      "final": {
+        "money": 2,
+        "reach": 0,
+        "trust": 1,
+        "change": 0,
+        "exploitation": 0,
+        "influence": 0,
+        "presence": 0,
+        "publicOpinion": 0
+      }
+    },
+    {
+      "seed": 47,
+      "policy": "mixed",
+      "crowd": 21,
+      "checks": 72,
+      "failures": [
+        "out-of-range-story-response",
+        "stale-out-of-range-attention",
+        "inaccurate-choice-effects"
+      ],
+      "rejected": 0,
+      "final": {
+        "money": 2,
+        "reach": 31.5,
+        "trust": 0.6489142857142857,
+        "change": 1.9004761904761902,
+        "exploitation": 1.1636190476190476,
+        "influence": 1.134457142857143,
+        "presence": 0,
+        "publicOpinion": 0
+      }
+    },
+    {
+      "seed": 48,
+      "policy": "sell",
+      "crowd": 21,
+      "checks": 72,
+      "failures": [
+        "out-of-range-story-response",
+        "stale-out-of-range-attention",
+        "inaccurate-choice-effects"
+      ],
+      "rejected": 0,
+      "final": {
+        "money": 39,
+        "reach": 32.94,
+        "trust": 0,
+        "change": 0,
+        "exploitation": 3.024,
+        "influence": 0,
+        "presence": 0,
+        "publicOpinion": 0
+      }
+    },
+    {
+      "seed": 48,
+      "policy": "refuse",
+      "crowd": 21,
+      "checks": 72,
+      "failures": [
+        "out-of-range-story-response",
+        "stale-out-of-range-attention",
+        "inaccurate-choice-effects"
+      ],
+      "rejected": 0,
+      "final": {
+        "money": 2,
+        "reach": 0,
+        "trust": 1,
+        "change": 0,
+        "exploitation": 0,
+        "influence": 0,
+        "presence": 0,
+        "publicOpinion": 0
+      }
+    },
+    {
+      "seed": 48,
+      "policy": "mixed",
+      "crowd": 21,
+      "checks": 73,
+      "failures": [
+        "out-of-range-story-response",
+        "stale-out-of-range-attention",
+        "inaccurate-choice-effects"
+      ],
+      "rejected": 1,
+      "final": {
+        "money": 1,
+        "reach": 22.42,
+        "trust": 0.6132,
+        "change": 1.4024999999999999,
+        "exploitation": 1.116,
+        "influence": 1.0116,
+        "presence": 0,
+        "publicOpinion": 0
+      }
+    },
+    {
+      "seed": 49,
+      "policy": "sell",
+      "crowd": 21,
+      "checks": 72,
+      "failures": [
+        "out-of-range-story-response",
+        "stale-out-of-range-attention",
+        "inaccurate-choice-effects"
+      ],
+      "rejected": 0,
+      "final": {
+        "money": 58,
+        "reach": 45.36000000000001,
+        "trust": 0,
+        "change": 0,
+        "exploitation": 3.471619047619048,
+        "influence": 0,
+        "presence": 0,
+        "publicOpinion": 0
+      }
+    },
+    {
+      "seed": 49,
+      "policy": "refuse",
+      "crowd": 21,
+      "checks": 72,
+      "failures": [
+        "out-of-range-story-response",
+        "stale-out-of-range-attention",
+        "inaccurate-choice-effects"
+      ],
+      "rejected": 0,
+      "final": {
+        "money": 2,
+        "reach": 0,
+        "trust": 1,
+        "change": 0,
+        "exploitation": 0,
+        "influence": 0,
+        "presence": 0,
+        "publicOpinion": 0
+      }
+    },
+    {
+      "seed": 49,
+      "policy": "mixed",
+      "crowd": 21,
+      "checks": 72,
+      "failures": [
+        "out-of-range-story-response",
+        "stale-out-of-range-attention",
+        "inaccurate-choice-effects"
+      ],
+      "rejected": 0,
+      "final": {
+        "money": 3,
+        "reach": 31.5,
+        "trust": 0.6374857142857141,
+        "change": 2.0552380952380953,
+        "exploitation": 1.201714285714286,
+        "influence": 1.1658857142857144,
+        "presence": 0,
+        "publicOpinion": 0
+      }
+    },
+    {
+      "seed": 50,
+      "policy": "sell",
+      "crowd": 21,
+      "checks": 72,
+      "failures": [
+        "out-of-range-story-response",
+        "stale-out-of-range-attention",
+        "inaccurate-choice-effects"
+      ],
+      "rejected": 0,
+      "final": {
+        "money": 70,
+        "reach": 45.36000000000001,
+        "trust": 0,
+        "change": 0,
+        "exploitation": 3.9573333333333336,
+        "influence": 0,
+        "presence": 0,
+        "publicOpinion": 0
+      }
+    },
+    {
+      "seed": 50,
+      "policy": "refuse",
+      "crowd": 21,
+      "checks": 72,
+      "failures": [
+        "out-of-range-story-response",
+        "stale-out-of-range-attention",
+        "inaccurate-choice-effects"
+      ],
+      "rejected": 0,
+      "final": {
+        "money": 2,
+        "reach": 0,
+        "trust": 1,
+        "change": 0,
+        "exploitation": 0,
+        "influence": 0,
+        "presence": 0,
+        "publicOpinion": 0
+      }
+    },
+    {
+      "seed": 50,
+      "policy": "mixed",
+      "crowd": 21,
+      "checks": 72,
+      "failures": [
+        "out-of-range-story-response",
+        "stale-out-of-range-attention",
+        "inaccurate-choice-effects"
+      ],
+      "rejected": 0,
+      "final": {
+        "money": 6,
+        "reach": 31.5,
+        "trust": 0.6032,
+        "change": 2.3647619047619046,
+        "exploitation": 1.3160000000000003,
+        "influence": 1.3020761904761906,
+        "presence": 0,
+        "publicOpinion": 0
+      }
+    },
+    {
+      "seed": 51,
+      "policy": "sell",
+      "crowd": 21,
+      "checks": 72,
+      "failures": [
+        "out-of-range-story-response",
+        "stale-out-of-range-attention",
+        "inaccurate-choice-effects"
+      ],
+      "rejected": 0,
+      "final": {
+        "money": 59,
+        "reach": 42.660000000000004,
+        "trust": 0,
+        "change": 0,
+        "exploitation": 3.5478095238095237,
+        "influence": 0,
+        "presence": 0,
+        "publicOpinion": 0
+      }
+    },
+    {
+      "seed": 51,
+      "policy": "refuse",
+      "crowd": 21,
+      "checks": 72,
+      "failures": [
+        "out-of-range-story-response",
+        "stale-out-of-range-attention",
+        "inaccurate-choice-effects"
+      ],
+      "rejected": 0,
+      "final": {
+        "money": 2,
+        "reach": 0,
+        "trust": 1,
+        "change": 0,
+        "exploitation": 0,
+        "influence": 0,
+        "presence": 0,
+        "publicOpinion": 0
+      }
+    },
+    {
+      "seed": 51,
+      "policy": "mixed",
+      "crowd": 21,
+      "checks": 72,
+      "failures": [
+        "out-of-range-story-response",
+        "stale-out-of-range-attention",
+        "inaccurate-choice-effects"
+      ],
+      "rejected": 0,
+      "final": {
+        "money": 3,
+        "reach": 29.46,
+        "trust": 0.6374857142857143,
+        "change": 2.090952380952381,
+        "exploitation": 1.201714285714286,
+        "influence": 1.2182666666666668,
+        "presence": 0,
+        "publicOpinion": 0
+      }
+    },
+    {
+      "seed": 52,
+      "policy": "sell",
+      "crowd": 21,
+      "checks": 72,
+      "failures": [
+        "out-of-range-story-response",
+        "stale-out-of-range-attention",
+        "inaccurate-choice-effects"
+      ],
+      "rejected": 0,
+      "final": {
+        "money": 47,
+        "reach": 45.36000000000001,
+        "trust": 0,
+        "change": 0,
+        "exploitation": 3.0525714285714285,
+        "influence": 0,
+        "presence": 0,
+        "publicOpinion": 0
+      }
+    },
+    {
+      "seed": 52,
+      "policy": "refuse",
+      "crowd": 21,
+      "checks": 72,
+      "failures": [
+        "out-of-range-story-response",
+        "stale-out-of-range-attention",
+        "inaccurate-choice-effects"
+      ],
+      "rejected": 0,
+      "final": {
+        "money": 2,
+        "reach": 0,
+        "trust": 1,
+        "change": 0,
+        "exploitation": 0,
+        "influence": 0,
+        "presence": 0,
+        "publicOpinion": 0
+      }
+    },
+    {
+      "seed": 52,
+      "policy": "mixed",
+      "crowd": 21,
+      "checks": 72,
+      "failures": [
+        "out-of-range-story-response",
+        "stale-out-of-range-attention",
+        "inaccurate-choice-effects"
+      ],
+      "rejected": 0,
+      "final": {
+        "money": 1,
+        "reach": 31.5,
+        "trust": 0.6631999999999999,
+        "change": 1.7457142857142856,
+        "exploitation": 1.116,
+        "influence": 1.0716,
+        "presence": 0,
+        "publicOpinion": 0
+      }
+    },
+    {
+      "seed": 53,
+      "policy": "sell",
+      "crowd": 21,
+      "checks": 72,
+      "failures": [
+        "out-of-range-story-response",
+        "stale-out-of-range-attention",
+        "inaccurate-choice-effects"
+      ],
+      "rejected": 0,
+      "final": {
+        "money": 51,
+        "reach": 45.36000000000001,
+        "trust": 0,
+        "change": 0,
+        "exploitation": 3.1192380952380954,
+        "influence": 0,
+        "presence": 0,
+        "publicOpinion": 0
+      }
+    },
+    {
+      "seed": 53,
+      "policy": "refuse",
+      "crowd": 21,
+      "checks": 72,
+      "failures": [
+        "out-of-range-story-response",
+        "stale-out-of-range-attention",
+        "inaccurate-choice-effects"
+      ],
+      "rejected": 0,
+      "final": {
+        "money": 2,
+        "reach": 0,
+        "trust": 1,
+        "change": 0,
+        "exploitation": 0,
+        "influence": 0,
+        "presence": 0,
+        "publicOpinion": 0
+      }
+    },
+    {
+      "seed": 53,
+      "policy": "mixed",
+      "crowd": 21,
+      "checks": 72,
+      "failures": [
+        "out-of-range-story-response",
+        "stale-out-of-range-attention",
+        "inaccurate-choice-effects"
+      ],
+      "rejected": 0,
+      "final": {
+        "money": 2,
+        "reach": 31.5,
+        "trust": 0.6574857142857141,
+        "change": 1.7814285714285714,
+        "exploitation": 1.135047619047619,
+        "influence": 1.092552380952381,
+        "presence": 0,
+        "publicOpinion": 0
+      }
+    },
+    {
+      "seed": 54,
+      "policy": "sell",
+      "crowd": 21,
+      "checks": 72,
+      "failures": [
+        "out-of-range-story-response",
+        "stale-out-of-range-attention",
+        "inaccurate-choice-effects"
+      ],
+      "rejected": 0,
+      "final": {
+        "money": 66,
+        "reach": 45.36000000000001,
+        "trust": 0,
+        "change": 0,
+        "exploitation": 3.8806666666666665,
+        "influence": 0,
+        "presence": 0,
+        "publicOpinion": 0
+      }
+    },
+    {
+      "seed": 54,
+      "policy": "refuse",
+      "crowd": 21,
+      "checks": 72,
+      "failures": [
+        "out-of-range-story-response",
+        "stale-out-of-range-attention",
+        "inaccurate-choice-effects"
+      ],
+      "rejected": 0,
+      "final": {
+        "money": 2,
+        "reach": 0,
+        "trust": 1,
+        "change": 0,
+        "exploitation": 0,
+        "influence": 0,
+        "presence": 0,
+        "publicOpinion": 0
+      }
+    },
+    {
+      "seed": 54,
+      "policy": "mixed",
+      "crowd": 21,
+      "checks": 72,
+      "failures": [
+        "out-of-range-story-response",
+        "stale-out-of-range-attention",
+        "inaccurate-choice-effects"
+      ],
+      "rejected": 0,
+      "final": {
+        "money": 5,
+        "reach": 31.5,
+        "trust": 0.6099142857142856,
+        "change": 2.308809523809524,
+        "exploitation": 1.293619047619048,
+        "influence": 1.2916,
+        "presence": 0,
+        "publicOpinion": 0
+      }
+    },
+    {
+      "seed": 55,
+      "policy": "sell",
+      "crowd": 21,
+      "checks": 72,
+      "failures": [
+        "out-of-range-story-response",
+        "stale-out-of-range-attention",
+        "inaccurate-choice-effects"
+      ],
+      "rejected": 0,
+      "final": {
+        "money": 63,
+        "reach": 43.20000000000001,
+        "trust": 0,
+        "change": 0,
+        "exploitation": 3.7573333333333334,
+        "influence": 0,
+        "presence": 0,
+        "publicOpinion": 0
+      }
+    },
+    {
+      "seed": 55,
+      "policy": "refuse",
+      "crowd": 21,
+      "checks": 72,
+      "failures": [
+        "out-of-range-story-response",
+        "stale-out-of-range-attention",
+        "inaccurate-choice-effects"
+      ],
+      "rejected": 0,
+      "final": {
+        "money": 2,
+        "reach": 0,
+        "trust": 1,
+        "change": 0,
+        "exploitation": 0,
+        "influence": 0,
+        "presence": 0,
+        "publicOpinion": 0
+      }
+    },
+    {
+      "seed": 55,
+      "policy": "mixed",
+      "crowd": 21,
+      "checks": 72,
+      "failures": [
+        "out-of-range-story-response",
+        "stale-out-of-range-attention",
+        "inaccurate-choice-effects"
+      ],
+      "rejected": 0,
+      "final": {
+        "money": 4,
+        "reach": 30,
+        "trust": 0.6174857142857142,
+        "change": 2.221904761904762,
+        "exploitation": 1.2683809523809524,
+        "influence": 1.2601714285714287,
+        "presence": 0,
+        "publicOpinion": 0
+      }
+    },
+    {
+      "seed": 56,
+      "policy": "sell",
+      "crowd": 21,
+      "checks": 72,
+      "failures": [
+        "out-of-range-story-response",
+        "stale-out-of-range-attention",
+        "inaccurate-choice-effects"
+      ],
+      "rejected": 0,
+      "final": {
+        "money": 49,
+        "reach": 45.36000000000001,
+        "trust": 0,
+        "change": 0,
+        "exploitation": 3.1097142857142854,
+        "influence": 0,
+        "presence": 0,
+        "publicOpinion": 0
+      }
+    },
+    {
+      "seed": 56,
+      "policy": "refuse",
+      "crowd": 21,
+      "checks": 72,
+      "failures": [
+        "out-of-range-story-response",
+        "stale-out-of-range-attention",
+        "inaccurate-choice-effects"
+      ],
+      "rejected": 0,
+      "final": {
+        "money": 2,
+        "reach": 0,
+        "trust": 1,
+        "change": 0,
+        "exploitation": 0,
+        "influence": 0,
+        "presence": 0,
+        "publicOpinion": 0
+      }
+    },
+    {
+      "seed": 56,
+      "policy": "mixed",
+      "crowd": 21,
+      "checks": 72,
+      "failures": [
+        "out-of-range-story-response",
+        "stale-out-of-range-attention",
+        "inaccurate-choice-effects"
+      ],
+      "rejected": 0,
+      "final": {
+        "money": 1,
+        "reach": 31.5,
+        "trust": 0.6631999999999999,
+        "change": 1.8171428571428572,
+        "exploitation": 1.116,
+        "influence": 1.0716,
+        "presence": 0,
+        "publicOpinion": 0
+      }
+    },
+    {
+      "seed": 57,
+      "policy": "sell",
+      "crowd": 21,
+      "checks": 72,
+      "failures": [
+        "out-of-range-story-response",
+        "stale-out-of-range-attention",
+        "inaccurate-choice-effects"
+      ],
+      "rejected": 0,
+      "final": {
+        "money": 53,
+        "reach": 45.36000000000001,
+        "trust": 0,
+        "change": 0,
+        "exploitation": 3.2906666666666666,
+        "influence": 0,
+        "presence": 0,
+        "publicOpinion": 0
+      }
+    },
+    {
+      "seed": 57,
+      "policy": "refuse",
+      "crowd": 21,
+      "checks": 72,
+      "failures": [
+        "out-of-range-story-response",
+        "stale-out-of-range-attention",
+        "inaccurate-choice-effects"
+      ],
+      "rejected": 0,
+      "final": {
+        "money": 2,
+        "reach": 0,
+        "trust": 1,
+        "change": 0,
+        "exploitation": 0,
+        "influence": 0,
+        "presence": 0,
+        "publicOpinion": 0
+      }
+    },
+    {
+      "seed": 57,
+      "policy": "mixed",
+      "crowd": 21,
+      "checks": 72,
+      "failures": [
+        "out-of-range-story-response",
+        "stale-out-of-range-attention",
+        "inaccurate-choice-effects"
+      ],
+      "rejected": 0,
+      "final": {
+        "money": 2,
+        "reach": 31.5,
+        "trust": 0.6546285714285712,
+        "change": 1.96,
+        "exploitation": 1.1445714285714286,
+        "influence": 1.113504761904762,
+        "presence": 0,
+        "publicOpinion": 0
+      }
+    },
+    {
+      "seed": 58,
+      "policy": "sell",
+      "crowd": 21,
+      "checks": 72,
+      "failures": [
+        "out-of-range-story-response",
+        "stale-out-of-range-attention",
+        "inaccurate-choice-effects"
+      ],
+      "rejected": 0,
+      "final": {
+        "money": 51,
+        "reach": 43.20000000000001,
+        "trust": 0,
+        "change": 0,
+        "exploitation": 3.2049523809523808,
+        "influence": 0,
+        "presence": 0,
+        "publicOpinion": 0
+      }
+    },
+    {
+      "seed": 58,
+      "policy": "refuse",
+      "crowd": 21,
+      "checks": 72,
+      "failures": [
+        "out-of-range-story-response",
+        "stale-out-of-range-attention",
+        "inaccurate-choice-effects"
+      ],
+      "rejected": 0,
+      "final": {
+        "money": 2,
+        "reach": 0,
+        "trust": 1,
+        "change": 0,
+        "exploitation": 0,
+        "influence": 0,
+        "presence": 0,
+        "publicOpinion": 0
+      }
+    },
+    {
+      "seed": 58,
+      "policy": "mixed",
+      "crowd": 21,
+      "checks": 72,
+      "failures": [
+        "out-of-range-story-response",
+        "stale-out-of-range-attention",
+        "inaccurate-choice-effects"
+      ],
+      "rejected": 0,
+      "final": {
+        "money": 2,
+        "reach": 30,
+        "trust": 0.6517714285714284,
+        "change": 1.840952380952381,
+        "exploitation": 1.154095238095238,
+        "influence": 1.113504761904762,
+        "presence": 0,
+        "publicOpinion": 0
+      }
+    },
+    {
+      "seed": 59,
+      "policy": "sell",
+      "crowd": 21,
+      "checks": 72,
+      "failures": [
+        "out-of-range-story-response",
+        "stale-out-of-range-attention",
+        "inaccurate-choice-effects"
+      ],
+      "rejected": 0,
+      "final": {
+        "money": 57,
+        "reach": 45.36000000000001,
+        "trust": 0,
+        "change": 0,
+        "exploitation": 3.4716190476190474,
+        "influence": 0,
+        "presence": 0,
+        "publicOpinion": 0
+      }
+    },
+    {
+      "seed": 59,
+      "policy": "refuse",
+      "crowd": 21,
+      "checks": 72,
+      "failures": [
+        "out-of-range-story-response",
+        "stale-out-of-range-attention",
+        "inaccurate-choice-effects"
+      ],
+      "rejected": 0,
+      "final": {
+        "money": 2,
+        "reach": 0,
+        "trust": 1,
+        "change": 0,
+        "exploitation": 0,
+        "influence": 0,
+        "presence": 0,
+        "publicOpinion": 0
+      }
+    },
+    {
+      "seed": 59,
+      "policy": "mixed",
+      "crowd": 21,
+      "checks": 72,
+      "failures": [
+        "out-of-range-story-response",
+        "stale-out-of-range-attention",
+        "inaccurate-choice-effects"
+      ],
+      "rejected": 0,
+      "final": {
+        "money": 3,
+        "reach": 31.5,
+        "trust": 0.6346285714285714,
+        "change": 2.0076190476190474,
+        "exploitation": 1.2112380952380954,
+        "influence": 1.197314285714286,
+        "presence": 0,
+        "publicOpinion": 0
+      }
+    },
+    {
+      "seed": 60,
+      "policy": "sell",
+      "crowd": 21,
+      "checks": 72,
+      "failures": [
+        "out-of-range-story-response",
+        "stale-out-of-range-attention",
+        "inaccurate-choice-effects"
+      ],
+      "rejected": 0,
+      "final": {
+        "money": 55,
+        "reach": 45.36000000000001,
+        "trust": 0,
+        "change": 0,
+        "exploitation": 3.2430476190476187,
+        "influence": 0,
+        "presence": 0,
+        "publicOpinion": 0
+      }
+    },
+    {
+      "seed": 60,
+      "policy": "refuse",
+      "crowd": 21,
+      "checks": 72,
+      "failures": [
+        "out-of-range-story-response",
+        "stale-out-of-range-attention",
+        "inaccurate-choice-effects"
+      ],
+      "rejected": 0,
+      "final": {
+        "money": 2,
+        "reach": 0,
+        "trust": 1,
+        "change": 0,
+        "exploitation": 0,
+        "influence": 0,
+        "presence": 0,
+        "publicOpinion": 0
+      }
+    },
+    {
+      "seed": 60,
+      "policy": "mixed",
+      "crowd": 21,
+      "checks": 72,
+      "failures": [
+        "out-of-range-story-response",
+        "stale-out-of-range-attention",
+        "inaccurate-choice-effects"
+      ],
+      "rejected": 0,
+      "final": {
+        "money": 3,
+        "reach": 31.5,
+        "trust": 0.6517714285714286,
+        "change": 1.8766666666666665,
+        "exploitation": 1.154095238095238,
+        "influence": 1.1239809523809525,
+        "presence": 0,
+        "publicOpinion": 0
+      }
+    },
+    {
+      "seed": 61,
+      "policy": "sell",
+      "crowd": 21,
+      "checks": 72,
+      "failures": [
+        "out-of-range-story-response",
+        "stale-out-of-range-attention",
+        "inaccurate-choice-effects"
+      ],
+      "rejected": 0,
+      "final": {
+        "money": 54,
+        "reach": 45.36000000000001,
+        "trust": 0,
+        "change": 0,
+        "exploitation": 3.300190476190476,
+        "influence": 0,
+        "presence": 0,
+        "publicOpinion": 0
+      }
+    },
+    {
+      "seed": 61,
+      "policy": "refuse",
+      "crowd": 21,
+      "checks": 72,
+      "failures": [
+        "out-of-range-story-response",
+        "stale-out-of-range-attention",
+        "inaccurate-choice-effects"
+      ],
+      "rejected": 0,
+      "final": {
+        "money": 2,
+        "reach": 0,
+        "trust": 1,
+        "change": 0,
+        "exploitation": 0,
+        "influence": 0,
+        "presence": 0,
+        "publicOpinion": 0
+      }
+    },
+    {
+      "seed": 61,
+      "policy": "mixed",
+      "crowd": 21,
+      "checks": 72,
+      "failures": [
+        "out-of-range-story-response",
+        "stale-out-of-range-attention",
+        "inaccurate-choice-effects"
+      ],
+      "rejected": 0,
+      "final": {
+        "money": 2,
+        "reach": 31.5,
+        "trust": 0.6489142857142857,
+        "change": 1.9242857142857142,
+        "exploitation": 1.1636190476190476,
+        "influence": 1.134457142857143,
+        "presence": 0,
+        "publicOpinion": 0
+      }
+    },
+    {
+      "seed": 62,
+      "policy": "sell",
+      "crowd": 21,
+      "checks": 72,
+      "failures": [
+        "out-of-range-story-response",
+        "stale-out-of-range-attention",
+        "inaccurate-choice-effects"
+      ],
+      "rejected": 0,
+      "final": {
+        "money": 54,
+        "reach": 45.36000000000001,
+        "trust": 0,
+        "change": 0,
+        "exploitation": 3.3763809523809525,
+        "influence": 0,
+        "presence": 0,
+        "publicOpinion": 0
+      }
+    },
+    {
+      "seed": 62,
+      "policy": "refuse",
+      "crowd": 21,
+      "checks": 72,
+      "failures": [
+        "out-of-range-story-response",
+        "stale-out-of-range-attention",
+        "inaccurate-choice-effects"
+      ],
+      "rejected": 0,
+      "final": {
+        "money": 2,
+        "reach": 0,
+        "trust": 1,
+        "change": 0,
+        "exploitation": 0,
+        "influence": 0,
+        "presence": 0,
+        "publicOpinion": 0
+      }
+    },
+    {
+      "seed": 62,
+      "policy": "mixed",
+      "crowd": 21,
+      "checks": 72,
+      "failures": [
+        "out-of-range-story-response",
+        "stale-out-of-range-attention",
+        "inaccurate-choice-effects"
+      ],
+      "rejected": 0,
+      "final": {
+        "money": 3,
+        "reach": 31.5,
+        "trust": 0.6431999999999999,
+        "change": 1.9361904761904758,
+        "exploitation": 1.182666666666667,
+        "influence": 1.1868380952380955,
+        "presence": 0,
+        "publicOpinion": 0
+      }
+    },
+    {
+      "seed": 63,
+      "policy": "sell",
+      "crowd": 21,
+      "checks": 72,
+      "failures": [
+        "out-of-range-story-response",
+        "stale-out-of-range-attention",
+        "inaccurate-choice-effects"
+      ],
+      "rejected": 0,
+      "final": {
+        "money": 66,
+        "reach": 45.36000000000001,
+        "trust": 0,
+        "change": 0,
+        "exploitation": 3.766857142857143,
+        "influence": 0,
+        "presence": 0,
+        "publicOpinion": 0
+      }
+    },
+    {
+      "seed": 63,
+      "policy": "refuse",
+      "crowd": 21,
+      "checks": 72,
+      "failures": [
+        "out-of-range-story-response",
+        "stale-out-of-range-attention",
+        "inaccurate-choice-effects"
+      ],
+      "rejected": 0,
+      "final": {
+        "money": 2,
+        "reach": 0,
+        "trust": 1,
+        "change": 0,
+        "exploitation": 0,
+        "influence": 0,
+        "presence": 0,
+        "publicOpinion": 0
+      }
+    },
+    {
+      "seed": 63,
+      "policy": "mixed",
+      "crowd": 21,
+      "checks": 72,
+      "failures": [
+        "out-of-range-story-response",
+        "stale-out-of-range-attention",
+        "inaccurate-choice-effects"
+      ],
+      "rejected": 0,
+      "final": {
+        "money": 5,
+        "reach": 31.5,
+        "trust": 0.6174857142857142,
+        "change": 2.2338095238095237,
+        "exploitation": 1.2683809523809524,
+        "influence": 1.2601714285714287,
+        "presence": 0,
+        "publicOpinion": 0
+      }
+    },
+    {
+      "seed": 64,
+      "policy": "sell",
+      "crowd": 21,
+      "checks": 72,
+      "failures": [
+        "out-of-range-story-response",
+        "stale-out-of-range-attention",
+        "inaccurate-choice-effects"
+      ],
+      "rejected": 0,
+      "final": {
+        "money": 47,
+        "reach": 42.30000000000001,
+        "trust": 0,
+        "change": 0,
+        "exploitation": 3.043047619047619,
+        "influence": 0,
+        "presence": 0,
+        "publicOpinion": 0
+      }
+    },
+    {
+      "seed": 64,
+      "policy": "refuse",
+      "crowd": 21,
+      "checks": 72,
+      "failures": [
+        "out-of-range-story-response",
+        "stale-out-of-range-attention",
+        "inaccurate-choice-effects"
+      ],
+      "rejected": 0,
+      "final": {
+        "money": 2,
+        "reach": 0,
+        "trust": 1,
+        "change": 0,
+        "exploitation": 0,
+        "influence": 0,
+        "presence": 0,
+        "publicOpinion": 0
+      }
+    },
+    {
+      "seed": 64,
+      "policy": "mixed",
+      "crowd": 21,
+      "checks": 72,
+      "failures": [
+        "out-of-range-story-response",
+        "stale-out-of-range-attention",
+        "inaccurate-choice-effects"
+      ],
+      "rejected": 0,
+      "final": {
+        "money": 1,
+        "reach": 29.32,
+        "trust": 0.6631999999999999,
+        "change": 1.7338095238095237,
+        "exploitation": 1.116,
+        "influence": 1.0716,
+        "presence": 0,
+        "publicOpinion": 0
+      }
+    },
+    {
+      "seed": 65,
+      "policy": "sell",
+      "crowd": 21,
+      "checks": 72,
+      "failures": [
+        "out-of-range-story-response",
+        "stale-out-of-range-attention",
+        "inaccurate-choice-effects"
+      ],
+      "rejected": 0,
+      "final": {
+        "money": 51,
+        "reach": 45.36000000000001,
+        "trust": 0,
+        "change": 0,
+        "exploitation": 3.090666666666667,
+        "influence": 0,
+        "presence": 0,
+        "publicOpinion": 0
+      }
+    },
+    {
+      "seed": 65,
+      "policy": "refuse",
+      "crowd": 21,
+      "checks": 72,
+      "failures": [
+        "out-of-range-story-response",
+        "stale-out-of-range-attention",
+        "inaccurate-choice-effects"
+      ],
+      "rejected": 0,
+      "final": {
+        "money": 2,
+        "reach": 0,
+        "trust": 1,
+        "change": 0,
+        "exploitation": 0,
+        "influence": 0,
+        "presence": 0,
+        "publicOpinion": 0
+      }
+    },
+    {
+      "seed": 65,
+      "policy": "mixed",
+      "crowd": 21,
+      "checks": 72,
+      "failures": [
+        "out-of-range-story-response",
+        "stale-out-of-range-attention",
+        "inaccurate-choice-effects"
+      ],
+      "rejected": 0,
+      "final": {
+        "money": 2,
+        "reach": 31.5,
+        "trust": 0.660342857142857,
+        "change": 1.7695238095238095,
+        "exploitation": 1.1255238095238096,
+        "influence": 1.0820761904761906,
+        "presence": 0,
+        "publicOpinion": 0
+      }
+    },
+    {
+      "seed": 66,
+      "policy": "sell",
+      "crowd": 21,
+      "checks": 72,
+      "failures": [
+        "out-of-range-story-response",
+        "stale-out-of-range-attention",
+        "inaccurate-choice-effects"
+      ],
+      "rejected": 0,
+      "final": {
+        "money": 58,
+        "reach": 45.36000000000001,
+        "trust": 0,
+        "change": 0,
+        "exploitation": 3.4620952380952383,
+        "influence": 0,
+        "presence": 0,
+        "publicOpinion": 0
+      }
+    },
+    {
+      "seed": 66,
+      "policy": "refuse",
+      "crowd": 21,
+      "checks": 72,
+      "failures": [
+        "out-of-range-story-response",
+        "stale-out-of-range-attention",
+        "inaccurate-choice-effects"
+      ],
+      "rejected": 0,
+      "final": {
+        "money": 2,
+        "reach": 0,
+        "trust": 1,
+        "change": 0,
+        "exploitation": 0,
+        "influence": 0,
+        "presence": 0,
+        "publicOpinion": 0
+      }
+    },
+    {
+      "seed": 66,
+      "policy": "mixed",
+      "crowd": 21,
+      "checks": 72,
+      "failures": [
+        "out-of-range-story-response",
+        "stale-out-of-range-attention",
+        "inaccurate-choice-effects"
+      ],
+      "rejected": 0,
+      "final": {
+        "money": 3,
+        "reach": 31.5,
+        "trust": 0.640342857142857,
+        "change": 2.0552380952380953,
+        "exploitation": 1.1921904761904765,
+        "influence": 1.1658857142857144,
+        "presence": 0,
+        "publicOpinion": 0
+      }
+    },
+    {
+      "seed": 67,
+      "policy": "sell",
+      "crowd": 21,
+      "checks": 72,
+      "failures": [
+        "out-of-range-story-response",
+        "stale-out-of-range-attention",
+        "inaccurate-choice-effects"
+      ],
+      "rejected": 0,
+      "final": {
+        "money": 48,
+        "reach": 43.74000000000001,
+        "trust": 0,
+        "change": 0,
+        "exploitation": 3.043047619047619,
+        "influence": 0,
+        "presence": 0,
+        "publicOpinion": 0
+      }
+    },
+    {
+      "seed": 67,
+      "policy": "refuse",
+      "crowd": 21,
+      "checks": 72,
+      "failures": [
+        "out-of-range-story-response",
+        "stale-out-of-range-attention",
+        "inaccurate-choice-effects"
+      ],
+      "rejected": 0,
+      "final": {
+        "money": 2,
+        "reach": 0,
+        "trust": 1,
+        "change": 0,
+        "exploitation": 0,
+        "influence": 0,
+        "presence": 0,
+        "publicOpinion": 0
+      }
+    },
+    {
+      "seed": 67,
+      "policy": "mixed",
+      "crowd": 21,
+      "checks": 72,
+      "failures": [
+        "out-of-range-story-response",
+        "stale-out-of-range-attention",
+        "inaccurate-choice-effects"
+      ],
+      "rejected": 0,
+      "final": {
+        "money": 1,
+        "reach": 30.32,
+        "trust": 0.6631999999999999,
+        "change": 1.733809523809524,
+        "exploitation": 1.116,
+        "influence": 1.0716,
+        "presence": 0,
+        "publicOpinion": 0
+      }
+    },
+    {
+      "seed": 68,
+      "policy": "sell",
+      "crowd": 21,
+      "checks": 72,
+      "failures": [
+        "out-of-range-story-response",
+        "stale-out-of-range-attention",
+        "inaccurate-choice-effects"
+      ],
+      "rejected": 0,
+      "final": {
+        "money": 46,
+        "reach": 45.36000000000001,
+        "trust": 0,
+        "change": 0,
+        "exploitation": 3.024,
+        "influence": 0,
+        "presence": 0,
+        "publicOpinion": 0
+      }
+    },
+    {
+      "seed": 68,
+      "policy": "refuse",
+      "crowd": 21,
+      "checks": 72,
+      "failures": [
+        "out-of-range-story-response",
+        "stale-out-of-range-attention",
+        "inaccurate-choice-effects"
+      ],
+      "rejected": 0,
+      "final": {
+        "money": 2,
+        "reach": 0,
+        "trust": 1,
+        "change": 0,
+        "exploitation": 0,
+        "influence": 0,
+        "presence": 0,
+        "publicOpinion": 0
+      }
+    },
+    {
+      "seed": 68,
+      "policy": "mixed",
+      "crowd": 21,
+      "checks": 72,
+      "failures": [
+        "out-of-range-story-response",
+        "stale-out-of-range-attention",
+        "inaccurate-choice-effects"
+      ],
+      "rejected": 0,
+      "final": {
+        "money": 1,
+        "reach": 31.5,
+        "trust": 0.6631999999999999,
+        "change": 1.71,
+        "exploitation": 1.116,
+        "influence": 1.0716,
+        "presence": 0,
+        "publicOpinion": 0
+      }
+    },
+    {
+      "seed": 69,
+      "policy": "sell",
+      "crowd": 21,
+      "checks": 72,
+      "failures": [
+        "out-of-range-story-response",
+        "stale-out-of-range-attention",
+        "inaccurate-choice-effects"
+      ],
+      "rejected": 0,
+      "final": {
+        "money": 54,
+        "reach": 45.36000000000001,
+        "trust": 0,
+        "change": 0,
+        "exploitation": 3.414476190476191,
+        "influence": 0,
+        "presence": 0,
+        "publicOpinion": 0
+      }
+    },
+    {
+      "seed": 69,
+      "policy": "refuse",
+      "crowd": 21,
+      "checks": 72,
+      "failures": [
+        "out-of-range-story-response",
+        "stale-out-of-range-attention",
+        "inaccurate-choice-effects"
+      ],
+      "rejected": 0,
+      "final": {
+        "money": 2,
+        "reach": 0,
+        "trust": 1,
+        "change": 0,
+        "exploitation": 0,
+        "influence": 0,
+        "presence": 0,
+        "publicOpinion": 0
+      }
+    },
+    {
+      "seed": 69,
+      "policy": "mixed",
+      "crowd": 21,
+      "checks": 72,
+      "failures": [
+        "out-of-range-story-response",
+        "stale-out-of-range-attention",
+        "inaccurate-choice-effects"
+      ],
+      "rejected": 0,
+      "final": {
+        "money": 3,
+        "reach": 31.5,
+        "trust": 0.6403428571428572,
+        "change": 1.9838095238095237,
+        "exploitation": 1.1921904761904765,
+        "influence": 1.176361904761905,
+        "presence": 0,
+        "publicOpinion": 0
+      }
+    },
+    {
+      "seed": 70,
+      "policy": "sell",
+      "crowd": 21,
+      "checks": 72,
+      "failures": [
+        "out-of-range-story-response",
+        "stale-out-of-range-attention",
+        "inaccurate-choice-effects"
+      ],
+      "rejected": 0,
+      "final": {
+        "money": 46,
+        "reach": 41.04000000000001,
+        "trust": 0,
+        "change": 0,
+        "exploitation": 3.024,
+        "influence": 0,
+        "presence": 0,
+        "publicOpinion": 0
+      }
+    },
+    {
+      "seed": 70,
+      "policy": "refuse",
+      "crowd": 21,
+      "checks": 72,
+      "failures": [
+        "out-of-range-story-response",
+        "stale-out-of-range-attention",
+        "inaccurate-choice-effects"
+      ],
+      "rejected": 0,
+      "final": {
+        "money": 2,
+        "reach": 0,
+        "trust": 1,
+        "change": 0,
+        "exploitation": 0,
+        "influence": 0,
+        "presence": 0,
+        "publicOpinion": 0
+      }
+    },
+    {
+      "seed": 70,
+      "policy": "mixed",
+      "crowd": 21,
+      "checks": 72,
+      "failures": [
+        "out-of-range-story-response",
+        "stale-out-of-range-attention",
+        "inaccurate-choice-effects"
+      ],
+      "rejected": 0,
+      "final": {
+        "money": 1,
+        "reach": 28.5,
+        "trust": 0.6631999999999999,
+        "change": 1.71,
+        "exploitation": 1.116,
+        "influence": 1.0716,
+        "presence": 0,
+        "publicOpinion": 0
+      }
+    },
+    {
+      "seed": 71,
+      "policy": "sell",
+      "crowd": 21,
+      "checks": 72,
+      "failures": [
+        "out-of-range-story-response",
+        "stale-out-of-range-attention",
+        "inaccurate-choice-effects"
+      ],
+      "rejected": 0,
+      "final": {
+        "money": 46,
+        "reach": 45.36000000000001,
+        "trust": 0,
+        "change": 0,
+        "exploitation": 3.024,
+        "influence": 0,
+        "presence": 0,
+        "publicOpinion": 0
+      }
+    },
+    {
+      "seed": 71,
+      "policy": "refuse",
+      "crowd": 21,
+      "checks": 72,
+      "failures": [
+        "out-of-range-story-response",
+        "stale-out-of-range-attention",
+        "inaccurate-choice-effects"
+      ],
+      "rejected": 0,
+      "final": {
+        "money": 2,
+        "reach": 0,
+        "trust": 1,
+        "change": 0,
+        "exploitation": 0,
+        "influence": 0,
+        "presence": 0,
+        "publicOpinion": 0
+      }
+    },
+    {
+      "seed": 71,
+      "policy": "mixed",
+      "crowd": 21,
+      "checks": 72,
+      "failures": [
+        "out-of-range-story-response",
+        "stale-out-of-range-attention",
+        "inaccurate-choice-effects"
+      ],
+      "rejected": 0,
+      "final": {
+        "money": 1,
+        "reach": 31.5,
+        "trust": 0.6631999999999999,
+        "change": 1.71,
+        "exploitation": 1.116,
+        "influence": 1.0716,
+        "presence": 0,
+        "publicOpinion": 0
+      }
+    },
+    {
+      "seed": 72,
+      "policy": "sell",
+      "crowd": 21,
+      "checks": 72,
+      "failures": [
+        "out-of-range-story-response",
+        "stale-out-of-range-attention",
+        "inaccurate-choice-effects"
+      ],
+      "rejected": 0,
+      "final": {
+        "money": 55,
+        "reach": 45.36000000000001,
+        "trust": 0,
+        "change": 0,
+        "exploitation": 3.338285714285714,
+        "influence": 0,
+        "presence": 0,
+        "publicOpinion": 0
+      }
+    },
+    {
+      "seed": 72,
+      "policy": "refuse",
+      "crowd": 21,
+      "checks": 72,
+      "failures": [
+        "out-of-range-story-response",
+        "stale-out-of-range-attention",
+        "inaccurate-choice-effects"
+      ],
+      "rejected": 0,
+      "final": {
+        "money": 2,
+        "reach": 0,
+        "trust": 1,
+        "change": 0,
+        "exploitation": 0,
+        "influence": 0,
+        "presence": 0,
+        "publicOpinion": 0
+      }
+    },
+    {
+      "seed": 72,
+      "policy": "mixed",
+      "crowd": 21,
+      "checks": 72,
+      "failures": [
+        "out-of-range-story-response",
+        "stale-out-of-range-attention",
+        "inaccurate-choice-effects"
+      ],
+      "rejected": 0,
+      "final": {
+        "money": 3,
+        "reach": 31.5,
+        "trust": 0.6460571428571429,
+        "change": 1.9480952380952379,
+        "exploitation": 1.173142857142857,
+        "influence": 1.1449333333333336,
+        "presence": 0,
+        "publicOpinion": 0
+      }
+    },
+    {
+      "seed": 73,
+      "policy": "sell",
+      "crowd": 21,
+      "checks": 72,
+      "failures": [
+        "out-of-range-story-response",
+        "stale-out-of-range-attention",
+        "inaccurate-choice-effects"
+      ],
+      "rejected": 0,
+      "final": {
+        "money": 46,
+        "reach": 36.72,
+        "trust": 0,
+        "change": 0,
+        "exploitation": 3.1763809523809527,
+        "influence": 0,
+        "presence": 0,
+        "publicOpinion": 0
+      }
+    },
+    {
+      "seed": 73,
+      "policy": "refuse",
+      "crowd": 21,
+      "checks": 72,
+      "failures": [
+        "out-of-range-story-response",
+        "stale-out-of-range-attention",
+        "inaccurate-choice-effects"
+      ],
+      "rejected": 0,
+      "final": {
+        "money": 2,
+        "reach": 0,
+        "trust": 1,
+        "change": 0,
+        "exploitation": 0,
+        "influence": 0,
+        "presence": 0,
+        "publicOpinion": 0
+      }
+    },
+    {
+      "seed": 73,
+      "policy": "mixed",
+      "crowd": 21,
+      "checks": 72,
+      "failures": [
+        "out-of-range-story-response",
+        "stale-out-of-range-attention",
+        "inaccurate-choice-effects"
+      ],
+      "rejected": 0,
+      "final": {
+        "money": 1,
+        "reach": 25.5,
+        "trust": 0.6574857142857141,
+        "change": 1.8528571428571428,
+        "exploitation": 1.135047619047619,
+        "influence": 1.092552380952381,
+        "presence": 0,
+        "publicOpinion": 0
+      }
+    },
+    {
+      "seed": 74,
+      "policy": "sell",
+      "crowd": 21,
+      "checks": 72,
+      "failures": [
+        "out-of-range-story-response",
+        "stale-out-of-range-attention",
+        "inaccurate-choice-effects"
+      ],
+      "rejected": 0,
+      "final": {
+        "money": 60,
+        "reach": 45.36000000000001,
+        "trust": 0,
+        "change": 0,
+        "exploitation": 3.500190476190477,
+        "influence": 0,
+        "presence": 0,
+        "publicOpinion": 0
+      }
+    },
+    {
+      "seed": 74,
+      "policy": "refuse",
+      "crowd": 21,
+      "checks": 72,
+      "failures": [
+        "out-of-range-story-response",
+        "stale-out-of-range-attention",
+        "inaccurate-choice-effects"
+      ],
+      "rejected": 0,
+      "final": {
+        "money": 2,
+        "reach": 0,
+        "trust": 1,
+        "change": 0,
+        "exploitation": 0,
+        "influence": 0,
+        "presence": 0,
+        "publicOpinion": 0
+      }
+    },
+    {
+      "seed": 74,
+      "policy": "mixed",
+      "crowd": 21,
+      "checks": 72,
+      "failures": [
+        "out-of-range-story-response",
+        "stale-out-of-range-attention",
+        "inaccurate-choice-effects"
+      ],
+      "rejected": 0,
+      "final": {
+        "money": 4,
+        "reach": 31.5,
+        "trust": 0.6317714285714285,
+        "change": 2.0433333333333334,
+        "exploitation": 1.220761904761905,
+        "influence": 1.1868380952380955,
+        "presence": 0,
+        "publicOpinion": 0
+      }
+    },
+    {
+      "seed": 75,
+      "policy": "sell",
+      "crowd": 21,
+      "checks": 72,
+      "failures": [
+        "out-of-range-story-response",
+        "stale-out-of-range-attention",
+        "inaccurate-choice-effects"
+      ],
+      "rejected": 0,
+      "final": {
+        "money": 57,
+        "reach": 45.36000000000001,
+        "trust": 0,
+        "change": 0,
+        "exploitation": 3.471619047619048,
+        "influence": 0,
+        "presence": 0,
+        "publicOpinion": 0
+      }
+    },
+    {
+      "seed": 75,
+      "policy": "refuse",
+      "crowd": 21,
+      "checks": 72,
+      "failures": [
+        "out-of-range-story-response",
+        "stale-out-of-range-attention",
+        "inaccurate-choice-effects"
+      ],
+      "rejected": 0,
+      "final": {
+        "money": 2,
+        "reach": 0,
+        "trust": 1,
+        "change": 0,
+        "exploitation": 0,
+        "influence": 0,
+        "presence": 0,
+        "publicOpinion": 0
+      }
+    },
+    {
+      "seed": 75,
+      "policy": "mixed",
+      "crowd": 21,
+      "checks": 72,
+      "failures": [
+        "out-of-range-story-response",
+        "stale-out-of-range-attention",
+        "inaccurate-choice-effects"
+      ],
+      "rejected": 0,
+      "final": {
+        "money": 3,
+        "reach": 31.5,
+        "trust": 0.6403428571428572,
+        "change": 2.0195238095238097,
+        "exploitation": 1.1921904761904765,
+        "influence": 1.2077904761904765,
+        "presence": 0,
+        "publicOpinion": 0
+      }
+    },
+    {
+      "seed": 76,
+      "policy": "sell",
+      "crowd": 21,
+      "checks": 72,
+      "failures": [
+        "out-of-range-story-response",
+        "stale-out-of-range-attention",
+        "inaccurate-choice-effects"
+      ],
+      "rejected": 0,
+      "final": {
+        "money": 51,
+        "reach": 41.04000000000001,
+        "trust": 0,
+        "change": 0,
+        "exploitation": 3.3287619047619046,
+        "influence": 0,
+        "presence": 0,
+        "publicOpinion": 0
+      }
+    },
+    {
+      "seed": 76,
+      "policy": "refuse",
+      "crowd": 21,
+      "checks": 72,
+      "failures": [
+        "out-of-range-story-response",
+        "stale-out-of-range-attention",
+        "inaccurate-choice-effects"
+      ],
+      "rejected": 0,
+      "final": {
+        "money": 2,
+        "reach": 0,
+        "trust": 1,
+        "change": 0,
+        "exploitation": 0,
+        "influence": 0,
+        "presence": 0,
+        "publicOpinion": 0
+      }
+    },
+    {
+      "seed": 76,
+      "policy": "mixed",
+      "crowd": 21,
+      "checks": 72,
+      "failures": [
+        "out-of-range-story-response",
+        "stale-out-of-range-attention",
+        "inaccurate-choice-effects"
+      ],
+      "rejected": 0,
+      "final": {
+        "money": 2,
+        "reach": 28.5,
+        "trust": 0.6517714285714284,
+        "change": 1.96,
+        "exploitation": 1.154095238095238,
+        "influence": 1.1449333333333336,
+        "presence": 0,
+        "publicOpinion": 0
+      }
+    },
+    {
+      "seed": 77,
+      "policy": "sell",
+      "crowd": 21,
+      "checks": 72,
+      "failures": [
+        "out-of-range-story-response",
+        "stale-out-of-range-attention",
+        "inaccurate-choice-effects"
+      ],
+      "rejected": 0,
+      "final": {
+        "money": 75,
+        "reach": 45.36000000000001,
+        "trust": 0,
+        "change": 0,
+        "exploitation": 4.267809523809524,
+        "influence": 0,
+        "presence": 0,
+        "publicOpinion": 0
+      }
+    },
+    {
+      "seed": 77,
+      "policy": "refuse",
+      "crowd": 21,
+      "checks": 72,
+      "failures": [
+        "out-of-range-story-response",
+        "stale-out-of-range-attention",
+        "inaccurate-choice-effects"
+      ],
+      "rejected": 0,
+      "final": {
+        "money": 2,
+        "reach": 0,
+        "trust": 1,
+        "change": 0,
+        "exploitation": 0,
+        "influence": 0,
+        "presence": 0,
+        "publicOpinion": 0
+      }
+    },
+    {
+      "seed": 77,
+      "policy": "mixed",
+      "crowd": 21,
+      "checks": 72,
+      "failures": [
+        "out-of-range-story-response",
+        "stale-out-of-range-attention",
+        "inaccurate-choice-effects"
+      ],
+      "rejected": 0,
+      "final": {
+        "money": 7,
+        "reach": 31.5,
+        "trust": 0.5899142857142856,
+        "change": 2.578452380952381,
+        "exploitation": 1.3602857142857143,
+        "influence": 1.4068380952380952,
+        "presence": 0,
+        "publicOpinion": 0
+      }
+    },
+    {
+      "seed": 78,
+      "policy": "sell",
+      "crowd": 21,
+      "checks": 72,
+      "failures": [
+        "out-of-range-story-response",
+        "stale-out-of-range-attention",
+        "inaccurate-choice-effects"
+      ],
+      "rejected": 0,
+      "final": {
+        "money": 67,
+        "reach": 45.36000000000001,
+        "trust": 0,
+        "change": 0,
+        "exploitation": 3.8997142857142855,
+        "influence": 0,
+        "presence": 0,
+        "publicOpinion": 0
+      }
+    },
+    {
+      "seed": 78,
+      "policy": "refuse",
+      "crowd": 21,
+      "checks": 72,
+      "failures": [
+        "out-of-range-story-response",
+        "stale-out-of-range-attention",
+        "inaccurate-choice-effects"
+      ],
+      "rejected": 0,
+      "final": {
+        "money": 2,
+        "reach": 0,
+        "trust": 1,
+        "change": 0,
+        "exploitation": 0,
+        "influence": 0,
+        "presence": 0,
+        "publicOpinion": 0
+      }
+    },
+    {
+      "seed": 78,
+      "policy": "mixed",
+      "crowd": 21,
+      "checks": 72,
+      "failures": [
+        "out-of-range-story-response",
+        "stale-out-of-range-attention",
+        "inaccurate-choice-effects"
+      ],
+      "rejected": 0,
+      "final": {
+        "money": 5,
+        "reach": 31.5,
+        "trust": 0.6156285714285714,
+        "change": 2.3326190476190476,
+        "exploitation": 1.2745714285714285,
+        "influence": 1.312552380952381,
+        "presence": 0,
+        "publicOpinion": 0
+      }
+    },
+    {
+      "seed": 79,
+      "policy": "sell",
+      "crowd": 21,
+      "checks": 72,
+      "failures": [
+        "out-of-range-story-response",
+        "stale-out-of-range-attention",
+        "inaccurate-choice-effects"
+      ],
+      "rejected": 0,
+      "final": {
+        "money": 36,
+        "reach": 30.24,
+        "trust": 0,
+        "change": 0,
+        "exploitation": 3.1763809523809523,
+        "influence": 0,
+        "presence": 0,
+        "publicOpinion": 0
+      }
+    },
+    {
+      "seed": 79,
+      "policy": "refuse",
+      "crowd": 21,
+      "checks": 72,
+      "failures": [
+        "out-of-range-story-response",
+        "stale-out-of-range-attention",
+        "inaccurate-choice-effects"
+      ],
+      "rejected": 0,
+      "final": {
+        "money": 2,
+        "reach": 0,
+        "trust": 1,
+        "change": 0,
+        "exploitation": 0,
+        "influence": 0,
+        "presence": 0,
+        "publicOpinion": 0
+      }
+    },
+    {
+      "seed": 79,
+      "policy": "mixed",
+      "crowd": 21,
+      "checks": 73,
+      "failures": [
+        "out-of-range-story-response",
+        "stale-out-of-range-attention",
+        "inaccurate-choice-effects"
+      ],
+      "rejected": 1,
+      "final": {
+        "money": 0,
+        "reach": 20.92,
+        "trust": 0.6046285714285715,
+        "change": 1.4977380952380952,
+        "exploitation": 1.1445714285714286,
+        "influence": 1.0430285714285714,
+        "presence": 0,
+        "publicOpinion": 0
+      }
+    },
+    {
+      "seed": 80,
+      "policy": "sell",
+      "crowd": 21,
+      "checks": 72,
+      "failures": [
+        "out-of-range-story-response",
+        "stale-out-of-range-attention",
+        "inaccurate-choice-effects"
+      ],
+      "rejected": 0,
+      "final": {
+        "money": 57,
+        "reach": 45.36000000000001,
+        "trust": 0,
+        "change": 0,
+        "exploitation": 3.471619047619048,
+        "influence": 0,
+        "presence": 0,
+        "publicOpinion": 0
+      }
+    },
+    {
+      "seed": 80,
+      "policy": "refuse",
+      "crowd": 21,
+      "checks": 72,
+      "failures": [
+        "out-of-range-story-response",
+        "stale-out-of-range-attention",
+        "inaccurate-choice-effects"
+      ],
+      "rejected": 0,
+      "final": {
+        "money": 2,
+        "reach": 0,
+        "trust": 1,
+        "change": 0,
+        "exploitation": 0,
+        "influence": 0,
+        "presence": 0,
+        "publicOpinion": 0
+      }
+    },
+    {
+      "seed": 80,
+      "policy": "mixed",
+      "crowd": 21,
+      "checks": 72,
+      "failures": [
+        "out-of-range-story-response",
+        "stale-out-of-range-attention",
+        "inaccurate-choice-effects"
+      ],
+      "rejected": 0,
+      "final": {
+        "money": 3,
+        "reach": 31.5,
+        "trust": 0.6431999999999999,
+        "change": 2.067142857142857,
+        "exploitation": 1.182666666666667,
+        "influence": 1.176361904761905,
+        "presence": 0,
+        "publicOpinion": 0
+      }
+    },
+    {
+      "seed": 81,
+      "policy": "sell",
+      "crowd": 21,
+      "checks": 72,
+      "failures": [
+        "out-of-range-story-response",
+        "stale-out-of-range-attention",
+        "inaccurate-choice-effects"
+      ],
+      "rejected": 0,
+      "final": {
+        "money": 72,
+        "reach": 45.36000000000001,
+        "trust": 0,
+        "change": 0,
+        "exploitation": 4.100190476190476,
+        "influence": 0,
+        "presence": 0,
+        "publicOpinion": 0
+      }
+    },
+    {
+      "seed": 81,
+      "policy": "refuse",
+      "crowd": 21,
+      "checks": 72,
+      "failures": [
+        "out-of-range-story-response",
+        "stale-out-of-range-attention",
+        "inaccurate-choice-effects"
+      ],
+      "rejected": 0,
+      "final": {
+        "money": 2,
+        "reach": 0,
+        "trust": 1,
+        "change": 0,
+        "exploitation": 0,
+        "influence": 0,
+        "presence": 0,
+        "publicOpinion": 0
+      }
+    },
+    {
+      "seed": 81,
+      "policy": "mixed",
+      "crowd": 21,
+      "checks": 72,
+      "failures": [
+        "out-of-range-story-response",
+        "stale-out-of-range-attention",
+        "inaccurate-choice-effects"
+      ],
+      "rejected": 0,
+      "final": {
+        "money": 6,
+        "reach": 31.5,
+        "trust": 0.6032,
+        "change": 2.448095238095238,
+        "exploitation": 1.3160000000000003,
+        "influence": 1.3858857142857144,
+        "presence": 0,
+        "publicOpinion": 0
+      }
+    },
+    {
+      "seed": 82,
+      "policy": "sell",
+      "crowd": 21,
+      "checks": 72,
+      "failures": [
+        "out-of-range-story-response",
+        "stale-out-of-range-attention",
+        "inaccurate-choice-effects"
+      ],
+      "rejected": 0,
+      "final": {
+        "money": 46,
+        "reach": 37.26,
+        "trust": 0,
+        "change": 0,
+        "exploitation": 3.1954285714285713,
+        "influence": 0,
+        "presence": 0,
+        "publicOpinion": 0
+      }
+    },
+    {
+      "seed": 82,
+      "policy": "refuse",
+      "crowd": 21,
+      "checks": 72,
+      "failures": [
+        "out-of-range-story-response",
+        "stale-out-of-range-attention",
+        "inaccurate-choice-effects"
+      ],
+      "rejected": 0,
+      "final": {
+        "money": 2,
+        "reach": 0,
+        "trust": 1,
+        "change": 0,
+        "exploitation": 0,
+        "influence": 0,
+        "presence": 0,
+        "publicOpinion": 0
+      }
+    },
+    {
+      "seed": 82,
+      "policy": "mixed",
+      "crowd": 21,
+      "checks": 72,
+      "failures": [
+        "out-of-range-story-response",
+        "stale-out-of-range-attention",
+        "inaccurate-choice-effects"
+      ],
+      "rejected": 0,
+      "final": {
+        "money": 1,
+        "reach": 25.82,
+        "trust": 0.6489142857142857,
+        "change": 1.829047619047619,
+        "exploitation": 1.1636190476190476,
+        "influence": 1.1030285714285715,
+        "presence": 0,
+        "publicOpinion": 0
+      }
+    },
+    {
+      "seed": 83,
+      "policy": "sell",
+      "crowd": 21,
+      "checks": 72,
+      "failures": [
+        "out-of-range-story-response",
+        "stale-out-of-range-attention",
+        "inaccurate-choice-effects"
+      ],
+      "rejected": 0,
+      "final": {
+        "money": 53,
+        "reach": 45.36000000000001,
+        "trust": 0,
+        "change": 0,
+        "exploitation": 3.2335238095238092,
+        "influence": 0,
+        "presence": 0,
+        "publicOpinion": 0
+      }
+    },
+    {
+      "seed": 83,
+      "policy": "refuse",
+      "crowd": 21,
+      "checks": 72,
+      "failures": [
+        "out-of-range-story-response",
+        "stale-out-of-range-attention",
+        "inaccurate-choice-effects"
+      ],
+      "rejected": 0,
+      "final": {
+        "money": 2,
+        "reach": 0,
+        "trust": 1,
+        "change": 0,
+        "exploitation": 0,
+        "influence": 0,
+        "presence": 0,
+        "publicOpinion": 0
+      }
+    },
+    {
+      "seed": 83,
+      "policy": "mixed",
+      "crowd": 21,
+      "checks": 72,
+      "failures": [
+        "out-of-range-story-response",
+        "stale-out-of-range-attention",
+        "inaccurate-choice-effects"
+      ],
+      "rejected": 0,
+      "final": {
+        "money": 2,
+        "reach": 31.5,
+        "trust": 0.6546285714285712,
+        "change": 1.8766666666666665,
+        "exploitation": 1.1445714285714286,
+        "influence": 1.1239809523809525,
+        "presence": 0,
+        "publicOpinion": 0
+      }
+    },
+    {
+      "seed": 84,
+      "policy": "sell",
+      "crowd": 21,
+      "checks": 72,
+      "failures": [
+        "out-of-range-story-response",
+        "stale-out-of-range-attention",
+        "inaccurate-choice-effects"
+      ],
+      "rejected": 0,
+      "final": {
+        "money": 57,
+        "reach": 45.36000000000001,
+        "trust": 0,
+        "change": 0,
+        "exploitation": 3.481142857142857,
+        "influence": 0,
+        "presence": 0,
+        "publicOpinion": 0
+      }
+    },
+    {
+      "seed": 84,
+      "policy": "refuse",
+      "crowd": 21,
+      "checks": 72,
+      "failures": [
+        "out-of-range-story-response",
+        "stale-out-of-range-attention",
+        "inaccurate-choice-effects"
+      ],
+      "rejected": 0,
+      "final": {
+        "money": 2,
+        "reach": 0,
+        "trust": 1,
+        "change": 0,
+        "exploitation": 0,
+        "influence": 0,
+        "presence": 0,
+        "publicOpinion": 0
+      }
+    },
+    {
+      "seed": 84,
+      "policy": "mixed",
+      "crowd": 21,
+      "checks": 72,
+      "failures": [
+        "out-of-range-story-response",
+        "stale-out-of-range-attention",
+        "inaccurate-choice-effects"
+      ],
+      "rejected": 0,
+      "final": {
+        "money": 2,
+        "reach": 31.5,
+        "trust": 0.6517714285714284,
+        "change": 2.090952380952381,
+        "exploitation": 1.154095238095238,
+        "influence": 1.197314285714286,
+        "presence": 0,
+        "publicOpinion": 0
+      }
+    },
+    {
+      "seed": 85,
+      "policy": "sell",
+      "crowd": 21,
+      "checks": 72,
+      "failures": [
+        "out-of-range-story-response",
+        "stale-out-of-range-attention",
+        "inaccurate-choice-effects"
+      ],
+      "rejected": 0,
+      "final": {
+        "money": 46,
+        "reach": 36.72,
+        "trust": 0,
+        "change": 0,
+        "exploitation": 3.300190476190476,
+        "influence": 0,
+        "presence": 0,
+        "publicOpinion": 0
+      }
+    },
+    {
+      "seed": 85,
+      "policy": "refuse",
+      "crowd": 21,
+      "checks": 72,
+      "failures": [
+        "out-of-range-story-response",
+        "stale-out-of-range-attention",
+        "inaccurate-choice-effects"
+      ],
+      "rejected": 0,
+      "final": {
+        "money": 2,
+        "reach": 0,
+        "trust": 1,
+        "change": 0,
+        "exploitation": 0,
+        "influence": 0,
+        "presence": 0,
+        "publicOpinion": 0
+      }
+    },
+    {
+      "seed": 85,
+      "policy": "mixed",
+      "crowd": 21,
+      "checks": 72,
+      "failures": [
+        "out-of-range-story-response",
+        "stale-out-of-range-attention",
+        "inaccurate-choice-effects"
+      ],
+      "rejected": 0,
+      "final": {
+        "money": 1,
+        "reach": 25.5,
+        "trust": 0.6460571428571428,
+        "change": 1.9004761904761904,
+        "exploitation": 1.173142857142857,
+        "influence": 1.1449333333333334,
+        "presence": 0,
+        "publicOpinion": 0
+      }
+    },
+    {
+      "seed": 86,
+      "policy": "sell",
+      "crowd": 21,
+      "checks": 72,
+      "failures": [
+        "out-of-range-story-response",
+        "stale-out-of-range-attention",
+        "inaccurate-choice-effects"
+      ],
+      "rejected": 0,
+      "final": {
+        "money": 77,
+        "reach": 45.36000000000001,
+        "trust": 0,
+        "change": 0,
+        "exploitation": 4.365904761904762,
+        "influence": 0,
+        "presence": 0,
+        "publicOpinion": 0
+      }
+    },
+    {
+      "seed": 86,
+      "policy": "refuse",
+      "crowd": 21,
+      "checks": 72,
+      "failures": [
+        "out-of-range-story-response",
+        "stale-out-of-range-attention",
+        "inaccurate-choice-effects"
+      ],
+      "rejected": 0,
+      "final": {
+        "money": 2,
+        "reach": 0,
+        "trust": 1,
+        "change": 0,
+        "exploitation": 0,
+        "influence": 0,
+        "presence": 0,
+        "publicOpinion": 0
+      }
+    },
+    {
+      "seed": 86,
+      "policy": "mixed",
+      "crowd": 21,
+      "checks": 72,
+      "failures": [
+        "out-of-range-story-response",
+        "stale-out-of-range-attention",
+        "inaccurate-choice-effects"
+      ],
+      "rejected": 0,
+      "final": {
+        "money": 7,
+        "reach": 31.5,
+        "trust": 0.5851999999999999,
+        "change": 2.661785714285714,
+        "exploitation": 1.376,
+        "influence": 1.4241238095238098,
+        "presence": 0,
+        "publicOpinion": 0
+      }
+    },
+    {
+      "seed": 87,
+      "policy": "sell",
+      "crowd": 21,
+      "checks": 72,
+      "failures": [
+        "out-of-range-story-response",
+        "stale-out-of-range-attention",
+        "inaccurate-choice-effects"
+      ],
+      "rejected": 0,
+      "final": {
+        "money": 66,
+        "reach": 45.36000000000001,
+        "trust": 0,
+        "change": 0,
+        "exploitation": 3.890666666666667,
+        "influence": 0,
+        "presence": 0,
+        "publicOpinion": 0
+      }
+    },
+    {
+      "seed": 87,
+      "policy": "refuse",
+      "crowd": 21,
+      "checks": 72,
+      "failures": [
+        "out-of-range-story-response",
+        "stale-out-of-range-attention",
+        "inaccurate-choice-effects"
+      ],
+      "rejected": 0,
+      "final": {
+        "money": 2,
+        "reach": 0,
+        "trust": 1,
+        "change": 0,
+        "exploitation": 0,
+        "influence": 0,
+        "presence": 0,
+        "publicOpinion": 0
+      }
+    },
+    {
+      "seed": 87,
+      "policy": "mixed",
+      "crowd": 21,
+      "checks": 72,
+      "failures": [
+        "out-of-range-story-response",
+        "stale-out-of-range-attention",
+        "inaccurate-choice-effects"
+      ],
+      "rejected": 0,
+      "final": {
+        "money": 5,
+        "reach": 31.5,
+        "trust": 0.6117714285714284,
+        "change": 2.329047619047619,
+        "exploitation": 1.2874285714285714,
+        "influence": 1.2916,
+        "presence": 0,
+        "publicOpinion": 0
+      }
+    },
+    {
+      "seed": 88,
+      "policy": "sell",
+      "crowd": 21,
+      "checks": 72,
+      "failures": [
+        "out-of-range-story-response",
+        "stale-out-of-range-attention",
+        "inaccurate-choice-effects"
+      ],
+      "rejected": 0,
+      "final": {
+        "money": 47,
+        "reach": 38.160000000000004,
+        "trust": 0,
+        "change": 0,
+        "exploitation": 3.1097142857142854,
+        "influence": 0,
+        "presence": 0,
+        "publicOpinion": 0
+      }
+    },
+    {
+      "seed": 88,
+      "policy": "refuse",
+      "crowd": 21,
+      "checks": 72,
+      "failures": [
+        "out-of-range-story-response",
+        "stale-out-of-range-attention",
+        "inaccurate-choice-effects"
+      ],
+      "rejected": 0,
+      "final": {
+        "money": 2,
+        "reach": 0,
+        "trust": 1,
+        "change": 0,
+        "exploitation": 0,
+        "influence": 0,
+        "presence": 0,
+        "publicOpinion": 0
+      }
+    },
+    {
+      "seed": 88,
+      "policy": "mixed",
+      "crowd": 21,
+      "checks": 72,
+      "failures": [
+        "out-of-range-story-response",
+        "stale-out-of-range-attention",
+        "inaccurate-choice-effects"
+      ],
+      "rejected": 0,
+      "final": {
+        "money": 1,
+        "reach": 26.5,
+        "trust": 0.6631999999999999,
+        "change": 1.8052380952380953,
+        "exploitation": 1.116,
+        "influence": 1.0820761904761906,
+        "presence": 0,
+        "publicOpinion": 0
+      }
+    },
+    {
+      "seed": 89,
+      "policy": "sell",
+      "crowd": 22,
+      "checks": 72,
+      "failures": [
+        "out-of-range-story-response",
+        "stale-out-of-range-attention",
+        "inaccurate-choice-effects"
+      ],
+      "rejected": 0,
+      "final": {
+        "money": 60,
+        "reach": 47.52,
+        "trust": 0,
+        "change": 0,
+        "exploitation": 3.296727272727273,
+        "influence": 0,
+        "presence": 0,
+        "publicOpinion": 0
+      }
+    },
+    {
+      "seed": 89,
+      "policy": "refuse",
+      "crowd": 22,
+      "checks": 72,
+      "failures": [
+        "out-of-range-story-response",
+        "stale-out-of-range-attention",
+        "inaccurate-choice-effects"
+      ],
+      "rejected": 0,
+      "final": {
+        "money": 2,
+        "reach": 0,
+        "trust": 1,
+        "change": 0,
+        "exploitation": 0,
+        "influence": 0,
+        "presence": 0,
+        "publicOpinion": 0
+      }
+    },
+    {
+      "seed": 89,
+      "policy": "mixed",
+      "crowd": 22,
+      "checks": 72,
+      "failures": [
+        "out-of-range-story-response",
+        "stale-out-of-range-attention",
+        "inaccurate-choice-effects"
+      ],
+      "rejected": 0,
+      "final": {
+        "money": 4,
+        "reach": 33,
+        "trust": 0.6468363636363635,
+        "change": 1.9145454545454546,
+        "exploitation": 1.1705454545454548,
+        "influence": 1.1316000000000002,
+        "presence": 0,
+        "publicOpinion": 0
+      }
+    },
+    {
+      "seed": 90,
+      "policy": "sell",
+      "crowd": 22,
+      "checks": 72,
+      "failures": [
+        "out-of-range-story-response",
+        "stale-out-of-range-attention",
+        "inaccurate-choice-effects"
+      ],
+      "rejected": 0,
+      "final": {
+        "money": 57,
+        "reach": 47.52,
+        "trust": 0,
+        "change": 0,
+        "exploitation": 3.3603636363636364,
+        "influence": 0,
+        "presence": 0,
+        "publicOpinion": 0
+      }
+    },
+    {
+      "seed": 90,
+      "policy": "refuse",
+      "crowd": 22,
+      "checks": 72,
+      "failures": [
+        "out-of-range-story-response",
+        "stale-out-of-range-attention",
+        "inaccurate-choice-effects"
+      ],
+      "rejected": 0,
+      "final": {
+        "money": 2,
+        "reach": 0,
+        "trust": 1,
+        "change": 0,
+        "exploitation": 0,
+        "influence": 0,
+        "presence": 0,
+        "publicOpinion": 0
+      }
+    },
+    {
+      "seed": 90,
+      "policy": "mixed",
+      "crowd": 22,
+      "checks": 72,
+      "failures": [
+        "out-of-range-story-response",
+        "stale-out-of-range-attention",
+        "inaccurate-choice-effects"
+      ],
+      "rejected": 0,
+      "final": {
+        "money": 3,
+        "reach": 33,
+        "trust": 0.6413818181818182,
+        "change": 1.9486363636363635,
+        "exploitation": 1.1887272727272729,
+        "influence": 1.1516000000000002,
+        "presence": 0,
+        "publicOpinion": 0
+      }
+    },
+    {
+      "seed": 91,
+      "policy": "sell",
+      "crowd": 22,
+      "checks": 72,
+      "failures": [
+        "out-of-range-story-response",
+        "stale-out-of-range-attention",
+        "inaccurate-choice-effects"
+      ],
+      "rejected": 0,
+      "final": {
+        "money": 69,
+        "reach": 47.52,
+        "trust": 0,
+        "change": 0,
+        "exploitation": 3.860363636363637,
+        "influence": 0,
+        "presence": 0,
+        "publicOpinion": 0
+      }
+    },
+    {
+      "seed": 91,
+      "policy": "refuse",
+      "crowd": 22,
+      "checks": 72,
+      "failures": [
+        "out-of-range-story-response",
+        "stale-out-of-range-attention",
+        "inaccurate-choice-effects"
+      ],
+      "rejected": 0,
+      "final": {
+        "money": 2,
+        "reach": 0,
+        "trust": 1,
+        "change": 0,
+        "exploitation": 0,
+        "influence": 0,
+        "presence": 0,
+        "publicOpinion": 0
+      }
+    },
+    {
+      "seed": 91,
+      "policy": "mixed",
+      "crowd": 22,
+      "checks": 72,
+      "failures": [
+        "out-of-range-story-response",
+        "stale-out-of-range-attention",
+        "inaccurate-choice-effects"
+      ],
+      "rejected": 0,
+      "final": {
+        "money": 6,
+        "reach": 33,
+        "trust": 0.6086545454545453,
+        "change": 2.2895454545454546,
+        "exploitation": 1.2978181818181818,
+        "influence": 1.2816,
+        "presence": 0,
+        "publicOpinion": 0
+      }
+    },
+    {
+      "seed": 92,
+      "policy": "sell",
+      "crowd": 22,
+      "checks": 72,
+      "failures": [
+        "out-of-range-story-response",
+        "stale-out-of-range-attention",
+        "inaccurate-choice-effects"
+      ],
+      "rejected": 0,
+      "final": {
+        "money": 56,
+        "reach": 47.52,
+        "trust": 0,
+        "change": 0,
+        "exploitation": 3.1603636363636363,
+        "influence": 0,
+        "presence": 0,
+        "publicOpinion": 0
+      }
+    },
+    {
+      "seed": 92,
+      "policy": "refuse",
+      "crowd": 22,
+      "checks": 72,
+      "failures": [
+        "out-of-range-story-response",
+        "stale-out-of-range-attention",
+        "inaccurate-choice-effects"
+      ],
+      "rejected": 0,
+      "final": {
+        "money": 2,
+        "reach": 0,
+        "trust": 1,
+        "change": 0,
+        "exploitation": 0,
+        "influence": 0,
+        "presence": 0,
+        "publicOpinion": 0
+      }
+    },
+    {
+      "seed": 92,
+      "policy": "mixed",
+      "crowd": 22,
+      "checks": 72,
+      "failures": [
+        "out-of-range-story-response",
+        "stale-out-of-range-attention",
+        "inaccurate-choice-effects"
+      ],
+      "rejected": 0,
+      "final": {
+        "money": 3,
+        "reach": 33,
+        "trust": 0.6550181818181817,
+        "change": 1.8009090909090908,
+        "exploitation": 1.1432727272727274,
+        "influence": 1.1116000000000001,
+        "presence": 0,
+        "publicOpinion": 0
+      }
+    },
+    {
+      "seed": 93,
+      "policy": "sell",
+      "crowd": 22,
+      "checks": 72,
+      "failures": [
+        "out-of-range-story-response",
+        "stale-out-of-range-attention",
+        "inaccurate-choice-effects"
+      ],
+      "rejected": 0,
+      "final": {
+        "money": 53,
+        "reach": 45.36000000000001,
+        "trust": 0,
+        "change": 0,
+        "exploitation": 3.178545454545455,
+        "influence": 0,
+        "presence": 0,
+        "publicOpinion": 0
+      }
+    },
+    {
+      "seed": 93,
+      "policy": "refuse",
+      "crowd": 22,
+      "checks": 72,
+      "failures": [
+        "out-of-range-story-response",
+        "stale-out-of-range-attention",
+        "inaccurate-choice-effects"
+      ],
+      "rejected": 0,
+      "final": {
+        "money": 2,
+        "reach": 0,
+        "trust": 1,
+        "change": 0,
+        "exploitation": 0,
+        "influence": 0,
+        "presence": 0,
+        "publicOpinion": 0
+      }
+    },
+    {
+      "seed": 93,
+      "policy": "mixed",
+      "crowd": 22,
+      "checks": 72,
+      "failures": [
+        "out-of-range-story-response",
+        "stale-out-of-range-attention",
+        "inaccurate-choice-effects"
+      ],
+      "rejected": 0,
+      "final": {
+        "money": 2,
+        "reach": 31.5,
+        "trust": 0.6577454545454544,
+        "change": 1.8463636363636362,
+        "exploitation": 1.1341818181818182,
+        "influence": 1.1016000000000001,
+        "presence": 0,
+        "publicOpinion": 0
+      }
+    },
+    {
+      "seed": 94,
+      "policy": "sell",
+      "crowd": 22,
+      "checks": 72,
+      "failures": [
+        "out-of-range-story-response",
+        "stale-out-of-range-attention",
+        "inaccurate-choice-effects"
+      ],
+      "rejected": 0,
+      "final": {
+        "money": 52,
+        "reach": 43.20000000000001,
+        "trust": 0,
+        "change": 0,
+        "exploitation": 3.3421818181818184,
+        "influence": 0,
+        "presence": 0,
+        "publicOpinion": 0
+      }
+    },
+    {
+      "seed": 94,
+      "policy": "refuse",
+      "crowd": 22,
+      "checks": 72,
+      "failures": [
+        "out-of-range-story-response",
+        "stale-out-of-range-attention",
+        "inaccurate-choice-effects"
+      ],
+      "rejected": 0,
+      "final": {
+        "money": 2,
+        "reach": 0,
+        "trust": 1,
+        "change": 0,
+        "exploitation": 0,
+        "influence": 0,
+        "presence": 0,
+        "publicOpinion": 0
+      }
+    },
+    {
+      "seed": 94,
+      "policy": "mixed",
+      "crowd": 22,
+      "checks": 72,
+      "failures": [
+        "out-of-range-story-response",
+        "stale-out-of-range-attention",
+        "inaccurate-choice-effects"
+      ],
+      "rejected": 0,
+      "final": {
+        "money": 2,
+        "reach": 30,
+        "trust": 0.6468363636363635,
+        "change": 1.9486363636363637,
+        "exploitation": 1.1705454545454548,
+        "influence": 1.1516000000000002,
+        "presence": 0,
+        "publicOpinion": 0
+      }
+    },
+    {
+      "seed": 95,
+      "policy": "sell",
+      "crowd": 22,
+      "checks": 72,
+      "failures": [
+        "out-of-range-story-response",
+        "stale-out-of-range-attention",
+        "inaccurate-choice-effects"
+      ],
+      "rejected": 0,
+      "final": {
+        "money": 75,
+        "reach": 47.52,
+        "trust": 0,
+        "change": 0,
+        "exploitation": 4.2103636363636365,
+        "influence": 0,
+        "presence": 0,
+        "publicOpinion": 0
+      }
+    },
+    {
+      "seed": 95,
+      "policy": "refuse",
+      "crowd": 22,
+      "checks": 72,
+      "failures": [
+        "out-of-range-story-response",
+        "stale-out-of-range-attention",
+        "inaccurate-choice-effects"
+      ],
+      "rejected": 0,
+      "final": {
+        "money": 2,
+        "reach": 0,
+        "trust": 1,
+        "change": 0,
+        "exploitation": 0,
+        "influence": 0,
+        "presence": 0,
+        "publicOpinion": 0
+      }
+    },
+    {
+      "seed": 95,
+      "policy": "mixed",
+      "crowd": 22,
+      "checks": 72,
+      "failures": [
+        "out-of-range-story-response",
+        "stale-out-of-range-attention",
+        "inaccurate-choice-effects"
+      ],
+      "rejected": 0,
+      "final": {
+        "money": 7,
+        "reach": 33,
+        "trust": 0.5860181818181818,
+        "change": 2.5384090909090906,
+        "exploitation": 1.3732727272727274,
+        "influence": 1.3646,
+        "presence": 0,
+        "publicOpinion": 0
+      }
+    },
+    {
+      "seed": 96,
+      "policy": "sell",
+      "crowd": 22,
+      "checks": 72,
+      "failures": [
+        "out-of-range-story-response",
+        "stale-out-of-range-attention",
+        "inaccurate-choice-effects"
+      ],
+      "rejected": 0,
+      "final": {
+        "money": 58,
+        "reach": 47.52,
+        "trust": 0,
+        "change": 0,
+        "exploitation": 3.2421818181818187,
+        "influence": 0,
+        "presence": 0,
+        "publicOpinion": 0
+      }
+    },
+    {
+      "seed": 96,
+      "policy": "refuse",
+      "crowd": 22,
+      "checks": 72,
+      "failures": [
+        "out-of-range-story-response",
+        "stale-out-of-range-attention",
+        "inaccurate-choice-effects"
+      ],
+      "rejected": 0,
+      "final": {
+        "money": 2,
+        "reach": 0,
+        "trust": 1,
+        "change": 0,
+        "exploitation": 0,
+        "influence": 0,
+        "presence": 0,
+        "publicOpinion": 0
+      }
+    },
+    {
+      "seed": 96,
+      "policy": "mixed",
+      "crowd": 22,
+      "checks": 72,
+      "failures": [
+        "out-of-range-story-response",
+        "stale-out-of-range-attention",
+        "inaccurate-choice-effects"
+      ],
+      "rejected": 0,
+      "final": {
+        "money": 3,
+        "reach": 33,
+        "trust": 0.6550181818181816,
+        "change": 1.8918181818181818,
+        "exploitation": 1.1432727272727274,
+        "influence": 1.1216000000000002,
+        "presence": 0,
+        "publicOpinion": 0
+      }
+    },
+    {
+      "seed": 97,
+      "policy": "sell",
+      "crowd": 22,
+      "checks": 72,
+      "failures": [
+        "out-of-range-story-response",
+        "stale-out-of-range-attention",
+        "inaccurate-choice-effects"
+      ],
+      "rejected": 0,
+      "final": {
+        "money": 38,
+        "reach": 32.4,
+        "trust": 0,
+        "change": 0,
+        "exploitation": 3.051272727272728,
+        "influence": 0,
+        "presence": 0,
+        "publicOpinion": 0
+      }
+    },
+    {
+      "seed": 97,
+      "policy": "refuse",
+      "crowd": 22,
+      "checks": 72,
+      "failures": [
+        "out-of-range-story-response",
+        "stale-out-of-range-attention",
+        "inaccurate-choice-effects"
+      ],
+      "rejected": 0,
+      "final": {
+        "money": 2,
+        "reach": 0,
+        "trust": 1,
+        "change": 0,
+        "exploitation": 0,
+        "influence": 0,
+        "presence": 0,
+        "publicOpinion": 0
+      }
+    },
+    {
+      "seed": 97,
+      "policy": "mixed",
+      "crowd": 22,
+      "checks": 73,
+      "failures": [
+        "out-of-range-story-response",
+        "stale-out-of-range-attention",
+        "inaccurate-choice-effects"
+      ],
+      "rejected": 1,
+      "final": {
+        "money": 1,
+        "reach": 22.42,
+        "trust": 0.6104727272727273,
+        "change": 1.4138636363636365,
+        "exploitation": 1.1250909090909094,
+        "influence": 1.0116,
+        "presence": 0,
+        "publicOpinion": 0
+      }
+    },
+    {
+      "seed": 98,
+      "policy": "sell",
+      "crowd": 22,
+      "checks": 72,
+      "failures": [
+        "out-of-range-story-response",
+        "stale-out-of-range-attention",
+        "inaccurate-choice-effects"
+      ],
+      "rejected": 0,
+      "final": {
+        "money": 56,
+        "reach": 47.52,
+        "trust": 0,
+        "change": 0,
+        "exploitation": 3.205818181818182,
+        "influence": 0,
+        "presence": 0,
+        "publicOpinion": 0
+      }
+    },
+    {
+      "seed": 98,
+      "policy": "refuse",
+      "crowd": 22,
+      "checks": 72,
+      "failures": [
+        "out-of-range-story-response",
+        "stale-out-of-range-attention",
+        "inaccurate-choice-effects"
+      ],
+      "rejected": 0,
+      "final": {
+        "money": 2,
+        "reach": 0,
+        "trust": 1,
+        "change": 0,
+        "exploitation": 0,
+        "influence": 0,
+        "presence": 0,
+        "publicOpinion": 0
+      }
+    },
+    {
+      "seed": 98,
+      "policy": "mixed",
+      "crowd": 22,
+      "checks": 72,
+      "failures": [
+        "out-of-range-story-response",
+        "stale-out-of-range-attention",
+        "inaccurate-choice-effects"
+      ],
+      "rejected": 0,
+      "final": {
+        "money": 3,
+        "reach": 33,
+        "trust": 0.6522909090909089,
+        "change": 1.8349999999999997,
+        "exploitation": 1.1523636363636367,
+        "influence": 1.1216000000000002,
+        "presence": 0,
+        "publicOpinion": 0
+      }
+    },
+    {
+      "seed": 99,
+      "policy": "sell",
+      "crowd": 22,
+      "checks": 72,
+      "failures": [
+        "out-of-range-story-response",
+        "stale-out-of-range-attention",
+        "inaccurate-choice-effects"
+      ],
+      "rejected": 0,
+      "final": {
+        "money": 74,
+        "reach": 47.52,
+        "trust": 0,
+        "change": 0,
+        "exploitation": 4.143999999999999,
+        "influence": 0,
+        "presence": 0,
+        "publicOpinion": 0
+      }
+    },
+    {
+      "seed": 99,
+      "policy": "refuse",
+      "crowd": 22,
+      "checks": 72,
+      "failures": [
+        "out-of-range-story-response",
+        "stale-out-of-range-attention",
+        "inaccurate-choice-effects"
+      ],
+      "rejected": 0,
+      "final": {
+        "money": 2,
+        "reach": 0,
+        "trust": 1,
+        "change": 0,
+        "exploitation": 0,
+        "influence": 0,
+        "presence": 0,
+        "publicOpinion": 0
+      }
+    },
+    {
+      "seed": 99,
+      "policy": "mixed",
+      "crowd": 22,
+      "checks": 72,
+      "failures": [
+        "out-of-range-story-response",
+        "stale-out-of-range-attention",
+        "inaccurate-choice-effects"
+      ],
+      "rejected": 0,
+      "final": {
+        "money": 7,
+        "reach": 33,
+        "trust": 0.5887454545454545,
+        "change": 2.4588636363636365,
+        "exploitation": 1.3641818181818182,
+        "influence": 1.3716000000000004,
+        "presence": 0,
+        "publicOpinion": 0
+      }
+    },
+    {
+      "seed": 100,
+      "policy": "sell",
+      "crowd": 22,
+      "checks": 72,
+      "failures": [
+        "out-of-range-story-response",
+        "stale-out-of-range-attention",
+        "inaccurate-choice-effects"
+      ],
+      "rejected": 0,
+      "final": {
+        "money": 56,
+        "reach": 47.52,
+        "trust": 0,
+        "change": 0,
+        "exploitation": 3.114909090909091,
+        "influence": 0,
+        "presence": 0,
+        "publicOpinion": 0
+      }
+    },
+    {
+      "seed": 100,
+      "policy": "refuse",
+      "crowd": 22,
+      "checks": 72,
+      "failures": [
+        "out-of-range-story-response",
+        "stale-out-of-range-attention",
+        "inaccurate-choice-effects"
+      ],
+      "rejected": 0,
+      "final": {
+        "money": 2,
+        "reach": 0,
+        "trust": 1,
+        "change": 0,
+        "exploitation": 0,
+        "influence": 0,
+        "presence": 0,
+        "publicOpinion": 0
+      }
+    },
+    {
+      "seed": 100,
+      "policy": "mixed",
+      "crowd": 22,
+      "checks": 72,
+      "failures": [
+        "out-of-range-story-response",
+        "stale-out-of-range-attention",
+        "inaccurate-choice-effects"
+      ],
+      "rejected": 0,
+      "final": {
+        "money": 3,
+        "reach": 33,
+        "trust": 0.6631999999999999,
+        "change": 1.8122727272727273,
+        "exploitation": 1.116,
+        "influence": 1.0816000000000001,
+        "presence": 0,
+        "publicOpinion": 0
+      }
+    },
+    {
+      "seed": 101,
+      "policy": "sell",
+      "crowd": 22,
+      "checks": 72,
+      "failures": [
+        "out-of-range-story-response",
+        "stale-out-of-range-attention",
+        "inaccurate-choice-effects"
+      ],
+      "rejected": 0,
+      "final": {
+        "money": 72,
+        "reach": 47.52,
+        "trust": 0,
+        "change": 0,
+        "exploitation": 3.914909090909091,
+        "influence": 0,
+        "presence": 0,
+        "publicOpinion": 0
+      }
+    },
+    {
+      "seed": 101,
+      "policy": "refuse",
+      "crowd": 22,
+      "checks": 72,
+      "failures": [
+        "out-of-range-story-response",
+        "stale-out-of-range-attention",
+        "inaccurate-choice-effects"
+      ],
+      "rejected": 0,
+      "final": {
+        "money": 2,
+        "reach": 0,
+        "trust": 1,
+        "change": 0,
+        "exploitation": 0,
+        "influence": 0,
+        "presence": 0,
+        "publicOpinion": 0
+      }
+    },
+    {
+      "seed": 101,
+      "policy": "mixed",
+      "crowd": 22,
+      "checks": 72,
+      "failures": [
+        "out-of-range-story-response",
+        "stale-out-of-range-attention",
+        "inaccurate-choice-effects"
+      ],
+      "rejected": 0,
+      "final": {
+        "money": 6,
+        "reach": 33,
+        "trust": 0.6113818181818181,
+        "change": 2.3463636363636367,
+        "exploitation": 1.288727272727273,
+        "influence": 1.3016,
+        "presence": 0,
+        "publicOpinion": 0
+      }
+    },
+    {
+      "seed": 102,
+      "policy": "sell",
+      "crowd": 22,
+      "checks": 72,
+      "failures": [
+        "out-of-range-story-response",
+        "stale-out-of-range-attention",
+        "inaccurate-choice-effects"
+      ],
+      "rejected": 0,
+      "final": {
+        "money": 51,
+        "reach": 45.540000000000006,
+        "trust": 0,
+        "change": 0,
+        "exploitation": 3.0694545454545454,
+        "influence": 0,
+        "presence": 0,
+        "publicOpinion": 0
+      }
+    },
+    {
+      "seed": 102,
+      "policy": "refuse",
+      "crowd": 22,
+      "checks": 72,
+      "failures": [
+        "out-of-range-story-response",
+        "stale-out-of-range-attention",
+        "inaccurate-choice-effects"
+      ],
+      "rejected": 0,
+      "final": {
+        "money": 2,
+        "reach": 0,
+        "trust": 1,
+        "change": 0,
+        "exploitation": 0,
+        "influence": 0,
+        "presence": 0,
+        "publicOpinion": 0
+      }
+    },
+    {
+      "seed": 102,
+      "policy": "mixed",
+      "crowd": 22,
+      "checks": 72,
+      "failures": [
+        "out-of-range-story-response",
+        "stale-out-of-range-attention",
+        "inaccurate-choice-effects"
+      ],
+      "rejected": 0,
+      "final": {
+        "money": 2,
+        "reach": 31.32,
+        "trust": 0.6577454545454544,
+        "change": 1.732727272727273,
+        "exploitation": 1.1341818181818182,
+        "influence": 1.0816000000000001,
+        "presence": 0,
+        "publicOpinion": 0
+      }
+    },
+    {
+      "seed": 103,
+      "policy": "sell",
+      "crowd": 22,
+      "checks": 72,
+      "failures": [
+        "out-of-range-story-response",
+        "stale-out-of-range-attention",
+        "inaccurate-choice-effects"
+      ],
+      "rejected": 0,
+      "final": {
+        "money": 74,
+        "reach": 47.52,
+        "trust": 0,
+        "change": 0,
+        "exploitation": 4.096727272727272,
+        "influence": 0,
+        "presence": 0,
+        "publicOpinion": 0
+      }
+    },
+    {
+      "seed": 103,
+      "policy": "refuse",
+      "crowd": 22,
+      "checks": 72,
+      "failures": [
+        "out-of-range-story-response",
+        "stale-out-of-range-attention",
+        "inaccurate-choice-effects"
+      ],
+      "rejected": 0,
+      "final": {
+        "money": 2,
+        "reach": 0,
+        "trust": 1,
+        "change": 0,
+        "exploitation": 0,
+        "influence": 0,
+        "presence": 0,
+        "publicOpinion": 0
+      }
+    },
+    {
+      "seed": 103,
+      "policy": "mixed",
+      "crowd": 22,
+      "checks": 72,
+      "failures": [
+        "out-of-range-story-response",
+        "stale-out-of-range-attention",
+        "inaccurate-choice-effects"
+      ],
+      "rejected": 0,
+      "final": {
+        "money": 7,
+        "reach": 33,
+        "trust": 0.6032,
+        "change": 2.4486363636363637,
+        "exploitation": 1.3159999999999998,
+        "influence": 1.3816000000000002,
+        "presence": 0,
+        "publicOpinion": 0
+      }
+    }
+  ]
+}

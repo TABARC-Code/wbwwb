@@ -182,3 +182,23 @@ test("pet fashion turns buying into abandonment rather than resetting the crowd"
   });
   assert.equal(peep.shadowInfluence.behaviour, "mourning");
 });
+
+test("walking beyond TV range clears attention and prevents direct story reactions", () => {
+  const Pet = require("../js/game/PetCrazeEngine.js");
+  const frame = Pet.create({event: "pet-craze", phase: "bones"}, "en");
+  const peep = {x: 0, y: 0};
+  const untouched = {x: 2000, y: 0};
+  const scene = {tv: {x: 0, y: 0}, world: {peeps: [peep, untouched]}};
+  const model = new ShadowAudienceModel({tvRadius: 100});
+  model.allocateAttention(peep, scene.tv, null, null, frame.channels);
+  assert.equal(peep.shadowInfluence.mainAttention, 1);
+  peep.x = 1000;
+  model.exposeBroadcast(scene, null, null, frame.channels, null, frame);
+  assert.equal(peep.shadowInfluence.mainAttention, 0);
+  assert.equal(peep.shadowInfluence.narrative, null);
+  assert.equal(peep.shadowInfluence.anger, 0);
+  assert.equal(untouched.shadowInfluence, undefined);
+  peep.x = 0;
+  model.exposeBroadcast(scene, null, null, frame.channels, null, frame);
+  assert.equal(peep.shadowInfluence.narrative, "pet-neglect");
+});
