@@ -29,3 +29,16 @@ The review found four further lifecycle/input issues:
 8. Resuming from the pause overlay unconditionally enabled sound. It now restores the player's mute preference, including when the sound control is used while paused.
 
 The second four-fix audit checks cleanup ordering, render-texture disposal and retained mute preferences. Browser coverage now includes repeated Start activation, mouse capture on desktop, touch capture at portrait and landscape phone sizes, interrupted captures, post-credit scenes and replay through the quote scene. These are automated integration checks, not a claim that every authored story has received a human playthrough.
+
+## Final verification
+
+The expanded GitHub Actions run 37175767611 passed on code commit `f8004f5cf3a518e0b696896457b37fddb1619ef6`.
+
+- 89 individual Node tests pass.
+- JavaScript syntax, 52 canonical locale keys with five fallback locales, and 94 asset references pass.
+- The deterministic virtual playtest passes.
+- Pinned Chromium passes the expanded desktop, portrait-phone and landscape-phone camera checks, repeated Start activation, interrupted captures, post-credit/replay transitions and mute persistence.
+
+The second-batch browser audit initially exposed an over-tight fixed wait in the new Start test. The test now waits for the first observed transition before checking for duplicates. No runtime guard was relaxed to make it pass.
+
+These checks establish the repaired startup and lifecycle paths in Chromium. They do not establish Safari/Firefox compatibility, physical-device behaviour, final audio quality or a complete human playthrough of every authored story. The existing game rules and virtual-playtest checks were rerun to look for regressions; none were reported by those checks.
