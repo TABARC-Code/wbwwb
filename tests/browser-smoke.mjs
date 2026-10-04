@@ -84,8 +84,10 @@ try {
     button.mousedown({ global: { x: 278, y: 250 } });
     button.mousedown({ global: { x: 278, y: 250 } });
   });
+  await page.waitForFunction(() => window.startTransitions >= 1, null, { timeout: 10_000 });
   await page.waitForTimeout(350);
-  if (await page.evaluate(() => window.startTransitions) !== 1) failures.push("repeated Start scheduled multiple scene transitions");
+  const startCount = await page.evaluate(() => window.startTransitions);
+  if (startCount !== 1) failures.push(`repeated Start produced ${startCount} scene transitions`);
 
   const shadowResult = await page.evaluate(() => {
     Game.sceneManager.gotoScene("Game");
