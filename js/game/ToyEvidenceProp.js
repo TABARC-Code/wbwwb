@@ -6,6 +6,7 @@ function ToyEvidenceProp(scene, x, y){
     self.toyId = "wobble-beast";
     self.coverageCount = 0;
     self.graphics = MakeSprite("toy_wobble_beast");
+    self.graphics.anchor.set(0.5, 1); // Match the camera's bottom-centre prop bounds.
     self.graphics.scale.x = self.graphics.scale.y = 0.43;
     self.x = x; self.y = y;
     self.width = 240*0.43; self.height = 180*0.43;

@@ -6,6 +6,7 @@ function ShortageEvidenceProp(scene, state, x, y){
     self.shortageState = state;
     self.actualSupply = "adequate-before-rush";
     self.graphics = MakeSprite("shortage_"+state);
+    self.graphics.anchor.set(0.5, 1); // Match the camera's bottom-centre prop bounds.
     self.graphics.scale.x = self.graphics.scale.y = 0.34;
     self.x = x; self.y = y;
     self.width = 320*0.34; self.height = 180*0.34;

@@ -83,3 +83,14 @@ test("choice effects report all actual deltas at trust and reach limits", () => 
     }
   }
 });
+
+test("canonical and empty captures cannot generate paid agency opportunities", () => {
+  const narrative = require("../js/game/CaptureNarrativeEngine.js");
+  for (const data of [{}, {ITS_NOTHING: true}, {CAUGHT_A_CRICKET: true}, {caughtHat: true}, {caughtLovers: true}, {caughtCrazy: true}, {caughtAngry: true}]) {
+    assert.equal(agency.shouldOffer(narrative.infer(data, "test")), false);
+  }
+  for (const event of ["influencer", "flood", "shortage", "toy-panic", "pet-craze", "seasonal-habit"]) {
+    assert.equal(agency.shouldOffer({event}), true);
+  }
+  assert.equal(agency.shouldOffer({topic: "toString"}), false);
+});

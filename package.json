@@ -11,7 +11,8 @@
     "playtest:virtual": "node tools/virtual-playtest.js",
     "check:syntax": "find js tools tests -type f -name '*.js' -print0 | xargs -0 -n1 node --check",
     "check": "npm run check:syntax && npm run audit:locales && npm run audit:assets && npm test",
-    "playtest:309": "node tools/playtest-309.js"
+    "playtest:309": "node tools/playtest-309.js",
+    "test:authored": "node tests/browser-authored.mjs"
   },
   "dependencies": {
     "pixi.js": "8.19.0",

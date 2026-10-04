@@ -7,6 +7,7 @@ function FloodEvidenceProp(scene, severity, x, y){
     self.actualSeverity = "severe";
     var resources = {trickle:"flood_trickle", representative:"flood_actual", extreme:"flood_extreme"};
     self.graphics = MakeSprite(resources[severity] || resources.representative);
+    self.graphics.anchor.set(0.5, 1); // Match the camera's bottom-centre prop bounds.
     self.graphics.scale.x = self.graphics.scale.y = 0.34;
     self.x = x; self.y = y;
     self.width = 320*0.34; self.height = 180*0.34;

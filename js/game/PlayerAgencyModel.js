@@ -40,7 +40,10 @@
   function shouldOffer(story) {
     // The original acts keep their clean camera-to-crowd rhythm. Choices belong
     // to authored extension stories, not every hat, cricket and empty frame.
-    return Boolean(story && (story.topic || story.event));
+    if (!story) return false;
+    var authoredEvents = ["influencer", "flood", "shortage", "toy-panic", "pet-craze", "seasonal-habit"];
+    return authoredEvents.indexOf(story.event) >= 0 ||
+      Boolean(story.topic && story.topic !== "default" && Object.prototype.hasOwnProperty.call(conflicts, story.topic));
   }
 
   function PlayerAgencyModel(options) {

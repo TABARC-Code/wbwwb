@@ -16,6 +16,7 @@ function _startInfluencerAct(self, profile, capturesNeeded, nextAct, options){
             // I want the sports truce to be an authored beat, not a lucky roll
             // in the antic carousel. Both creators start on the same story so
             // the player can see the crowd swap political camps for team camps.
+            influencer.programme = [options.forcedTopic];
             influencer.setAntic(options.forcedTopic);
         }
         influencer.setType((creatorIndex+(profile==="trend" ? 1 : 0))%2 ? "square" : "circle");

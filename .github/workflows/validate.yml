@@ -53,3 +53,5 @@ jobs:
           exit 1
 
       - run: npm run test:browser
+
+      - run: npm run test:authored

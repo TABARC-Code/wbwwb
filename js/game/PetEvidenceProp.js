@@ -6,6 +6,7 @@ function PetEvidenceProp(scene, state, x, y, drift){
     self.petState = state || "cute";
     self.origin = "viral-photo-cycle";
     self.graphics = MakeSprite("pet_"+self.petState);
+    self.graphics.anchor.set(0.5, 1); // Match the camera's bottom-centre prop bounds.
     self.graphics.scale.x = self.graphics.scale.y = self.petState === "bones" ? 0.28 : 0.34;
     self.x = x; self.y = y;
     self.width = (self.petState === "bones" ? 220 : 240) * self.graphics.scale.x;
