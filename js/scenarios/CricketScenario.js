@@ -27,7 +27,10 @@
   };
   CricketScenario.prototype.calmOne = function (scene) {
     if (!scene || !scene.world) return false;
+    var angryCount = scene.world.peeps.filter(function (peep) { return peep._CLASS_ === "AngryPeep"; }).length;
     var candidates = scene.world.peeps.filter(function (peep) {
+      // Quiet coverage mustn't delete the only actor able to advance the story.
+      if (scene.director) return peep._CLASS_ === "AngryPeep" && angryCount > 1;
       return peep._CLASS_ === "AngryPeep" || peep._CLASS_ === "NervousPeep";
     });
     if (!candidates.length) return false;
