@@ -36,7 +36,10 @@ Game.init = function(HACK){
 	Game.scene = null;
 	Game.sceneManager = new SceneManager();
 
-	// Initialize Seasonal UI
+	// Initialize Seasonal UI (cleanup previous instance if it exists)
+	if(Game.seasonalUI){
+		Game.seasonalUI.destroy();
+	}
 	Game.seasonalUI = new SeasonalUI();
 	Game.seasonalUI.init();
 
