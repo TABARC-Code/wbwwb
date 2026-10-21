@@ -202,3 +202,45 @@ test("walking beyond TV range clears attention and prevents direct story reactio
   model.exposeBroadcast(scene, null, null, frame.channels, null, frame);
   assert.equal(peep.shadowInfluence.narrative, "pet-neglect");
 });
+
+test('disabled broadcast and social transmission cause no exposure', () => {
+  const model = new ShadowAudienceModel({broadcastStrength:0,spreadStrength:0,socialProofWeight:0,exposedDecay:0,coolingDecay:0});
+  const target = {x:0,y:0};
+  assert.equal(model.applyChannel(target,{x:0,y:0},channel(1,1),'left',1),false);
+  assert.equal(target.shadowInfluence,undefined);
+  const source={x:1,y:0,shadowInfluence:{phase:'active',anger:1,behaviour:'agitating'}};
+  model.spread({world:{peeps:[source,target]}},500);
+  assert.equal(target.shadowInfluence,undefined);
+  assert.equal(model.metrics.personTransmissions,0);
+  assert.equal(model.socialProofWeight,0);
+  const cooling={shadowInfluence:{phase:'cooling',anger:0.6}};
+  model.advancePhases([cooling],500);
+  assert.equal(cooling.shadowInfluence.anger,0.6);
+  const enabled=new ShadowAudienceModel();
+  assert.equal(enabled.applyChannel(target,{x:0,y:0},channel(1,1),'left',0),false);
+  assert.equal(target.shadowInfluence,undefined);
+});
+
+test('recovery clears the previous story while retaining learned familiarity', () => {
+  const model=new ShadowAudienceModel();
+  for(const phase of ['exposed','cooling']) {
+    const peep={shadowInfluence:{phase,narrative:'toy-panic',practicalConcern:0.8,habit:'buying',influencedBy:'person',familiarity:0.6}};
+    model.generation=3;
+    model.advancePhases([peep],500);
+    assert.equal(peep.shadowInfluence.phase,'susceptible');
+    assert.equal(peep.shadowInfluence.narrative,null);
+    assert.equal(peep.shadowInfluence.practicalConcern,0);
+    assert.equal(peep.shadowInfluence.habit,'ordinary');
+    assert.equal(peep.shadowInfluence.influencedBy,null);
+    assert.equal(peep.shadowInfluence.familiarity,0.6);
+  }
+});
+
+
+test('neglect immediately interrupts pet shopping before later recovery', () => {
+  const model = new ShadowAudienceModel();
+  const peep = {shadowInfluence:{behaviour:'pet-shopping',narrative:'pet-craze'}};
+  model.applyPetResponse(peep, 'bones');
+  assert.equal(peep.shadowInfluence.behaviour, 'mourning');
+  assert.equal(peep.shadowInfluence.narrative, 'pet-neglect');
+});

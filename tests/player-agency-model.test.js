@@ -94,3 +94,23 @@ test("canonical and empty captures cannot generate paid agency opportunities", (
   }
   assert.equal(agency.shouldOffer({topic: "toString"}), false);
 });
+
+test('unknown actions preserve the opportunity and all balances', () => {
+  const model = new agency.Model();
+  const pending = model.observe({story:{topic:'pet'},audience:6});
+  const before = model.snapshot();
+  for (const choice of ['selll', '', null, undefined, 'toString']) {
+    assert.equal(model.act(choice).rejected, true);
+    assert.deepEqual(model.snapshot(), before);
+    assert.equal(model.pending, pending);
+    assert.equal(model.history.length, 0);
+  }
+  assert.equal(model.act('refuse').choice, 'refuse');
+});
+
+test('inherited object keys are not story topics', () => {
+  const model = new agency.Model();
+  for (const key of ['constructor', 'toString', '__proto__']) {
+    assert.equal(model.observe({story:{topic:key,event:key}}).topic, 'default');
+  }
+});

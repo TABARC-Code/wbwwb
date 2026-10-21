@@ -91,6 +91,8 @@ function World(scene, options){
 	};
 	self.replacePeep = function(oldPeep, newPeep){
 		if(!oldPeep || !newPeep) return null;
+		// Changing behaviour does not create a different person.
+		if(Number.isFinite(oldPeep.simulationId)) newPeep.simulationId = oldPeep.simulationId;
 		newPeep.x = oldPeep.x;
 		newPeep.y = oldPeep.y;
 		if(oldPeep.ideology) newPeep.ideology = oldPeep.ideology;

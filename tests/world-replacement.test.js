@@ -43,3 +43,20 @@ test("replacing a missing watcher is a safe no-op", () => {
   const world = makeWorld();
   assert.equal(world.replaceWatcher("circle", { watchTV() {} }), null);
 });
+
+test('a replacement keeps the same seeded personality and seasonal choice', () => {
+  const Audience = require('../js/game/ShadowAudienceModel.js');
+  const Seasonal = require('../js/game/SeasonalBehaviourModel.js');
+  const world = makeWorld();
+  const oldPeep = {simulationId:17,type:'square',x:12,y:34,kill(){}};
+  const next = {simulationId:99,graphics:{}};
+  const season = new Seasonal({date:'2026-12-20',signals:{spendingPressure:1,decorationPressure:1,religiousSalience:1,noveltyDemand:1}});
+  const before = Audience.stateFor(oldPeep);
+  const habit = season.choose(oldPeep);
+  world.peeps.push(oldPeep);
+  world.replacePeep(oldPeep,next);
+  assert.equal(next.simulationId,17);
+  const after = Audience.stateFor(next);
+  for(const key of ['susceptibility','adoptionThreshold','resistance']) assert.equal(after[key],before[key],key);
+  assert.equal(season.choose(next),habit);
+});

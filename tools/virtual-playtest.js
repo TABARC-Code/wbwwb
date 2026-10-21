@@ -119,7 +119,8 @@ assert.ok(report.shortage.empty.fear > report.shortage.normal.fear, "empty shelf
 assert.ok(report.christmasToy[2].crowd.fear >= report.christmasToy[0].crowd.fear, "repeated toy coverage should not reduce fear");
 assert.ok((report.petCraze[1].crowd.behaviours["pet-shopping"] || 0) > 0, "viral pet coverage should produce imitation buying");
 assert.ok((report.petCraze[2].crowd.behaviours.helping || 0) + (report.petCraze[2].crowd.behaviours.accusing || 0) > 0, "abandoned pets should produce a visible response");
-assert.equal(report.petCraze[3].crowd.behaviours.mourning, 12, "the final consequence should interrupt the buying behaviour");
+assert.equal(report.petCraze[3].crowd.behaviours["pet-shopping"] || 0, 0, "the final consequence should interrupt buying");
+assert.ok(report.petCraze[3].crowd.behaviours.mourning > 0, "neglect should still produce visible mourning after recovery ticks");
 assert.ok(report.agency.sell.money > report.agency.refuse.money, "selling should produce cash");
 assert.ok(report.agency.repair.change > 0, "repair should produce practical change");
 assert.ok(report.agency.refuse.trust > report.agency.amplify.trust, "refusal should preserve more trust than amplification");

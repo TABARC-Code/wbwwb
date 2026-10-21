@@ -13,6 +13,15 @@
 
   var fields = ["fear", "anger", "outgroupThreat", "institutionalDistrust"];
   function clamp(value) { return Math.max(0, Math.min(1, Number(value) || 0)); }
+  function nonNegative(value, fallback) {
+    return typeof value === "number" && Number.isFinite(value) && value >= 0 ? value : fallback;
+  }
+  function resetStory(state) {
+    state.narrative = null;
+    state.practicalConcern = 0;
+    state.habit = "ordinary";
+    state.influencedBy = null;
+  }
   function distance(a, b) {
     var dx = a.x - b.x;
     var dy = a.y - b.y;
@@ -59,12 +68,12 @@
     options = options || {};
     this.tvRadius = options.tvRadius || 220;
     this.personRadius = options.personRadius || 115;
-    this.broadcastStrength = options.broadcastStrength || 0.42;
-    this.spreadStrength = options.spreadStrength || 0.055;
-    this.socialProofWeight = options.socialProofWeight || 0.22;
+    this.broadcastStrength = nonNegative(options.broadcastStrength, 0.42);
+    this.spreadStrength = nonNegative(options.spreadStrength, 0.055);
+    this.socialProofWeight = nonNegative(options.socialProofWeight, 0.22);
     this.activeDurationMs = options.activeDurationMs || 9000;
-    this.exposedDecay = options.exposedDecay || 0.018;
-    this.coolingDecay = options.coolingDecay || 0.075;
+    this.exposedDecay = nonNegative(options.exposedDecay, 0.018);
+    this.coolingDecay = nonNegative(options.coolingDecay, 0.075);
     this.allowTransform = options.allowTransform === true;
     this.tickMs = 0;
     this.generation = 0;
@@ -74,6 +83,7 @@
 
   ShadowAudienceModel.prototype.setSeason = function (season) { this.season = season || null; };
   ShadowAudienceModel.prototype.addDose = function (peep, effects, amount, source) {
+    if (!(amount > 0) || !Number.isFinite(amount)) return peep.shadowInfluence || null;
     var state = stateFor(peep);
     var seasonalReceptivity = this.season ? 1 + (this.season.signals.traditionPressure || 0) * 0.08 : 1;
     var attention = Math.max(0.08, 1 - state.fatigue * 0.65);
@@ -97,7 +107,8 @@
     if (!peep || !tv || !channel) return false;
     var proximity = Math.max(0, 1 - distance(peep, tv) / this.tvRadius);
     if (!proximity) return false;
-    var dose = proximity * this.broadcastStrength * (Number(weight) || 1);
+    var dose = proximity * this.broadcastStrength * nonNegative(weight, 1);
+    if (!(dose > 0)) return false;
     var sensationalism = pressure(channel.effects);
     dose *= (0.6 + sensationalism * 0.55) * Math.max(0.12, stateFor(peep)[side + "Attention"]);
     var state = this.addDose(peep, channel.effects, dose, "tv-" + side);
@@ -290,14 +301,14 @@
         if (pressure(state) < 0.08) {
           state.phase = "susceptible";
           state.behaviour = "ordinary";
+          resetStory(state);
         }
       } else if (state.phase === "cooling") {
         fields.forEach(function (field) { state[field] = clamp(state[field] - this.coolingDecay); }, this);
         if (pressure(state) < 0.12) {
           state.phase = "susceptible";
           state.behaviour = "ordinary";
-          state.habit = "ordinary";
-          state.influencedBy = null;
+          resetStory(state);
           this.metrics.recoveries += 1;
         }
       }
@@ -317,7 +328,8 @@
     this.generation += 1;
     var peeps = scene.world.peeps.slice();
     this.advancePhases(peeps, elapsedMs || 500);
-    var active = peeps.filter(function (peep) {
+    // A disabled transmission experiment still advances recovery.
+    var active = this.spreadStrength === 0 ? [] : peeps.filter(function (peep) {
       return peep.shadowInfluence && stateFor(peep).phase === "active";
     });
     for (var i = 0; i < active.length; i++) {

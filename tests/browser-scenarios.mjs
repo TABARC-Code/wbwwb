@@ -31,9 +31,11 @@ try {
         ordinary.shadowInfluence={phase:'active',fear:1,behaviour:'avoiding'};
         const nervous=model.maybeTransform(scene,ordinary);
         check(nervous._CLASS_==='NervousPeep','Ordinary transformation stopped working');
+        check(nervous.simulationId===ordinary.simulationId,'Nervous replacement lost its identity');
         nervous.shadowInfluence.behaviour='agitating';
         const angry=model.maybeTransform(scene,nervous);
         check(angry._CLASS_==='AngryPeep' && scene.world.peeps.includes(angry),'Generated transformation failed');
+        check(angry.simulationId===ordinary.simulationId,'Angry replacement lost its identity');
       } else {
         scene.world.clearPeeps();
         const nervous=new NervousPeep(scene);

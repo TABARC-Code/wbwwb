@@ -33,8 +33,8 @@
   function clamp(value, min, max) { return Math.max(min, Math.min(max, value)); }
   function topicFor(story) {
     story = story || {};
-    if (story.topic && conflicts[story.topic]) return story.topic;
-    if (story.event && conflicts[story.event]) return story.event;
+    if (story.topic && Object.prototype.hasOwnProperty.call(conflicts, story.topic)) return story.topic;
+    if (story.event && Object.prototype.hasOwnProperty.call(conflicts, story.event)) return story.event;
     return "default";
   }
   function shouldOffer(story) {
@@ -87,6 +87,9 @@
   PlayerAgencyModel.prototype.act = function (choice) {
     var opportunity = this.pending;
     if (!opportunity) return null;
+    if (["sell", "amplify", "repair", "refuse"].indexOf(choice) < 0) {
+      return { choice: choice, rejected: true, summary: "CHOOSE ONE OF THE FOUR ACTIONS" };
+    }
     var before = this.snapshot();
     var result = { choice: choice, topic: opportunity.topic, targetSide: opportunity.targetSide, effects: {} };
     var attention = Math.max(1, opportunity.audience);
