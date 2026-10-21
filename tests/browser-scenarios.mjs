@@ -15,6 +15,9 @@ try {
     const result = await page.evaluate((scenario)=>{
       function check(ok,message){if(!ok) throw new Error(message);}
       check(!Game.assetError,Game.assetError?.message);
+      check(document.querySelectorAll('#seasonal-indicator').length===1,'Season badge missing or duplicated');
+      check(document.getElementById('seasonal-indicator').className==='seasonal-summer','Season badge ignored the run date');
+      check(document.getElementById('playing-notes'),'Playing guide missing');
       cancelAnimationFrame(Game._animationFrame);
       Game.paused=false;
       Game.sceneManager.gotoScene('Game');

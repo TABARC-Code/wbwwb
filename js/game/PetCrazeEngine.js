@@ -8,8 +8,6 @@
     pet_bones: "sprites/news/pet-bones.svg"
   });
 
-  // AI-assisted translation draft. English is canonical. Native corrections
-  // are welcome; "pet craze" should sound absurd, not dismissive of the animal.
   var copy = {
     en: [
       ["LOCAL PET FINDS A HOME", "PET SALES SURGE AFTER VIRAL PHOTO", "TREND PETS ABANDONED AS NOVELTY FADES", "ABANDONED PET FOUND DEAD AFTER BUYING CRAZE"],

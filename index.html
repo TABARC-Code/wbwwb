@@ -17,6 +17,14 @@
     <button id="sound-toggle" type="button" aria-pressed="false">Sound on</button>
     <output id="scenario-readout" aria-live="polite"></output>
   </div>
+  <details id="playing-notes" lang="en">
+    <summary>How to play (English)</summary>
+    <p>Move the frame over the square, then click to take a photograph. On a touch screen, tap the subject. Wait for the broadcast before taking the next shot.</p>
+    <p>Watch what changes in the square. A reaction can become your next story. The side screens put different spins on the same picture.</p>
+    <p>Some stories offer four choices. Selling earns cash but costs trust. Pushing the angle builds reach. A small fix costs £2; refusing protects trust. These choices affect the crowd and your record, but do not unlock a different ending.</p>
+    <p>Changing language or mode restarts the run. Influence laboratory is experimental; its full story progression is not yet verified.</p>
+    <p>Contains violence and a disturbing ending. Photography currently needs a mouse or touch screen.</p>
+  </details>
   <section id="agency-panel" aria-live="polite" hidden>
     <div id="agency-views"></div>
     <div id="agency-actions">
@@ -108,6 +116,7 @@
   <script src="js/game/SeasonalNewsEngine.js"></script>
   <script src="js/game/ShadowHeadlineEngine.js"></script>
   <script src="js/game/SeasonalContext.js"></script>
+  <script src="js/game/SeasonalUI.js"></script>
   <script src="js/game/SeasonalBehaviourModel.js"></script>
   <script src="js/game/IdeologicalAudienceModel.js"></script>
   <script src="js/game/ShadowAudienceModel.js"></script>

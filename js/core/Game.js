@@ -72,6 +72,9 @@ This file is runtime infrastructure. Scene/gameplay content remains unchanged.
     Game.setSeed(Game.readSeed());
     Game.date = Game.readDate();
     Game.dateString = Game.date.toISOString().slice(0, 10);
+    if (Game.seasonalUI) Game.seasonalUI.destroy();
+    Game.seasonalUI = new SeasonalUI();
+    Game.seasonalUI.init();
     Game._nextPeepId = 1;
     Game.ledger = new WBWWBEditorialLedger();
     Game.scenarios = new WBWWBScenarioManager();

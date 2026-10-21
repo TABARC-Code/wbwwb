@@ -4,8 +4,6 @@
   if (global.Game && global.Game.addToManifest) global.Game.addToManifest({
     toy_wobble_beast: "sprites/news/wobble-beast.svg"
   });
-  // AI-assisted translation draft. English remains canonical; corrections are
-  // welcome in TRANSLATION_NOTES.md, especially where panic should sound silly.
   var copy = {
     en: [
       ["NEW WOBBLE BEAST TOY REACHES SHOPS", "WOBBLE BEAST SALES RISE AFTER TV COVERAGE", "CHRISTMAS RUSH LEAVES WOBBLE BEAST SHELVES BARE"],

@@ -1,75 +1,72 @@
-# We Become What We Behold — Modernized
+# We Become What We Behold: standalone fork
 
-A technical modernization of the open-source `ncase/wbwwb` codebase.
+Photograph a small square. Watch the news change it. Photograph what happens next.
 
-**[Play the original](https://ncase.itch.io/wbwwb)**
+This fork builds on [Nicky Case's original game](https://ncase.itch.io/wbwwb), with a newer browser runtime and additional stories about attention, selective reporting and the things people buy when everyone else seems to want them.
 
-## What changed
+## Play locally
 
-- PixiJS 4.x runtime replaced with pinned PixiJS 8.19.0.
-- Howler upgraded to 2.2.4.
-- Legacy Pixi loader/rendering/interaction calls are bridged in `js/lib/pixi-compat.js`.
-- Renderer initialization and asset loading are modernized without rewriting scene content.
-- English is the canonical locale.
-- Automatic language detection supports English, German, Spanish, Turkish, Portuguese and Persian.
-- Unsupported languages and missing translation keys safely fall back to English.
-- Some non-English copy was drafted or revised with AI assistance. Native-speaker corrections are welcome; see `docs/TRANSLATION_NOTES.md`.
-- `?lang=tr` / `?locale=tr` and `localStorage["wbwwb.locale"]` can select a locale.
-- The former Chinese fork localization is removed from runtime data.
-- HTML structure and repository hygiene are fixed.
-- A localization consistency audit is included.
-- Simulation timing is fixed-step and independent of display refresh rate.
-- Runs can be reproduced with a named `?seed=` value.
-- Capture geometry and broadcast history are separated from Pixi rendering.
-- Audio failure falls back to silent play instead of blocking startup.
-- The 960 × 540 game scales responsively without stretching.
-- Accessible language and sound controls sit outside the camera canvas.
-- Authored extension stories now include selective flood coverage, self-fulfilling shortages, a Christmas toy panic and a photographed pet craze whose abandoned animals remain visible in the square.
+From the repository root, serve the files over HTTP:
 
-## Scene/content preservation
-
-The modernization preserves the canonical ending and its central camera-to-news feedback loop, then places clearly separated authored stories before it. Original English artwork has been restored from the fork network; runtime and test seams are isolated from narrative code wherever practical.
-
-## Run locally
-
-Serve the repository over HTTP(S):
-
-```bash
+```sh
 python3 -m http.server 8000
 ```
 
-Then open `http://localhost:8000/`.
+Open <http://localhost:8000/>. A WebGL-capable browser and access to the runtime CDNs are required. Opening `index.html` directly with `file://` is not supported.
 
-Do not use `file://`; WebGL and asset loading are browser-origin sensitive.
+Move the frame and click to photograph a subject; on a touch screen, tap the subject. Wait for the broadcast, then look for a reaction worth photographing. The **How to play** panel can be reopened during play. Photography does not yet have keyboard controls.
 
-## Locale examples
+Some extension stories offer a choice: sell, amplify, fund a £2 repair, or refuse. These affect cash, trust, reach and the crowd. They do not produce an alternative ending. The game contains violence and a disturbing ending.
+
+## What is here
+
+- The original hat, lovers and fear sequence, with authored news stories before the final escalation.
+- Influencers, selective flood coverage, shortages, a seasonal toy panic and a pet craze with visible consequences.
+- Two side screens that distort the photographed evidence, plus audience attention and influence models.
+- A fixed simulation clock, named seeds, a broadcast ledger and reproducible dates.
+- PixiJS 8.19.0 through a compatibility layer; Howler 2.2.4; silent play if audio fails to load.
+- English, German, Spanish, Turkish, Portuguese and Persian selection, with English fallback for missing copy. See [translation notes](docs/TRANSLATION_NOTES.md) for provenance and review limits.
+
+The default mode includes the new stories. The menu label “Original” is a legacy name, not a promise of an unchanged version of the original game.
+
+For a repeatable run:
 
 ```text
-/?lang=en
-/?lang=tr
-/?lang=de
-/?lang=es
-/?lang=pt
-/?lang=fa
-/?lang=en&seed=paper-tiger
+/?lang=en&seed=paper-tiger&date=2026-12-20
 ```
 
-## Audit
+Optional modes use `?scenario=attention`, `?scenario=cricket` or `?scenario=influence`. Attention shows the ledger; cricket can calm surplus anger; influence permits changes to ordinary crowd members. Influence is experimental: its complete authored progression has not been verified. Changing language or mode reloads the page and restarts play.
 
-```bash
-npm install
+## Check a change
+
+CI uses Node.js 22. Install the locked dependencies, then run:
+
+```sh
+npm ci
 npm run check
+npm run playtest:virtual
+npm run playtest:309
 ```
 
-A real browser/WebGL session is still required for final visual regression testing.
+The 309 runs are deterministic model simulations, not human playtests. Browser checks exercise a different layer. With a server running on port 4173 in another terminal:
 
-## Licensing and third-party code
+```sh
+npx playwright install chromium
+python3 -m http.server 4173
+```
 
-The original project is released under CC0. Third-party libraries remain under their own licenses:
+Run these commands from a separate terminal:
 
-- PixiJS — MIT
-- Howler.js — MIT
-- CreateJS TweenJS 1.0.0 — pinned runtime compatibility layer
-- stats.js — optional developer diagnostic
+```sh
+npm run test:browser
+npm run test:authored
+npm run test:scenarios
+```
 
-See `LICENSE`, `docs/MODERNIZATION.md`, `docs/FORK_AUDIT.md`, `docs/CORE_DESIGN.md`, `docs/DEVELOPMENT_NOTES.md`, `docs/UPLOAD_NOTES.md` and `docs/VIRTUAL_PLAYTEST.md` for scope, provenance, playtest results, upload summaries and the less tidy reasoning behind the decisions.
+The authored walkthrough covers four default-mode runs across two dates and two choice policies. Optional-mode fixtures test specific safeguards, not complete playthroughs. Passing them does not settle pacing, readability on a phone or translation quality.
+
+## Notes and licence
+
+[Core design](docs/CORE_DESIGN.md) explains the intended boundaries. [Development notes](docs/DEVELOPMENT_NOTES.md) record the reasoning. [Integration notes](docs/INTEGRATION_NOTES.md) cover the latest fixes and validation limits.
+
+The original is released under CC0; see [LICENSE](LICENSE). Third-party libraries retain their own licences, including PixiJS and Howler under MIT. TweenJS 1.0.0 supplies the legacy animation layer. See [modernisation notes](docs/MODERNIZATION.md) for runtime details.

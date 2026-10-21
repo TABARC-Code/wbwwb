@@ -132,3 +132,27 @@ body{
 #paused{
 	cursor: pointer;
 }
+
+#playing-notes {
+ position: fixed;
+ top: 3.5rem;
+ right: 0.75rem;
+ z-index: 23;
+ max-width: min(24rem, calc(100vw - 2rem));
+ max-height: calc(100vh - 5rem);
+ overflow: auto;
+ padding: 0.5rem;
+ background: #181818;
+ color: #fff;
+ font: 14px/1.45 system-ui, sans-serif;
+ cursor: auto;
+}
+#playing-notes summary { cursor: pointer; }
+#playing-notes p { margin: 0.65rem 0 0; }
+
+#seasonal-indicator { display:inline-flex; width:1.4rem; height:1.4rem; flex-shrink:0; }
+#seasonal-indicator svg { width:100%; height:100%; }
+.seasonal-winter { color:#80baff; }
+.seasonal-spring { color:#f48ca7; }
+.seasonal-summer { color:#ffd16a; }
+.seasonal-autumn { color:#e9a06d; }

@@ -36,12 +36,7 @@ Names and readouts are available in every supported UI language. Missing game
 translations still use the canonical English fallback; no new text is baked
 into sprite art.
 
-AI was used on parts of the non-English copy. I have said so in the locale code
-and in `TRANSLATION_NOTES.md`, because pretending otherwise would be daft. The
-audit tells me the machinery is intact. It cannot tell me whether a Turkish joke
-sounds like a Turkish joke. People who actually speak these languages are very
-welcome to repair tone, idiom, spelling, or any sentence that arrived wearing
-machine-translated trousers.
+Translation review limits are recorded in `TRANSLATION_NOTES.md`. Native-speaker corrections are welcome.
 
 ## The shadow set
 
@@ -210,7 +205,7 @@ set the loudest repeat and sympathetic people start mocking the emergency. The
 worst-water crop produces alarm and warning. A representative frame makes
 practical aid the strongest response; nearby people can pass that on as well.
 I didn't add a saintly ending here. Help spreads slower than outrage, and all
-three televisions remain on screen, becuase the competing selection is the
+three televisions remain on screen, because the competing selection is the
 point.
 
 The same rule now sits under the rest of the game. `CaptureNarrativeEngine`
@@ -244,7 +239,7 @@ The competing topics are not arranged as saint versus idiot. Housing is shelter
 and investment. Tourism is local work and local life for sale. Public doubt can
 expose a real failure, or become an unfalsifiable product. Sport can create a
 real friendship across political lines while inventing a new enemy in the away
-end. Both statements can be true at once. Annoying, but considerably more usefull
+end. Both statements can be true at once. Annoying, but considerably more useful
 than painting one button blue and the other one red.
 
 There is no final morality score. The model records cash, reach, trust,
