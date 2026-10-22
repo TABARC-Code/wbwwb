@@ -7,6 +7,7 @@ import assert from 'node:assert/strict';
 const browser = await chromium.launch({headless: true});
 const reports = [];
 try {
+  for (const scenario of ['default', 'influence', 'cricket']) {
   for (const [date, policy] of [['2026-12-20','sell'], ['2026-12-20','mixed'], ['2026-07-10','sell'], ['2026-07-10','mixed']]) {
     const page = await browser.newPage();
     const errors = [];
@@ -14,10 +15,10 @@ try {
     page.on('console', msg=>{if(msg.type()==='error') errors.push(msg.text());});
     const base = process.env.WBWWB_TEST_URL || 'http://127.0.0.1:4173/';
     const url = new URL(base);
-    url.search = new URLSearchParams({lang:'en',seed:date.includes('-12-') ? 'authored-sell' : 'authored-mixed',date}).toString();
+    url.search = new URLSearchParams({scenario,lang:'en',seed:date.includes('-12-') ? 'authored-sell' : 'authored-mixed',date}).toString();
     await page.goto(url.href, {waitUntil:'networkidle',timeout:60000});
     await page.waitForFunction(()=>Game.assetsReady || Game.assetError, null, {timeout:60000});
-    const report = await page.evaluate(({date,policy})=>{
+    const report = await page.evaluate(({date,policy,scenario})=>{
       function check(ok, message) {if(!ok) throw new Error(message);}
       check(!Game.assetError, Game.assetError?.message);
       cancelAnimationFrame(Game._animationFrame);
@@ -144,11 +145,13 @@ try {
       Game.stage.mousedown({global:{x:480,y:270}});
       waitUntil(()=>Game.scene instanceof Scene_Post_Post_Credits,'final menu',1000);
       check(document.querySelector('#agency-panel').hidden,'Choice panel leaked into ending');
-      return {date,policy,shots,final,ending:'Post_Post_Credits'};
-    }, {date,policy});
+      return {date,policy,scenario,shots,final,ending:'Post_Post_Credits'};
+    }, {date,policy,scenario});
     assert.deepEqual(errors,[]);
     reports.push(report);
+    console.log(JSON.stringify({scenario,date,policy,ending:report.ending,shots:report.shots.length}));
     await page.close();
+  }
   }
   console.log(JSON.stringify({scope:'Accelerated authored browser walkthrough through the final menu; not human playtesting',reports},null,2));
 } finally {await browser.close();}

@@ -44,7 +44,7 @@ test('influence transformations preserve authored cast but allow generated crowd
     p.shadowInfluence={phase:'active',anger:1,behaviour:'agitating'};
     assert.equal(model.maybeTransform(s,p),p,name);
   }
-  const s=scene(['NormalPeep']);const p=s.world.peeps[0];
+  const s=scene(['NormalPeep'],false);const p=s.world.peeps[0];
   p.shadowInfluence={phase:'active',fear:1,behaviour:'avoiding'};
   const nervous=model.maybeTransform(s,p);
   assert.equal(nervous._CLASS_,'NervousPeep');

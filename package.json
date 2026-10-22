@@ -13,7 +13,8 @@
     "check": "npm run check:syntax && npm run audit:locales && npm run audit:assets && npm test",
     "playtest:309": "node tools/playtest-309.js",
     "test:authored": "node tests/browser-authored.mjs",
-    "test:scenarios": "node tests/browser-scenarios.mjs"
+    "test:scenarios": "node tests/browser-scenarios.mjs",
+    "playtest:300": "node tools/playtest-300.js"
   },
   "dependencies": {
     "pixi.js": "8.19.0",

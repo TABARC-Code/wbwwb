@@ -80,4 +80,4 @@ if (require.main === module) {
   console.log(JSON.stringify(summary,null,2));
   if (report.passed !== 309) process.exitCode = 1;
 }
-module.exports = {simulate};
+module.exports = {simulate, run};

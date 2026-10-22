@@ -83,6 +83,7 @@ function Director(scene){
 	};
 
 	self.audience_cutToTV = function(doSomethingElse, filterAudience){
+        var seated = 0;
 
         // AUDIENCE?
         var data = self.photoData;
@@ -137,6 +138,7 @@ function Director(scene){
 
 	            // Watch the TV? Otherwise move, get out the way.
 	            if(watchTV){
+                    seated++;
 	                p.x = self.tv.x;
 	                p.x -= flip*offset;
 	                p.y = self.tv.y+Game.random(); // tiny offset to avoid glitchy depth-sort
@@ -152,7 +154,7 @@ function Director(scene){
 	    }
 
         // Did anyone watch?
-        return (data.audience>0);
+        return seated > 0;
 
 	};
 

@@ -65,7 +65,7 @@ test("an explicit simulation mode may transform while preserving influence", () 
   const peep = { x: 30, y: 40, type: "square", _CLASS_: "NormalPeep", shadowInfluence: influence };
   let replacement;
   global.AngryPeep = function (_scene, type) { this._CLASS_ = "AngryPeep"; this.type = type; };
-  const scene = { world: { replacePeep: (_old, next) => { replacement = next; return next; } } };
+  const scene = { world: { peeps: [peep], replacePeep: (_old, next) => { replacement = next; return next; } } };
   const model = new ShadowAudienceModel({ allowTransform: true });
 
   model.maybeTransform(scene, peep);

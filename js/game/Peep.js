@@ -54,6 +54,7 @@ function Peep(scene){
     //self.allowToStay = false;
 
 	self.update = function(){
+		if(self.dead) return;
 
 		/////////////
 		// WALKING //
@@ -305,10 +306,15 @@ function Peep(scene){
 
 	// KILL ME
 	self.kill = function(){
+		if(self.dead) return;
+		self.dead = true;
+		self.clearAnims();
 		var world = self.scene.world;
-		world.peeps.splice(world.peeps.indexOf(self),1);
-		world.props.splice(world.props.indexOf(self),1);
-		world.layers.props.removeChild(self.graphics);
+		var peepIndex = world.peeps.indexOf(self);
+		var propIndex = world.props.indexOf(self);
+		if(peepIndex >= 0) world.peeps.splice(peepIndex,1);
+		if(propIndex >= 0) world.props.splice(propIndex,1);
+		if(self.graphics.parent) self.graphics.parent.removeChild(self.graphics);
 	};
 
 	// Update!

@@ -60,3 +60,17 @@ test('a replacement keeps the same seeded personality and seasonal choice', () =
   for(const key of ['susceptibility','adoptionThreshold','resistance']) assert.equal(after[key],before[key],key);
   assert.equal(season.choose(next),habit);
 });
+
+test('stale and self replacements cannot duplicate or resurrect a character', () => {
+  const world = makeWorld();
+  const old = { graphics: {}, kill() { assert.fail('Unexpected removal'); } };
+  const next = { graphics: {} };
+  assert.equal(world.replacePeep(old, next), null);
+  world.peeps.push(old);
+  assert.equal(world.replacePeep(old, old), null);
+  old.dead = true;
+  assert.equal(world.replacePeep(old, next), null);
+  assert.equal(world.peeps.length, 1);
+  assert.equal(world.peeps[0], old);
+  assert.equal(world.props.length, 0);
+});
