@@ -35,7 +35,7 @@ For a repeatable run:
 /?lang=en&seed=paper-tiger&date=2026-12-20
 ```
 
-Optional modes use `?scenario=attention`, `?scenario=cricket` or `?scenario=influence`. Attention shows the ledger; cricket can calm surplus anger; influence permits changes to ordinary crowd members. Influence is experimental: its complete authored progression has not been verified. Changing language or mode reloads the page and restarts play.
+Optional modes use `?scenario=attention`, `?scenario=cricket` or `?scenario=influence`. Attention shows the ledger; cricket can calm surplus anger; influence permits changes to ordinary crowd members. Influence remains experimental. Automated walkthroughs now cover its authored progression through the final menu in summer and Christmas, with sell and mixed repair policies; other seeds and human pacing still need review. See [stability notes](docs/STABILITY_NOTES.md). Changing language or mode reloads the page and restarts play.
 
 ## Check a change
 
@@ -46,6 +46,7 @@ npm ci
 npm run check
 npm run playtest:virtual
 npm run playtest:309
+npm run playtest:300
 ```
 
 The 309 runs are deterministic model simulations, not human playtests. Browser checks exercise a different layer. With a server running on port 4173 in another terminal:

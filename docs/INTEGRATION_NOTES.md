@@ -10,4 +10,4 @@ The model fixes reject invalid actions and inherited topic names, respect disabl
 
 Local validation passed 103 Node tests, locale and asset audits, the virtual playtest and 309 deterministic simulations. All 16 additional sound sets have MP3, M4A and Opus files; the six checked core sounds are present. Browser smoke, four default-mode authored walkthroughs and the focused optional-scenario fixtures passed in [CI](https://github.com/TABARC-Code/wbwwb/actions/runs/39635903790).
 
-Full optional influence-mode story completion, touch-screen readability, native-language review and human pacing tests remain outstanding. The focused browser fixtures test actor protection and identity preservation; they are not complete optional-mode walkthroughs.
+Touch-screen readability, native-language review and human pacing tests remain outstanding. The focused browser fixtures test actor protection and identity preservation. A later [stability pass](STABILITY_NOTES.md) added full default, influence and cricket walkthroughs through the final menu for two seasons and two editorial policies; it does not cover every possible seed or player route.
