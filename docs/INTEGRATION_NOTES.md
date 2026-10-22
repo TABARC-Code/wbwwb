@@ -8,6 +8,6 @@ The additional audio files and conversion tools are retained as prototypes. Thei
 
 The model fixes reject invalid actions and inherited topic names, respect disabled transmission settings and clear expired story labels. Character replacement also preserves the simulation identity used for seeded traits and seasonal habits. The playing guide explains the camera, the £2 repair and the fixed ending.
 
-Local validation passed 103 Node tests, locale and asset audits, the virtual playtest and 309 deterministic simulations. All 16 additional sound sets have MP3, M4A and Opus files; the six checked core sounds are present. The merged browser run must still pass CI.
+Local validation passed 103 Node tests, locale and asset audits, the virtual playtest and 309 deterministic simulations. All 16 additional sound sets have MP3, M4A and Opus files; the six checked core sounds are present. Browser smoke, four default-mode authored walkthroughs and the focused optional-scenario fixtures passed in [CI](https://github.com/TABARC-Code/wbwwb/actions/runs/39635903790).
 
 Full optional influence-mode story completion, touch-screen readability, native-language review and human pacing tests remain outstanding. The focused browser fixtures test actor protection and identity preservation; they are not complete optional-mode walkthroughs.
