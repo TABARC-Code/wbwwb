@@ -1,0 +1,267 @@
+# Development notes
+
+## The first cut
+
+The code is small. That was the pleasant surprise. The unpleasant one: small didn't mean separable.
+
+The camera knows about the renderer. The Director knows about headlines, audiences, scene choreography, sound and social change. Acts advance by replacing a bag of callbacks. It works because the game is short and Nicky Case knew exactly which railway track the train needed. Extend it carelessly and the points become spaghetti.
+
+So the first pass hasn't tried to make the game cleverer. It has made failures repeatable.
+
+A seed now names each run. The camera's rectangle arithmetic can be tested without WebGL. Broadcasts leave a ledger. These are modest seams, but they're real ones. Future work can put an editorial model on one side and pictures on the other without dragging a television sprite into every unit test.
+
+## Things taken from forks — and things left on the kerb
+
+The polarisation fork had the bones of a strong idea: attention creates revenue while outrage changes the population. Its implementation sent player state to a hard-coded Firebase project and multiplied money by arbitrary amounts. That's too much baggage and, frankly, the wrong order of operations. Record the causal data first. Decide what it means after playtesting.
+
+The cricket invasion is funny. More importantly, it's a genuine counterfactual: what if relentless coverage of harmless nonsense crowded out conflict? But it currently grows from global counters, loose timers and a debug-heavy scene. Worth rebuilding later. Not worth stapling onto the base game.
+
+The native port is huge—much larger than the work it ports—but its author did useful thinking around backend-neutral services, mute operation, logical resolution and asset validation. The web game can borrow those lessons without swallowing a Vulkan renderer whole.
+
+## Optional scenarios, now without the staple gun
+
+The original game is still the default. Experimental fork ideas register with
+`ScenarioManager` and listen for narrow events (`start`, `broadcast`, `update`).
+They don't get to rewrite the Director or quietly fork every Act. That boundary
+matters more than it looks: experiments stay legible, and deleting one is dull.
+Dull deletion is a feature.
+
+- `?scenario=attention` shows the local editorial ledger as a small live readout.
+  There is no currency fiction and nothing is sent to a server.
+- `?scenario=cricket` adds a counter-cycle. Three cricket subjects calm one
+  angry or frightened viewer, if one exists. It uses the seeded game RNG, so a
+  reported run can be replayed.
+
+Names and readouts are available in every supported UI language. Missing game
+translations still use the canonical English fallback; no new text is baked
+into sprite art.
+
+Translation review limits are recorded in `TRANSLATION_NOTES.md`. Native-speaker corrections are welcome.
+
+## The shadow set
+
+`ShadowTV` is the headless twin of the central television. It mirrors completed
+broadcasts into a short, bounded history and controls two smaller sets placed
+to the left and right of the main screen. The left echo frames the same picture
+through dread; the right pushes fury. These are emotional extremes, not labels
+for political parties.
+
+Each side writes its own headline from the broadcast facts. Empty photographs
+become suspicion on one set and accusations of concealment on the other;
+crickets become either sinister distraction or infuriating nonsense. At high
+crowd anger, both harden again. Same photograph. Different poison.
+
+The wording now lives in `ShadowHeadlineEngine`, separate from display and
+history. When a scene supplies structured story facts, the engine can perform
+more specific distortions. Flood victims seeking safety, for example, become
+people abandoned by the system on the left set and “foreign invaders” on the
+right. That substitution is recorded as a framing strategy; it isn't mistaken
+for a new fact.
+
+The shadow record also preserves the mechanism behind each headline. It marks
+identity substitution, collective blame, invented concealment and similar
+moves, alongside separate fear, anger, outgroup-threat and institutional-
+distrust signals. These aren't claims about real audiences. They're explicit
+simulation inputs, ready to be tuned through playtesting instead of buried as
+magic numbers inside character animation.
+
+`ShadowAudienceModel` turns those pressures into geography. A side set affects
+nearby people most strongly. Every half-second, affected people pass a weaker
+dose to close neighbours. Enough accumulated fear can make an ordinary viewer
+nervous; enough anger can make a normal or nervous viewer angry. Replacement
+keeps the person's position, shape and influence history, so persuasion doesn't
+also teleport its subject across the room.
+
+The controller stores facts, not Pixi textures. A live texture passes directly
+to both displays, which own their own sprites. That makes the history safe to
+leave running while the visible sets own the photograph and animation.
+
+The intended next use is counterfactual framing: feed the same evidence to two
+headlines, publish one, and let the shadow set calculate the road not taken.
+Keeping that calculation headless means it can be tested without pretending an
+off-screen sprite is an architecture.
+
+## Rumours need legs
+
+The side sets now compete with the main television for a finite slice of each
+person's attention. Proximity helps. Sensational language helps too, at least
+until familiarity and fatigue make another shriek of outrage feel like noisy
+wallpaper. Contradictory exposure raises confusion and slowly damages the
+source's credibility.
+
+Influence moves through explicit stages: susceptible, exposed, active and
+cooling. The names borrow the useful shape of an epidemic model, not its moral
+meaning. A rumour isn't a virus and a person isn't a petri dish. The model
+tracks broadcast exposure, adoption, person-to-person transmission and recovery
+separately so a balancing change doesn't turn one vague counter into folklore.
+
+Canonical mode never replaces the original cast. That looked dramatic in an
+early pass and was architecturally reckless: an experimental television could
+turn a scripted actor angry before the original act needed them. Full class
+transformation remains available as an explicit simulation option. In normal
+play, small markers make exposure and activation legible without stealing the
+story's puppets.
+
+## The calendar in the newsroom
+
+`SeasonalContext` reads the player's local date, or a reproducible `?date=YYYY-MM-DD`
+override. It calculates Easter, carries Christmas pressure across New Year, and
+records the chosen date beside the run seed. `SeasonalNewsEngine` keeps a
+neutral event and two distorted treatments together across all six supported
+languages. Seasonal framing now needs a photographed seasonal habit. The
+calendar therefore colours the news cycle without eating an unrelated photograph.
+
+Christmas can push spending and decoration. Easter can mix worship, novelty
+and chocolate commerce. New Year leans into reinvention. Ordinary dates still
+carry their meteorological season. These are broad satirical pressures, not a
+claim that everyone observes the same festival or reacts in the same way.
+
+Seasonal habits have their own model. Shopping, decorating, observing a festival
+and chasing novelty are assigned reproducibly from the date and character
+identity; none of them automatically means a person accepted a shadow headline.
+Small symbols make those habits visible. The distinction is slightly fussy and
+worth keeping. Culture, commerce and persuasion overlap without being the same
+thing.
+
+The optional **Influence laboratory** mode removes the canonical safety catch.
+It allows active influence to transform character classes and exposes live
+counts for exposure, activation, cooling and person-to-person transmission.
+That mode may disrupt the original five-minute choreography. It says so by
+being a laboratory rather than quietly pretending to be the untouched game.
+
+## A handful of true believers
+
+Six additional normal peeps now sit along a deliberately small ideological
+range: committed left and right, softer left and right, and two near-centre
+people who already have a preferred direction. They use the ordinary body and
+face animations. The distinction is a media preference, not a new species.
+
+One-sided scandal coverage agitates only the audience inclined towards that
+outlet. Agitated believers then lean harder towards their own endpoint and put
+low doses of pressure on nearby ordinary peeps. A basic peep begins in the
+middle; sufficient local pressure gives them a direction, after which repeated
+contact can pull them further. Replacing a character during the original story
+now preserves this history instead of performing the miraculous political cure
+known as constructing a new JavaScript object.
+
+## Clout before catastrophe
+
+Four short acts now sit between the lovers and the original fear cycle. Two
+influencers appear in each. First come selfies, filmed charity and dangerous
+weather stunts. Then conspiracy clips and a collectible monster-card frenzy.
+Sport gets its own guaranteed beat rather than hoping the rotating influencer
+antics happen to land on it. Finally come affairs, faith subscriptions, censored private-cartoon
+leaks and the inevitable fourth apology video.
+
+The middle television reports these in painfully ordinary newsroom language.
+Only one side set finds the ideological lever in each story. A masculinity or
+nostalgia grievance fires the right set; institutional cover-ups, hypocrisy and
+commercial exploitation fire the left. The unused side repeats the boring
+account. This breaks the too-tidy habit of making every event a three-column
+political debate.
+
+Capturing an influencer raises their visible likes and followers, rewards the
+antic, and prompts the next one. Nearby ordinary peeps pick up trend pressure.
+The characters are deliberately awful examples: staged generosity, synthetic
+feuds and public contrition as content. The model is about incentives and
+attention, not a claim that every creator behaves like a raccoon with a ring
+light.
+
+Sport gets one deliberate exception to the normal left/middle/right split.
+The centre broadcast can make a mixed crowd genuinely excited together. Their
+old political markers remain, but a HOME/AWAY badge temporarily matters more.
+That is not presented as a clean happy ending: shadow coverage converts the
+same belonging into contempt for the smaller away group. The middle can move a
+crowd. The extremes make the movement meaner.
+
+That change now happens on the bodies rather than only in a hidden score. Left,
+right and undecided markers fade behind the same green-and-gold HOME scarf.
+Weapons and angry-red overlays are put away. Supporters drift towards their new
+team-mates, including people they were fighting moments earlier, and turn to
+heckle the orange-and-black AWAY pocket. Nothing in their convictions has been
+solved. A stronger shared identity has simply redrawn the border around “us”.
+
+Flood coverage now makes the visual selection explicit. The underlying event is
+a serious flood. The centre set shows the representative wide view. The left
+set crops to the deepest water and treats the worst pocket as the whole event.
+The right set finds a genuine shallow trickle and uses that tiny true fragment
+to call the emergency an environmental hoax. Three pictures, one place.
+
+This matters because the earlier foreign-invader headline could look like the
+right television had simply invented a dark propaganda poster. Here the lie is
+more recognisable and more uncomfortable: the trickle is real. It is just not
+representative. The ledger records `cherry-picking`, `scale-minimisation` and
+the selected crop so the model does not quietly confuse evidence with honesty.
+
+The player now photographs one of three visible fragments rather than receiving
+a hard-coded “trickle” result. A shallow channel sits to one side, representative
+flooding occupies the middle, and the worst water sits opposite. This puts the
+selection back where it belongs: inside the camera. Missing the larger flood is
+therefore a player action with consequences, not a fact the script sneaks into
+the ledger after the shutter closes.
+
+That crop now changes more than the caption. A trickle crop gives the denial
+set the loudest repeat and sympathetic people start mocking the emergency. The
+worst-water crop produces alarm and warning. A representative frame makes
+practical aid the strongest response; nearby people can pass that on as well.
+I didn't add a saintly ending here. Help spreads slower than outrage, and all
+three televisions remain on screen, because the competing selection is the
+point.
+
+The same rule now sits under the rest of the game. `CaptureNarrativeEngine`
+records what was actually inside the shutter: hat, affection, fear, contempt,
+shouting, cricket, an empty frame, a visible seasonal habit, an influencer's
+current antic, or the selected flood crop. The side sets may distort that noun
+and verb. They don't get to swap in a private-jet scandal because an internal
+counter reached two. I had accidentally built precisely the sort of dishonest
+camera the original game was criticising, which was a bit too method.
+
+Seasonal reporting follows the same limit. Christmas can frame somebody the
+player actually photographs shopping or decorating. The date alone no longer
+replaces an unrelated photograph with a festive bulletin.
+
+## The grubby little lever
+
+The camera remains the game. I have not added a management screen where the
+player spends fifteen minutes improving a spreadsheet while the crowd waits
+politely for capitalism to finish loading. After a broadcast, a narrow action
+strip presents the two pressures inside its topic and four things the player
+can do with the attention they created.
+
+They can sell rival identities to both camps, push the hottest angle, spend
+cash on a small local repair, or refuse to turn the moment into bait. Selling
+raises cash and reach while cutting trust. Amplification builds influence and
+also makes the player part of the machine. Repair costs money, cools some of the
+crowd and creates a modest practical change. Refusal protects trust but does
+not magically reward restraint with a huge audience.
+
+The competing topics are not arranged as saint versus idiot. Housing is shelter
+and investment. Tourism is local work and local life for sale. Public doubt can
+expose a real failure, or become an unfalsifiable product. Sport can create a
+real friendship across political lines while inventing a new enemy in the away
+end. Both statements can be true at once. Annoying, but considerably more useful
+than painting one button blue and the other one red.
+
+There is no final morality score. The model records cash, reach, trust,
+practical change, exploitation and influence separately. The player's pattern
+is the portrait. One cynical sale might fund a useful repair. Ten cynical sales
+and no repair tell a different story without the code needing to flash EVIL.
+
+Influencers react to those choices while they are still in the scene. They call
+out the merch deal, clip the inflammatory angle, notice an actual repair, or
+complain when refusal leaves them with no content. Their posts create presence
+and nudge public opinion, but those remain separate measures. Being discussed
+is not the same as being liked, trusted, or useful. The internet occasionally
+forgets this, usually just before selling a course about it.
+
+## Next pressure points
+
+The fixed clock and seeded random stream expose the next work rather neatly:
+
+1. Story stages need explicit names and transitions rather than callback replacement.
+2. Character behaviour needs data describing what can be observed and transmitted.
+3. Captures need relationships, not merely overlapping rectangles.
+4. The editorial ledger needs novelty, ambiguity and framing fields derived from play, not invented as moral scores.
+5. Extend browser coverage across authored progression, optional scenarios and real devices.
+
+Chromium now runs in the standalone branch CI. Startup, asset readiness, scaled mouse/touch input, scene disposal and mute behaviour have passing browser smoke coverage. The authored walkthrough adds camera-driven progression and agency choices. Local browser installation remains unavailable in this workspace; physical-device readability and human pacing checks remain separate work. See `AUTHORED_PLAYTHROUGH_AUDIT.md` for the latest audited scope and results.

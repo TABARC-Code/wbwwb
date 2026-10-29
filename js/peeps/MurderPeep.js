@@ -53,7 +53,7 @@ function MurderPeep(scene){
 
         // Transform
         self.x = scene.tv.x;
-        self.y = scene.tv.y+Math.random(); // tiny offset to avoid glitchy depth-sort
+        self.y = scene.tv.y+Game.random(); // tiny offset to avoid glitchy depth-sort
         if(shapeType=="circle"){
             self.x -= 60;
             self.flip = 1;
@@ -200,14 +200,14 @@ function MurderPeep(scene){
         // Sway back & forth
         var t = self.hop*Math.PI*2;
         g.pivot.y = Math.abs(Math.sin(t))*15;
-        g.rotation = (Math.random()*2-1)*0.05;
+        g.rotation = (Game.random()*2-1)*0.05;
 
     };
 
     // SAME STAND ANIM, EXCEPT: RANDOM ROTATION
     self.standAnim = function(){
         var g = self.graphics;
-        g.rotation = (Math.random()*2-1)*0.05;
+        g.rotation = (Game.random()*2-1)*0.05;
         g.pivot.y = 0;
     };
 
@@ -233,9 +233,9 @@ function MurderPeep(scene){
         self.setTimeout(function(){
             self.startWalking();
             if(self.type=="circle"){
-                self.direction = Math.PI + (Math.random()*2-1);
+                self.direction = Math.PI + (Game.random()*2-1);
             }else{
-                self.direction = (Math.random()*2-1);
+                self.direction = (Game.random()*2-1);
             }
         },_s(OFFSET+WAIT+1));
 

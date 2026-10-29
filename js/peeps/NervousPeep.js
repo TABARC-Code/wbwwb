@@ -69,11 +69,11 @@ function NervousPeep(scene){
 
                     // Look shifty...
                     if(frame==6){
-                        if(Math.random()<0.05) face.gotoAndStop(frame+1);
+                        if(Game.random()<0.05) face.gotoAndStop(frame+1);
                     }else if(frame<10){
                         face.gotoAndStop(frame+1);
                     }else if(frame==10){
-                        if(Math.random()<0.05) face.gotoAndStop(frame+1);
+                        if(Game.random()<0.05) face.gotoAndStop(frame+1);
                     }else if(frame<16){
                         face.gotoAndStop(frame+1);
                     }else if(frame==16){

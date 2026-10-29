@@ -180,11 +180,11 @@ function Stage_Panic(self){
     for(var i=0;i<30;i++){
         var gore = new Gore(self);
         gore.init({
-            direction: -(Math.TAU/4)+(Math.random()),
-            velocity: 10+Math.random()*5,
+            direction: -(Math.TAU/4)+(Game.random()),
+            velocity: 10+Game.random()*5,
             x: happy.x,
             y: happy.y,
-            z: (Math.random()*-30)
+            z: (Game.random()*-30)
         });
         self.world.addProp(gore);
     }

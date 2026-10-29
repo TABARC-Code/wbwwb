@@ -12,8 +12,11 @@ function Peep(scene){
 
 	// Properties
 	self.scene = scene;
-	self.x = Math.random()*Game.width;
-	self.y = Math.random()*Game.height;
+	// A moving coordinate is a dreadful identity. This counter is reset for
+	// every seeded run, so personality remains stable and replays remain useful.
+	self.simulationId = Game._nextPeepId++;
+	self.x = Game.random()*Game.width;
+	self.y = Game.random()*Game.height;
 	self.DRAWING_SCALE = 0.65;
 	self.width = 80*self.DRAWING_SCALE;
 	self.height = 120*self.DRAWING_SCALE;
@@ -31,11 +34,11 @@ function Peep(scene){
 
     // Hop! And bounce INDEPENDENT of anim. Bouncy math!
     
-    self.hop = Math.random();
+    self.hop = Game.random();
     self._lastHop = self.hop;
 
-    self.speed = 1 + Math.random()*0.5;
-    self.direction = Math.random()*Math.PI*2;
+    self.speed = 1 + Game.random()*0.5;
+    self.direction = Game.random()*Math.PI*2;
     self.vel = {x:0,y:0};
     self.flip = 1;
     
@@ -51,6 +54,7 @@ function Peep(scene){
     //self.allowToStay = false;
 
 	self.update = function(){
+		if(self.dead) return;
 
 		/////////////
 		// WALKING //
@@ -278,8 +282,8 @@ function Peep(scene){
 	self.startWalking = function(){
 
 		self.isWalking = true;
-		self.speed = 1 + Math.random()*0.5;
-    	self.direction = Math.random()*Math.PI*2;
+		self.speed = 1 + Game.random()*0.5;
+		self.direction = Game.random()*Math.PI*2;
 
     	// CALLBACK
 		self.callback("startWalking");
@@ -302,10 +306,15 @@ function Peep(scene){
 
 	// KILL ME
 	self.kill = function(){
+		if(self.dead) return;
+		self.dead = true;
+		self.clearAnims();
 		var world = self.scene.world;
-		world.peeps.splice(world.peeps.indexOf(self),1);
-		world.props.splice(world.props.indexOf(self),1);
-		world.layers.props.removeChild(self.graphics);
+		var peepIndex = world.peeps.indexOf(self);
+		var propIndex = world.props.indexOf(self);
+		if(peepIndex >= 0) world.peeps.splice(peepIndex,1);
+		if(propIndex >= 0) world.props.splice(propIndex,1);
+		if(self.graphics.parent) self.graphics.parent.removeChild(self.graphics);
 	};
 
 	// Update!
