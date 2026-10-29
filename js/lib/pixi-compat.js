@@ -124,11 +124,23 @@
 
   PIXI.RenderTexture = LegacyRenderTexture;
 
+  function textStyle(style) {
+    if (!style || typeof style.font !== "string") return style || {};
+    var converted = Object.assign({}, style);
+    var font = /^(?:(bold|normal)\s+)?(\d+(?:\.\d+)?)px\s+(.+)$/.exec(style.font);
+    if (!font) throw new Error("Unsupported legacy text font: " + style.font);
+    if (converted.fontWeight == null) converted.fontWeight = font[1] || "normal";
+    if (converted.fontSize == null) converted.fontSize = Number(font[2]);
+    if (converted.fontFamily == null) converted.fontFamily = font[3];
+    delete converted.font;
+    return converted;
+  }
+
   var NativeText = PIXI.Text;
   PIXI.Text = class LegacyText extends NativeText {
     constructor(text, style) {
       if (typeof text === "string") {
-        super({ text: text, style: style || {} });
+        super({ text: text, style: textStyle(style) });
       } else {
         super(text);
       }

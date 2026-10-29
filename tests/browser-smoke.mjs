@@ -79,11 +79,13 @@ try {
       if (name === "Quote") window.startTransitions++;
       return original(name);
     };
-    const button = Game.stage.children.find(child => child.x === 278 && child.y === 250);
-    if (!button?.mousedown) throw new Error("Start control is not ready");
-    button.mousedown({ global: { x: 278, y: 250 } });
-    button.mousedown({ global: { x: 278, y: 250 } });
   });
+  const startBounds = await page.locator("#stage canvas").boundingBox();
+  await page.mouse.dblclick(
+    startBounds.x + startBounds.width * (278 / 960),
+    startBounds.y + startBounds.height * (250 / 540),
+    { delay: 25 }
+  );
   await page.waitForFunction(() => window.startTransitions >= 1, null, { timeout: 10_000 });
   await page.waitForTimeout(350);
   const startCount = await page.evaluate(() => window.startTransitions);

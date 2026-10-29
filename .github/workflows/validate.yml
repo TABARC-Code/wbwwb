@@ -7,9 +7,12 @@ on:
 
   pull_request:
     branches:
-      - codex/core-rebuild-fork-audit
+      - master
 
   workflow_dispatch:
+
+permissions:
+  contents: read
 
 jobs:
   test:

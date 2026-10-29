@@ -175,3 +175,27 @@ test('the final zoom stops updating graphics after its scene is destroyed', () =
   assert.equal(shakeUpdates,1);
   assert.notEqual(context.Game.scene,scene);
 });
+
+test('legacy font declarations reach the pinned Pixi TextStyle with their size and family intact', () => {
+  const { TextStyle } = require('pixi.js');
+  class Text {
+    constructor(options) { this.style = new TextStyle(options.style); }
+  }
+  const context = { setTimeout, clearTimeout, PIXI: {
+    Container: class {}, Assets: {}, RenderTexture: {}, Text
+  } };
+  context.window = context;
+  load(context, 'js/lib/pixi-compat.js');
+  const original = { font: 'bold 50px Cairo', fill: '#fff', align: 'right' };
+  const headline = new context.PIXI.Text('Headline', original);
+  assert.equal(headline.style.fontFamily, 'Cairo');
+  assert.equal(headline.style.fontSize, 50);
+  assert.equal(headline.style.fontWeight, 'bold');
+  assert.equal(headline.style.align, 'right');
+  assert.equal(original.font, 'bold 50px Cairo');
+  const quote = new context.PIXI.Text('Quote', {font:'65px Cairo'});
+  assert.equal(quote.style.fontSize, 65);
+  assert.equal(quote.style.fontWeight, 'normal');
+  const explicit = new context.PIXI.Text('Text', {font:'40px Cairo',fontSize:32});
+  assert.equal(explicit.style.fontSize, 32);
+});
