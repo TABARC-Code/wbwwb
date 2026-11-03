@@ -18,6 +18,14 @@ function Scene_Preloader(){
 		new PIXI.RenderTexture(Game.renderer, Game.width, Game.height),
 		new PIXI.RenderTexture(Game.renderer, Game.width, Game.height)
 	];
+	var disposed = false;
+	var startTimer = null;
+	var starting = false;
+	self.onDispose(function(){
+		disposed = true;
+		clearTimeout(startTimer);
+		renderTexturePool.forEach(function(texture){ texture.destroy(true); });
+	});
 	self.stream = new PIXI.Sprite();
 	self.stream.x = 722;
 	self.stream.y = 359;
@@ -86,6 +94,7 @@ function Scene_Preloader(){
 	};
 
 	Game.loadAssets(function(){
+		if(disposed) return;
 
 		Game.stage.removeChild(text);
 		bar.gotoAndStop(1);
@@ -101,13 +110,16 @@ function Scene_Preloader(){
 			bar.gotoAndStop(1);
 		};
 		bar.mousedown = bar.touchend = function(){
+			if(starting || disposed) return;
+			starting = true;
 			Game.sounds.squeak.play();
-			setTimeout(function(){
+			startTimer = setTimeout(function(){
 				Game.sceneManager.gotoScene("Quote");
 			},200);
 		};
 
 	}, function(ratio){
+		if(disposed) return;
 		var percent = Math.floor(ratio*100);
 		text.text = "loading... "+percent+"%";
 	}, false);

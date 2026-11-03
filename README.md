@@ -1,34 +1,73 @@
-*a game about news cycles, vicious cycles, infinite cycles*
+# We Become What We Behold: standalone fork
 
-**[PLAY](https://ncase.itch.io/wbwwb)**
+Photograph a small square. Watch the news change it. Photograph what happens next.
 
----
+This fork builds on [Nicky Case's original game](https://ncase.itch.io/wbwwb), with a newer browser runtime and additional stories about attention, selective reporting and the things people buy when everyone else seems to want them.
 
-### Made with open culture, for open culture!
+## Play locally
 
-I'm releasing all my code and art to the public domain, under the [Creative Commons Zero](http://creativecommons.org/publicdomain/zero/1.0/) un-license. Which means if you wanna remix this to make your own way-too-meta game, or use it in a presentation or classroom or whatever, you already have my permission!
+From the repository root, serve the files over HTTP:
 
-However, not *all* the code/art is mine. Credit's due where credit's due, so...
+```sh
+python3 -m http.server 8000
+```
 
-**CODE:**    
-- [PIXI.js](https://github.com/pixijs/pixi.js), for rendering the graphics (MIT License)    
-- [Howler.js](https://github.com/goldfire/howler.js), for playing the sounds (MIT License)
+Open <http://localhost:8000/>. A WebGL-capable browser and access to the runtime CDNs are required. Opening `index.html` directly with `file://` is not supported.
 
-**SOUNDS:**    
-- [squeak!](https://www.freesound.org/people/ermfilm/sounds/130011/) (CC BY)    
-- [park ambience](https://www.freesound.org/people/Mafon2/sounds/274175/) (CC Zero)    
-- [camera shutter](https://www.freesound.org/people/uEffects/sounds/207865/) (CC Zero)    
-- [single cricket](https://www.freesound.org/people/cs272/sounds/77034/) (CC-BY)    
-- [multiple crickets](https://www.freesound.org/people/alienistcog/sounds/124583/) (CC Zero)    
-- [news jingle](https://www.freesound.org/people/Tuben/sounds/272044/) (CC Zero)    
-- [scream #1](https://www.freesound.org/people/GreatNate98/sounds/353086/) (CC Zero)    
-- [scream #2](https://www.freesound.org/people/mariallinas/sounds/222649/) (CC Zero)    
-- [gunshot](https://www.freesound.org/people/mitchelk/sounds/136766/) (CC Zero)    
-- [gun cocked](https://www.freesound.org/people/martian/sounds/182229/) (CC Zero)    
-- [shotgun](https://www.freesound.org/people/lensflare8642/sounds/145209/) (CC Zero)        
-- [bloody impact](https://www.freesound.org/people/Hybrid_V/sounds/319590/) (CC BY)        
-- [creepy warp sound](https://www.freesound.org/people/Andromadax24/sounds/184476/) (CC BY)        
-- [crowd screaming](https://www.freesound.org/people/MultiMax2121/sounds/156860/) (CC Zero)        
+Move the frame and click to photograph a subject; on a touch screen, tap the subject. Wait for the broadcast, then look for a reaction worth photographing. The **How to play** panel can be reopened during play. Photography does not yet have keyboard controls.
 
-**ART:**    
-- For the ending, I modified [this photo of a laptop](https://unsplash.com/photos/XyNi3rUEReE). (CC Zero)
+Some extension stories offer a choice: sell, amplify, fund a £2 repair, or refuse. These affect cash, trust, reach and the crowd. They do not produce an alternative ending. The game contains violence and a disturbing ending.
+
+## What is here
+
+- The original hat, lovers and fear sequence, with authored news stories before the final escalation.
+- Influencers, selective flood coverage, shortages, a seasonal toy panic and a pet craze with visible consequences.
+- Two side screens that distort the photographed evidence, plus audience attention and influence models.
+- A fixed simulation clock, named seeds, a broadcast ledger and reproducible dates.
+- PixiJS 8.19.0 through a compatibility layer; Howler 2.2.4; silent play if audio fails to load.
+- English, German, Spanish, Turkish, Portuguese and Persian selection, with English fallback for missing copy. See [translation notes](docs/TRANSLATION_NOTES.md) for provenance and review limits.
+
+The default mode includes the new stories. The menu label “Original” is a legacy name, not a promise of an unchanged version of the original game.
+
+For a repeatable run:
+
+```text
+/?lang=en&seed=paper-tiger&date=2026-12-20
+```
+
+Optional modes use `?scenario=attention`, `?scenario=cricket` or `?scenario=influence`. Attention shows the ledger; cricket can calm surplus anger; influence permits changes to ordinary crowd members. Influence remains experimental. Automated walkthroughs now cover its authored progression through the final menu in summer and Christmas, with sell and mixed repair policies; other seeds and human pacing still need review. See [stability notes](docs/STABILITY_NOTES.md). Changing language or mode reloads the page and restarts play.
+
+## Check a change
+
+CI uses Node.js 22. Install the locked dependencies, then run:
+
+```sh
+npm ci
+npm run check
+npm run playtest:virtual
+npm run playtest:309
+npm run playtest:300
+```
+
+The 309 runs are deterministic model simulations, not human playtests. Browser checks exercise a different layer. With a server running on port 4173 in another terminal:
+
+```sh
+npx playwright install chromium
+python3 -m http.server 4173
+```
+
+Run these commands from a separate terminal:
+
+```sh
+npm run test:browser
+npm run test:authored
+npm run test:scenarios
+```
+
+The authored walkthrough covers four default-mode runs across two dates and two choice policies. Optional-mode fixtures test specific safeguards, not complete playthroughs. Passing them does not settle pacing, readability on a phone or translation quality.
+
+## Notes and licence
+
+[Core design](docs/CORE_DESIGN.md) explains the intended boundaries. [Development notes](docs/DEVELOPMENT_NOTES.md) record the reasoning. [Integration notes](docs/INTEGRATION_NOTES.md) cover the latest fixes and validation limits.
+
+The original is released under CC0; see [LICENSE](LICENSE). Third-party libraries retain their own licences, including PixiJS and Howler under MIT. TweenJS 1.0.0 supplies the legacy animation layer. See [modernisation notes](docs/MODERNIZATION.md) for runtime details.

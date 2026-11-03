@@ -104,7 +104,7 @@ function Scene_Meta(){
     self.world.addBalancedPeeps(30);
     var peeps = self.world.peeps;
     for(var i=0;i<10;i++){
-    	var randomPeep = peeps[Math.floor(Math.random()*peeps.length)];
+		var randomPeep = peeps[Math.floor(Game.random()*peeps.length)];
     	randomPeep.wearingHat = true;
     	randomPeep.hatMC.gotoAndStop(15);
     }

@@ -1,0 +1,26 @@
+{
+  "name": "wbwwb-modernized",
+  "private": true,
+  "version": "1.0.0",
+  "description": "We Become What We Behold - modernized runtime with multilingual fallback.",
+  "scripts": {
+    "audit:locales": "node tools/audit-locales.js",
+    "audit:assets": "node tools/audit-assets.js",
+    "test": "node --test tests/*.test.js",
+    "test:browser": "node tests/browser-smoke.mjs",
+    "playtest:virtual": "node tools/virtual-playtest.js",
+    "check:syntax": "find js tools tests -type f \\( -name '*.js' -o -name '*.mjs' \\) -print0 | xargs -0 -n1 node --check",
+    "check": "npm run check:syntax && npm run audit:locales && npm run audit:assets && npm test",
+    "playtest:309": "node tools/playtest-309.js",
+    "test:authored": "node tests/browser-authored.mjs",
+    "test:scenarios": "node tests/browser-scenarios.mjs",
+    "playtest:300": "node tools/playtest-300.js"
+  },
+  "dependencies": {
+    "pixi.js": "8.19.0",
+    "howler": "2.2.4"
+  },
+  "devDependencies": {
+    "playwright": "1.62.1"
+  }
+}

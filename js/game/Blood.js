@@ -20,7 +20,7 @@ function Blood(scene){
     self.mc = MakeMovieClip("blood");
 	self.mc.anchor.x = 0.5;
 	self.mc.anchor.y = 0.5;
-	self.mc.gotoAndStop(Math.floor(Math.random()*3));
+	self.mc.gotoAndStop(Math.floor(Game.random()*3));
 	self.mc.scale.x = self.mc.scale.y = 0;
 	g.addChild(self.mc);
 

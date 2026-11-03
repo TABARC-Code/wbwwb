@@ -199,7 +199,7 @@ function NormalPeep(scene){
         self.faceMC.gotoAndStop(1);
         self.flip = (tv.x>self.x) ? 1 : -1;
         var WAIT = Director.ZOOM_OUT_1_TIME + Director.SEE_VIEWERS_TIME;
-        WAIT += Math.random()*0.4; // random offset
+        WAIT += Game.random()*0.4; // random offset
         self.isWatching = true;
 
         // 2) Wear HAT! IN SYNCHRONIZED TIME
@@ -227,7 +227,7 @@ function NormalPeep(scene){
             self.stopWalking(true);
             self.faceMC.gotoAndStop(1);
             self.flip = (tv.x>self.x) ? 1 : -1;
-            var WAIT = 4*BEAT + Math.random()*0.4;
+            var WAIT = 4*BEAT + Game.random()*0.4;
             self.isWatching = true;
 
             // 2) Take off HAT!
@@ -241,7 +241,7 @@ function NormalPeep(scene){
                     self.faceMC.gotoAndStop(7);
                 },_s(0.2));
 
-            },_s( BEAT*1.75 + Math.random()*0.75 ));
+            },_s( BEAT*1.75 + Game.random()*0.75 ));
 
             // 3) And go on.
             self.setTimeout(function(){
@@ -282,8 +282,8 @@ function NormalPeep(scene){
         // While within those bounds, go literally anywhere else
         while(self.x>bounds.l && self.x<bounds.r
            && self.y>bounds.t && self.y<bounds.b){
-            self.x = Math.random()*Game.width;
-            self.y = Math.random()*Game.height;
+            self.x = Game.random()*Game.width;
+            self.y = Game.random()*Game.height;
         }
 
         // Stop walking until cam zooms out.
@@ -307,7 +307,7 @@ function NormalPeep(scene){
         self.faceMC.gotoAndStop(1);
         self.flip = (tv.x>self.x) ? 1 : -1;
         var WAIT = Director.ZOOM_OUT_1_TIME + Director.SEE_VIEWERS_TIME;
-        WAIT += Math.random()*0.4; // random offset
+        WAIT += Game.random()*0.4; // random offset
         self.isWatching = true;
 
         // 2) Blink...

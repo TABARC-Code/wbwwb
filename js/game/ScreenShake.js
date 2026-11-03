@@ -38,10 +38,10 @@ function ScreenShake(scene){
 		// Fuzz that snowscreen
 		if(self.snow){
 			self.snow.alpha = self.snow.alpha*0.95 + self.baseAlpha*0.05;
-			self.snow.scale.x = 1 + Math.random()*0.2;
-			self.snow.scale.y = 1 + Math.random()*0.2;
-			if(Math.random()<0.5) self.snow.scale.x*=-1;
-			if(Math.random()<0.5) self.snow.scale.y*=-1;
+			self.snow.scale.x = 1 + Game.random()*0.2;
+			self.snow.scale.y = 1 + Game.random()*0.2;
+			if(Game.random()<0.5) self.snow.scale.x*=-1;
+			if(Game.random()<0.5) self.snow.scale.y*=-1;
 		}
 
 		// Shaking intensity!
@@ -50,8 +50,8 @@ function ScreenShake(scene){
 			scene.offY = 0;
 			self.intensity = 0;
 		}else{
-			scene.offX = scene.scale*(Math.random()*2-1)*self.intensity;
-			scene.offY = scene.scale*(Math.random()*2-1)*self.intensity;
+			scene.offX = scene.scale*(Game.random()*2-1)*self.intensity;
+			scene.offY = scene.scale*(Game.random()*2-1)*self.intensity;
 			self.intensity*=0.95;
 		}
 

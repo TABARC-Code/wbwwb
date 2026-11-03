@@ -83,6 +83,7 @@ function Director(scene){
 	};
 
 	self.audience_cutToTV = function(doSomethingElse, filterAudience){
+        var seated = 0;
 
         // AUDIENCE?
         var data = self.photoData;
@@ -110,7 +111,10 @@ function Director(scene){
 
         	// Who to watch TV, now?
 	        if(filterAudience) peeps=peeps.filter(filterAudience); // filter
-	        peeps.sort(function(){ return Math.random()<0.5; }); // shuffle
+	        // A random comparator isn't a shuffle; some engines barely move the
+	        // list at all. Seeded Fisher-Yates gives every peep a fair turn and
+	        // lets a reported run be replayed exactly.
+	        Game.randomSource.shuffle(peeps);
 	        for(var i=0;i<peeps.length;i++){
 
 	            var p = peeps[i];
@@ -134,9 +138,10 @@ function Director(scene){
 
 	            // Watch the TV? Otherwise move, get out the way.
 	            if(watchTV){
+                    seated++;
 	                p.x = self.tv.x;
 	                p.x -= flip*offset;
-	                p.y = self.tv.y+Math.random(); // tiny offset to avoid glitchy depth-sort
+	                p.y = self.tv.y+Game.random(); // tiny offset to avoid glitchy depth-sort
 	                if(doSomethingElse){
 	                	doSomethingElse(p);
 	                }else{
@@ -149,7 +154,7 @@ function Director(scene){
 	    }
 
         // Did anyone watch?
-        return (data.audience>0);
+        return seated > 0;
 
 	};
 
@@ -232,49 +237,9 @@ function Director(scene){
 	// Get everything that's at least 33% inside the camera frame
 	self.getPropsInCamera = function(filterFunc){
 
-		// Those caught in the camera
-		var caught = [];
-
-		// cam top-left-right-bottom
-		var cam = scene.camera;
-		var cl = cam.x-cam.width/2;
-		var cr = cam.x+cam.width/2;
-		var ct = cam.y-cam.height/2;
-		var cb = cam.y+cam.height/2;
-
-		for(var i=0;i<scene.world.props.length;i++){
-			
-			var prop = scene.world.props[i];
-
-			// prop's top-left-right-bottom
-			var realY = prop.y;
-			if(prop.z!==undefined) realY+=prop.z;
-			var pl = prop.x-prop.width/2;
-			var pr = prop.x+prop.width/2;
-			var pt = realY-prop.height;
-			var pb = realY;
-			var totalArea = prop.width*prop.height;
-	
-			// not overlapping at all
-			if(pr<cl) continue;
-			if(pl>cr) continue;
-			if(pb<ct) continue;
-			if(pt>cb) continue;
-
-			// overlapping a little bit... but how much?
-			var l = Math.max(cl,pl);
-			var t = Math.max(ct,pt);
-			var r = Math.min(cr,pr);
-			var b = Math.min(cb,pb);
-			var overlapArea = (r-l)*(b-t);
-			var overlapRatio = overlapArea/totalArea;
-
-			// If 33% or more, yes!
-			if(overlapRatio>0.33){
-				caught.push(prop);
-			}
-
-		}
+		var caught = WBWWBCaptureAnalysis
+			.analyse(scene.world.props, scene.camera, 0.33)
+			.map(function(result){ return result.prop; });
 
 		// Filter?...
 		if(filterFunc){
@@ -320,8 +285,34 @@ function Director(scene){
 
         // SOUND?
 		var data = self.photoData;
+		// Freeze the observed event before any outlet gets to frame it. The centre,
+		// left and right sets may argue over meaning; they share the photograph.
+		if(typeof WBWWBCaptureNarrativeEngine !== "undefined"){
+			data.story = WBWWBCaptureNarrativeEngine.infer(data, self.chyron);
+		}
 		var fail = false;
 		var nothing = data.ITS_NOTHING;
+
+		var peeps = self.scene.world.peeps;
+		var angryCount = peeps.filter(function(peep){ return peep._CLASS_ === "AngryPeep"; }).length;
+		var ledgerEntry = Game.ledger.record({
+			headline: self.chyron,
+			audience: data.audience || (data.audienceCircles || 0) + (data.audienceSquares || 0),
+			circleAudience: data.audienceCircles,
+			squareAudience: data.audienceSquares,
+			angryRatio: peeps.length ? angryCount / peeps.length : 0,
+			emptyFrame: Boolean(data.ITS_NOTHING),
+			seed: Game.seed,
+			simulationDate: Game.date ? Game.date.toISOString().slice(0,10) : null
+		});
+		if(Game.scenarios){
+			Game.scenarios.broadcast({
+				director: self,
+				scene: scene,
+				data: data,
+				entry: ledgerEntry
+			});
+		}
 		if(!data.forceChyron){
 			if(data.audience==0 && !data.audienceCircles && !data.audienceSquares){
 
@@ -362,6 +353,32 @@ function Director(scene){
 			fail: fail,
 			nothing: nothing
 		});
+
+		// The shadow set receives the same broadcast, but no Pixi texture. It's a
+		// headless record for later counterfactual framing work, not a TV hidden
+		// at x=-9999 and quietly wasting renderer memory.
+		if(scene.shadowTV){
+			var shadowFrame = scene.shadowTV.receiveBroadcast({
+				scene: scene,
+				headline: text,
+				photo: self.photoTexture,
+				fail: fail,
+				nothing: nothing,
+				scene: scene,
+				story: data.story || null,
+				data: data,
+				entry: ledgerEntry
+			});
+			if(scene.agency && scene.agencyPanel && WBWWBPlayerAgency.shouldOffer(data.story)){
+				var opportunity = scene.agency.observe({
+					story: data.story || null,
+					audience: ledgerEntry.audience,
+					angryRatio: ledgerEntry.angryRatio,
+					targetSide: shadowFrame.scandal ? shadowFrame.scandal.targetSide : null
+				});
+				scene.agencyPanel.offer(opportunity);
+			}
+		}
 
 		// Where to cut viewport to
 		self.cutViewportTo({
