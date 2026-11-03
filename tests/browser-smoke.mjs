@@ -71,6 +71,28 @@ try {
   const assetFailure = await page.evaluate(() => window.Game?.assetError?.message || null);
   if (assetFailure) failures.push(`asset error: ${assetFailure}`);
   if (failures.length) throw new Error(failures.join("\n"));
+  // Check actual loaded SVG texture dimensions, including the smaller side sets.
+  const imageOverflows = await page.evaluate(() => {
+    const issues = [];
+    for (const displayScale of [1, 0.65]) {
+      const tv = new TV({}, {displayScale});
+      const screen = tv.graphics.children[1];
+      for (const [name, path] of Object.entries(Game.manifest)) {
+        if (!/^sprites\/(news|scandals)\/.*\.svg$/.test(path)) continue;
+        const texture = PIXI.loader.resources[name].texture;
+        tv.placePhoto({photo: texture, nothing: true});
+        const image = screen.children[0];
+        if (image.x < 0 || image.y < 0 || image.x + image.width > Camera.WIDTH + 0.01 ||
+            image.y + image.height > Camera.HEIGHT + 0.01 || image.scale.x !== image.scale.y) {
+          issues.push(`${name} does not fit at display scale ${displayScale}`);
+        }
+      }
+      tv.graphics.destroy({children: true});
+    }
+    return issues;
+  });
+  failures.push(...imageOverflows);
+  if (failures.length) throw new Error(failures.join("\n"));
   // Exercise the actual start control, including repeated activation.
   await page.evaluate(() => {
     window.startTransitions = 0;

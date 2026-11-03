@@ -78,6 +78,12 @@ function TV(scene, options){
 
 		// Add photo now
 		photo = new PIXI.Sprite(photoTexture);
+		// Author: TABARC-Code. Bulletin artwork comes in several sizes. I fit
+		// it to the camera frame here; a flood needn't spill out of the set too.
+		var fit = Math.min(Camera.WIDTH/photoTexture.width, Camera.HEIGHT/photoTexture.height);
+		photo.scale.x = photo.scale.y = fit;
+		photo.x = (Camera.WIDTH - photoTexture.width*fit)/2;
+		photo.y = (Camera.HEIGHT - photoTexture.height*fit)/2;
 		if(options.screenTint != null) photo.tint = options.screenTint;
 	    photoContainer.addChild(photo);
 
