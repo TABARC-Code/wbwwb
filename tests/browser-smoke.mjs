@@ -86,6 +86,8 @@ try {
             image.y + image.height > Camera.HEIGHT + 0.01 || image.scale.x !== image.scale.y) {
           issues.push(`${name} does not fit at display scale ${displayScale}`);
         }
+        // These off-stage headlines still have live tweens. Stop them before disposal.
+        for (const child of screen.children) Tween.removeTweens(child);
       }
       tv.graphics.destroy({children: true});
     }
