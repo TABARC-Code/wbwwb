@@ -40,6 +40,7 @@ function Scene_Credits(){
     authorText.anchor.y = 0.5;
     authorText.x = Game.width / 2 - 240;
     authorText.y = Game.height / 2 + 29;
+    authorText.scale.x = authorText.scale.y = Math.min(1, 380/authorText.width);
     c[1].addChild(authorText);
     
     var playtestersText = new PIXI.Text(textStrings["manyThanks"] + "\n", {font: "44px Cairo", fill:"#FFFFFF", align: "right"});
@@ -53,25 +54,25 @@ function Scene_Credits(){
     // but I don't know PIXI enough to do this properly... /sl
 	// Alex: Nicky, hold my beer. I can top this hack.
     
-    var supportersText1 = new PIXI.Text(textStrings["patreonSupporters"] + "\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\nasdfasdfasdfsadfasdfasdfasdfasdf", {font: "40px Cairo", fill:"#FFFFFF", align: "left"});
+    var supportersText1 = new PIXI.Text(textStrings["patreonSupporters"], {font: "40px Cairo", fill:"#FFFFFF", align: "left"});
     supportersText1.anchor.x = 0.0;
     supportersText1.x = 145;
     supportersText1.y = 80;
     c[3].addChild(supportersText1);
     
-    var supportersText2 = new PIXI.Text(textStrings["patreonSupporters"] + "\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\nasdfasdfasdfsadfasdfasdfasdfasdf", {font: "40px Cairo", fill:"#FFFFFF", align: "left"});
+    var supportersText2 = new PIXI.Text(textStrings["patreonSupporters"], {font: "40px Cairo", fill:"#FFFFFF", align: "left"});
     supportersText2.anchor.x = 0.0;
     supportersText2.x = 145;
     supportersText2.y = 80;
     c[4].addChild(supportersText2);
     
-    var supportersText3 = new PIXI.Text(textStrings["patreonSupporters"] + "\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\nasdfasdfasdfsadfasdfasdfasdfasdf", {font: "40px Cairo", fill:"#FFFFFF", align: "left"});
+    var supportersText3 = new PIXI.Text(textStrings["patreonSupporters"], {font: "40px Cairo", fill:"#FFFFFF", align: "left"});
     supportersText3.anchor.x = 0.0;
     supportersText3.x = 145;
     supportersText3.y = 80;
     c[5].addChild(supportersText3);
     
-    var supportersText4 = new PIXI.Text(textStrings["patreonSupporters"] + "\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\nasdfasdfasdfsadfasdfasdfasdfasdf", {font: "40px Cairo", fill:"#FFFFFF", align: "left"});
+    var supportersText4 = new PIXI.Text(textStrings["patreonSupporters"], {font: "40px Cairo", fill:"#FFFFFF", align: "left"});
     supportersText4.anchor.x = 0.0;
     supportersText4.x = 145;
     supportersText4.y = 80;

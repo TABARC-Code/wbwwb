@@ -27,6 +27,15 @@ for (const source of sources) {
 }
 
 const missing = [];
+const css = fs.readFileSync(path.join(root, "css/game.css"), "utf8");
+for (const match of css.matchAll(/url\(['"]?([^'"\)]+\.woff2)['"]?\)/g)) {
+  const reference = path.join("css", match[1]);
+  references.add(reference);
+  const absolute = path.join(root, reference);
+  if (fs.existsSync(absolute) && fs.readFileSync(absolute).subarray(0, 4).toString() !== "wOF2") {
+    missing.push(reference + " (invalid WOFF2 font)");
+  }
+}
 for (const reference of references) {
   if (!fs.existsSync(path.join(root, reference))) missing.push(reference);
   if (reference.endsWith(".mp3")) {

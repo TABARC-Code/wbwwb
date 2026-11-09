@@ -199,3 +199,27 @@ test('legacy font declarations reach the pinned Pixi TextStyle with their size a
   const explicit = new context.PIXI.Text('Text', {font:'40px Cairo',fontSize:32});
   assert.equal(explicit.style.fontSize, 32);
 });
+
+test('startup waits for regular and bold multilingual fonts before creating the renderer', async () => {
+  const loads = [], releases = [];
+  let rendererCreated = false;
+  const context = {
+    document: {getElementById: () => ({}), documentElement: {dataset: {}},
+      fonts: {load(style, text) { loads.push({style, text}); return new Promise(resolve => releases.push(resolve)); }}},
+    addEventListener() {}, URLSearchParams, location: {search: '?seed=font-check'},
+    WBWWBFixedStepClock: class {}, WBWWBEditorialLedger: class {}, WBWWBRandom: class {},
+    SeasonalUI: class { init() {} }, WBWWBScenarioManager: class { start() {} },
+    PIXI: {WebGLRenderer: class { constructor() { rendererCreated = true; } init() { throw new Error('renderer reached'); } }}
+  };
+  context.window = context;
+  load(context, 'js/core/Game.js');
+  context.Game.readDate = () => new Date('2026-12-20T12:00:00Z');
+  const started = context.Game.init();
+  await Promise.resolve();
+  assert.equal(rendererCreated, false);
+  assert.deepEqual(loads.map(item => item.style), ['400 32px Cairo', '700 32px Cairo']);
+  assert.ok(loads.every(item => item.text.includes('0123456789') && item.text.includes('فارسی')));
+  releases.forEach(resolve => resolve([]));
+  await assert.rejects(started, /renderer reached/);
+  assert.equal(rendererCreated, true);
+});

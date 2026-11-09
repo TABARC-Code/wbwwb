@@ -32,6 +32,9 @@ function Scene_Meta(){
 		new PIXI.RenderTexture(Game.renderer, Game.width, Game.height),
 		new PIXI.RenderTexture(Game.renderer, Game.width, Game.height)
 	];
+	self.onDispose(function(){
+		renderTexturePool.forEach(function(texture){ texture.destroy(true); });
+	});
 	self.stream = new PIXI.Sprite();
 	self.stream.x = Game.width/2;
 	self.stream.y = Game.height/2;

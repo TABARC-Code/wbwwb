@@ -74,7 +74,14 @@ function TV(scene, options){
 		self.lastHeadline = text;
 
 		// Clear screen
-		photoContainer.removeChildren();
+		function stopAnimations(target){
+			if(typeof Tween !== "undefined" && Tween.removeTweens) Tween.removeTweens(target);
+			if(target.children) target.children.forEach(stopAnimations);
+		}
+		photoContainer.removeChildren().forEach(function(child){
+			stopAnimations(child);
+			if(child.destroy) child.destroy({children:true, texture:false, textureSource:false});
+		});
 
 		// Add photo now
 		photo = new PIXI.Sprite(photoTexture);
@@ -106,16 +113,15 @@ function TV(scene, options){
 
 		// Chyron Text
 		if(!options.nothing){
-			var longestLine = text.split("\n").reduce(function(max, line){
-				return Math.max(max, line.length);
-			}, 0);
-			var fontsize = Math.max(28, Math.min(50, Math.floor(700/Math.max(14, longestLine))));
-		    var text = new PIXI.Text(text + "\n", {font:"bold "+fontsize+"px Cairo", align:"right", fill:"#FFF"});  // \n hack. needed when the text field cuts some of the string font's bottom
+		    var text = new PIXI.Text(text, {font:"bold 100px Cairo", align:"left", fill:"#FFF", padding:4});
 		    text.scale.x = text.scale.y = 0.2;
 		    text.anchor.x = 0;
 		    text.anchor.y = 0.5;
-		    text.x = 30;
-		    text.y = 120;
+		    text.x = 50;
+		    text.y = 115;
+		    var textFit = Math.min(1, (Camera.WIDTH-text.x-15)/text.width, 22/text.height);
+		    text.scale.x *= textFit;
+		    text.scale.y *= textFit;
 		    chyron.addChild(text);
 		}
 

@@ -8,7 +8,7 @@ function fixture(displayScale = 1) {
   class Container {
     constructor() { this.children = []; this.scale = {x: 1, y: 1}; }
     addChild(child) { this.children.push(child); return child; }
-    removeChildren() { this.children.length = 0; }
+    removeChildren() { return this.children.splice(0); }
   }
   class Sprite extends Container {
     constructor(texture) { super(); this.texture = texture; this.anchor = {x: 0, y: 0}; this.x = 0; this.y = 0; }

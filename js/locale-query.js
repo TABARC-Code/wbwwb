@@ -24,7 +24,7 @@
 
   if (!requested) return;
 
-  var supported = ["en", "de", "es", "tr", "pt"];
+  var supported = global.WBWWB_LOCALES || ["en"];
   var locale = supported.indexOf(requested) >= 0 ? requested : "en";
 
   if (typeof global.WBWWB_SET_LOCALE === "function") {

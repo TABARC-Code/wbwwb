@@ -29,7 +29,7 @@ function Scene_Post_Post_Credits(){
 
 		var button = new PIXI.Container();
 		button.x = x;
-		button.y = 325;
+		button.y = 300;
 		cont.addChild(button);
 
 		var bg = MakeMovieClip("end_button");

@@ -69,6 +69,11 @@ This file is runtime infrastructure. Scene/gameplay content remains unchanged.
   };
 
   Game.init = async function (HACK) {
+    if (document.fonts && document.fonts.load) {
+      await Promise.all([400, 700].map(function (weight) {
+        return document.fonts.load(weight + " 32px Cairo", "AaĞğŞşİıéñ0123456789 فارسی");
+      }));
+    }
     Game.setSeed(Game.readSeed());
     Game.date = Game.readDate();
     Game.dateString = Game.date.toISOString().slice(0, 10);

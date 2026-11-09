@@ -59,6 +59,8 @@ jobs:
 
       - run: npm run test:browser
 
+      - run: npm run test:layout
+
       - run: npm run test:authored
 
       - run: npm run test:scenarios
