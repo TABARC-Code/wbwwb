@@ -12,6 +12,7 @@ function Blood(scene){
 
 	var self = this;
 	self._CLASS_ = "Blood";
+	self.scene = scene;
 
 	// Graphics: Layers to this peep.
 	self.DRAWING_SCALE = 0.65;
@@ -37,6 +38,7 @@ function Blood(scene){
 
 	// Update!
 	self.update = function(){
+		if(self.dead) return;
 
 		// DONE
 		if(self.DONE) return;
@@ -55,9 +57,12 @@ function Blood(scene){
 	// KILL HALF THE *STILL* PARTICLES WHENEVER TV CUTS OUT.
 	// KILL ME
 	self.kill = function(){
+		if(self.dead) return;
+		self.dead = true;
 		var world = self.scene.world;
-		world.bg.splice(world.bg.indexOf(self),1);
-		world.layers.bg.removeChild(self.graphics);
+		var index = world.bg.indexOf(self);
+		if(index >= 0) world.bg.splice(index,1);
+		if(self.graphics.parent) self.graphics.parent.removeChild(self.graphics);
 	};
 
 

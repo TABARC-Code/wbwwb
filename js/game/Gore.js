@@ -13,6 +13,7 @@ function Gore(scene){
 
 	var self = this;
 	self._CLASS_ = "Gore";
+	self.scene = scene;
 
 	// Graphics: Layers to this peep.
 	self.DRAWING_SCALE = 0.65;
@@ -56,6 +57,7 @@ function Gore(scene){
 
 	// Update!
 	self.update = function(){
+		if(self.dead) return;
 
 		// FALLING
 		self.x += self.vx;
@@ -98,9 +100,12 @@ function Gore(scene){
 
 	// KILL ME
 	self.kill = function(){
+		if(self.dead) return;
+		self.dead = true;
 		var world = self.scene.world;
-		world.props.splice(world.props.indexOf(self),1);
-		world.layers.props.removeChild(self.graphics);
+		var index = world.props.indexOf(self);
+		if(index >= 0) world.props.splice(index,1);
+		if(self.graphics.parent) self.graphics.parent.removeChild(self.graphics);
 	};
 
 

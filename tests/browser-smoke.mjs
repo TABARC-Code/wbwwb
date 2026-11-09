@@ -158,6 +158,29 @@ try {
   if (!shadowResult.classesPreserved) failures.push("canonical peep classes changed after a shadow broadcast");
   if (shadowResult.ideologicalCount !== 6) failures.push(`expected six ideological variants; found ${shadowResult.ideologicalCount}`);
 
+  await page.evaluate(() => {
+    const scene = Game.scene;
+    for (const Type of [AnimationProp, Blood, Gore, DeadBody]) {
+      const prop = new Type(scene);
+      const background = Type === Blood;
+      const collection = background ? scene.world.bg : scene.world.props;
+      const add = background ? 'addBG' : 'addProp';
+      const survivor = {graphics: new PIXI.Container(), update() {}};
+      scene.world[add](prop);
+      scene.world[add](survivor);
+      prop.kill();
+      prop.kill();
+      prop.update();
+      if (collection.includes(prop) || !collection.includes(survivor) || prop.graphics.parent) {
+        throw new Error(`${prop._CLASS_} removal damaged the world`);
+      }
+      collection.splice(collection.indexOf(survivor), 1);
+      survivor.graphics.parent.removeChild(survivor.graphics);
+      survivor.graphics.destroy();
+      prop.graphics.destroy({children: true});
+    }
+  });
+
   // Check real pointer input after CSS scaling, then leave with a capture in flight.
   for (const viewport of [
     { width: 1280, height: 720, touch: false },
