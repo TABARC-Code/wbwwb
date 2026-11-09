@@ -12,17 +12,19 @@ Game.addToManifest({
 	chyron3: "sprites/chyron3.png"
 });
 
-function TV(scene){
+function TV(scene, options){
 
 	var self = this;
+	options = options || {};
 	self._CLASS_ = "TV";
 
 	// Properties
 	self.scene = scene;
 	self.x = Game.width/2;
 	self.y = Game.height/2 + 80;
-	self.width = 150;
-	self.height = 180;
+	self.displayScale = options.displayScale || 1;
+	self.width = 150*self.displayScale;
+	self.height = 180*self.displayScale;
 
 	// Graphics
 	var resources = PIXI.loader.resources;
@@ -31,8 +33,10 @@ function TV(scene){
     bg.anchor.x = 0.5;
     bg.anchor.y = 1.0;
     bg.scale.x = bg.scale.y = 0.5;
+    if(options.casingTint != null) bg.tint = options.casingTint;
     g.addChild(bg);
     self.graphics = g;
+    g.scale.x = g.scale.y = self.displayScale;
 
     // Offset
     self.offset = {
@@ -65,12 +69,29 @@ function TV(scene){
 		// OPTIONS
 		var photoTexture = options.photo;
 		var text = options.text || "";
+		// Useful to the browser smoke test and future accessibility layer. The TV
+		// may keep the live texture anyway; only the headless history avoids it.
+		self.lastHeadline = text;
 
 		// Clear screen
-		photoContainer.removeChildren();
+		function stopAnimations(target){
+			if(typeof Tween !== "undefined" && Tween.removeTweens) Tween.removeTweens(target);
+			if(target.children) target.children.forEach(stopAnimations);
+		}
+		photoContainer.removeChildren().forEach(function(child){
+			stopAnimations(child);
+			if(child.destroy) child.destroy({children:true, texture:false, textureSource:false});
+		});
 
 		// Add photo now
 		photo = new PIXI.Sprite(photoTexture);
+		// Author: TABARC-Code. Bulletin artwork comes in several sizes. I fit
+		// it to the camera frame here; a flood needn't spill out of the set too.
+		var fit = Math.min(Camera.WIDTH/photoTexture.width, Camera.HEIGHT/photoTexture.height);
+		photo.scale.x = photo.scale.y = fit;
+		photo.x = (Camera.WIDTH - photoTexture.width*fit)/2;
+		photo.y = (Camera.HEIGHT - photoTexture.height*fit)/2;
+		if(options.screenTint != null) photo.tint = options.screenTint;
 	    photoContainer.addChild(photo);
 
 		// Chryon container
@@ -92,16 +113,15 @@ function TV(scene){
 
 		// Chyron Text
 		if(!options.nothing){
-			var fontsize=50; //, max=14;
-			//if(text.length>max){ // more than [max] chars...
-			//	fontsize = Math.floor(max*fontsize/text.length);
-			//}
-		    var text = new PIXI.Text(text + "\n", {font:"bold "+fontsize+"px Cairo", align:"right", fill:"#FFF"});  // \n hack. needed when the text field cuts some of the string font's bottom
+		    var text = new PIXI.Text(text, {font:"bold 100px Cairo", align:"left", fill:"#FFF", padding:4});
 		    text.scale.x = text.scale.y = 0.2;
 		    text.anchor.x = 0;
 		    text.anchor.y = 0.5;
-		    text.x = 30;
-		    text.y = 120;
+		    text.x = 50;
+		    text.y = 115;
+		    var textFit = Math.min(1, (Camera.WIDTH-text.x-15)/text.width, 22/text.height);
+		    text.scale.x *= textFit;
+		    text.scale.y *= textFit;
 		    chyron.addChild(text);
 		}
 

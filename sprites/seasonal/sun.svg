@@ -1,0 +1,25 @@
+<svg viewBox="0 0 64 64" xmlns="http://www.w3.org/2000/svg">
+  <!-- Sun (Summer) - Circle with rays -->
+  <g fill="currentColor" stroke="none">
+    <!-- Main circle -->
+    <circle cx="32" cy="32" r="12"/>
+
+    <!-- Rays (8 points around circle) -->
+    <!-- Top -->
+    <rect x="30" y="6" width="4" height="8" rx="2"/>
+    <!-- Top-right -->
+    <rect x="44" y="14" width="6" height="6" rx="2" transform="rotate(45 47 17)"/>
+    <!-- Right -->
+    <rect x="50" y="30" width="8" height="4" rx="2"/>
+    <!-- Bottom-right -->
+    <rect x="44" y="44" width="6" height="6" rx="2" transform="rotate(45 47 47)"/>
+    <!-- Bottom -->
+    <rect x="30" y="50" width="4" height="8" rx="2"/>
+    <!-- Bottom-left -->
+    <rect x="14" y="44" width="6" height="6" rx="2" transform="rotate(45 17 47)"/>
+    <!-- Left -->
+    <rect x="6" y="30" width="8" height="4" rx="2"/>
+    <!-- Top-left -->
+    <rect x="14" y="14" width="6" height="6" rx="2" transform="rotate(45 17 17)"/>
+  </g>
+</svg>

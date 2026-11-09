@@ -49,6 +49,7 @@ function AnimationProp(scene){
     // Update
     // TO IMPLEMENT: YOUR OWN ANIMATION CODDE
 	self.update = function(){
+		if(self.dead) return;
 		g.x = self.x;
     	g.y = self.y;
     	self.updateAnimation();
@@ -61,9 +62,12 @@ function AnimationProp(scene){
 
 	// KILL ME
 	self.kill = function(){
+		if(self.dead) return;
+		self.dead = true;
 		var world = self.scene.world;
-		world.props.splice(world.props.indexOf(self),1);
-		world.layers.props.removeChild(self.graphics);
+		var index = world.props.indexOf(self);
+		if(index >= 0) world.props.splice(index,1);
+		if(self.graphics.parent) self.graphics.parent.removeChild(self.graphics);
 	};
 
 }

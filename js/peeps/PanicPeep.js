@@ -18,7 +18,7 @@ function PanicPeep(scene){
     self.faceMC.gotoAndStop(12);
 
     self.callbacks.startWalking = function(){
-        self.speed = 3+Math.random()*2;
+        self.speed = 3+Game.random()*2;
     };
     self.startWalking();
 
@@ -118,11 +118,11 @@ function PanicPeep(scene){
         for(var i=0;i<GORE_AMOUNT;i++){
             var gore = new Gore(scene);
             gore.init({
-                direction: -Math.TAU/4 - flip*Math.random()*0.5,
-                velocity: CORPSE_VELOCITY+Math.random()*7,
+                direction: -Math.TAU/4 - flip*Game.random()*0.5,
+                velocity: CORPSE_VELOCITY+Game.random()*7,
                 x: self.x,
                 y: self.y,
-                z: (Math.random()*-30)
+                z: (Game.random()*-30)
             });
             scene.world.addProp(gore);
         }
@@ -133,8 +133,8 @@ function PanicPeep(scene){
         // Create a new one!
         var panicPeep = new PanicPeep(scene);
         panicPeep.setType(self.type);
-        panicPeep.x = (Math.random()<0.5) ? -50 : Game.width+50;
-        panicPeep.y = Game.height*Math.random();
+        panicPeep.x = (Game.random()<0.5) ? -50 : Game.width+50;
+        panicPeep.y = Game.height*Game.random();
         scene.world.addPeep(panicPeep);
 
     };

@@ -13,13 +13,14 @@ function Gore(scene){
 
 	var self = this;
 	self._CLASS_ = "Gore";
+	self.scene = scene;
 
 	// Graphics: Layers to this peep.
 	self.DRAWING_SCALE = 0.65;
     var g = new PIXI.Container();
     self.graphics = g;
     self.mc = MakeMovieClip("gore");
-    self.mc.gotoAndStop(Math.floor(Math.random()*3));
+    self.mc.gotoAndStop(Math.floor(Game.random()*3));
 	self.mc.anchor.x = 0.5;
 	self.mc.anchor.y = 0.5;
 	self.mc.scale.x = self.mc.scale.y = self.DRAWING_SCALE;
@@ -49,13 +50,14 @@ function Gore(scene){
 		// And then convert to vx & vz.
 		self.vx = Math.cos(self.direction)*self.velocity;
 		self.vz = Math.sin(self.direction)*self.velocity;
-		self.vy = Math.random()-0.5; // just coz
-		self.vr = (Math.random()*2-1)*0.5; // just coz
+		self.vy = Game.random()-0.5; // just coz
+		self.vr = (Game.random()*2-1)*0.5; // just coz
 
 	};
 
 	// Update!
 	self.update = function(){
+		if(self.dead) return;
 
 		// FALLING
 		self.x += self.vx;
@@ -98,9 +100,12 @@ function Gore(scene){
 
 	// KILL ME
 	self.kill = function(){
+		if(self.dead) return;
+		self.dead = true;
 		var world = self.scene.world;
-		world.props.splice(world.props.indexOf(self),1);
-		world.layers.props.removeChild(self.graphics);
+		var index = world.props.indexOf(self);
+		if(index >= 0) world.props.splice(index,1);
+		if(self.graphics.parent) self.graphics.parent.removeChild(self.graphics);
 	};
 
 

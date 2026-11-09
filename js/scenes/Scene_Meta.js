@@ -32,6 +32,9 @@ function Scene_Meta(){
 		new PIXI.RenderTexture(Game.renderer, Game.width, Game.height),
 		new PIXI.RenderTexture(Game.renderer, Game.width, Game.height)
 	];
+	self.onDispose(function(){
+		renderTexturePool.forEach(function(texture){ texture.destroy(true); });
+	});
 	self.stream = new PIXI.Sprite();
 	self.stream.x = Game.width/2;
 	self.stream.y = Game.height/2;
@@ -104,7 +107,7 @@ function Scene_Meta(){
     self.world.addBalancedPeeps(30);
     var peeps = self.world.peeps;
     for(var i=0;i<10;i++){
-    	var randomPeep = peeps[Math.floor(Math.random()*peeps.length)];
+		var randomPeep = peeps[Math.floor(Game.random()*peeps.length)];
     	randomPeep.wearingHat = true;
     	randomPeep.hatMC.gotoAndStop(15);
     }

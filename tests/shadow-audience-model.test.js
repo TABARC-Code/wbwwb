@@ -1,0 +1,246 @@
+const test = require("node:test");
+const assert = require("node:assert/strict");
+const ShadowAudienceModel = require("../js/game/ShadowAudienceModel.js");
+
+function channel(fear, anger) {
+  return { effects: { fear, anger, outgroupThreat: anger, institutionalDistrust: fear } };
+}
+
+test("side televisions affect nearby people more than distant people", () => {
+  const near = { x: 10, y: 0, _CLASS_: "NormalPeep" };
+  const far = { x: 500, y: 0, _CLASS_: "NormalPeep" };
+  const scene = { world: { peeps: [near, far] } };
+  const model = new ShadowAudienceModel({ tvRadius: 100, transform: false });
+
+  model.exposeBroadcast(scene, { x: 0, y: 0 }, { x: 1000, y: 0 }, {
+    left: channel(1, 0.5), right: channel(0.5, 1)
+  });
+
+  assert.ok(near.shadowInfluence.fear > 0.15);
+  assert.equal(far.shadowInfluence, undefined);
+});
+
+test("affected people pass a weaker pressure to nearby neighbours", () => {
+  const source = { x: 0, y: 0, _CLASS_: "NormalPeep", shadowInfluence: {
+    fear: 0.8, anger: 0.4, outgroupThreat: 0.6, institutionalDistrust: 0.2,
+    leftExposure: 1, rightExposure: 0
+  } };
+  const neighbour = { x: 20, y: 0, _CLASS_: "NormalPeep" };
+  const distant = { x: 500, y: 0, _CLASS_: "NormalPeep" };
+  const scene = { world: { peeps: [source, neighbour, distant] } };
+  const model = new ShadowAudienceModel({ personRadius: 100, spreadStrength: 0.1, transform: false });
+
+  model.spread(scene);
+
+  assert.ok(neighbour.shadowInfluence.fear > 0);
+  assert.ok(neighbour.shadowInfluence.fear < source.shadowInfluence.fear);
+  assert.equal(distant.shadowInfluence, undefined);
+});
+
+test("canonical influence does not replace a scripted person", () => {
+  const influence = {
+    fear: 0.2, anger: 0.9, outgroupThreat: 0.8, institutionalDistrust: 0.1,
+    leftExposure: 0, rightExposure: 1
+  };
+  const peep = { x: 30, y: 40, type: "square", _CLASS_: "NormalPeep", shadowInfluence: influence };
+  let replacement;
+  global.AngryPeep = function (_scene, type) { this._CLASS_ = "AngryPeep"; this.type = type; };
+  const scene = { world: {
+    replacePeep: (_old, next) => { replacement = next; return next; }
+  } };
+  const model = new ShadowAudienceModel();
+
+  const result = model.maybeTransform(scene, peep);
+
+  assert.equal(result, peep);
+  assert.equal(replacement, undefined);
+  delete global.AngryPeep;
+});
+
+test("an explicit simulation mode may transform while preserving influence", () => {
+  const influence = {
+    fear: 0.2, anger: 0.9, outgroupThreat: 0.8, institutionalDistrust: 0.1,
+    phase: "active", behaviour: "agitating", leftExposure: 0, rightExposure: 1
+  };
+  const peep = { x: 30, y: 40, type: "square", _CLASS_: "NormalPeep", shadowInfluence: influence };
+  let replacement;
+  global.AngryPeep = function (_scene, type) { this._CLASS_ = "AngryPeep"; this.type = type; };
+  const scene = { world: { peeps: [peep], replacePeep: (_old, next) => { replacement = next; return next; } } };
+  const model = new ShadowAudienceModel({ allowTransform: true });
+
+  model.maybeTransform(scene, peep);
+
+  assert.equal(replacement._CLASS_, "AngryPeep");
+  assert.equal(replacement.type, "square");
+  assert.equal(replacement.shadowInfluence, influence);
+  delete global.AngryPeep;
+});
+
+test("bookkeeping separates exposure, adoption and person transmission", () => {
+  const peep = { x: 0, y: 0, simulationId: 4, _CLASS_: "NormalPeep" };
+  const scene = { world: { peeps: [peep] } };
+  const model = new ShadowAudienceModel({ tvRadius: 100, transform: false });
+  model.exposeBroadcast(scene, { x: 0, y: 0 }, null, { left: channel(1, 1), right: channel(0, 0) });
+  const summary = model.summary(scene);
+  assert.equal(summary.metrics.broadcastExposures, 1);
+  assert.equal(summary.metrics.exposures, 1);
+  assert.equal(typeof summary.metrics.activations, "number");
+});
+
+test("main and side televisions compete for finite attention", () => {
+  const peep = { x: 50, y: 0, simulationId: 7, _CLASS_: "NormalPeep" };
+  const scene = { tv: { x: 50, y: 0 }, world: { peeps: [peep] } };
+  const model = new ShadowAudienceModel({ tvRadius: 200, transform: false });
+  model.exposeBroadcast(scene, { x: 0, y: 0 }, { x: 100, y: 0 }, {
+    left: channel(1, 0.5), right: channel(0.5, 1)
+  });
+  const state = peep.shadowInfluence;
+  assert.ok(state.mainAttention > 0);
+  assert.ok(state.leftAttention > 0);
+  assert.ok(state.rightAttention > 0);
+  assert.ok(state.mainAttention + state.leftAttention + state.rightAttention <= 1.01);
+});
+
+test("central attention assists recovery from sensational pressure", () => {
+  const peep = { x: 0, y: 0, simulationId: 8, shadowInfluence: {
+    fear: 0.6, anger: 0.5, outgroupThreat: 0.4, institutionalDistrust: 0.3,
+    phase: "cooling", mainAttention: 0.9, leftAttention: 0.1, rightAttention: 0.1,
+    credibility: 0.4
+  } };
+  const model = new ShadowAudienceModel({ transform: false });
+  model.advancePhases([peep], 500);
+  assert.ok(peep.shadowInfluence.fear < 0.6);
+  assert.ok(peep.shadowInfluence.credibility > 0.4);
+});
+
+test("the photographed flood crop changes the crowd's immediate response", () => {
+  const makePeep = (preference) => ({
+    x: 50, y: 0, simulationId: preference + 10, _CLASS_: "NormalPeep",
+    ideology: { preference }
+  });
+  const channels = { left: channel(0.8, 0.5), right: channel(0.1, 0.9) };
+  const framing = (captured, emphasis) => ({
+    id: "flood-selective-evidence", evidence: { captured }, emphasis
+  });
+
+  const denier = makePeep(2);
+  let scene = { tv: { x: 50, y: 0 }, world: { peeps: [denier] } };
+  let model = new ShadowAudienceModel({ tvRadius: 200, transform: false });
+  model.exposeBroadcast(scene, { x: 0, y: 0 }, { x: 100, y: 0 }, channels, null,
+    framing("trickle", { left: 0.55, middle: 0.42, right: 1.45 }));
+  assert.equal(denier.shadowInfluence.narrative, "flood-denial");
+  assert.equal(denier.shadowInfluence.behaviour, "mocking");
+  assert.ok(denier.shadowInfluence.rightExposure > denier.shadowInfluence.leftExposure);
+
+  const helper = makePeep(0);
+  helper.shadowInfluence = { resistance: 0.15 };
+  scene = { tv: { x: 50, y: 0 }, world: { peeps: [helper] } };
+  model = new ShadowAudienceModel({ tvRadius: 200, transform: false });
+  model.exposeBroadcast(scene, { x: 0, y: 0 }, { x: 100, y: 0 }, channels, null,
+    framing("representative", { left: 0.62, middle: 1.2, right: 0.62 }));
+  assert.equal(helper.shadowInfluence.narrative, "flood-aid");
+  assert.equal(helper.shadowInfluence.behaviour, "helping");
+  assert.ok(helper.shadowInfluence.practicalConcern > 0);
+});
+
+test("shortage coverage makes both sides stockpile", () => {
+  const left = { x: 40, y: 0, simulationId: 20, ideology: { preference: -2 } };
+  const right = { x: 60, y: 0, simulationId: 21, ideology: { preference: 2 } };
+  const scene = { tv: { x: 50, y: 0 }, world: { peeps: [left, right] } };
+  const model = new ShadowAudienceModel({ tvRadius: 200, transform: false });
+  model.exposeBroadcast(scene, { x: 0, y: 0 }, { x: 100, y: 0 }, {
+    left: channel(0.9, 0.8), right: channel(0.9, 0.8)
+  }, null, {
+    strategy: "shared-panic-competing-blame", evidence: { captured: "empty" },
+    emphasis: { left: 1.3, right: 1.3 }
+  });
+  assert.equal(left.shadowInfluence.behaviour, "stockpiling");
+  assert.equal(right.shadowInfluence.behaviour, "stockpiling");
+  assert.equal(left.shadowInfluence.habit, "buying");
+  assert.equal(right.shadowInfluence.habit, "buying");
+});
+
+test("pet fashion turns buying into abandonment rather than resetting the crowd", () => {
+  const model = new ShadowAudienceModel({ tvRadius: 700, transform: false });
+  const peep = { x: 480, y: 300, simulationId: 30, _CLASS_: "NormalPeep", ideology: { preference: 0 } };
+  const scene = { tv: { x: 480, y: 270 }, world: { peeps: [peep] } };
+  const channels = {
+    left: channel(0.4, 0.2),
+    right: channel(0.4, 0.2)
+  };
+  model.exposeBroadcast(scene, { x: 165, y: 362 }, { x: 795, y: 362 }, channels, null, {
+    strategy: "pet-craze-consequence", evidence: { captured: "craze" }
+  });
+  assert.equal(peep.shadowInfluence.behaviour, "pet-shopping");
+  model.exposeBroadcast(scene, { x: 165, y: 362 }, { x: 795, y: 362 }, channels, null, {
+    strategy: "pet-craze-consequence", evidence: { captured: "stray" }
+  });
+  assert.equal(peep.shadowInfluence.narrative, "pet-abandonment");
+  assert.ok(["helping", "accusing"].includes(peep.shadowInfluence.behaviour));
+  model.exposeBroadcast(scene, { x: 165, y: 362 }, { x: 795, y: 362 }, channels, null, {
+    strategy: "pet-craze-consequence", evidence: { captured: "bones" }
+  });
+  assert.equal(peep.shadowInfluence.behaviour, "mourning");
+});
+
+test("walking beyond TV range clears attention and prevents direct story reactions", () => {
+  const Pet = require("../js/game/PetCrazeEngine.js");
+  const frame = Pet.create({event: "pet-craze", phase: "bones"}, "en");
+  const peep = {x: 0, y: 0};
+  const untouched = {x: 2000, y: 0};
+  const scene = {tv: {x: 0, y: 0}, world: {peeps: [peep, untouched]}};
+  const model = new ShadowAudienceModel({tvRadius: 100});
+  model.allocateAttention(peep, scene.tv, null, null, frame.channels);
+  assert.equal(peep.shadowInfluence.mainAttention, 1);
+  peep.x = 1000;
+  model.exposeBroadcast(scene, null, null, frame.channels, null, frame);
+  assert.equal(peep.shadowInfluence.mainAttention, 0);
+  assert.equal(peep.shadowInfluence.narrative, null);
+  assert.equal(peep.shadowInfluence.anger, 0);
+  assert.equal(untouched.shadowInfluence, undefined);
+  peep.x = 0;
+  model.exposeBroadcast(scene, null, null, frame.channels, null, frame);
+  assert.equal(peep.shadowInfluence.narrative, "pet-neglect");
+});
+
+test('disabled broadcast and social transmission cause no exposure', () => {
+  const model = new ShadowAudienceModel({broadcastStrength:0,spreadStrength:0,socialProofWeight:0,exposedDecay:0,coolingDecay:0});
+  const target = {x:0,y:0};
+  assert.equal(model.applyChannel(target,{x:0,y:0},channel(1,1),'left',1),false);
+  assert.equal(target.shadowInfluence,undefined);
+  const source={x:1,y:0,shadowInfluence:{phase:'active',anger:1,behaviour:'agitating'}};
+  model.spread({world:{peeps:[source,target]}},500);
+  assert.equal(target.shadowInfluence,undefined);
+  assert.equal(model.metrics.personTransmissions,0);
+  assert.equal(model.socialProofWeight,0);
+  const cooling={shadowInfluence:{phase:'cooling',anger:0.6}};
+  model.advancePhases([cooling],500);
+  assert.equal(cooling.shadowInfluence.anger,0.6);
+  const enabled=new ShadowAudienceModel();
+  assert.equal(enabled.applyChannel(target,{x:0,y:0},channel(1,1),'left',0),false);
+  assert.equal(target.shadowInfluence,undefined);
+});
+
+test('recovery clears the previous story while retaining learned familiarity', () => {
+  const model=new ShadowAudienceModel();
+  for(const phase of ['exposed','cooling']) {
+    const peep={shadowInfluence:{phase,narrative:'toy-panic',practicalConcern:0.8,habit:'buying',influencedBy:'person',familiarity:0.6}};
+    model.generation=3;
+    model.advancePhases([peep],500);
+    assert.equal(peep.shadowInfluence.phase,'susceptible');
+    assert.equal(peep.shadowInfluence.narrative,null);
+    assert.equal(peep.shadowInfluence.practicalConcern,0);
+    assert.equal(peep.shadowInfluence.habit,'ordinary');
+    assert.equal(peep.shadowInfluence.influencedBy,null);
+    assert.equal(peep.shadowInfluence.familiarity,0.6);
+  }
+});
+
+
+test('neglect immediately interrupts pet shopping before later recovery', () => {
+  const model = new ShadowAudienceModel();
+  const peep = {shadowInfluence:{behaviour:'pet-shopping',narrative:'pet-craze'}};
+  model.applyPetResponse(peep, 'bones');
+  assert.equal(peep.shadowInfluence.behaviour, 'mourning');
+  assert.equal(peep.shadowInfluence.narrative, 'pet-neglect');
+});

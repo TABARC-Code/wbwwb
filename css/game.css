@@ -1,8 +1,31 @@
+/* cairo-arabic-wght-normal */
 @font-face {
-	font-family: 'Cairo';
-	font-style: normal;
-	font-weight: 400;
-	src: url('Cairo-Regular.ttf') format('truetype');
+  font-family: 'Cairo';
+  font-style: normal;
+  font-display: swap;
+  font-weight: 200 1000;
+  src: url(fonts/cairo-arabic-wght-normal.woff2) format('woff2-variations');
+  unicode-range: U+0600-06FF,U+0750-077F,U+0870-088E,U+0890-0891,U+0897-08E1,U+08E3-08FF,U+200C-200E,U+2010-2011,U+204F,U+2E41,U+FB50-FDFF,U+FE70-FE74,U+FE76-FEFC,U+102E0-102FB,U+10E60-10E7E,U+10EC2-10EC4,U+10EFC-10EFF,U+1EE00-1EE03,U+1EE05-1EE1F,U+1EE21-1EE22,U+1EE24,U+1EE27,U+1EE29-1EE32,U+1EE34-1EE37,U+1EE39,U+1EE3B,U+1EE42,U+1EE47,U+1EE49,U+1EE4B,U+1EE4D-1EE4F,U+1EE51-1EE52,U+1EE54,U+1EE57,U+1EE59,U+1EE5B,U+1EE5D,U+1EE5F,U+1EE61-1EE62,U+1EE64,U+1EE67-1EE6A,U+1EE6C-1EE72,U+1EE74-1EE77,U+1EE79-1EE7C,U+1EE7E,U+1EE80-1EE89,U+1EE8B-1EE9B,U+1EEA1-1EEA3,U+1EEA5-1EEA9,U+1EEAB-1EEBB,U+1EEF0-1EEF1;
+}
+
+/* cairo-latin-ext-wght-normal */
+@font-face {
+  font-family: 'Cairo';
+  font-style: normal;
+  font-display: swap;
+  font-weight: 200 1000;
+  src: url(fonts/cairo-latin-ext-wght-normal.woff2) format('woff2-variations');
+  unicode-range: U+0100-02BA,U+02BD-02C5,U+02C7-02CC,U+02CE-02D7,U+02DD-02FF,U+0304,U+0308,U+0329,U+1D00-1DBF,U+1E00-1E9F,U+1EF2-1EFF,U+2020,U+20A0-20AB,U+20AD-20C0,U+2113,U+2C60-2C7F,U+A720-A7FF;
+}
+
+/* cairo-latin-wght-normal */
+@font-face {
+  font-family: 'Cairo';
+  font-style: normal;
+  font-display: swap;
+  font-weight: 200 1000;
+  src: url(fonts/cairo-latin-wght-normal.woff2) format('woff2-variations');
+  unicode-range: U+0000-00FF,U+0131,U+0152-0153,U+02BB-02BC,U+02C6,U+02DA,U+02DC,U+0304,U+0308,U+0329,U+2000-206F,U+20AC,U+2122,U+2191,U+2193,U+2212,U+2215,U+FEFF,U+FFFD;
 }
 
 html, body{
@@ -14,15 +37,85 @@ body{
 	margin: 0;
 	background: #222;
 	position:relative;
+	display: grid;
+	place-items: center;
+	overflow: hidden;
 }
 #stage{
 	background: #000;
-	width:960px; height:540px;
-	position:absolute;
-	margin:auto;
-	top:0; left:0; right:0; bottom:0;
+	width: min(100vw, calc(100vh * 16 / 9));
+	aspect-ratio: 16 / 9;
+	position:relative;
 	cursor: none;
 }
+#stage canvas{
+	display: block;
+	width: 100%;
+	height: 100%;
+}
+#game-controls{
+	position: fixed;
+	top: 0.75rem;
+	right: 0.75rem;
+	z-index: 20;
+	display: flex;
+	gap: 0.45rem;
+	align-items: center;
+	padding: 0.4rem 0.5rem;
+	box-sizing: border-box;
+	max-width: calc(100vw - 1.5rem);
+	background: rgba(0,0,0,0.72);
+	color: #fff;
+	font: 14px/1.2 system-ui, sans-serif;
+	cursor: auto;
+	opacity: 0.35;
+	transition: opacity 120ms ease;
+}
+#game-controls:hover,
+#game-controls:focus-within{ opacity: 1; }
+#game-controls button,
+#game-controls select{ font: inherit; }
+#game-controls select{ min-width: 0; }
+#game-controls button{ white-space: nowrap; }
+#scenario-readout{
+	display: none;
+	min-width: 12rem;
+	font-size: 12px;
+	white-space: nowrap;
+}
+#scenario-readout[data-active="true"]{ display: inline; }
+#agency-panel{
+	position: fixed;
+	left: 50%;
+	bottom: 0.8rem;
+	transform: translateX(-50%);
+	z-index: 22;
+	width: min(760px, calc(100vw - 1.2rem));
+	box-sizing: border-box;
+	padding: 0.55rem 0.65rem;
+	background: rgba(20,20,20,0.94);
+	border: 2px solid #eee;
+	color: #fff;
+	font: 12px/1.25 'Cairo', sans-serif;
+	cursor: auto;
+}
+#agency-panel[hidden]{ display:none; }
+#agency-views{ display:grid; grid-template-columns:1fr 1fr; gap:0.5rem; margin-bottom:0.45rem; }
+#agency-views span{ padding:0.25rem 0.4rem; background:#333; }
+#agency-views span:first-child{ border-left:5px solid #6da06f; }
+#agency-views span:last-child{ border-left:5px solid #c36650; }
+#agency-actions{ display:flex; flex-wrap:wrap; gap:0.35rem; }
+#agency-actions button{
+	flex:1 1 auto;
+	border:1px solid #aaa;
+	background:#e8e1cf;
+	color:#171717;
+	font:700 11px/1.2 'Cairo', sans-serif;
+	padding:0.35rem 0.45rem;
+	cursor:pointer;
+}
+#agency-actions button:hover, #agency-actions button:focus{ background:#fff; outline:2px solid #e6b84c; }
+#agency-status{ display:block; min-height:1.2em; margin-top:0.4rem; color:#e6b84c; }
 .overlay{
 
 	display: none;
@@ -31,29 +124,71 @@ body{
 	color: #fff;
 	letter-spacing: 1px;
 
-	width:500px; height:170px;
+	width: min(500px, calc(100vw - 2rem));
+	height: fit-content;
+	max-height: calc(100vh - 2rem);
+	overflow: auto;
+	box-sizing: border-box;
+	z-index: 31;
 
-	position:absolute;
+	position:fixed;
 	margin:auto;
 	top:0; left:0; right:0; bottom:0;
 
 }
 .overlay > div:nth-child(1){
-	font-size: 100px;
-	line-height: 100px;
+	font-size: clamp(32px, 9vw, 72px);
+	line-height: 1.1;
 }
 .overlay > div:nth-child(2){
 	font-size: 20px;
+	margin-top: 0.65rem;
 }
 #modal_shade{
 	display: none;
 	background: rgba(0,0,0,0.8);
-	width:960px; height:540px;
-	position:absolute;
+	width: min(100vw, calc(100vh * 16 / 9));
+	aspect-ratio: 16 / 9;
+	position:fixed;
 	margin:auto;
 	top:0; left:0; right:0; bottom:0;
 	cursor: pointer;
+	z-index: 30;
+}
+
+@media (max-width: 600px){
+	#game-controls label{ position:absolute; width:1px; height:1px; overflow:hidden; clip-path:inset(50%); }
+	#game-controls{ top:0.35rem; right:0.35rem; left:0.35rem; max-width:none; gap:0.25rem; padding:0.3rem; font-size:12px; }
+	#locale-select{ flex:0 1 5.5rem; }
+	#scenario-select{ flex:1 1 0; }
+	#scenario-readout{ display:none !important; }
+	#agency-panel{ bottom:0.35rem; }
+	#agency-views{ grid-template-columns:1fr; }
 }
 #paused{
 	cursor: pointer;
 }
+
+#playing-notes {
+ position: fixed;
+ top: 3.5rem;
+ right: 0.75rem;
+ z-index: 23;
+ max-width: min(24rem, calc(100vw - 2rem));
+ max-height: calc(100vh - 5rem);
+ overflow: auto;
+ padding: 0.5rem;
+ background: #181818;
+ color: #fff;
+ font: 14px/1.45 system-ui, sans-serif;
+ cursor: auto;
+}
+#playing-notes summary { cursor: pointer; }
+#playing-notes p { margin: 0.65rem 0 0; }
+
+#seasonal-indicator { display:inline-flex; width:1.4rem; height:1.4rem; flex-shrink:0; }
+#seasonal-indicator svg { width:100%; height:100%; }
+.seasonal-winter { color:#80baff; }
+.seasonal-spring { color:#f48ca7; }
+.seasonal-summer { color:#ffd16a; }
+.seasonal-autumn { color:#e9a06d; }

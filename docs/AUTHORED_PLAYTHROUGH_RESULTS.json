@@ -1,0 +1,1173 @@
+{
+  "validatedCommit": "43684c89dfee85279821b2e9b3422a00f4194a12",
+  "ciRun": "https://github.com/TABARC-Code/wbwwb/actions/runs/37241322903",
+  "scope": "Accelerated authored browser walkthrough through the final menu; not human playtesting",
+  "reports": [
+    {
+      "date": "2026-12-20",
+      "policy": "sell",
+      "shots": [
+        {
+          "event": "empty",
+          "topic": null,
+          "phase": null,
+          "authoredAudience": 0,
+          "choice": null,
+          "money": 2,
+          "seatedAudience": 0
+        },
+        {
+          "event": "fashion",
+          "topic": null,
+          "phase": null,
+          "authoredAudience": 3,
+          "choice": null,
+          "money": 2,
+          "seatedAudience": 6
+        },
+        {
+          "event": "affection",
+          "topic": null,
+          "phase": null,
+          "authoredAudience": 0,
+          "choice": null,
+          "money": 2,
+          "seatedAudience": 0
+        },
+        {
+          "event": "influencer",
+          "topic": "charity",
+          "phase": null,
+          "authoredAudience": 4,
+          "choice": "sell",
+          "money": 3,
+          "seatedAudience": 8
+        },
+        {
+          "event": "influencer",
+          "topic": "weather",
+          "phase": null,
+          "authoredAudience": 5,
+          "choice": "sell",
+          "money": 4,
+          "seatedAudience": 10
+        },
+        {
+          "event": "flood",
+          "topic": "weather",
+          "phase": null,
+          "authoredAudience": 6,
+          "choice": "sell",
+          "money": 6,
+          "seatedAudience": 12
+        },
+        {
+          "event": "shortage",
+          "topic": "shortage",
+          "phase": null,
+          "authoredAudience": 4,
+          "choice": "sell",
+          "money": 7,
+          "seatedAudience": 8
+        },
+        {
+          "event": "toy-panic",
+          "topic": "toy",
+          "phase": null,
+          "authoredAudience": 5,
+          "choice": "sell",
+          "money": 8,
+          "seatedAudience": 10
+        },
+        {
+          "event": "toy-panic",
+          "topic": "toy",
+          "phase": null,
+          "authoredAudience": 7,
+          "choice": "sell",
+          "money": 9,
+          "seatedAudience": 14
+        },
+        {
+          "event": "toy-panic",
+          "topic": "toy",
+          "phase": null,
+          "authoredAudience": 9,
+          "choice": "sell",
+          "money": 11,
+          "seatedAudience": 18
+        },
+        {
+          "event": "pet-craze",
+          "topic": "pet",
+          "phase": "cute",
+          "authoredAudience": 4,
+          "choice": "sell",
+          "money": 12,
+          "seatedAudience": 8
+        },
+        {
+          "event": "pet-craze",
+          "topic": "pet",
+          "phase": "craze",
+          "authoredAudience": 8,
+          "choice": "sell",
+          "money": 14,
+          "seatedAudience": 16
+        },
+        {
+          "event": "pet-craze",
+          "topic": "pet",
+          "phase": "stray",
+          "authoredAudience": 7,
+          "choice": "sell",
+          "money": 15,
+          "seatedAudience": 14
+        },
+        {
+          "event": "pet-craze",
+          "topic": "pet",
+          "phase": "bones",
+          "authoredAudience": 9,
+          "choice": "sell",
+          "money": 17,
+          "seatedAudience": 18
+        },
+        {
+          "event": "influencer",
+          "topic": "sport",
+          "phase": null,
+          "authoredAudience": 4,
+          "choice": "sell",
+          "money": 18,
+          "seatedAudience": 8
+        },
+        {
+          "event": "influencer",
+          "topic": "selfie",
+          "phase": null,
+          "authoredAudience": 5,
+          "choice": "sell",
+          "money": 19,
+          "seatedAudience": 10
+        },
+        {
+          "event": "influencer",
+          "topic": "sport",
+          "phase": null,
+          "authoredAudience": 4,
+          "choice": "sell",
+          "money": 20,
+          "seatedAudience": 8
+        },
+        {
+          "event": "influencer",
+          "topic": "sport",
+          "phase": null,
+          "authoredAudience": 5,
+          "choice": "sell",
+          "money": 21,
+          "seatedAudience": 10
+        },
+        {
+          "event": "influencer",
+          "topic": "adultCartoon",
+          "phase": null,
+          "authoredAudience": 4,
+          "choice": "sell",
+          "money": 22,
+          "seatedAudience": 8
+        },
+        {
+          "event": "influencer",
+          "topic": "apology",
+          "phase": null,
+          "authoredAudience": 5,
+          "choice": "sell",
+          "money": 23,
+          "seatedAudience": 10
+        },
+        {
+          "event": "confrontation",
+          "topic": null,
+          "phase": null,
+          "authoredAudience": 1,
+          "choice": null,
+          "money": 23,
+          "seatedAudience": 1
+        },
+        {
+          "event": "fear",
+          "topic": null,
+          "phase": null,
+          "authoredAudience": 1,
+          "choice": null,
+          "money": 23,
+          "seatedAudience": 1
+        },
+        {
+          "event": "contempt",
+          "topic": null,
+          "phase": null,
+          "authoredAudience": 1,
+          "choice": null,
+          "money": 23,
+          "seatedAudience": 1
+        },
+        {
+          "event": "anger",
+          "topic": null,
+          "phase": null,
+          "authoredAudience": 2,
+          "choice": null,
+          "money": 23,
+          "seatedAudience": 4
+        },
+        {
+          "event": "anger",
+          "topic": null,
+          "phase": null,
+          "authoredAudience": 2,
+          "choice": null,
+          "money": 23,
+          "seatedAudience": 4
+        },
+        {
+          "event": "anger",
+          "topic": null,
+          "phase": null,
+          "authoredAudience": 2,
+          "choice": null,
+          "money": 23,
+          "seatedAudience": 4
+        },
+        {
+          "event": "anger",
+          "topic": null,
+          "phase": null,
+          "authoredAudience": 2,
+          "choice": null,
+          "money": 23,
+          "seatedAudience": 4
+        },
+        {
+          "event": "anger",
+          "topic": null,
+          "phase": null,
+          "authoredAudience": 2,
+          "choice": null,
+          "money": 23,
+          "seatedAudience": 4
+        },
+        {
+          "event": "anger",
+          "topic": null,
+          "phase": null,
+          "authoredAudience": 2,
+          "choice": null,
+          "money": 23,
+          "seatedAudience": 4
+        },
+        {
+          "event": "anger",
+          "topic": null,
+          "phase": null,
+          "authoredAudience": 2,
+          "choice": null,
+          "money": 23,
+          "seatedAudience": 2
+        },
+        {
+          "event": "ordinary",
+          "topic": null,
+          "phase": null,
+          "authoredAudience": 0,
+          "choice": null,
+          "money": 23,
+          "seatedAudience": 0
+        },
+        {
+          "event": "ordinary",
+          "topic": null,
+          "phase": null,
+          "authoredAudience": 0,
+          "choice": null,
+          "money": 23,
+          "seatedAudience": 0
+        }
+      ],
+      "final": {
+        "money": 23,
+        "reach": 17.099999999999998,
+        "trust": 0,
+        "change": 0,
+        "exploitation": 4.158,
+        "influence": 0,
+        "presence": 22.399999999999995,
+        "publicOpinion": -0.672
+      },
+      "ending": "Post_Post_Credits"
+    },
+    {
+      "date": "2026-12-20",
+      "policy": "mixed",
+      "shots": [
+        {
+          "event": "empty",
+          "topic": null,
+          "phase": null,
+          "authoredAudience": 0,
+          "choice": null,
+          "money": 2,
+          "seatedAudience": 0
+        },
+        {
+          "event": "fashion",
+          "topic": null,
+          "phase": null,
+          "authoredAudience": 3,
+          "choice": null,
+          "money": 2,
+          "seatedAudience": 6
+        },
+        {
+          "event": "affection",
+          "topic": null,
+          "phase": null,
+          "authoredAudience": 0,
+          "choice": null,
+          "money": 2,
+          "seatedAudience": 0
+        },
+        {
+          "event": "influencer",
+          "topic": "charity",
+          "phase": null,
+          "authoredAudience": 4,
+          "choice": "repair",
+          "money": 0,
+          "seatedAudience": 8
+        },
+        {
+          "event": "influencer",
+          "topic": "weather",
+          "phase": null,
+          "authoredAudience": 5,
+          "choice": "sell",
+          "money": 1,
+          "seatedAudience": 10
+        },
+        {
+          "event": "flood",
+          "topic": "weather",
+          "phase": null,
+          "authoredAudience": 6,
+          "choice": "sell",
+          "money": 3,
+          "seatedAudience": 12
+        },
+        {
+          "event": "shortage",
+          "topic": "shortage",
+          "phase": null,
+          "authoredAudience": 4,
+          "choice": "repair",
+          "money": 1,
+          "seatedAudience": 8
+        },
+        {
+          "event": "toy-panic",
+          "topic": "toy",
+          "phase": null,
+          "authoredAudience": 5,
+          "choice": "sell",
+          "money": 2,
+          "seatedAudience": 10
+        },
+        {
+          "event": "toy-panic",
+          "topic": "toy",
+          "phase": null,
+          "authoredAudience": 7,
+          "choice": "repair",
+          "money": 0,
+          "seatedAudience": 14
+        },
+        {
+          "event": "toy-panic",
+          "topic": "toy",
+          "phase": null,
+          "authoredAudience": 9,
+          "choice": "sell",
+          "money": 2,
+          "seatedAudience": 18
+        },
+        {
+          "event": "pet-craze",
+          "topic": "pet",
+          "phase": "cute",
+          "authoredAudience": 4,
+          "choice": "repair",
+          "money": 0,
+          "seatedAudience": 8
+        },
+        {
+          "event": "pet-craze",
+          "topic": "pet",
+          "phase": "craze",
+          "authoredAudience": 8,
+          "choice": "sell",
+          "money": 2,
+          "seatedAudience": 16
+        },
+        {
+          "event": "pet-craze",
+          "topic": "pet",
+          "phase": "stray",
+          "authoredAudience": 7,
+          "choice": "repair",
+          "money": 0,
+          "seatedAudience": 14
+        },
+        {
+          "event": "pet-craze",
+          "topic": "pet",
+          "phase": "bones",
+          "authoredAudience": 9,
+          "choice": "sell",
+          "money": 2,
+          "seatedAudience": 18
+        },
+        {
+          "event": "influencer",
+          "topic": "sport",
+          "phase": null,
+          "authoredAudience": 4,
+          "choice": "repair",
+          "money": 0,
+          "seatedAudience": 8
+        },
+        {
+          "event": "influencer",
+          "topic": "selfie",
+          "phase": null,
+          "authoredAudience": 5,
+          "choice": "sell",
+          "money": 1,
+          "seatedAudience": 10
+        },
+        {
+          "event": "influencer",
+          "topic": "sport",
+          "phase": null,
+          "authoredAudience": 4,
+          "choice": "sell",
+          "money": 2,
+          "seatedAudience": 8
+        },
+        {
+          "event": "influencer",
+          "topic": "sport",
+          "phase": null,
+          "authoredAudience": 5,
+          "choice": "repair",
+          "money": 0,
+          "seatedAudience": 10
+        },
+        {
+          "event": "influencer",
+          "topic": "adultCartoon",
+          "phase": null,
+          "authoredAudience": 4,
+          "choice": "sell",
+          "money": 1,
+          "seatedAudience": 8
+        },
+        {
+          "event": "influencer",
+          "topic": "apology",
+          "phase": null,
+          "authoredAudience": 5,
+          "choice": "sell",
+          "money": 2,
+          "seatedAudience": 10
+        },
+        {
+          "event": "confrontation",
+          "topic": null,
+          "phase": null,
+          "authoredAudience": 1,
+          "choice": null,
+          "money": 2,
+          "seatedAudience": 1
+        },
+        {
+          "event": "fear",
+          "topic": null,
+          "phase": null,
+          "authoredAudience": 1,
+          "choice": null,
+          "money": 2,
+          "seatedAudience": 1
+        },
+        {
+          "event": "contempt",
+          "topic": null,
+          "phase": null,
+          "authoredAudience": 1,
+          "choice": null,
+          "money": 2,
+          "seatedAudience": 1
+        },
+        {
+          "event": "anger",
+          "topic": null,
+          "phase": null,
+          "authoredAudience": 2,
+          "choice": null,
+          "money": 2,
+          "seatedAudience": 4
+        },
+        {
+          "event": "anger",
+          "topic": null,
+          "phase": null,
+          "authoredAudience": 2,
+          "choice": null,
+          "money": 2,
+          "seatedAudience": 4
+        },
+        {
+          "event": "anger",
+          "topic": null,
+          "phase": null,
+          "authoredAudience": 2,
+          "choice": null,
+          "money": 2,
+          "seatedAudience": 4
+        },
+        {
+          "event": "anger",
+          "topic": null,
+          "phase": null,
+          "authoredAudience": 2,
+          "choice": null,
+          "money": 2,
+          "seatedAudience": 4
+        },
+        {
+          "event": "anger",
+          "topic": null,
+          "phase": null,
+          "authoredAudience": 2,
+          "choice": null,
+          "money": 2,
+          "seatedAudience": 4
+        },
+        {
+          "event": "anger",
+          "topic": null,
+          "phase": null,
+          "authoredAudience": 2,
+          "choice": null,
+          "money": 2,
+          "seatedAudience": 4
+        },
+        {
+          "event": "anger",
+          "topic": null,
+          "phase": null,
+          "authoredAudience": 2,
+          "choice": null,
+          "money": 2,
+          "seatedAudience": 2
+        },
+        {
+          "event": "ordinary",
+          "topic": null,
+          "phase": null,
+          "authoredAudience": 0,
+          "choice": null,
+          "money": 2,
+          "seatedAudience": 0
+        },
+        {
+          "event": "ordinary",
+          "topic": null,
+          "phase": null,
+          "authoredAudience": 0,
+          "choice": null,
+          "money": 2,
+          "seatedAudience": 0
+        }
+      ],
+      "final": {
+        "money": 2,
+        "reach": 10.8,
+        "trust": 0.19479999999999997,
+        "change": 1.8824999999999998,
+        "exploitation": 2.484,
+        "influence": 0.42,
+        "presence": 17.300000000000004,
+        "publicOpinion": 0.048000000000000126
+      },
+      "ending": "Post_Post_Credits"
+    },
+    {
+      "date": "2026-07-10",
+      "policy": "sell",
+      "shots": [
+        {
+          "event": "empty",
+          "topic": null,
+          "phase": null,
+          "authoredAudience": 0,
+          "choice": null,
+          "money": 2,
+          "seatedAudience": 0
+        },
+        {
+          "event": "fashion",
+          "topic": null,
+          "phase": null,
+          "authoredAudience": 3,
+          "choice": null,
+          "money": 2,
+          "seatedAudience": 6
+        },
+        {
+          "event": "affection",
+          "topic": null,
+          "phase": null,
+          "authoredAudience": 0,
+          "choice": null,
+          "money": 2,
+          "seatedAudience": 0
+        },
+        {
+          "event": "influencer",
+          "topic": "charity",
+          "phase": null,
+          "authoredAudience": 4,
+          "choice": "sell",
+          "money": 3,
+          "seatedAudience": 8
+        },
+        {
+          "event": "influencer",
+          "topic": "weather",
+          "phase": null,
+          "authoredAudience": 5,
+          "choice": "sell",
+          "money": 4,
+          "seatedAudience": 10
+        },
+        {
+          "event": "flood",
+          "topic": "weather",
+          "phase": null,
+          "authoredAudience": 6,
+          "choice": "sell",
+          "money": 6,
+          "seatedAudience": 12
+        },
+        {
+          "event": "shortage",
+          "topic": "shortage",
+          "phase": null,
+          "authoredAudience": 4,
+          "choice": "sell",
+          "money": 7,
+          "seatedAudience": 8
+        },
+        {
+          "event": "pet-craze",
+          "topic": "pet",
+          "phase": "cute",
+          "authoredAudience": 4,
+          "choice": "sell",
+          "money": 8,
+          "seatedAudience": 8
+        },
+        {
+          "event": "pet-craze",
+          "topic": "pet",
+          "phase": "craze",
+          "authoredAudience": 8,
+          "choice": "sell",
+          "money": 10,
+          "seatedAudience": 16
+        },
+        {
+          "event": "pet-craze",
+          "topic": "pet",
+          "phase": "stray",
+          "authoredAudience": 7,
+          "choice": "sell",
+          "money": 11,
+          "seatedAudience": 14
+        },
+        {
+          "event": "pet-craze",
+          "topic": "pet",
+          "phase": "bones",
+          "authoredAudience": 9,
+          "choice": "sell",
+          "money": 13,
+          "seatedAudience": 18
+        },
+        {
+          "event": "influencer",
+          "topic": "sport",
+          "phase": null,
+          "authoredAudience": 4,
+          "choice": "sell",
+          "money": 14,
+          "seatedAudience": 8
+        },
+        {
+          "event": "influencer",
+          "topic": "selfie",
+          "phase": null,
+          "authoredAudience": 5,
+          "choice": "sell",
+          "money": 15,
+          "seatedAudience": 10
+        },
+        {
+          "event": "influencer",
+          "topic": "sport",
+          "phase": null,
+          "authoredAudience": 4,
+          "choice": "sell",
+          "money": 16,
+          "seatedAudience": 8
+        },
+        {
+          "event": "influencer",
+          "topic": "sport",
+          "phase": null,
+          "authoredAudience": 5,
+          "choice": "sell",
+          "money": 17,
+          "seatedAudience": 10
+        },
+        {
+          "event": "influencer",
+          "topic": "adultCartoon",
+          "phase": null,
+          "authoredAudience": 4,
+          "choice": "sell",
+          "money": 18,
+          "seatedAudience": 8
+        },
+        {
+          "event": "influencer",
+          "topic": "apology",
+          "phase": null,
+          "authoredAudience": 5,
+          "choice": "sell",
+          "money": 19,
+          "seatedAudience": 10
+        },
+        {
+          "event": "confrontation",
+          "topic": null,
+          "phase": null,
+          "authoredAudience": 1,
+          "choice": null,
+          "money": 19,
+          "seatedAudience": 1
+        },
+        {
+          "event": "fear",
+          "topic": null,
+          "phase": null,
+          "authoredAudience": 1,
+          "choice": null,
+          "money": 19,
+          "seatedAudience": 1
+        },
+        {
+          "event": "contempt",
+          "topic": null,
+          "phase": null,
+          "authoredAudience": 1,
+          "choice": null,
+          "money": 19,
+          "seatedAudience": 1
+        },
+        {
+          "event": "anger",
+          "topic": null,
+          "phase": null,
+          "authoredAudience": 2,
+          "choice": null,
+          "money": 19,
+          "seatedAudience": 4
+        },
+        {
+          "event": "anger",
+          "topic": null,
+          "phase": null,
+          "authoredAudience": 2,
+          "choice": null,
+          "money": 19,
+          "seatedAudience": 4
+        },
+        {
+          "event": "anger",
+          "topic": null,
+          "phase": null,
+          "authoredAudience": 2,
+          "choice": null,
+          "money": 19,
+          "seatedAudience": 4
+        },
+        {
+          "event": "anger",
+          "topic": null,
+          "phase": null,
+          "authoredAudience": 2,
+          "choice": null,
+          "money": 19,
+          "seatedAudience": 4
+        },
+        {
+          "event": "anger",
+          "topic": null,
+          "phase": null,
+          "authoredAudience": 2,
+          "choice": null,
+          "money": 19,
+          "seatedAudience": 4
+        },
+        {
+          "event": "anger",
+          "topic": null,
+          "phase": null,
+          "authoredAudience": 2,
+          "choice": null,
+          "money": 19,
+          "seatedAudience": 4
+        },
+        {
+          "event": "anger",
+          "topic": null,
+          "phase": null,
+          "authoredAudience": 2,
+          "choice": null,
+          "money": 19,
+          "seatedAudience": 2
+        },
+        {
+          "event": "ordinary",
+          "topic": null,
+          "phase": null,
+          "authoredAudience": 0,
+          "choice": null,
+          "money": 19,
+          "seatedAudience": 0
+        },
+        {
+          "event": "ordinary",
+          "topic": null,
+          "phase": null,
+          "authoredAudience": 0,
+          "choice": null,
+          "money": 19,
+          "seatedAudience": 0
+        }
+      ],
+      "final": {
+        "money": 19,
+        "reach": 13.320000000000002,
+        "trust": 0,
+        "change": 0,
+        "exploitation": 3.5100000000000002,
+        "influence": 0,
+        "presence": 22.399999999999995,
+        "publicOpinion": -0.672
+      },
+      "ending": "Post_Post_Credits"
+    },
+    {
+      "date": "2026-07-10",
+      "policy": "mixed",
+      "shots": [
+        {
+          "event": "empty",
+          "topic": null,
+          "phase": null,
+          "authoredAudience": 0,
+          "choice": null,
+          "money": 2,
+          "seatedAudience": 0
+        },
+        {
+          "event": "fashion",
+          "topic": null,
+          "phase": null,
+          "authoredAudience": 3,
+          "choice": null,
+          "money": 2,
+          "seatedAudience": 6
+        },
+        {
+          "event": "affection",
+          "topic": null,
+          "phase": null,
+          "authoredAudience": 0,
+          "choice": null,
+          "money": 2,
+          "seatedAudience": 0
+        },
+        {
+          "event": "influencer",
+          "topic": "charity",
+          "phase": null,
+          "authoredAudience": 4,
+          "choice": "repair",
+          "money": 0,
+          "seatedAudience": 8
+        },
+        {
+          "event": "influencer",
+          "topic": "weather",
+          "phase": null,
+          "authoredAudience": 5,
+          "choice": "sell",
+          "money": 1,
+          "seatedAudience": 10
+        },
+        {
+          "event": "flood",
+          "topic": "weather",
+          "phase": null,
+          "authoredAudience": 6,
+          "choice": "sell",
+          "money": 3,
+          "seatedAudience": 12
+        },
+        {
+          "event": "shortage",
+          "topic": "shortage",
+          "phase": null,
+          "authoredAudience": 4,
+          "choice": "repair",
+          "money": 1,
+          "seatedAudience": 8
+        },
+        {
+          "event": "pet-craze",
+          "topic": "pet",
+          "phase": "cute",
+          "authoredAudience": 4,
+          "choice": "sell",
+          "money": 2,
+          "seatedAudience": 8
+        },
+        {
+          "event": "pet-craze",
+          "topic": "pet",
+          "phase": "craze",
+          "authoredAudience": 8,
+          "choice": "repair",
+          "money": 0,
+          "seatedAudience": 16
+        },
+        {
+          "event": "pet-craze",
+          "topic": "pet",
+          "phase": "stray",
+          "authoredAudience": 7,
+          "choice": "sell",
+          "money": 1,
+          "seatedAudience": 14
+        },
+        {
+          "event": "pet-craze",
+          "topic": "pet",
+          "phase": "bones",
+          "authoredAudience": 9,
+          "choice": "sell",
+          "money": 3,
+          "seatedAudience": 18
+        },
+        {
+          "event": "influencer",
+          "topic": "sport",
+          "phase": null,
+          "authoredAudience": 4,
+          "choice": "repair",
+          "money": 1,
+          "seatedAudience": 8
+        },
+        {
+          "event": "influencer",
+          "topic": "selfie",
+          "phase": null,
+          "authoredAudience": 5,
+          "choice": "sell",
+          "money": 2,
+          "seatedAudience": 10
+        },
+        {
+          "event": "influencer",
+          "topic": "sport",
+          "phase": null,
+          "authoredAudience": 4,
+          "choice": "repair",
+          "money": 0,
+          "seatedAudience": 8
+        },
+        {
+          "event": "influencer",
+          "topic": "sport",
+          "phase": null,
+          "authoredAudience": 5,
+          "choice": "sell",
+          "money": 1,
+          "seatedAudience": 10
+        },
+        {
+          "event": "influencer",
+          "topic": "adultCartoon",
+          "phase": null,
+          "authoredAudience": 4,
+          "choice": "sell",
+          "money": 2,
+          "seatedAudience": 8
+        },
+        {
+          "event": "influencer",
+          "topic": "apology",
+          "phase": null,
+          "authoredAudience": 5,
+          "choice": "repair",
+          "money": 0,
+          "seatedAudience": 10
+        },
+        {
+          "event": "confrontation",
+          "topic": null,
+          "phase": null,
+          "authoredAudience": 1,
+          "choice": null,
+          "money": 0,
+          "seatedAudience": 1
+        },
+        {
+          "event": "fear",
+          "topic": null,
+          "phase": null,
+          "authoredAudience": 1,
+          "choice": null,
+          "money": 0,
+          "seatedAudience": 1
+        },
+        {
+          "event": "contempt",
+          "topic": null,
+          "phase": null,
+          "authoredAudience": 1,
+          "choice": null,
+          "money": 0,
+          "seatedAudience": 1
+        },
+        {
+          "event": "anger",
+          "topic": null,
+          "phase": null,
+          "authoredAudience": 2,
+          "choice": null,
+          "money": 0,
+          "seatedAudience": 4
+        },
+        {
+          "event": "anger",
+          "topic": null,
+          "phase": null,
+          "authoredAudience": 2,
+          "choice": null,
+          "money": 0,
+          "seatedAudience": 4
+        },
+        {
+          "event": "anger",
+          "topic": null,
+          "phase": null,
+          "authoredAudience": 2,
+          "choice": null,
+          "money": 0,
+          "seatedAudience": 4
+        },
+        {
+          "event": "anger",
+          "topic": null,
+          "phase": null,
+          "authoredAudience": 2,
+          "choice": null,
+          "money": 0,
+          "seatedAudience": 4
+        },
+        {
+          "event": "anger",
+          "topic": null,
+          "phase": null,
+          "authoredAudience": 2,
+          "choice": null,
+          "money": 0,
+          "seatedAudience": 4
+        },
+        {
+          "event": "anger",
+          "topic": null,
+          "phase": null,
+          "authoredAudience": 2,
+          "choice": null,
+          "money": 0,
+          "seatedAudience": 4
+        },
+        {
+          "event": "anger",
+          "topic": null,
+          "phase": null,
+          "authoredAudience": 2,
+          "choice": null,
+          "money": 0,
+          "seatedAudience": 2
+        },
+        {
+          "event": "ordinary",
+          "topic": null,
+          "phase": null,
+          "authoredAudience": 0,
+          "choice": null,
+          "money": 0,
+          "seatedAudience": 0
+        },
+        {
+          "event": "ordinary",
+          "topic": null,
+          "phase": null,
+          "authoredAudience": 0,
+          "choice": null,
+          "money": 0,
+          "seatedAudience": 0
+        }
+      ],
+      "final": {
+        "money": 0,
+        "reach": 8.100000000000001,
+        "trust": 0.3006,
+        "change": 1.71,
+        "exploitation": 1.998,
+        "influence": 0.36,
+        "presence": 15.600000000000005,
+        "publicOpinion": 0.2880000000000002
+      },
+      "ending": "Post_Post_Credits"
+    }
+  ]
+}
